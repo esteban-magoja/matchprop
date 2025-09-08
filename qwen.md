@@ -93,6 +93,8 @@ Wave sigue las convenciones estándar de Laravel y PHP FIG:
 
 - **Laravel 12.x**: Framework PHP principal
 - **PHP 8.2+**: Versión requerida de PHP
+- **PostgreSQL**: Sistema de gestión de base de datos principal
+- **pgvector**: Extensión de PostgreSQL para almacenamiento y búsqueda de vectores
 - **Livewire 3.x**: Para interactividad en el frontend sin JavaScript
 - **Volt**: Componentes Livewire en archivos Blade
 - **Folio**: Enrutamiento basado en archivos Blade
@@ -100,6 +102,22 @@ Wave sigue las convenciones estándar de Laravel y PHP FIG:
 - **Tailwind CSS 4.x**: Framework de CSS utility-first
 - **Alpine.js**: Para interactividad ligera en el frontend
 - **Vite**: Herramienta de compilación para assets
+
+## Requisitos de las Extensiones de PostgreSQL
+
+Para que la extensión `pgvector` funcione correctamente, se requiere:
+
+1. **Extensiones de PostgreSQL**:
+   - `vector`: Extensión `pgvector` para operaciones con vectores
+
+2. **Configuración del Servidor PostgreSQL**:
+   - PostgreSQL debe estar configurado para permitir la creación de extensiones
+   - La extensión `pgvector` debe estar instalada en el servidor PostgreSQL
+   - El usuario de la base de datos debe tener privilegios suficientes para crear extensiones
+
+3. **Migraciones**:
+   - Se ha creado una migración específica para habilitar esta extensión automáticamente:
+     - `enable_pgvector_extension`
 
 ## Estructura de Directorios
 
