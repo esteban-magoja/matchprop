@@ -33,8 +33,6 @@
                     <x-app.sidebar-link href="/dashboard" icon="phosphor-house" :active="Request::is('dashboard')">Dashboard</x-app.sidebar-link>
                     <x-app.sidebar-link href="/property-listings" icon="phosphor-buildings" :active="Request::is('property-listings')">My properties</x-app.sidebar-link>
                     <x-app.sidebar-link href="/search-property-listings" icon="phosphor-magnifying-glass" :active="Request::is('search-property-listings')">Search Property Listings</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/projects" icon="phosphor-stack" :active="Request::is('projects')">Projects</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/tasks" icon="phosphor-stack" :active="Request::is('tasks')">Tasks</x-app.sidebar-link>
                 </div>
             </div>
 
