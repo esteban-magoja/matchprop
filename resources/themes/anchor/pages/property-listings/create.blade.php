@@ -54,6 +54,16 @@ new class extends Component {
 
     public function save(): void
     {
+        // Convert empty strings to null for nullable integer fields
+        $this->bedrooms = $this->bedrooms === '' ? null : $this->bedrooms;
+        $this->bathrooms = $this->bathrooms === '' ? null : $this->bathrooms;
+        $this->parking_spaces = $this->parking_spaces === '' ? null : $this->parking_spaces;
+
+        // Ensure non-nullable numeric fields are not empty strings if validation somehow misses it
+        // Although 'required' rule should handle this, explicit conversion adds robustness
+        $this->price = $this->price === '' ? 0 : $this->price; // Or handle as validation error
+        $this->area = $this->area === '' ? 0 : $this->area; // Or handle as validation error
+
         $validated = $this->validate();
         $validated['user_id'] = auth()->id();
 

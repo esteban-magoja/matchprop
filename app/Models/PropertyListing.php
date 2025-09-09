@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Pgvector\Laravel\HasNeighbors;
+use Pgvector\Laravel\Vector;
 
 class PropertyListing extends Model
 {
+    use HasNeighbors;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,7 +34,8 @@ class PropertyListing extends Model
         'latitude',
         'longitude',
         'is_featured',
-        'is_active'
+        'is_active',
+        'embedding'
     ];
 
     /**
@@ -43,7 +48,8 @@ class PropertyListing extends Model
         'latitude' => 'decimal:8',
         'longitude' => 'decimal:8',
         'is_featured' => 'boolean',
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
+        'embedding' => Vector::class
     ];
 
     /**

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use App\Models\PropertyListing;
+use App\Observers\PropertyListingObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -68,6 +70,8 @@ class AppServiceProvider extends ServiceProvider
 
             return true;
         });
+
+        PropertyListing::observe(PropertyListingObserver::class);
 
         $this->bootRoute();
     }
