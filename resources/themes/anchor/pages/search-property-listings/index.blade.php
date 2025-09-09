@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Pgvector\Laravel\Vector;
 
 middleware('auth');
-name('property-listings.index');
+name('search-property-listings.index');
 
 new class extends Component {
     public Collection $propertyListings;
@@ -15,13 +15,13 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->loadAllListings();
+        $this->propertyListings = new Collection();
     }
 
     public function search(): void
     {
         if (empty($this->searchTerm)) {
-            $this->loadAllListings();
+            $this->propertyListings = new Collection();
             return;
         }
 
@@ -36,11 +36,9 @@ new class extends Component {
 
             $embedding = new Vector($response->embeddings[0]->embedding);
 
-            // Calculate similarity and filter in one go
             $this->propertyListings = PropertyListing::query()
                 ->select('*')
                 ->selectRaw('(1 - (embedding <=> ?)) * 50 + 50 as similarity', [$embedding])
-                ->where('user_id', auth()->id())
                 ->whereRaw('(embedding <=> ?) < 1', [$embedding]) // Similarity threshold at 50%
                 ->orderByDesc('similarity')
                 ->get();
@@ -48,31 +46,23 @@ new class extends Component {
         } catch (\Exception $e) {
             // Handle exceptions, e.g., show an error message
             $this->dispatch('error', 'Could not perform search: ' . $e->getMessage());
-            $this->loadAllListings();
+            $this->propertyListings = new Collection();
         }
     }
 
     public function clear(): void
     {
         $this->searchTerm = '';
-        $this->loadAllListings();
-    }
-
-    private function loadAllListings(): void
-    {
-        $this->propertyListings = PropertyListing::where('user_id', auth()->id())->latest()->get();
+        $this->propertyListings = new Collection();
     }
 };
 ?>
 
 <x-layouts.app>
-    @volt('property-listings')
+    @volt('search-property-listings')
     <x-app.container>
         <div class="flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Property Listings</h1>
-            <a href="{{ route('property-listings.create') }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Create Listing
-            </a>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Search All Property Listings</h1>
         </div>
 
         <div class="mt-6">
@@ -101,9 +91,6 @@ new class extends Component {
                             @if($searchTerm)
                                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Similarity</th>
                             @endif
-                            <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Edit</span>
-                            </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900">
@@ -133,14 +120,15 @@ new class extends Component {
                                         <div class="text-sm text-gray-900 dark:text-gray-100">{{ number_format($listing->similarity, 2) }}%</div>
                                     </td>
                                 @endif
-                                <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="{{ $searchTerm ? 6 : 5 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                                    No property listings found.
+                                <td colspan="{{ $searchTerm ? 5 : 4 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                                    @if($searchTerm)
+                                        No property listings found matching your search.
+                                    @else
+                                        Please enter a search term to find property listings.
+                                    @endif
                                 </td>
                             </tr>
                         @endforelse
