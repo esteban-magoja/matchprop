@@ -37,6 +37,7 @@ new class extends Component {
             $embedding = new Vector($response->embeddings[0]->embedding);
 
             $this->propertyListings = PropertyListing::query()
+                ->with('user')
                 ->select('*')
                 ->selectRaw('(1 - (embedding <=> ?)) * 50 + 50 as similarity', [$embedding])
                 ->whereRaw('(embedding <=> ?) < 1', [$embedding]) // Similarity threshold at 50%
@@ -79,7 +80,15 @@ new class extends Component {
             </form>
         </div>
 
-        <div class="mt-6">
+        <div wire:loading wire:target="search" class="flex items-center justify-center w-full p-4 mt-4 text-sm font-medium text-gray-500">
+            <svg class="w-5 h-5 mr-3 -ml-1 text-indigo-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Searching...
+        </div>
+
+        <div class="mt-6" wire:loading.remove wire:target="search">
             <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50 dark:bg-gray-800">
@@ -99,6 +108,7 @@ new class extends Component {
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $listing->title }}</div>
                                     <div class="text-sm text-gray-500">{{ $listing->city }}, {{ $listing->state }}</div>
+                                    <div class="text-sm text-gray-400">By: {{ $listing->user->name }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900 dark:text-gray-100">{{ ucfirst($listing->property_type) }} / {{ ucfirst($listing->transaction_type) }}</div>
