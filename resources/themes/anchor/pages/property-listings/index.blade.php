@@ -4,6 +4,7 @@ use function Laravel\Folio\{middleware, name};
 use Livewire\Volt\Component;
 use App\Models\PropertyListing;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 use Pgvector\Laravel\Vector;
 
 middleware('auth');
@@ -12,6 +13,7 @@ name('property-listings.index');
 new class extends Component {
     public Collection $propertyListings;
     public string $searchTerm = '';
+    public ?PropertyListing $listingToDelete = null;
 
     public function mount(): void
     {
@@ -36,18 +38,16 @@ new class extends Component {
 
             $embedding = new Vector($response->embeddings[0]->embedding);
 
-            // Calculate similarity and filter in one go
             $this->propertyListings = PropertyListing::query()
                 ->with('primaryImage')
                 ->select('*')
                 ->selectRaw('(1 - (embedding <=> ?)) * 50 + 50 as similarity', [$embedding])
                 ->where('user_id', auth()->id())
-                ->whereRaw('(embedding <=> ?) < 1', [$embedding]) // Similarity threshold at 50%
+                ->whereRaw('(embedding <=> ?) < 1', [$embedding])
                 ->orderByDesc('similarity')
                 ->get();
 
         } catch (\Exception $e) {
-            // Handle exceptions, e.g., show an error message
             $this->dispatch('error', 'Could not perform search: ' . $e->getMessage());
             $this->loadAllListings();
         }
@@ -57,6 +57,44 @@ new class extends Component {
     {
         $this->searchTerm = '';
         $this->loadAllListings();
+    }
+
+    public function confirmDelete(int $listingId): void
+    {
+        $this->listingToDelete = PropertyListing::where('user_id', auth()->id())->findOrFail($listingId);
+    }
+
+    public function delete(): void
+    {
+        if (!$this->listingToDelete) {
+            return;
+        }
+
+        // Ensure the user is authorized to delete this listing
+        if ($this->listingToDelete->user_id !== auth()->id()) {
+            $this->cancelDelete();
+            return;
+        }
+
+        // Eager load images to get their paths
+        $this->listingToDelete->load('images');
+
+        // Delete physical files
+        foreach ($this->listingToDelete->images as $image) {
+            Storage::disk('public')->delete($image->image_path);
+        }
+
+        // Delete the listing from the database (cascades to images table)
+        $this->listingToDelete->delete();
+
+        // Refresh the list and close the modal
+        $this->loadAllListings();
+        $this->cancelDelete();
+    }
+
+    public function cancelDelete(): void
+    {
+        $this->listingToDelete = null;
     }
 
     private function loadAllListings(): void
@@ -112,7 +150,7 @@ new class extends Component {
                                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Similarity</th>
                             @endif
                             <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Edit</span>
+                                <span class="sr-only">Actions</span>
                             </th>
                         </tr>
                     </thead>
@@ -154,11 +192,12 @@ new class extends Component {
                                 @endif
                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <button wire:click="confirmDelete({{ $listing->id }})" class="ml-4 text-red-600 hover:text-red-900">Delete</button>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="{{ $searchTerm ? 7 : 6 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                                <td colspan="{{ $searchTerm ? 8 : 7 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
                                     No property listings found.
                                 </td>
                             </tr>
@@ -167,6 +206,43 @@ new class extends Component {
                 </table>
             </div>
         </div>
+
+        @if($listingToDelete)
+        <div class="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-25" aria-hidden="true"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-gray-800">
+                    <div>
+                        <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full">
+                            <svg class="w-6 h-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-5">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100" id="modal-title">
+                                Delete Property Listing
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">
+                                    Are you sure you want to delete "{{ $listingToDelete->title }}"? This will permanently delete the listing and all its images. This action cannot be undone.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                        <button wire:click="delete" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:col-start-2 sm:text-sm">
+                            Delete
+                        </button>
+                        <button wire:click="cancelDelete" type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
     </x-app.container>
     @endvolt
 </x-layouts.app>
