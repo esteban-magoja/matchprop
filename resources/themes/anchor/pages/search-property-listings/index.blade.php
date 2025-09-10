@@ -37,10 +37,10 @@ new class extends Component {
             $embedding = new Vector($response->embeddings[0]->embedding);
 
             $this->propertyListings = PropertyListing::query()
-                ->with('user')
+                ->with(['user', 'primaryImage'])
                 ->select('*')
                 ->selectRaw('(1 - (embedding <=> ?)) * 50 + 50 as similarity', [$embedding])
-                ->whereRaw('(embedding <=> ?) < 1', [$embedding]) // Similarity threshold at 50%
+                ->whereRaw('(embedding <=> ?) < 0.5', [$embedding]) // Similarity threshold at 75%
                 ->orderByDesc('similarity')
                 ->get();
 
@@ -69,8 +69,15 @@ new class extends Component {
         <div class="mt-6">
             <form wire:submit.prevent="search" class="flex items-center space-x-2">
                 <input type="text" wire:model="searchTerm" placeholder="Search for properties..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200">
-                <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Search
+                <button type="submit" wire:loading.attr="disabled" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-75 disabled:cursor-not-allowed">
+                    <span wire:loading.remove wire:target="search">Search</span>
+                    <span wire:loading wire:target="search">
+                        <svg class="w-5 h-5 mr-2 -ml-1 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        
+                    </span>
                 </button>
                 @if($searchTerm)
                     <button type="button" wire:click="clear" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600">
@@ -93,6 +100,7 @@ new class extends Component {
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50 dark:bg-gray-800">
                         <tr>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Image</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Title</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Type</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Price</th>
@@ -105,6 +113,15 @@ new class extends Component {
                     <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900">
                         @forelse($propertyListings as $listing)
                             <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    @if($listing->primaryImage)
+                                        <img src="{{ $listing->primaryImage->image_url }}" alt="{{ $listing->title }}" class="object-cover w-32 h-20 rounded-md" style="max-width: 150px;">
+                                    @else
+                                        <div class="flex items-center justify-center w-32 h-20 text-gray-400 bg-gray-100 rounded-md dark:bg-gray-700">
+                                            No Image
+                                        </div>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $listing->title }}</div>
                                     <div class="text-sm text-gray-500">{{ $listing->city }}, {{ $listing->state }}</div>
@@ -133,7 +150,7 @@ new class extends Component {
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="{{ $searchTerm ? 5 : 4 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                                <td colspan="{{ $searchTerm ? 6 : 5 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
                                     @if($searchTerm)
                                         No property listings found matching your search.
                                     @else

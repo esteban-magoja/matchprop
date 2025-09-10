@@ -31,13 +31,13 @@ new class extends Component {
     public string $price = '';
 
     #[Rule('required|integer|min:0')]
-    public string $bedrooms = '';
+    public int $bedrooms = 0;
 
     #[Rule('required|integer|min:0')]
-    public string $bathrooms = '';
+    public int $bathrooms = 0;
 
-    #[Rule('nullable|integer|min:0')]
-    public string $parking_spaces = '';
+    #[Rule('integer|min:0')]
+    public int $parking_spaces = 0;
 
     #[Rule('required|numeric|min:0')]
     public string $area = '';
@@ -52,10 +52,7 @@ new class extends Component {
     public string $state = '';
 
     #[Rule('required|string|max:255')]
-    public string $country = 'USA';
-
-    #[Rule('required|string|max:20')]
-    public string $postal_code = '';
+    public string $country = 'Argentina';
 
     public ?PropertyListing $propertyListing = null;
 
@@ -65,29 +62,7 @@ new class extends Component {
 
     public function save(): void
     {
-        $this->bedrooms = $this->bedrooms === '' ? null : $this->bedrooms;
-        $this->bathrooms = $this->bathrooms === '' ? null : $this->bathrooms;
-        $this->parking_spaces = $this->parking_spaces === '' ? null : $this->parking_spaces;
-        $this->price = $this->price === '' ? 0 : $this->price;
-        $this->area = $this->area === '' ? 0 : $this->area;
-
-        $validated = $this->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'property_type' => 'required|string',
-            'transaction_type' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'bedrooms' => 'required|integer|min:0',
-            'bathrooms' => 'required|integer|min:0',
-            'parking_spaces' => 'nullable|integer|min:0',
-            'area' => 'required|numeric|min:0',
-            'address' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-            'postal_code' => 'required|string|max:20',
-        ]);
-        
+        $validated = $this->validate();
         $validated['user_id'] = auth()->id();
 
         $this->propertyListing = PropertyListing::create($validated);
@@ -241,9 +216,13 @@ new class extends Component {
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="postal_code" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Postal Code</label>
-                                <input type="text" wire:model="postal_code" id="postal_code" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                 @error('postal_code') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                                <label for="country" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
+                                <select wire:model="country" id="country" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option>Argentina</option>
+                                    <option>Chile</option>
+                                    <option>Mexico</option>
+                                </select>
+                                @error('country') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
                         </div>
                     </div>
