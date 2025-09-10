@@ -38,6 +38,7 @@ new class extends Component {
 
             // Calculate similarity and filter in one go
             $this->propertyListings = PropertyListing::query()
+                ->with('primaryImage')
                 ->select('*')
                 ->selectRaw('(1 - (embedding <=> ?)) * 50 + 50 as similarity', [$embedding])
                 ->where('user_id', auth()->id())
@@ -60,7 +61,7 @@ new class extends Component {
 
     private function loadAllListings(): void
     {
-        $this->propertyListings = PropertyListing::where('user_id', auth()->id())->latest()->get();
+        $this->propertyListings = PropertyListing::where('user_id', auth()->id())->with('primaryImage')->latest()->get();
     }
 };
 ?>
@@ -102,6 +103,7 @@ new class extends Component {
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50 dark:bg-gray-800">
                         <tr>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Image</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Title</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Type</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Price</th>
@@ -117,6 +119,15 @@ new class extends Component {
                     <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900">
                         @forelse($propertyListings as $listing)
                             <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    @if($listing->primaryImage)
+                                        <img src="{{ $listing->primaryImage->image_url }}" alt="{{ $listing->title }}" class="object-cover w-32 h-20 rounded-md" style="max-width: 150px;">
+                                    @else
+                                        <div class="flex items-center justify-center w-32 h-20 text-gray-400 bg-gray-100 rounded-md dark:bg-gray-700">
+                                            No Image
+                                        </div>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $listing->title }}</div>
                                     <div class="text-sm text-gray-500">{{ $listing->city }}, {{ $listing->state }}</div>
@@ -147,7 +158,7 @@ new class extends Component {
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="{{ $searchTerm ? 6 : 5 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                                <td colspan="{{ $searchTerm ? 7 : 6 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
                                     No property listings found.
                                 </td>
                             </tr>
