@@ -26,8 +26,8 @@ new class extends Component {
         }
 
         try {
-            $client = \OpenAI::client(env('OPENAI_API_KEY'));
-            $model = env('EMBEDDINGS_MODEL', 'text-embedding-ada-002');
+            $client = \OpenAI::client(config('openai.api_key'));
+            $model = config('openai.embeddings_model');
 
             $response = $client->embeddings()->create([
                 'model' => $model,
