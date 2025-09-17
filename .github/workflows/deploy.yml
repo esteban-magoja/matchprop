@@ -10,23 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Configurar SSH
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy to cPanel
+      - name: Set up SSH
         run: |
-          ssh -o StrictHostKeyChecking=no englob@englob.com << 'EOF'
-            cd ~/laravel-app
-            git pull origin main
-            php $(which composer) install --no-dev --optimize-autoloader
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H englob.com >> ~/.ssh/known_hosts
+
+      - name: Deploy files to server
+        run: |
+          rsync -avz --delete \
+            --exclude=".git" \
+            --exclude="node_modules" \
+            ./ englob@englob.com:/home/englob/laravel-app
+
+      - name: Run Laravel commands on server
+        run: |
+          ssh englob@englob.com << 'EOF'
+            cd /home/englob/laravel-app
+            php $(which composer) install --no-interaction --prefer-dist --optimize-autoloader
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
-            php artisan queue:restart || true
           EOF
