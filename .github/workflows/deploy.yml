@@ -20,14 +20,14 @@ jobs:
 
       - name: Deploy files to server
         run: |
-          rsync -avz --delete \
+          rsync -avz --delete -e "ssh -p 2222" \
             --exclude=".git" \
             --exclude="node_modules" \
             ./ englob@englob.com:/home/englob/laravel-app
 
       - name: Run Laravel commands on server
         run: |
-          ssh englob@englob.com "cd /home/englob/laravel-app && \
+          ssh -p 2222 englob@englob.com "cd /home/englob/laravel-app && \
           php \$(which composer) install --no-interaction --prefer-dist --optimize-autoloader && \
           php artisan migrate --force && \
           php artisan config:cache && \
