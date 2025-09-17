@@ -23,9 +23,10 @@ jobs:
           ssh -o StrictHostKeyChecking=no englob@englob.com << 'EOF'
             cd ~/laravel-app
             git pull origin main
-            composer install --no-dev --optimize-autoloader
+            php $(which composer) install --no-dev --optimize-autoloader
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
+            php artisan queue:restart || true
           EOF

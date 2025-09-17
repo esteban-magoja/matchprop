@@ -4,6 +4,7 @@
 /storage/*.key
 /storage/pail
 /vendor
+.htaccess
 .env
 .env.backup
 .phpunit.result.cache
@@ -12,6 +13,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+CLAUDE.md
+GEMINI.md
+qwen.md
 /.idea
 /.nova
 /.vscode
