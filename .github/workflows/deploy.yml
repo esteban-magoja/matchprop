@@ -31,7 +31,7 @@ EOF
 
       - name: Run Laravel commands on server
         run: |
-          ssh englob@englob.com << 'EOF'
+          ssh englob@englob.com <<'EOF'
 cd /home/englob/laravel-app
 php $(which composer) install --no-interaction --prefer-dist --optimize-autoloader
 php artisan migrate --force
