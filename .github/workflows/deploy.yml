@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }} # opcional, por defecto 21
           local-dir: ./                 # Carpeta local a subir
-          server-dir: /home/englob/laravel-app
+          server-dir: /home/englob/laravel-app/
           exclude: |
             .env
             storage
