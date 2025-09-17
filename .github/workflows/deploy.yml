@@ -1,4 +1,4 @@
-name: Deploy Laravel to cPanel
+name: Deploy Laravel to cPanel via FTP
 
 on:
   push:
@@ -10,26 +10,48 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Clonar el repositorio
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Start SSH agent and add key
-        uses: webfactory/ssh-agent@v0.9.0
+      # 2️⃣ Instalar PHP en el runner de GitHub
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          php-version: '8.4'
 
-      - name: Deploy files to server
-        run: |
-          rsync -avz --delete -e "ssh -p 2222" \
-            --exclude=".git" \
-            --exclude="node_modules" \
-            ./ englob@englob.com:/home/englob/laravel-app
+      # 3️⃣ Activar modo mantenimiento
+      - name: Enable maintenance mode
+        run: php artisan down
 
-      - name: Run Laravel commands on server
+      # 4️⃣ Instalar dependencias con composer
+      - name: Install Composer dependencies
+        run: php $(which composer) install --no-interaction --prefer-dist --optimize-autoloader
+
+      # 5️⃣ Ejecutar migraciones y caches de Laravel
+      - name: Run Laravel commands
         run: |
-          ssh -p 2222 englob@englob.com "cd /home/englob/laravel-app && \
-          php \$(which composer) install --no-interaction --prefer-dist --optimize-autoloader && \
-          php artisan migrate --force && \
-          php artisan config:cache && \
-          php artisan route:cache && \
-          php artisan view:cache"
+          php artisan migrate --force
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+      # 6️⃣ Subir archivos por FTP (excluyendo archivos críticos)
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }} # opcional, por defecto 21
+          local-dir: ./                  # carpeta local a subir
+          server-dir: /home/englob/laravel-app
+          exclude: |
+            .env
+            storage
+            node_modules
+            public/.htaccess
+
+      # 7️⃣ Desactivar modo mantenimiento
+      - name: Disable maintenance mode
+        run: php artisan up
