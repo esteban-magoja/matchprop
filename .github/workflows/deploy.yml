@@ -10,25 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Clonar el repositorio
+      # 1 Clonar el repositorio
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Instalar PHP en el runner de GitHub
+      # 2 Instalar PHP en el runner de GitHub
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
 
-      # 3️⃣ Activar modo mantenimiento
+      # 3 Instalar dependencias con composer
+      - name: Install Composer dependencies
+        run: php $(which composer) install --no-interaction --prefer-dist --optimize-autoloader
+          
+      # 4 Activar modo mantenimiento
       - name: Enable maintenance mode
         run: php artisan down
 
-      # 4️⃣ Instalar dependencias con composer
-      - name: Install Composer dependencies
-        run: php $(which composer) install --no-interaction --prefer-dist --optimize-autoloader
-
-      # 5️⃣ Ejecutar migraciones y caches de Laravel
+      # 5 Ejecutar migraciones y caches de Laravel
       - name: Run Laravel commands
         run: |
           php artisan migrate --force
@@ -36,7 +36,7 @@ jobs:
           php artisan route:cache
           php artisan view:cache
 
-      # 6️⃣ Subir archivos por FTP (excluyendo archivos críticos)
+      # 6 Subir archivos por FTP (excluyendo archivos críticos)
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -52,6 +52,6 @@ jobs:
             node_modules
             public/.htaccess
 
-      # 7️⃣ Desactivar modo mantenimiento
+      # 7 Desactivar modo mantenimiento
       - name: Disable maintenance mode
         run: php artisan up
