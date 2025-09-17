@@ -2,7 +2,7 @@
     <div class="flex flex-col flex-1 gap-6 justify-between items-center px-8 pt-32 mx-auto w-full max-w-2xl text-left md:px-12 xl:px-20 lg:pt-32 lg:pb-16 lg:max-w-7xl lg:flex-row">
         <div class="w-full lg:w-1/2">
             <h1 class="text-6xl font-bold tracking-tighter text-left sm:text-7xl md:text-[84px] sm:text-center lg:text-left text-zinc-900 text-balance">
-                <span class="block origin-left lg:scale-90 text-nowrap">MatchProp</span> <span class="pr-4 text-transparent bg-clip-text bg-gradient-to-b text-neutral-600 from-neutral-900 to-neutral-500"></span>
+                <span class="block origin-left lg:scale-90 text-nowrap">MatchProp</span> <span class="pr-4 text-transparent bg-clip-text bg-gradient-to-b text-neutral-600 from-neutral-900 to-neutral-500">test</span>
             </h1>
             <p class="mx-auto mt-5 text-lg font-normal text-left md:text-xl sm:max-w-md lg:ml-0 lg:max-w-sm sm:text-center lg:text-left text-zinc-500">
                 Customize this to highlight your product’s unique selling points<span class="hidden sm:inline"> and features</span>.
