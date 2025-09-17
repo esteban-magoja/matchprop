@@ -1,8 +1,8 @@
 <section>
     <x-marketing.elements.heading
         level="h2"
-        title="Chart Your Course"
-        description="Set sail and discover the riches of our value-packed plans, meticulously designed to offer you the very best features for less on your SaaS expedition. " 
+        title="Planes para Cada Necesidad"
+        description="Tanto si eres un particular buscando tu próximo hogar, como si eres un agente inmobiliario gestionando múltiples propiedades, tenemos un plan para ti." 
     />
 
     <div x-data="{ on: false, billing: '{{ get_default_billing_cycle() }}',
@@ -31,10 +31,10 @@
             <div class="flex relative justify-start items-center pb-5 -translate-y-2 md:justify-center">
                 <div class="inline-flex relative justify-center items-center p-1 w-auto text-center rounded-full border-2 -translate-y-3 md:mx-auto border-zinc-900">
                     <div x-ref="monthly" x-on:click="billing='Monthly'; toggleRepositionMarker($el)" :class="{ 'text-white': billing == 'Monthly', 'text-zinc-900' : billing != 'Monthly' }" class="relative z-20 px-3.5 py-1 text-sm font-medium leading-6 rounded-full duration-300 ease-out cursor-pointer">
-                        Monthly
+                        Mensual
                     </div>
                     <div x-ref="yearly" x-on:click="billing='Yearly'; toggleRepositionMarker($el)" :class="{ 'text-white': billing == 'Yearly', 'text-zinc-900' : billing != 'Yearly' }" class="relative z-20 px-3.5 py-1 text-sm font-medium leading-6 rounded-full duration-300 ease-out cursor-pointer">
-                        Yearly
+                        Anual
                     </div>
                     <div x-ref="marker" class="absolute left-0 z-10 w-1/2 h-full opacity-0" x-cloak>
                         <div class="w-full h-full rounded-full shadow-sm bg-zinc-900"></div>
@@ -48,7 +48,6 @@
             @foreach(Wave\Plan::where('active', 1)->get() as $plan)
                 @php $features = explode(',', $plan->features); @endphp
                 <div
-                    {{--  Say that you have a monthly plan that doesn't have a yearly plan, in that case we will hide the place that doesn't have a price_id --}}
                     x-show="(billing == 'Monthly' && '{{ $plan->monthly_price_id }}' != '') || (billing == 'Yearly' && '{{ $plan->yearly_price_id }}' != '')" 
                     class="flex-1 px-0 mx-auto mb-6 w-full md:max-w-lg lg:mb-0" x-cloak>
                     <div class="flex flex-col lg:mb-10 h-full bg-white rounded-xl border-2  @if($plan->default){{ 'border-zinc-900 lg:scale-105' }}@else{{ 'border-zinc-200' }}@endif shadow-sm sm:mb-0">
@@ -59,8 +58,8 @@
                         </div>
 
                         <div class="px-8 mt-5">
-                            <span class="text-5xl font-bold">$<span x-text="billing == 'Monthly' ? '{{ $plan->monthly_price }}' : '{{ $plan->yearly_price }}'"></span></span>
-                            <span class="text-xl font-bold text-zinc-500"><span x-text="billing == 'Monthly' ? '/mo' : '/yr'"></span></span>
+                            <span class="text-5xl font-bold">€<span x-text="billing == 'Monthly' ? '{{ $plan->monthly_price }}' : '{{ $plan->yearly_price }}'"></span></span>
+                            <span class="text-xl font-bold text-zinc-500"><span x-text="billing == 'Monthly' ? '/mes' : '/año'"></span></span>
                         </div>
 
                         <div class="px-8 pb-10 mt-3">
@@ -82,8 +81,8 @@
                             </ul>
 
                             <div class="mt-8">
-                                <x-button class="w-full" tag="a" href="/settings/subscription">
-                                    Get Started
+                                <x-button class="w-full" tag="a" href="/register">
+                                    Comenzar
                                 </x-button>
                             </div>
                         </div>
@@ -93,5 +92,5 @@
         </div>
     </div>
 
-    <p class="mt-0 mb-8 w-full text-center text-zinc-500 sm:my-10">All plans are fully configurable in the Admin Area.</p>
+    <p class="mt-0 mb-8 w-full text-center text-zinc-500 sm:my-10">Los planes y precios se configuran desde el panel de administración.</p>
 </section>
