@@ -1,4 +1,4 @@
-name: Deploy Laravel to cPanel via FTP
+name: Deploy Laravel via FTP
 
 on:
   push:
@@ -10,33 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1 Clonar el repositorio
+      # 1️⃣ Clonar el repositorio
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2 Instalar PHP en el runner de GitHub
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-
-      # 3 Instalar dependencias con composer
-      - name: Install Composer dependencies
-        run: php $(which composer) install --no-interaction --prefer-dist --optimize-autoloader
-          
-      # 4 Activar modo mantenimiento
-      - name: Enable maintenance mode
-        run: php artisan down
-
-      # 5 Ejecutar migraciones y caches de Laravel
-      - name: Run Laravel commands
-        run: |
-          php artisan migrate --force
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-
-      # 6 Subir archivos por FTP (excluyendo archivos críticos)
+      # 2️⃣ Subir archivos por FTP
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -44,14 +22,10 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }} # opcional, por defecto 21
-          local-dir: ./                  # carpeta local a subir
+          local-dir: ./                 # Carpeta local a subir
           server-dir: /home/englob/laravel-app
           exclude: |
             .env
             storage
             node_modules
             public/.htaccess
-
-      # 7 Desactivar modo mantenimiento
-      - name: Disable maintenance mode
-        run: php artisan up
