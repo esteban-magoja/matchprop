@@ -16,7 +16,9 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          printf "%s" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          cat > ~/.ssh/id_ed25519 <<'EOF'
+${{ secrets.SSH_PRIVATE_KEY }}
+EOF
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H englob.com >> ~/.ssh/known_hosts
 
@@ -30,10 +32,10 @@ jobs:
       - name: Run Laravel commands on server
         run: |
           ssh englob@englob.com << 'EOF'
-            cd /home/englob/laravel-app
-            php $(which composer) install --no-interaction --prefer-dist --optimize-autoloader
-            php artisan migrate --force
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-          EOF
+cd /home/englob/laravel-app
+php $(which composer) install --no-interaction --prefer-dist --optimize-autoloader
+php artisan migrate --force
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+EOF
