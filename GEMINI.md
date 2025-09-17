@@ -4,6 +4,13 @@
 
 Wave es un framework SaaS (Software as a Service) construido con Laravel que facilita y agiliza la creación de aplicaciones SaaS. Proporciona características esenciales como autenticación, perfiles de usuario, facturación, planes de suscripción, roles y permisos, entre otros.
 
+### Paneles de Control
+
+El proyecto cuenta con dos paneles de control distintos:
+
+-   **Panel de Administración (Filament):** Accesible solo para usuarios con el rol de `admin`. Se utiliza para la administración general del sitio, como la gestión de usuarios, planes, y configuraciones.
+-   **Panel de Usuario:** Un panel de control general para todos los usuarios registrados, donde pueden gestionar sus propias actividades, como sus anuncios de propiedades (`/property-listings`).
+
 ## Convenciones de Código y Buenas Prácticas
 
 ### Estilo de Código

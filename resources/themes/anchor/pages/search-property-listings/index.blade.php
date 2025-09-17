@@ -96,71 +96,80 @@ new class extends Component {
         </div>
 
         <div class="mt-6" wire:loading.remove wire:target="search">
-            <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50 dark:bg-gray-800">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Image</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Title</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Type</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Price</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Status</th>
-                            @if($searchTerm)
-                                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-300">Similarity</th>
+            <!-- Responsive Grid -->
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                @forelse($propertyListings as $listing)
+                    <!-- Card Component -->
+                    <div class="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                        <!-- Image -->
+                        <div class="relative">
+                            @if($listing->primaryImage)
+                                <img src="{{ $listing->primaryImage->image_url }}" alt="{{ $listing->title }}" class="object-cover w-full h-48 rounded-t-lg">
+                            @else
+                                <div class="flex items-center justify-center w-full h-48 text-gray-400 bg-gray-100 rounded-t-lg dark:bg-gray-700">
+                                    No Image
+                                </div>
                             @endif
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900">
-                        @forelse($propertyListings as $listing)
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    @if($listing->primaryImage)
-                                        <img src="{{ $listing->primaryImage->image_url }}" alt="{{ $listing->title }}" class="object-cover w-32 h-20 rounded-md" style="max-width: 150px;">
-                                    @else
-                                        <div class="flex items-center justify-center w-32 h-20 text-gray-400 bg-gray-100 rounded-md dark:bg-gray-700">
-                                            No Image
-                                        </div>
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $listing->title }}</div>
-                                    <div class="text-sm text-gray-500">{{ $listing->city }}, {{ $listing->state }}</div>
-                                    <div class="text-sm text-gray-400">By: {{ $listing->user->name }}</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900 dark:text-gray-100">{{ ucfirst($listing->property_type) }} / {{ ucfirst($listing->transaction_type) }}</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900 dark:text-gray-100">
-                                        ${{ number_format($listing->price, 2) }}
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    @if($listing->is_active)
-                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                    @else
-                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Inactive</span>
-                                    @endif
-                                </td>
-                                @if($searchTerm)
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900 dark:text-gray-100">{{ number_format($listing->similarity, 2) }}%</div>
-                                    </td>
+                            <!-- Status Badge -->
+                            <div class="absolute top-2 right-2">
+                                @if($listing->is_active)
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
+                                @else
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Inactive</span>
                                 @endif
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="{{ $searchTerm ? 6 : 5 }}" class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                                    @if($searchTerm)
-                                        No property listings found matching your search.
-                                    @else
-                                        Please enter a search term to find property listings.
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Card Body -->
+                        <div class="flex flex-col flex-1 p-4">
+                            <!-- Title and Location -->
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">{{ $listing->title }}</h3>
+                                <p class="text-sm text-gray-500">{{ $listing->city }}, {{ $listing->state }}</p>
+                            </div>
+                            
+                            <!-- Price and Type -->
+                            <div class="mt-2">
+                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-100">${{ number_format($listing->price, 2) }}</p>
+                                <p class="text-sm text-gray-500">{{ ucfirst($listing->property_type) }} / {{ ucfirst($listing->transaction_type) }}</p>
+                            </div>
+
+                            <!-- Lister Info -->
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-400">By: {{ $listing->user->name }}</p>
+                            </div>
+
+                            <!-- Similarity -->
+                            @if($searchTerm)
+                                <div class="mt-2">
+                                    <p class="text-sm font-medium text-green-600 dark:text-green-400">Similarity: {{ number_format($listing->similarity, 2) }}%</p>
+                                </div>
+                            @endif
+                        </div>
+
+                        <!-- Card Footer (Actions) -->
+                        <div class="p-4 mt-auto bg-gray-50 dark:bg-gray-900/50 rounded-b-lg">
+                            <div class="flex justify-end">
+                                <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <!-- Empty State -->
+                    <div class="col-span-1 sm:col-span-2 lg:col-span-3">
+                        <div class="py-12 text-center">
+                            <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">No property listings found</h3>
+                            @if($searchTerm)
+                                <p class="mt-1 text-sm text-gray-500">Try adjusting your search term.</p>
+                            @else
+                                <p class="mt-1 text-sm text-gray-500">Enter a term above to search for properties.</p>
+                            @endif
+                        </div>
+                    </div>
+                @endforelse
             </div>
         </div>
     </x-app.container>
