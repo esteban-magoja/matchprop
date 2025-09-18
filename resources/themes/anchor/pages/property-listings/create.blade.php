@@ -40,7 +40,7 @@ new class extends Component {
     public int $parking_spaces = 0;
 
     #[Rule('required|numeric|min:0')]
-    public string $area = '';
+    public int $area = 0;
 
     #[Rule('required|string|max:255')]
     public string $address = '';
@@ -85,9 +85,11 @@ new class extends Component {
         array_splice($this->images, $index, 1);
         if (count($this->images) == 0) {
             $this->primaryImageIndex = null;
-        } elseif ($this->primaryImageIndex == $index) {
+        }
+        elseif ($this->primaryImageIndex == $index) {
             $this->primaryImageIndex = 0;
-        } elseif ($this->primaryImageIndex > $index) {
+        }
+        elseif ($this->primaryImageIndex > $index) {
             $this->primaryImageIndex--;
         }
     }
@@ -229,19 +231,25 @@ new class extends Component {
 
                     <div class="flex justify-end pt-5">
                         <a href="{{ route('property-listings.index') }}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</a>
-                        <button type="submit" class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Next: Add Images
+                        <button type="submit" wire:loading.attr="disabled" wire:target="save" class="inline-flex items-center justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-75 disabled:cursor-wait">
+                            <span wire:loading.remove wire:target="save">
+                                Next: Add Images
+                            </span>
+                            <span wire:loading wire:target="save">
+                                <svg class="inline-block w-4 h-4 mr-2 animate-spin" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.4857 8.02381C14.4857 4.42133 11.5787 1.51429 8 1.51429C4.42133 1.51429 1.51429 4.42133 1.51429 8.02381C1.51429 11.6263 4.42133 14.5333 8 14.5333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-25"></path><path d="M8 1.51429V4.51429" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-75"></path></svg>
+                                <span>Saving...</span>
+                            </span>
                         </button>
                     </div>
                 </form>
             @else
-                <form wire:submit.prevent="saveImages" class="space-y-8">
+                <form wire:submit.prevent="saveImages" class="space-y-8" x-data="imageResizer()">
                     <div class="p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                         <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Upload Images</h2>
                         <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                             <div class="sm:col-span-6">
                                 <label for="imageUploads" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Add Property Images</label>
-                                <input type="file" wire:model="imageUploads" id="imageUploads" multiple class="block w-full mt-1 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"/>
+                                <input type="file" x-ref="imageInput" @change="handleFiles" id="imageUploads" multiple class="block w-full mt-1 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"/>
                                 @error('imageUploads.*') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
 
                                 <div wire:loading wire:target="imageUploads">Uploading...</div>
@@ -279,4 +287,62 @@ new class extends Component {
         </div>
     </x-app.container>
     @endvolt
+    <x-slot:javascript>
+        <script>
+            function imageResizer() {
+                return {
+                    handleFiles() {
+                        let files = this.$refs.imageInput.files;
+                        if (!files.length) return;
+
+                        let livewire = this.$wire;
+                        let resizedFiles = [];
+                        let filesToProcess = files.length;
+
+                        for (let i = 0; i < files.length; i++) {
+                            this.resize(files[i], (resizedBlob) => {
+                                resizedFiles.push(new File([resizedBlob], files[i].name, { type: 'image/jpeg' }));
+                                filesToProcess--;
+                                if (filesToProcess === 0) {
+                                    livewire.uploadMultiple('imageUploads', resizedFiles);
+                                    this.$refs.imageInput.value = ''; // Clear input
+                                }
+                            });
+                        }
+                    },
+                    resize(file, callback) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const img = new Image();
+                            img.onload = () => {
+                                const canvas = document.createElement('canvas');
+                                const MAX_SIZE = 1200;
+                                let width = img.width;
+                                let height = img.height;
+
+                                if (width > height) {
+                                    if (width > MAX_SIZE) {
+                                        height *= MAX_SIZE / width;
+                                        width = MAX_SIZE;
+                                    }
+                                } else {
+                                    if (height > MAX_SIZE) {
+                                        width *= MAX_SIZE / height;
+                                        height = MAX_SIZE;
+                                    }
+                                }
+                                canvas.width = width;
+                                canvas.height = height;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(img, 0, 0, width, height);
+                                canvas.toBlob(callback, 'image/jpeg', 0.85);
+                            };
+                            img.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            }
+        </script>
+    </x-slot:javascript>
 </x-layouts.app>
