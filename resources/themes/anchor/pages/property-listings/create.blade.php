@@ -78,6 +78,8 @@ new class extends Component {
             $this->primaryImageIndex = 0;
         }
         $this->imageUploads = [];
+
+        $this->dispatch('upload-finished');
     }
 
     public function removeImage($index)
@@ -243,16 +245,18 @@ new class extends Component {
                     </div>
                 </form>
             @else
-                <form wire:submit.prevent="saveImages" class="space-y-8" x-data="imageResizer()">
+                <form wire:submit.prevent="saveImages" class="space-y-8" x-data="imageResizer()" @upload-finished.window="isResizing = false">
                     <div class="p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                         <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Upload Images</h2>
                         <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                             <div class="sm:col-span-6">
                                 <label for="imageUploads" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Add Property Images</label>
                                 <input type="file" x-ref="imageInput" @change="handleFiles" id="imageUploads" multiple class="block w-full mt-1 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"/>
+                                <div x-show="isResizing" class="mt-2 text-sm text-gray-500">
+                                    <svg class="inline-block w-4 h-4 mr-2 animate-spin" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.4857 8.02381C14.4857 4.42133 11.5787 1.51429 8 1.51429C4.42133 1.51429 1.51429 4.42133 1.51429 8.02381C1.51429 11.6263 4.42133 14.5333 8 14.5333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-25"></path><path d="M8 1.51429V4.51429" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-75"></path></svg>
+                                    <span>Processing and uploading images...</span>
+                                </div>
                                 @error('imageUploads.*') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
-
-                                <div wire:loading wire:target="imageUploads">Uploading...</div>
 
                                 @if ($images)
                                     <div class="grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3 md:grid-cols-4">
@@ -297,9 +301,12 @@ new class extends Component {
         <script>
             function imageResizer() {
                 return {
+                    isResizing: false,
                     handleFiles() {
                         let files = this.$refs.imageInput.files;
                         if (!files.length) return;
+
+                        this.isResizing = true;
 
                         let livewire = this.$wire;
                         let resizedFiles = [];
@@ -310,7 +317,9 @@ new class extends Component {
                                 resizedFiles.push(new File([resizedBlob], files[i].name, { type: 'image/jpeg' }));
                                 filesToProcess--;
                                 if (filesToProcess === 0) {
-                                    livewire.uploadMultiple('imageUploads', resizedFiles);
+                                    livewire.uploadMultiple('imageUploads', resizedFiles, () => {
+                                        this.isResizing = false;
+                                    });
                                     this.$refs.imageInput.value = ''; // Clear input
                                 }
                             });
