@@ -6,6 +6,10 @@ use App\Models\PropertyListing;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Rule;
 use Illuminate\Support\Facades\Storage;
+use Nnjeim\World\Models\Country;
+use Nnjeim\World\Models\State;
+use Nnjeim\World\Models\City;
+use Livewire\Attributes\Computed;
 
 middleware('auth');
 name('property-listings.create');
@@ -48,11 +52,11 @@ new class extends Component {
     #[Rule('required|string|max:255')]
     public string $city = '';
 
-    #[Rule('required|string|max:255')]
-    public string $state = '';
+    #[Rule('required')]
+    public $selectedCountry = null;
 
-    #[Rule('required|string|max:255')]
-    public string $country = 'Argentina';
+    #[Rule('required')]
+    public $selectedState = null;
 
     public ?PropertyListing $propertyListing = null;
 
@@ -60,10 +64,51 @@ new class extends Component {
     public array $imageUploads = [];
     public ?int $primaryImageIndex = null;
 
+    public $countries;
+    public $states = [];
+    public $cities = [];
+
+    #[Computed]
+    public function country()
+    {
+        return Country::find($this->selectedCountry)?->name;
+    }
+
+    #[Computed]
+    public function state()
+    {
+        return State::find($this->selectedState)?->name;
+    }
+
+    public function mount()
+    {
+        $this->countries = Country::all();
+    }
+
+    public function updatedSelectedCountry($countryId)
+    {
+        $this->states = State::where('country_id', $countryId)->get();
+        $this->selectedState = null;
+    }
+
+    public function updatedSelectedState($stateId)
+    {
+        $this->cities = City::where('state_id', $stateId)->get();
+    }
+
+    public function with(): array
+    {
+        return [
+            'countries' => Country::all(),
+        ];
+    }
+
     public function save(): void
     {
         $validated = $this->validate();
         $validated['user_id'] = auth()->id();
+        $validated['country'] = $this->country;
+        $validated['state'] = $this->state;
 
         $this->propertyListing = PropertyListing::create($validated);
 
@@ -201,33 +246,46 @@ new class extends Component {
                     <div class="p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                         <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Location</h2>
                         <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            
+                            <div class="sm:col-span-2">
+                                <label for="country" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
+                                <select wire:model.live="selectedCountry" id="country" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="">Select a country</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('country') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+                            
+                            <div class="sm:col-span-2">
+                                <label for="state" class="block text-sm font-medium text-gray-700 dark:text-gray-300">State</label>
+                                <select wire:model.live="selectedState" id="state" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="">Select a state</option>
+                                    @foreach($states as $state)
+                                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                    @endforeach
+                                </select>
+                                 @error('state') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+                            
+                            <div class="sm:col-span-2">
+                                <label for="city" class="block text-sm font-medium text-gray-700 dark:text-gray-300">City</label>
+                                <select wire:model="city" id="city" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="">Select a city</option>
+                                    @foreach($cities as $city)
+                                        <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
+                                 @error('city') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
                             <div class="sm:col-span-6">
                                 <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
                                 <input type="text" wire:model="address" id="address" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                  @error('address') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
-                            <div class="sm:col-span-2">
-                                <label for="city" class="block text-sm font-medium text-gray-700 dark:text-gray-300">City</label>
-                                <input type="text" wire:model="city" id="city" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                 @error('city') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
-                            </div>
-
-                            <div class="sm:col-span-2">
-                                <label for="state" class="block text-sm font-medium text-gray-700 dark:text-gray-300">State</label>
-                                <input type="text" wire:model="state" id="state" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                 @error('state') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
-                            </div>
-
-                            <div class="sm:col-span-2">
-                                <label for="country" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
-                                <select wire:model="country" id="country" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>Argentina</option>
-                                    <option>Chile</option>
-                                    <option>Mexico</option>
-                                </select>
-                                @error('country') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
-                            </div>
                         </div>
                     </div>
 

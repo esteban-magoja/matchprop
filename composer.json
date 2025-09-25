@@ -28,6 +28,7 @@
         "laravel/tinker": "^2.10.1",
         "laravel/ui": "^4.6",
         "livewire/livewire": "^3.5",
+        "nnjeim/world": "^1.1",
         "openai-php/client": "^0.16.1",
         "pgvector/pgvector": "^0.2.2",
         "ralphjsmit/livewire-urls": "^1.5",
@@ -95,7 +96,8 @@
         "sort-packages": true,
         "optimize-autoloader": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "stable",
