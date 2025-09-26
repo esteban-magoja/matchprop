@@ -35,7 +35,10 @@ class PropertyListing extends Model
         'longitude',
         'is_featured',
         'is_active',
-        'embedding'
+        'embedding',
+        'conditions',
+        'currency',
+        'lotsize'
     ];
 
     /**

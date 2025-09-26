@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Nnjeim\World\Models\Country;
 use Nnjeim\World\Models\State;
 use Nnjeim\World\Models\City;
+use Nnjeim\World\Models\Currency;
 use Livewire\Attributes\Computed;
 
 middleware('auth');
@@ -46,6 +47,15 @@ new class extends Component {
     #[Rule('required|numeric|min:0')]
     public int $area = 0;
 
+    #[Rule('nullable|string')]
+    public string $conditions = '';
+
+    #[Rule('nullable|string|max:3')]
+    public string $currency = 'USD';
+
+    #[Rule('nullable|integer|min:0')]
+    public ?int $lotsize = 0;
+
     #[Rule('required|string|max:255')]
     public string $address = '';
 
@@ -73,6 +83,8 @@ new class extends Component {
     public $countries;
     public $states = [];
     public $cities = [];
+    public $currencies;
+    public $availableCurrencies = [];
 
     #[Computed]
     public function country()
@@ -89,12 +101,20 @@ new class extends Component {
     public function mount()
     {
         $this->countries = Country::all();
+        $this->currencies = Currency::all();
+        $this->availableCurrencies = ['USD'];
     }
 
     public function updatedSelectedCountry($countryId)
     {
         $this->states = State::where('country_id', $countryId)->get();
         $this->selectedState = null;
+
+        $country = Country::find($countryId);
+        if ($country && isset($country->currency['code'])) {
+            $this->currency = $country->currency['code'];
+            $this->availableCurrencies = array_unique([$country->currency['code'], 'USD']);
+        }
     }
 
     public function updatedSelectedState($stateId)
@@ -190,6 +210,19 @@ new class extends Component {
                     <div class="p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                         <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Property Details</h2>
                         <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            
+                            <div class="sm:col-span-2">
+                                <label for="country" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
+                                <select wire:model.live="selectedCountry" id="country" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="">Select a country</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('country') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
+                            
                             <div class="sm:col-span-6">
                                 <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
                                 <input type="text" wire:model="title" id="title" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -227,6 +260,17 @@ new class extends Component {
                             </div>
 
                             <div class="sm:col-span-2">
+                                <label for="currency" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Currency</label>
+                                <select wire:model="currency" id="currency" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    @foreach($availableCurrencies as $currency_code)
+                                        <option value="{{ $currency_code }}">{{ $currency_code }}</option>
+                                    @endforeach
+                                </select>
+                                @error('currency') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
+
+                            <div class="sm:col-span-2">
                                 <label for="bedrooms" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Bedrooms</label>
                                 <input type="number" wire:model="bedrooms" id="bedrooms" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                  @error('bedrooms') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
@@ -248,6 +292,19 @@ new class extends Component {
                                 <input type="number" wire:model="area" id="area" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                  @error('area') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
+
+                            <div class="sm:col-span-2">
+                                <label for="lotsize" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Lot Size (sqft)</label>
+                                <input type="number" wire:model="lotsize" id="lotsize" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                 @error('lotsize') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
+
+                            <div class="sm:col-span-6">
+                                <label for="conditions" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Conditions</label>
+                                <textarea wire:model="conditions" id="conditions" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                                @error('conditions') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
                         </div>
                     </div>
 
@@ -255,16 +312,6 @@ new class extends Component {
                         <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Location</h2>
                         <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                             
-                            <div class="sm:col-span-2">
-                                <label for="country" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
-                                <select wire:model.live="selectedCountry" id="country" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="">Select a country</option>
-                                    @foreach($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('country') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
-                            </div>
                             
                             <div class="sm:col-span-2">
                                 <label for="state" class="block text-sm font-medium text-gray-700 dark:text-gray-300">State</label>
