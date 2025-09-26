@@ -290,8 +290,14 @@ new class extends Component {
 
                             <div class="sm:col-span-6">
                                 <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
-                                <input type="text" wire:model="address" id="address" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                 @error('address') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                                <div class="flex mt-1 space-x-2">
+                                    <input type="text" wire:model="address" id="address" class="block w-full border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <button type="button" id="search-address-btn" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                        <x-phosphor-magnifying-glass class="w-4 h-4 mr-2" />
+                                        Search location
+                                    </button>
+                                </div>
+                                @error('address') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="sm:col-span-6">
@@ -450,31 +456,35 @@ new class extends Component {
 
             let marker;
 
-            map.on('click', function(e) {
-                const lat = e.latlng.lat;
-                const lng = e.latlng.lng;
-
+            // Function to update marker and hidden inputs
+            function updateMarkerAndInputs(lat, lng) {
                 document.getElementById('latitude').value = lat;
                 document.getElementById('longitude').value = lng;
                 document.getElementById('latitude').dispatchEvent(new Event('input'));
                 document.getElementById('longitude').dispatchEvent(new Event('input'));
 
                 if (marker) {
-                    marker.setLatLng(e.latlng);
+                    marker.setLatLng([lat, lng]);
                 } else {
-                    marker = L.marker(e.latlng).addTo(map);
+                    marker = L.marker([lat, lng]).addTo(map);
                 }
+            }
+
+            map.on('click', function(e) {
+                updateMarkerAndInputs(e.latlng.lat, e.latlng.lng);
             });
 
             // --- Geocoding Logic ---
             const countrySelect = document.getElementById('country');
             const stateSelect = document.getElementById('state');
             const citySelect = document.getElementById('city');
+            const addressInput = document.getElementById('address');
+            const searchAddressBtn = document.getElementById('search-address-btn');
 
             function handleLocationChange() {
                 const country = countrySelect.options[countrySelect.selectedIndex]?.text;
                 const state = stateSelect.options[stateSelect.selectedIndex]?.text;
-                const city = citySelect.value; // city select uses wire:model on the name
+                const city = citySelect.value;
 
                 let queryParts = [];
                 let zoom = 2;
@@ -500,12 +510,46 @@ new class extends Component {
                         .then(data => {
                             if (data.length > 0) {
                                 const { lat, lon } = data[0];
-                                map.flyTo([lat, lon], zoom);
+                                map.flyTo([parseFloat(lat), parseFloat(lon)], zoom);
                             }
                         })
                         .catch(error => console.error('Error geocoding:', error));
                 }
             }
+
+            searchAddressBtn.addEventListener('click', function() {
+                const address = addressInput.value;
+                const country = countrySelect.options[countrySelect.selectedIndex]?.text;
+                const state = stateSelect.options[stateSelect.selectedIndex]?.text;
+                const city = citySelect.value;
+
+                if (!address) return;
+
+                let queryParts = [address];
+                if (city && city !== 'Select a city' && city !== '') queryParts.push(city);
+                if (state && state !== 'Select a state' && state !== '') queryParts.push(state);
+                if (country && country !== 'Select a country' && country !== '') queryParts.push(country);
+
+                const query = queryParts.join(', ');
+
+                fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length > 0) {
+                            const { lat, lon } = data[0];
+                            const parsedLat = parseFloat(lat);
+                            const parsedLon = parseFloat(lon);
+                            map.flyTo([parsedLat, parsedLon], 16);
+                            updateMarkerAndInputs(parsedLat, parsedLon);
+                        } else {
+                            alert('Address not found. Please try a different address or click on the map to set the location manually.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error geocoding address:', error);
+                        alert('An error occurred while searching for the address.');
+                    });
+            });
 
             countrySelect.addEventListener('change', handleLocationChange);
             stateSelect.addEventListener('change', handleLocationChange);
