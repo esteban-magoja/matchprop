@@ -178,7 +178,7 @@ new class extends Component {
                             
                             <!-- Price and Type -->
                             <div class="mt-2">
-                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-100">${{ number_format($listing->price, 2) }}</p>
+                                <p class="text-xl font-semibold text-gray-900 dark:text-gray-100">{{ $listing->currency }} {{ number_format($listing->price) }}</p>
                                 <p class="text-sm text-gray-500">{{ ucfirst($listing->property_type) }} / {{ ucfirst($listing->transaction_type) }}</p>
                             </div>
 
