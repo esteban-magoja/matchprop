@@ -115,6 +115,10 @@ new class extends Component {
             $this->currency = $country->currency['code'];
             $this->availableCurrencies = array_unique([$country->currency['code'], 'USD']);
         }
+
+        if ($countryId) {
+            $this->dispatch('country-selected-for-map');
+        }
     }
 
     public function updatedSelectedState($stateId)
@@ -308,7 +312,7 @@ new class extends Component {
                         </div>
                     </div>
 
-                    <div class="p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                    <div class="p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700" x-data @country-selected-for-map.window="window.initAndPan()">
                         <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Location</h2>
                         <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                             
@@ -349,7 +353,13 @@ new class extends Component {
 
                             <div class="sm:col-span-6">
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Location on Map</label>
-                                <div id="map" class="w-full h-64 rounded-md mt-2" wire:ignore></div>
+
+<div id="map" class="relative w-full h-64 mt-2 rounded-md bg-gray-100 dark:bg-gray-700" wire:ignore>
+                                    <div id="map-placeholder" class="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full">
+                                        <p class="text-gray-500 dark:text-gray-400">Please select a country to display the map.</p>
+                                    </div>
+                                </div>
+
                                 <input type="hidden" wire:model="latitude" id="latitude">
                                 <input type="hidden" wire:model="longitude" id="longitude">
                                 @error('latitude') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
@@ -494,41 +504,65 @@ new class extends Component {
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         
         <script>
-            // 1. Inicializar el mapa
-            const map = L.map('map').setView([20, 0], 2); // Zoomed out view of the world
+            window.map = null;
+            window.marker = null;
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+            window.initAndPan = function() {
+                if (!window.map) {
+                    window.initMap();
+                }
+                // Use a timeout to allow the map to pan smoothly after initialization or on subsequent selections
+                setTimeout(() => {
+                    window.handleLocationChange();
+                }, 100);
+            }
 
-            let marker;
+            window.initMap = function() {
+                const placeholder = document.getElementById('map-placeholder');
+                if (placeholder) {
+                    placeholder.remove();
+                }
 
-            // Function to update marker and hidden inputs
-            function updateMarkerAndInputs(lat, lng) {
+                var container = L.DomUtil.get('map');
+                if(container != null){
+                    container._leaflet_id = null;
+                }
+                
+                window.map = L.map('map').setView([20, 0], 2);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(window.map);
+
+                window.map.on('click', function(e) {
+                    window.updateMarkerAndInputs(e.latlng.lat, e.latlng.lng);
+                });
+
+                // Attach listeners for geocoding now that the map is ready
+                document.getElementById('search-address-btn').addEventListener('click', window.searchAddress);
+                document.getElementById('state').addEventListener('change', window.handleLocationChange);
+                document.getElementById('city').addEventListener('change', window.handleLocationChange);
+            }
+
+            window.updateMarkerAndInputs = function(lat, lng) {
                 document.getElementById('latitude').value = lat;
                 document.getElementById('longitude').value = lng;
                 document.getElementById('latitude').dispatchEvent(new Event('input'));
                 document.getElementById('longitude').dispatchEvent(new Event('input'));
 
-                if (marker) {
-                    marker.setLatLng([lat, lng]);
+                if (window.marker) {
+                    window.marker.setLatLng([lat, lng]);
                 } else {
-                    marker = L.marker([lat, lng]).addTo(map);
+                    window.marker = L.marker([lat, lng]).addTo(window.map);
                 }
             }
 
-            map.on('click', function(e) {
-                updateMarkerAndInputs(e.latlng.lat, e.latlng.lng);
-            });
+            window.handleLocationChange = function() {
+                if (!window.map) return;
 
-            // --- Geocoding Logic ---
-            const countrySelect = document.getElementById('country');
-            const stateSelect = document.getElementById('state');
-            const citySelect = document.getElementById('city');
-            const addressInput = document.getElementById('address');
-            const searchAddressBtn = document.getElementById('search-address-btn');
+                const countrySelect = document.getElementById('country');
+                const stateSelect = document.getElementById('state');
+                const citySelect = document.getElementById('city');
 
-            function handleLocationChange() {
                 const country = countrySelect.options[countrySelect.selectedIndex]?.text;
                 const state = stateSelect.options[stateSelect.selectedIndex]?.text;
                 const city = citySelect.value;
@@ -557,20 +591,27 @@ new class extends Component {
                         .then(data => {
                             if (data.length > 0) {
                                 const { lat, lon } = data[0];
-                                map.flyTo([parseFloat(lat), parseFloat(lon)], zoom);
+                                window.map.flyTo([parseFloat(lat), parseFloat(lon)], zoom);
                             }
                         })
                         .catch(error => console.error('Error geocoding:', error));
                 }
             }
 
-            searchAddressBtn.addEventListener('click', function() {
+            window.searchAddress = function() {
+                if (!window.map) return;
+
+                const addressInput = document.getElementById('address');
+                const countrySelect = document.getElementById('country');
+                const stateSelect = document.getElementById('state');
+                const citySelect = document.getElementById('city');
+
                 const address = addressInput.value;
+                if (!address) return;
+
                 const country = countrySelect.options[countrySelect.selectedIndex]?.text;
                 const state = stateSelect.options[stateSelect.selectedIndex]?.text;
                 const city = citySelect.value;
-
-                if (!address) return;
 
                 let queryParts = [address];
                 if (city && city !== 'Select a city' && city !== '') queryParts.push(city);
@@ -586,8 +627,8 @@ new class extends Component {
                             const { lat, lon } = data[0];
                             const parsedLat = parseFloat(lat);
                             const parsedLon = parseFloat(lon);
-                            map.flyTo([parsedLat, parsedLon], 16);
-                            updateMarkerAndInputs(parsedLat, parsedLon);
+                            window.map.flyTo([parsedLat, parsedLon], 16);
+                            window.updateMarkerAndInputs(parsedLat, parsedLon);
                         } else {
                             alert('Address not found. Please try a different address or click on the map to set the location manually.');
                         }
@@ -596,12 +637,7 @@ new class extends Component {
                         console.error('Error geocoding address:', error);
                         alert('An error occurred while searching for the address.');
                     });
-            });
-
-            countrySelect.addEventListener('change', handleLocationChange);
-            stateSelect.addEventListener('change', handleLocationChange);
-            citySelect.addEventListener('change', handleLocationChange);
-
+            }
         </script>
     </x-slot:javascript>
 </x-layouts.app>
