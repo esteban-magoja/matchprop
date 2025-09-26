@@ -58,6 +58,12 @@ new class extends Component {
     #[Rule('required')]
     public $selectedState = null;
 
+    #[Rule('required|numeric')]
+    public ?float $latitude = null;
+
+    #[Rule('required|numeric')]
+    public ?float $longitude = null;
+
     public ?PropertyListing $propertyListing = null;
 
     public array $images = [];
@@ -109,6 +115,8 @@ new class extends Component {
         $validated['user_id'] = auth()->id();
         $validated['country'] = $this->country;
         $validated['state'] = $this->state;
+        $validated['latitude'] = $this->latitude;
+        $validated['longitude'] = $this->longitude;
 
         $this->propertyListing = PropertyListing::create($validated);
 
@@ -286,6 +294,17 @@ new class extends Component {
                                  @error('address') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
+                            <div class="sm:col-span-6">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Location on Map</label>
+                                <div id="map" class="w-full h-64 rounded-md mt-2" wire:ignore></div>
+                                <input type="hidden" wire:model="latitude" id="latitude">
+                                <input type="hidden" wire:model="longitude" id="longitude">
+                                @error('latitude') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                                @error('longitude') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
+
+
                         </div>
                     </div>
 
@@ -416,6 +435,82 @@ new class extends Component {
                     }
                 }
             }
+        </script>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        
+        <script>
+            // 1. Inicializar el mapa
+            const map = L.map('map').setView([20, 0], 2); // Zoomed out view of the world
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            let marker;
+
+            map.on('click', function(e) {
+                const lat = e.latlng.lat;
+                const lng = e.latlng.lng;
+
+                document.getElementById('latitude').value = lat;
+                document.getElementById('longitude').value = lng;
+                document.getElementById('latitude').dispatchEvent(new Event('input'));
+                document.getElementById('longitude').dispatchEvent(new Event('input'));
+
+                if (marker) {
+                    marker.setLatLng(e.latlng);
+                } else {
+                    marker = L.marker(e.latlng).addTo(map);
+                }
+            });
+
+            // --- Geocoding Logic ---
+            const countrySelect = document.getElementById('country');
+            const stateSelect = document.getElementById('state');
+            const citySelect = document.getElementById('city');
+
+            function handleLocationChange() {
+                const country = countrySelect.options[countrySelect.selectedIndex]?.text;
+                const state = stateSelect.options[stateSelect.selectedIndex]?.text;
+                const city = citySelect.value; // city select uses wire:model on the name
+
+                let queryParts = [];
+                let zoom = 2;
+
+                if (city && city !== 'Select a city' && city !== '') {
+                    queryParts.push(city);
+                    zoom = 12;
+                }
+                if (state && state !== 'Select a state' && state !== '') {
+                    queryParts.push(state);
+                    if (zoom < 8) zoom = 8;
+                }
+                if (country && country !== 'Select a country' && country !== '') {
+                    queryParts.push(country);
+                    if (zoom < 5) zoom = 5;
+                }
+
+                const query = queryParts.join(', ');
+
+                if (query) {
+                    fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.length > 0) {
+                                const { lat, lon } = data[0];
+                                map.flyTo([lat, lon], zoom);
+                            }
+                        })
+                        .catch(error => console.error('Error geocoding:', error));
+                }
+            }
+
+            countrySelect.addEventListener('change', handleLocationChange);
+            stateSelect.addEventListener('change', handleLocationChange);
+            citySelect.addEventListener('change', handleLocationChange);
+
         </script>
     </x-slot:javascript>
 </x-layouts.app>
