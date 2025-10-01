@@ -28,6 +28,12 @@ class User extends WaveUser
         'verification_code',
         'verified',
         'trial_ends_at',
+        'agency',
+        'movil',
+        'address',
+        'city',
+        'state',
+        'country',
     ];
 
     /**

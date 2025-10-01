@@ -6,6 +6,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Wave is a Laravel-based SaaS framework that provides essential features for building subscription-based applications. The application uses a modular architecture with themes, plugins, and a custom admin panel built with Filament.
 
+## Customizaciones Implementadas
+
+### Campos de Usuario Adicionales (Octubre 2025)
+- **Migración**: `2025_10_01_174705_add_additional_fields_to_users_table.php`
+- **Campos agregados**: agency, movil, address, city, state, country (todos nullable)
+- **Formulario de registro**: `/signup` con campo móvil opcional
+- **Formulario de perfil**: `/settings/profile` con todos los campos (móvil requerido)
+- **Redirecciones**: `/register` y `/auth/register` → `/signup`
+
+### Configuración de Perfil
+- **Archivo**: `config/profile.php`
+- **Campo eliminado**: "What do you do for a living?" (occupation)
+- **Campo 'About'**: Cambiado de requerido a opcional
+
+### Estructura de Datos
+- **Campos directos**: Guardados en tabla `users`
+- **Campos dinámicos**: Guardados en `profile_key_values` via config
+- **Remember token**: Configurado correctamente en registro personalizado
+
 ## Development Commands
 
 ### Frontend Development

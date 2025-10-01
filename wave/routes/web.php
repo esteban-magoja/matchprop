@@ -40,6 +40,10 @@ Route::get('wave/theme/image/{theme_name}', '\Wave\Http\Controllers\ThemeImageCo
 Route::get('wave/plugin/image/{plugin_name}', '\Wave\Http\Controllers\PluginImageController@show');
 Route::redirect('admin/login', '/auth/login');
 
+// Redirect both register routes to our custom signup page
+Route::redirect('/auth/register', '/signup');
+Route::redirect('/register', '/signup');
+
 Route::get('reset', Reset::class);
 
 /***** Billing Routes *****/

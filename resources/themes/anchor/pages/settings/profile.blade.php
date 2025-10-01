@@ -39,6 +39,32 @@
                         ->required()
 						->rules('sometimes|required|email|unique:users,email,' . auth()->user()->id)
 						->default(auth()->user()->email),
+					\Filament\Forms\Components\TextInput::make('agency')
+                        ->label('Agency')
+						->rules('nullable|string|max:255')
+						->default(auth()->user()->agency),
+					\Filament\Forms\Components\TextInput::make('movil')
+                        ->label('Mobile Phone (WhatsApp)')
+                        ->placeholder('+34600123456')
+                        ->required()
+						->rules('required|string|max:20')
+						->default(auth()->user()->movil),
+					\Filament\Forms\Components\TextInput::make('address')
+                        ->label('Address')
+						->rules('nullable|string|max:255')
+						->default(auth()->user()->address),
+					\Filament\Forms\Components\TextInput::make('city')
+                        ->label('City')
+						->rules('nullable|string|max:255')
+						->default(auth()->user()->city),
+					\Filament\Forms\Components\TextInput::make('state')
+                        ->label('State/Province')
+						->rules('nullable|string|max:255')
+						->default(auth()->user()->state),
+					\Filament\Forms\Components\TextInput::make('country')
+                        ->label('Country')
+						->rules('nullable|string|max:255')
+						->default(auth()->user()->country),
 					...($this->dynamicFields( config('profile.fields') ))
                 ])
                 ->statePath('data');
@@ -78,6 +104,12 @@
 		private function saveFormFields($state){
 			auth()->user()->name = $state['name'];
 			auth()->user()->email = $state['email'];
+			auth()->user()->agency = $state['agency'] ?? null;
+			auth()->user()->movil = $state['movil'] ?? null;
+			auth()->user()->address = $state['address'] ?? null;
+			auth()->user()->city = $state['city'] ?? null;
+			auth()->user()->state = $state['state'] ?? null;
+			auth()->user()->country = $state['country'] ?? null;
 			auth()->user()->save();
 			$fieldsToSave = config('profile.fields');
 			$this->saveDynamicFields($fieldsToSave);
