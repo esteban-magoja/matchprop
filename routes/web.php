@@ -12,6 +12,10 @@
 */
 
 use Wave\Facades\Wave;
+use App\Http\Controllers\PropertySearchController;
+
+// Property search route
+Route::get('/search-properties', [PropertySearchController::class, 'index'])->name('property.search');
 
 // Wave routes
 Wave::routes();
