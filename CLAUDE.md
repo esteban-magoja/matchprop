@@ -25,6 +25,112 @@ Wave is a Laravel-based SaaS framework that provides essential features for buil
 - **Campos dinámicos**: Guardados en `profile_key_values` via config
 - **Remember token**: Configurado correctamente en registro personalizado
 
+### Sistema de Propiedades Inmobiliarias (Diciembre 2025)
+
+#### Modelos y Tablas
+- **PropertyListing**: Modelo principal de anuncios inmobiliarios
+  - Tabla: `property_listings`
+  - Relaciones: `user`, `images`, `primaryImage`
+  - Scopes: `active()`, `featured()`
+  - Usa pgvector para embeddings de búsqueda semántica
+  
+- **PropertyImage**: Imágenes de propiedades
+  - Tabla: `property_images`
+  - Relación: `propertyListing`
+  - Campo `is_primary` para imagen destacada
+
+#### Controladores
+- **PropertySearchController**: Búsqueda de propiedades con IA
+  - Ruta: `/search-properties` → `property.search`
+  - Búsqueda semántica usando OpenAI embeddings (pgvector)
+  - Filtrado por país (obligatorio)
+  - Validación: mínimo 5 caracteres en búsqueda
+  
+- **PropertyController**: Detalle de propiedades
+  - Ruta: `/property/{id}` → `property.show`
+  - Vista: `property-detail.blade.php`
+  - SEO dinámico (title, description, Open Graph)
+  - Propiedades relacionadas (mismo tipo o ciudad)
+
+#### Vistas y Características
+
+**Página de Búsqueda** (`property-search.blade.php`):
+- Búsqueda inteligente con embeddings de OpenAI
+- Filtro obligatorio por país
+- Resultados con score de similitud
+- Cards responsivas con imagen, precio, ubicación
+- Botón "Ver Detalles" enlaza a ficha individual
+
+**Página de Detalle** (`property-detail.blade.php`):
+- Layout: `<x-layouts.marketing :seo="$seo">`
+- Galería de imágenes con navegación (flechas, teclado)
+- Estadísticas principales con iconos (horizontal layout):
+  - Habitaciones (icono cama)
+  - Baños (icono ducha)
+  - m² Cubiertos (icono dimensiones)
+  - Cocheras (icono auto)
+  - m² Terreno (icono ubicación)
+- Mapa interactivo OpenStreetMap + Leaflet.js:
+  - Solo si tiene coordenadas (latitude/longitude)
+  - Marcador personalizado (pin con emoji 🏠)
+  - Círculo de área (100m radio)
+  - Sin popup (marcador visual simple)
+  - Centrado automático con `invalidateSize()`
+- Sidebar de contacto:
+  - Info del anunciante (avatar, nombre, agencia, email)
+  - Botón WhatsApp (verde oscuro #128C7E)
+  - Solo si user tiene campo `movil`
+  - Formulario de contacto
+  - Botón "Llamar Ahora" (solo con móvil)
+- Sección "Compartir" (Facebook, Twitter, Copiar)
+- Propiedades relacionadas (4 similares)
+
+#### SEO Optimización
+Cada propiedad genera automáticamente:
+
+**Title Tag**:
+```
+{título} - {transacción} en {ciudad}
+Ejemplo: Casa moderna - Venta en Córdoba
+```
+
+**Meta Description** (límite 160 caracteres):
+```
+{tipo} en {transacción} • {ubicación} • {precio} • {características}
+Ejemplo: Casa en venta • Córdoba, Argentina • USD 250,000 • 3 hab., 2 baños, 150m²
+```
+
+**Open Graph Tags**:
+- og:title, og:description, og:image
+- og:type: "article"
+- Dimensiones imagen: 1200x630px
+- Imagen: primaryImage → primera imagen → fallback
+
+**Método**: `PropertyController::generateMetaDescription()`
+- Construye descripción dinámica con datos de la propiedad
+- Prioriza: tipo, ubicación, precio, características
+- Trunca a 160 caracteres si excede
+
+#### Integración OpenStreetMap
+- **Librería**: Leaflet.js v1.9.4
+- **Tiles**: OpenStreetMap (gratuito, sin API key)
+- **CDN**: unpkg.com/leaflet@1.9.4
+- **Características**:
+  - Mapa responsive (h-80, 320px)
+  - Zoom inicial: nivel 15
+  - Marcador custom con pin azul y emoji casa
+  - Control de escala métrico
+  - Enlace a OpenStreetMap
+  - Recalcula tamaño con `invalidateSize()` (fix centrado)
+
+#### Notas Importantes
+- **Blade Components**: Pasar variables a layouts con `:variable="$value"`
+  - Ejemplo: `<x-layouts.marketing :seo="$seo">`
+- **Embeddings**: Usa OpenAI API para búsqueda semántica
+- **Validación búsqueda**: País obligatorio + mínimo 5 caracteres
+- **Cache**: Limpiar vistas después de cambios (`php artisan view:clear`)
+- **Iconos**: SVG outline style para mejor claridad visual
+
 ## Development Commands
 
 ### Frontend Development
