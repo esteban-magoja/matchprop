@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\PropertyListing;
 use App\Models\PropertyRequest;
 use Illuminate\Support\Collection;
+use Pgvector\Laravel\Distance;
 
 class PropertyMatchingService
 {
@@ -136,12 +137,13 @@ class PropertyMatchingService
     {
         return PropertyListing::active()
             ->where('country', $request->country)
-            ->nearestNeighbors('embedding', $request->embedding, $limit * 2)
+            ->nearestNeighbors('embedding', $request->embedding, Distance::Cosine)
+            ->limit($limit * 2)
             ->with(['user', 'primaryImage'])
             ->get()
             ->filter(function($listing) {
                 // Filtrar solo los que tienen un buen score de similitud
-                return $listing->distance !== null;
+                return $listing->neighbor_distance !== null;
             });
     }
 
@@ -186,11 +188,12 @@ class PropertyMatchingService
     {
         return PropertyRequest::active()
             ->where('country', $listing->country)
-            ->nearestNeighbors('embedding', $listing->embedding, $limit * 2)
+            ->nearestNeighbors('embedding', $listing->embedding, Distance::Cosine)
+            ->limit($limit * 2)
             ->with('user')
             ->get()
             ->filter(function($request) {
-                return $request->distance !== null;
+                return $request->neighbor_distance !== null;
             });
     }
 
