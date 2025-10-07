@@ -242,18 +242,21 @@ new class extends Component {
                             <div class="sm:col-span-3">
                                 <label for="property_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Property Type</label>
                                 <select wire:model="property_type" id="property_type" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="house">House</option>
-                                    <option value="apartment">Apartment</option>
-                                    <option value="condo">Condo</option>
-                                    <option value="land">Land</option>
+                                    <option value="casa">Casa</option>
+                                    <option value="departamento">Departamento</option>
+                                    <option value="local">Local Comercial</option>
+                                    <option value="oficina">Oficina</option>
+                                    <option value="terreno">Terreno</option>
+                                    <option value="campo">Campo</option>
+                                    <option value="galpon">Galpón</option>
                                 </select>
                             </div>
 
                             <div class="sm:col-span-3">
                                 <label for="transaction_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Transaction Type</label>
                                 <select wire:model="transaction_type" id="transaction_type" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="sale">For Sale</option>
-                                    <option value="rent">For Rent</option>
+                                    <option value="venta">Venta</option>
+                                    <option value="alquiler">Alquiler</option>
                                 </select>
                             </div>
 

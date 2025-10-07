@@ -74,5 +74,21 @@ class User extends WaveUser
         });
     }
 
+    /**
+     * Get the property listings for the user.
+     */
+    public function propertyListings()
+    {
+        return $this->hasMany(\App\Models\PropertyListing::class);
+    }
+
+    /**
+     * Get the property requests for the user.
+     */
+    public function propertyRequests()
+    {
+        return $this->hasMany(\App\Models\PropertyRequest::class);
+    }
+
     
 }

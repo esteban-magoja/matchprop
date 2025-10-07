@@ -39,6 +39,21 @@ Wave is a Laravel-based SaaS framework that provides essential features for buil
   - Relación: `propertyListing`
   - Campo `is_primary` para imagen destacada
 
+- **PropertyRequest**: Modelo de solicitudes/pedidos de búsqueda (Diciembre 2025)
+  - Tabla: `property_requests`
+  - Relaciones: `user`
+  - Scopes: `active()`, `expired()`
+  - Campos: title, description, property_type, transaction_type, presupuesto (min/max), características mínimas, ubicación
+  - Usa pgvector para embeddings y matching inteligente con IA
+  - Campo `expires_at` para solicitudes con fecha límite
+
+#### Servicios
+- **PropertyMatchingService**: Sistema de matching entre solicitudes y anuncios
+  - 3 niveles: Exacto (85%+), Inteligente/Semántico (60-84%), Flexible (<60%)
+  - Usa embeddings de OpenAI para similitud semántica
+  - Scoring: tipo propiedad (25pts), transacción (25pts), precio (20pts), ubicación (15pts), características (5pts c/u)
+  - Métodos: `findMatchesForRequest()`, `findMatchesForListing()`
+
 #### Controladores
 - **PropertySearchController**: Búsqueda de propiedades con IA
   - Ruta: `/search-properties` → `property.search`
@@ -48,6 +63,22 @@ Wave is a Laravel-based SaaS framework that provides essential features for buil
   
 - **PropertyController**: Detalle de propiedades
   - Ruta: `/property/{id}` → `property.show`
+  - Vista: `property-detail.blade.php`
+  - SEO dinámico (title, description, Open Graph)
+  - Propiedades relacionadas (mismo tipo o ciudad)
+
+- **PropertyRequestController**: CRUD de solicitudes/pedidos
+  - Rutas bajo `/dashboard/requests`
+  - Acciones: index, create, store, show, edit, update, destroy, toggle-active
+  - Generación automática de embeddings con OpenAI
+  - Muestra matches automáticos al ver solicitud
+  - Solo el propietario puede editar/eliminar
+
+- **PropertyMatchController**: Gestión de matches
+  - Rutas bajo `/dashboard/matches`
+  - `/dashboard/matches` → Resumen de todos los matches por anuncio
+  - `/dashboard/matches/listing/{id}` → Matches de un anuncio específico
+  - Muestra solicitudes compatibles con anuncios del usuario
   - Vista: `property-detail.blade.php`
   - SEO dinámico (title, description, Open Graph)
   - Propiedades relacionadas (mismo tipo o ciudad)
@@ -84,6 +115,56 @@ Wave is a Laravel-based SaaS framework that provides essential features for buil
   - Botón "Llamar Ahora" (solo con móvil)
 - Sección "Compartir" (Facebook, Twitter, Copiar)
 - Propiedades relacionadas (4 similares)
+
+**Dashboard de Solicitudes** (`dashboard/requests/`):
+- **index.blade.php**: Lista de solicitudes del usuario
+  - Cards con badges de estado (Activa, Inactiva, Expirada)
+  - Botones: Ver Matches, Editar, Activar/Desactivar
+  - Paginación
+  
+- **create.blade.php**: Formulario de nueva solicitud
+  - Título y descripción (mín. 20 caracteres)
+  - Tipo de propiedad (casa, depto, local, oficina, terreno, campo, galpón)
+  - Tipo de operación (venta/alquiler)
+  - Presupuesto (mínimo y máximo) con moneda (USD, ARS, EUR)
+  - Ubicación (país, provincia, ciudad)
+  - Características mínimas opcionales (habitaciones, baños, cocheras, área)
+  - Fecha de expiración opcional
+  
+- **show.blade.php**: Detalle de solicitud con matches
+  - Info completa de la solicitud
+  - Grid de propiedades coincidentes
+  - Badges de nivel de match (Exacto, Inteligente, Flexible)
+  - Porcentaje de coincidencia
+  - Razones del match
+  - Enlaces a ver detalles de cada propiedad
+  
+- **edit.blade.php**: Edición de solicitud
+  - Formulario pre-llenado
+  - Checkbox activar/desactivar
+  - Botón eliminar con confirmación
+
+**Dashboard de Matches** (`dashboard/matches/`):
+- **index.blade.php**: Resumen de matches por anuncio
+  - Agrupado por anuncios del usuario
+  - Hasta 5 matches mostrados por anuncio
+  - Info del solicitante con email
+  - Enlace "Ver todos" si hay más de 5
+  
+- **show.blade.php**: Matches de un anuncio específico
+  - Info completa del anuncio con imagen
+  - Todas las solicitudes coincidentes
+  - Detalles completos de cada solicitud
+  - Contacto del solicitante (email + WhatsApp)
+  - Explicación detallada del match
+
+**Dashboard Principal** (`dashboard/index.blade.php`):
+- Cards de estadísticas rápidas:
+  - Total de anuncios publicados
+  - Total de solicitudes activas
+  - Total de matches encontrados
+- Enlaces directos a cada sección
+- Integración con PropertyMatchingService para conteo en tiempo real
 
 #### SEO Optimización
 Cada propiedad genera automáticamente:

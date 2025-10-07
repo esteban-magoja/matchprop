@@ -31,9 +31,12 @@
 
                 <div class="flex flex-col justify-start items-center px-4 space-y-1.5 w-full h-full text-slate-600 dark:text-zinc-400">
                     <x-app.sidebar-link href="/dashboard" icon="phosphor-house" :active="Request::is('dashboard')">Dashboard</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/property-listings" icon="phosphor-buildings" :active="Request::is('property-listings')">My properties</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/property-listings/create" icon="phosphor-buildings" :active="Request::is('property-listings/create')">Create</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/search-property-listings" icon="phosphor-magnifying-glass" :active="Request::is('search-property-listings')">Search Property Listings</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/property-listings" icon="phosphor-buildings" :active="Request::is('property-listings')">Mis Anuncios</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/property-listings/create" icon="phosphor-buildings" :active="Request::is('property-listings/create')">Publicar Anuncio</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/dashboard/requests" icon="phosphor-user-list" :active="Request::is('dashboard/requests')">Mis Solicitudes</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/dashboard/requests/create" icon="phosphor-file-plus" :active="Request::is('dashboard/requests/create')">Publicar Solicitud</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/dashboard/matches" icon="phosphor-equals" :active="Request::is('dashboard/matches')">Matches</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/search-property-listings" icon="phosphor-magnifying-glass" :active="Request::is('search-property-listings')">Buscar Propiedades</x-app.sidebar-link>
                 </div>
             </div>
 

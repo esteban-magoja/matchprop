@@ -1,57 +1,88 @@
 <?php
     use function Laravel\Folio\{middleware, name};
+	use App\Models\PropertyListing;
+	use App\Models\PropertyRequest;
+	use App\Services\PropertyMatchingService;
+	
 	middleware('auth');
     name('dashboard');
+
+	$userListings = PropertyListing::where('user_id', auth()->id())->active()->count();
+	$userRequests = PropertyRequest::where('user_id', auth()->id())->active()->count();
+	
+	// Obtener algunos matches recientes
+	$matchingService = app(PropertyMatchingService::class);
+	$recentListings = PropertyListing::where('user_id', auth()->id())->active()->take(3)->get();
+	$totalMatches = 0;
+	foreach ($recentListings as $listing) {
+		$totalMatches += $matchingService->findMatchesForListing($listing, 5)->count();
+	}
 ?>
 
 <x-layouts.app>
 	<x-app.container x-data class="lg:space-y-6" x-cloak>
         
-		<x-app.alert id="dashboard_alert" class="hidden lg:flex">This is the user dashboard where users can manage settings and access features. <a href="https://devdojo.com/wave/docs" target="_blank" class="mx-1 underline">View the docs</a> to learn more.</x-app.alert>
+		<x-app.alert id="dashboard_alert" class="hidden lg:flex">Panel de control donde puedes gestionar tus anuncios, solicitudes y ver coincidencias.</x-app.alert>
 
         <x-app.heading
                 title="Dashboard"
-                description="Welcome to an example application dashboard. Find more resources below."
+                description="Gestiona tus propiedades y solicitudes"
                 :border="false"
             />
 
-        <div class="flex flex-col w-full mt-6 space-y-5 md:flex-row lg:mt-0 md:space-y-0 md:space-x-5">
-            <x-app.dashboard-card
-				href="https://devdojo.com/wave/docs"
-				target="_blank"
-				title="Documentation"
-				description="Learn how to customize your app and make it shine!"
-				link_text="View The Docs"
-				image="/wave/img/docs.png"
-			/>
-			<x-app.dashboard-card
-				href="https://devdojo.com/questions"
-				target="_blank"
-				title="Ask The Community"
-				description="Share your progress and get help from other builders."
-				link_text="Ask a Question"
-				image="/wave/img/community.png"
-			/>
-        </div>
+		<!-- Quick Stats -->
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
+				<div class="flex items-center justify-between">
+					<div>
+						<p class="text-sm text-gray-600 mb-1">Mis Anuncios</p>
+						<p class="text-3xl font-bold text-gray-900">{{ $userListings }}</p>
+					</div>
+					<svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+					</svg>
+				</div>
+				<div class="mt-3 text-blue-600">
+					<a href="/property-listings" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Ver anuncios</a> | 
+					<a href="/property-listings/create" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Publicar anuncio</a>
+				</div>
+			</div>
 
-		<div class="flex flex-col w-full mt-5 space-y-5 md:flex-row md:space-y-0 md:mb-0 md:space-x-5">
-			<x-app.dashboard-card
-				href="https://github.com/thedevdojo/wave"
-				target="_blank"
-				title="Github Repo"
-				description="View the source code and submit a Pull Request"
-				link_text="View on Github"
-				image="/wave/img/laptop.png"
-			/>
-			<x-app.dashboard-card
-				href="https://devdojo.com"
-				target="_blank"
-				title="Resources"
-				description="View resources that will help you build your SaaS"
-				link_text="View Resources"
-				image="/wave/img/globe.png"
-			/>
+			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+				<div class="flex items-center justify-between">
+					<div>
+						<p class="text-sm text-gray-600 mb-1">Mis Solicitudes</p>
+						<p class="text-3xl font-bold text-gray-900">{{ $userRequests }}</p>
+					</div>
+					<svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+					</svg>
+				</div>
+				<div class="mt-3 text-green-600">
+					<a href="{{ route('dashboard.requests.index') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Ver solicitudes</a> | 
+					<a href="{{ route('dashboard.requests.create') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Agregar solicitud</a>
+				</div>
+			</div>
+
+			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
+				<div class="flex items-center justify-between">
+					<div>
+						<p class="text-sm text-gray-600 mb-1">Matches Encontrados</p>
+						<p class="text-3xl font-bold text-gray-900">{{ $totalMatches }}</p>
+					</div>
+					<svg class="w-12 h-12 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+					</svg>
+				</div>
+				<div class="mt-3 text-purple-600">
+					<a href="{{ route('dashboard.matches.index') }}" class="mt-4 text-sm text-purple-600 hover:text-purple-700 font-medium">Ver matches</a>
+				</div>	
+			</div>
 		</div>
+
+       
+
+		
 
 		<div class="mt-5 space-y-5">
 			@subscriber
