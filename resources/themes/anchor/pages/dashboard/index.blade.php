@@ -2,6 +2,7 @@
     use function Laravel\Folio\{middleware, name};
 	use App\Models\PropertyListing;
 	use App\Models\PropertyRequest;
+	use App\Models\PropertyMessage;
 	use App\Services\PropertyMatchingService;
 	
 	middleware('auth');
@@ -9,6 +10,9 @@
 
 	$userListings = PropertyListing::where('user_id', auth()->id())->active()->count();
 	$userRequests = PropertyRequest::where('user_id', auth()->id())->active()->count();
+	$unreadMessages = PropertyMessage::whereHas('propertyListing', function($query) {
+		$query->where('user_id', auth()->id());
+	})->where('is_read', false)->count();
 	
 	// Obtener algunos matches recientes
 	$matchingService = app(PropertyMatchingService::class);
@@ -31,7 +35,7 @@
             />
 
 		<!-- Quick Stats -->
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
 				<div class="flex items-center justify-between">
 					<div>
@@ -62,6 +66,27 @@
 					<a href="{{ route('dashboard.requests.index') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Ver solicitudes</a> | 
 					<a href="{{ route('dashboard.requests.create') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Agregar solicitud</a>
 				</div>
+			</div>
+
+			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-orange-500">
+				<div class="flex items-center justify-between">
+					<div>
+						<p class="text-sm text-gray-600 mb-1">Mensajes</p>
+						<p class="text-3xl font-bold text-gray-900">{{ $unreadMessages }}</p>
+					</div>
+					<svg class="w-12 h-12 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+					</svg>
+				</div>
+				@if($unreadMessages > 0)
+					<div class="mt-3 text-orange-600">
+						<a href="{{ route('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">{{ $unreadMessages }} sin leer</a>
+					</div>
+				@else
+					<div class="mt-3 text-orange-600">
+						<a href="{{ route('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">Ver mensajes</a>
+					</div>
+				@endif
 			</div>
 
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">

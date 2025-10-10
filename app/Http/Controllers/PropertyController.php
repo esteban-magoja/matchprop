@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PropertyListing;
+use App\Models\PropertyMessage;
+use App\Mail\PropertyMessageReceived;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
@@ -86,5 +90,52 @@ class PropertyController extends Controller
         }
         
         return $description;
+    }
+
+    /**
+     * Store a contact message for a property listing.
+     */
+    public function sendMessage(Request $request, $id)
+    {
+        // Verificar que el usuario esté autenticado
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Debes iniciar sesión para enviar un mensaje.');
+        }
+
+        // Validar los datos del formulario
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:50',
+            'message' => 'required|string|max:2000',
+        ]);
+
+        // Buscar la propiedad
+        $property = PropertyListing::with('user')->findOrFail($id);
+
+        // Verificar que el usuario no esté contactando su propia propiedad
+        if ($property->user_id === Auth::id()) {
+            return back()->with('error', 'No puedes enviar un mensaje a tu propia propiedad.');
+        }
+
+        // Crear el mensaje
+        $propertyMessage = PropertyMessage::create([
+            'property_listing_id' => $property->id,
+            'user_id' => Auth::id(),
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'message' => $validated['message'],
+        ]);
+
+        // Enviar email al propietario
+        try {
+            Mail::to($property->user->email)->send(new PropertyMessageReceived($propertyMessage));
+        } catch (\Exception $e) {
+            // Log the error but don't fail the request
+            \Log::error('Failed to send property message email: ' . $e->getMessage());
+        }
+
+        return back()->with('success', '¡Tu mensaje ha sido enviado! El anunciante se pondrá en contacto contigo pronto.');
     }
 }

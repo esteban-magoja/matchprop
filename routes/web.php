@@ -16,10 +16,12 @@ use App\Http\Controllers\PropertySearchController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyRequestController;
 use App\Http\Controllers\PropertyMatchController;
+use App\Http\Controllers\PropertyMessageController;
 
 // Property routes
 Route::get('/search-properties', [PropertySearchController::class, 'index'])->name('property.search');
 Route::get('/property/{id}', [PropertyController::class, 'show'])->name('property.show');
+Route::post('/property/{id}/message', [PropertyController::class, 'sendMessage'])->name('property.message')->middleware('auth');
 
 // Property Request routes (Dashboard)
 Route::middleware('auth')->group(function () {
@@ -42,6 +44,15 @@ Route::middleware('auth')->group(function () {
     Route::prefix('dashboard/matches')->name('dashboard.matches.')->group(function () {
         Route::get('/', [PropertyMatchController::class, 'index'])->name('index');
         Route::get('/listing/{listing}', [PropertyMatchController::class, 'show'])->name('show');
+    });
+
+    // Property Message routes (Dashboard)
+    Route::prefix('dashboard/messages')->name('dashboard.messages.')->group(function () {
+        Route::get('/', [PropertyMessageController::class, 'index'])->name('index');
+        Route::get('/{id}', [PropertyMessageController::class, 'show'])->name('show');
+        Route::post('/{id}/mark-read', [PropertyMessageController::class, 'markAsRead'])->name('mark-read');
+        Route::post('/{id}/mark-unread', [PropertyMessageController::class, 'markAsUnread'])->name('mark-unread');
+        Route::delete('/{id}', [PropertyMessageController::class, 'destroy'])->name('destroy');
     });
 });
 

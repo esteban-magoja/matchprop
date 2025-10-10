@@ -347,65 +347,105 @@
                             @endif
                         </div>
 
+                        <!-- Success/Error Messages -->
+                        @if(session('success'))
+                            <div class="mb-4 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if(session('error'))
+                            <div class="mb-4 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        @if($errors->any())
+                            <div class="mb-4 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg">
+                                <ul class="list-disc list-inside">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <!-- Contact Form -->
-                        <form action="#" method="POST" class="space-y-4">
-                            @csrf
-                            <input type="hidden" name="property_id" value="{{ $property->id }}">
-                            
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
-                                <input 
-                                    type="text" 
-                                    id="name" 
-                                    name="name" 
-                                    required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="Tu nombre"
-                                >
-                            </div>
+                        @auth
+                            @if($property->user_id !== auth()->id())
+                                <form action="{{ route('property.message', $property->id) }}" method="POST" class="space-y-4">
+                                    @csrf
+                                    
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre *</label>
+                                        <input 
+                                            type="text" 
+                                            id="name" 
+                                            name="name" 
+                                            required
+                                            value="{{ old('name', auth()->user()->name) }}"
+                                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="Tu nombre"
+                                        >
+                                    </div>
 
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    name="email" 
-                                    required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="tu@email.com"
-                                >
-                            </div>
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                                        <input 
+                                            type="email" 
+                                            id="email" 
+                                            name="email" 
+                                            required
+                                            value="{{ old('email', auth()->user()->email) }}"
+                                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="tu@email.com"
+                                        >
+                                    </div>
 
-                            <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
-                                <input 
-                                    type="tel" 
-                                    id="phone" 
-                                    name="phone"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="Tu teléfono"
-                                >
-                            </div>
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                                        <input 
+                                            type="tel" 
+                                            id="phone" 
+                                            name="phone"
+                                            value="{{ old('phone', auth()->user()->movil) }}"
+                                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="Tu teléfono"
+                                        >
+                                    </div>
 
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
-                                <textarea 
-                                    id="message" 
-                                    name="message" 
-                                    rows="4"
-                                    required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="Estoy interesado en esta propiedad..."
-                                >Hola, estoy interesado en la propiedad "{{ $property->title }}". Me gustaría recibir más información.</textarea>
-                            </div>
+                                    <div>
+                                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje *</label>
+                                        <textarea 
+                                            id="message" 
+                                            name="message" 
+                                            rows="4"
+                                            required
+                                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="Estoy interesado en esta propiedad..."
+                                        >{{ old('message', 'Hola, estoy interesado en la propiedad "' . $property->title . '". Me gustaría recibir más información.') }}</textarea>
+                                    </div>
 
-                            <button 
-                                type="submit"
-                                class="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors font-semibold"
-                            >
-                                Enviar Consulta
-                            </button>
-                        </form>
+                                    <button 
+                                        type="submit"
+                                        class="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors font-semibold"
+                                    >
+                                        Enviar Consulta
+                                    </button>
+                                </form>
+                            @else
+                                <div class="p-4 bg-blue-50 border border-blue-200 text-blue-800 rounded-lg text-center">
+                                    <p>Esta es tu propiedad</p>
+                                </div>
+                            @endif
+                        @else
+                            <div class="p-4 bg-yellow-50 border border-yellow-200 text-yellow-800 rounded-lg text-center">
+                                <p class="mb-3">Debes iniciar sesión para enviar un mensaje</p>
+                                <a href="{{ route('login') }}" class="inline-block bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors font-semibold">
+                                    Iniciar Sesión
+                                </a>
+                            </div>
+                        @endauth
 
                         <!-- Call Button (solo si tiene móvil) -->
                         @if($property->user->movil)

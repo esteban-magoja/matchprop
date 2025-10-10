@@ -80,6 +80,14 @@ class PropertyListing extends Model
     }
 
     /**
+     * Get the messages for the property listing.
+     */
+    public function messages()
+    {
+        return $this->hasMany(PropertyMessage::class);
+    }
+
+    /**
      * Scope a query to only include active listings.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
