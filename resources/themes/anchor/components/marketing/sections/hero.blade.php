@@ -8,7 +8,7 @@
                 Conectamos propiedades con compradores y agentes de forma inteligente. Tu próxima oportunidad inmobiliaria está a un solo clic.
             </p>
             <div class="flex flex-col gap-3 justify-center items-center mx-auto mt-8 md:gap-2 md:flex-row">
-                <x-button size="lg" class="w-full md:w-auto">Buscar Propiedades</x-button>
+                <x-button size="lg" class="w-full md:w-auto" href="{{ route('property.search') }}" tag="a">Buscar Propiedades</x-button>
                 <x-button size="lg" color="secondary" class="w-full md:w-auto">Soy un Agente</x-button>
             </div>
         </div>
