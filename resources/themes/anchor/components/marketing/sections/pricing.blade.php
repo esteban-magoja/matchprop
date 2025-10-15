@@ -25,7 +25,7 @@
                     }
                 }, 1);
         "
-        class="mx-auto mt-12 mb-2 w-full max-w-6xl md:my-12" x-cloak>
+        class="mx-auto mt-12 mb-2 w-full max-w-6xl md:my-12">
 
         @if(has_monthly_yearly_toggle())
             <div class="flex relative justify-start items-center pb-5 -translate-y-2 md:justify-center">
@@ -36,7 +36,7 @@
                     <div x-ref="yearly" x-on:click="billing='Yearly'; toggleRepositionMarker($el)" :class="{ 'text-white': billing == 'Yearly', 'text-zinc-900' : billing != 'Yearly' }" class="relative z-20 px-3.5 py-1 text-sm font-medium leading-6 rounded-full duration-300 ease-out cursor-pointer">
                         Anual
                     </div>
-                    <div x-ref="marker" class="absolute left-0 z-10 w-1/2 h-full opacity-0" x-cloak>
+                    <div x-ref="marker" class="absolute left-0 z-10 w-1/2 h-full opacity-0">
                         <div class="w-full h-full rounded-full shadow-sm bg-zinc-900"></div>
                     </div>
                 </div>  
@@ -49,7 +49,7 @@
                 @php $features = explode(',', $plan->features); @endphp
                 <div
                     x-show="(billing == 'Monthly' && '{{ $plan->monthly_price_id }}' != '') || (billing == 'Yearly' && '{{ $plan->yearly_price_id }}' != '')" 
-                    class="flex-1 px-0 mx-auto mb-6 w-full md:max-w-lg lg:mb-0" x-cloak>
+                    class="flex-1 px-0 mx-auto mb-6 w-full md:max-w-lg lg:mb-0">
                     <div class="flex flex-col lg:mb-10 h-full bg-white rounded-xl border-2  @if($plan->default){{ 'border-zinc-900 lg:scale-105' }}@else{{ 'border-zinc-200' }}@endif shadow-sm sm:mb-0">
                         <div class="px-8 pt-8">
                             <span class="px-4 py-1 text-base font-medium text-white rounded-full bg-zinc-900 text-uppercase" data-primary="indigo-700">
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="px-8 mt-5">
-                            <span class="text-5xl font-bold">€<span x-text="billing == 'Monthly' ? '{{ $plan->monthly_price }}' : '{{ $plan->yearly_price }}'"></span></span>
+                            <span class="text-5xl font-bold">$ <span x-text="billing == 'Monthly' ? '{{ $plan->monthly_price }}' : '{{ $plan->yearly_price }}'"></span></span>
                             <span class="text-xl font-bold text-zinc-500"><span x-text="billing == 'Monthly' ? '/mes' : '/año'"></span></span>
                         </div>
 
@@ -81,9 +81,15 @@
                             </ul>
 
                             <div class="mt-8">
-                                <x-button class="w-full" tag="a" href="/register">
-                                    Comenzar
-                                </x-button>
+                                @auth
+                                    <x-button class="w-full" tag="a" href="{{ url('/settings/subscription') }}">
+                                        Comenzar
+                                    </x-button>
+                                @else
+                                    <x-button class="w-full" tag="a" href="{{ url('/signup') }}">
+                                        Comenzar
+                                    </x-button>
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -92,5 +98,5 @@
         </div>
     </div>
 
-    <p class="mt-0 mb-8 w-full text-center text-zinc-500 sm:my-10">Los planes y precios se configuran desde el panel de administración.</p>
+    <p class="mt-0 mb-8 w-full text-center text-zinc-500 sm:my-10"></p>
 </section>
