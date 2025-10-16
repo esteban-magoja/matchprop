@@ -1,0 +1,75 @@
+# i18n Progress Tracker
+# Este archivo es para tracking automático (opcional)
+# Actualización manual al final de cada día
+
+CURRENT_DAY=0
+TOTAL_DAYS=12
+START_DATE=
+CURRENT_STATUS=not_started
+
+# Estados por día (not_started|in_progress|completed|blocked)
+DAY_1_STATUS=not_started
+DAY_1_DATE=
+DAY_1_HOURS=0
+DAY_1_NOTES=
+
+DAY_2_STATUS=not_started
+DAY_2_DATE=
+DAY_2_HOURS=0
+DAY_2_NOTES=
+
+DAY_3_STATUS=not_started
+DAY_3_DATE=
+DAY_3_HOURS=0
+DAY_3_NOTES=
+
+DAY_4_STATUS=not_started
+DAY_4_DATE=
+DAY_4_HOURS=0
+DAY_4_NOTES=
+
+DAY_5_STATUS=not_started
+DAY_5_DATE=
+DAY_5_HOURS=0
+DAY_5_NOTES=
+
+DAY_6_STATUS=not_started
+DAY_6_DATE=
+DAY_6_HOURS=0
+DAY_6_NOTES=
+
+DAY_7_STATUS=not_started
+DAY_7_DATE=
+DAY_7_HOURS=0
+DAY_7_NOTES=
+
+DAY_8_STATUS=not_started
+DAY_8_DATE=
+DAY_8_HOURS=0
+DAY_8_NOTES=
+
+DAY_9_STATUS=not_started
+DAY_9_DATE=
+DAY_9_HOURS=0
+DAY_9_NOTES=
+
+DAY_10_STATUS=not_started
+DAY_10_DATE=
+DAY_10_HOURS=0
+DAY_10_NOTES=
+
+DAY_11_STATUS=not_started
+DAY_11_DATE=
+DAY_11_HOURS=0
+DAY_11_NOTES=
+
+DAY_12_STATUS=not_started
+DAY_12_DATE=
+DAY_12_HOURS=0
+DAY_12_NOTES=
+
+# Ejemplo de actualización diaria:
+# DAY_1_STATUS=completed
+# DAY_1_DATE=2025-10-17
+# DAY_1_HOURS=5
+# DAY_1_NOTES="Todo OK, migraciones funcionaron"
