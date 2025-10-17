@@ -27,19 +27,19 @@
             return $schema
                 ->components([
                     TextInput::make('current_password')
-                        ->label('Current Password')
+                        ->label('Actual Password')
                         ->required()
                         ->currentPassword()
                         ->password()
                         ->revealable(),
                     TextInput::make('password')
-                        ->label('New Password')
+                        ->label('Nuevo Password')
                         ->required()
                         ->minLength(4)
                         ->password()
                         ->revealable(),
                     TextInput::make('password_confirmation')
-                        ->label('Confirm New Password')
+                        ->label('Confirmar Nuevo Password')
                         ->required()
                         ->password()
                         ->revealable()
@@ -74,13 +74,13 @@
     @volt('settings.security') 
         <div class="relative">
             <x-app.settings-layout
-                title="Security"
-                description="Update and change your current account password."
+                title="Seguridad"
+                description="Actualiza y cambia tu contraseña de cuenta actual."
             >
                 <form wire:submit="save" class="w-full max-w-lg">
                     {{ $this->form }}
                     <div class="w-full pt-6 text-right">
-                        <x-button type="submit">Save</x-button>
+                        <x-button type="submit">Guardar</x-button>
                     </div>
                 </form>
 

@@ -212,12 +212,12 @@ new class extends Component {
     @volt('property-listings.create')
     <x-app.container>
         <div>
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Create New Property Listing</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Publicar Nuevo Anuncio</h1>
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                 @if ($step == 1)
-                    Step 1: Fill out the form below to add a new property.
+                    Paso 1: Completa el formulario a continuación para agregar un nuevo anuncio.
                 @else
-                    Step 2: Upload images for your property.
+                    Paso 2: Sube imágenes para tu anuncio.
                 @endif
             </p>
         </div>
@@ -259,13 +259,13 @@ new class extends Component {
             @if ($step == 1)
                 <form wire:submit.prevent="save" class="space-y-8">
                     <div class="p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                        <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Property Details</h2>
+                        <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Detalle del Anuncio</h2>
                         <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                             
                             <div class="sm:col-span-2">
-                                <label for="country" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Country</label>
+                                <label for="country" class="block text-sm font-medium text-gray-700 dark:text-gray-300">País</label>
                                 <select wire:model.live="selectedCountry" id="country" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="">Select a country</option>
+                                    <option value="">Selecciona un país</option>
                                     @foreach($countries as $country)
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
                                     @endforeach
@@ -275,19 +275,19 @@ new class extends Component {
 
                             
                             <div class="sm:col-span-6">
-                                <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+                                <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Título</label>
                                 <input type="text" wire:model="title" id="title" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 @error('title') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="sm:col-span-6">
-                                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Descripción</label>
                                 <textarea wire:model="description" id="description" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                                 @error('description') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="sm:col-span-3">
-                                <label for="property_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Property Type</label>
+                                <label for="property_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo de Propiedad</label>
                                 <select wire:model="property_type" id="property_type" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     <option value="casa">Casa</option>
                                     <option value="departamento">Departamento</option>
@@ -300,7 +300,7 @@ new class extends Component {
                             </div>
 
                             <div class="sm:col-span-3">
-                                <label for="transaction_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Transaction Type</label>
+                                <label for="transaction_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo de Operación</label>
                                 <select wire:model="transaction_type" id="transaction_type" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     <option value="venta">Venta</option>
                                     <option value="alquiler">Alquiler</option>
@@ -308,13 +308,13 @@ new class extends Component {
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Price</label>
+                                <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Precio</label>
                                 <input type="number" wire:model="price" id="price" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                  @error('price') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="currency" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Currency</label>
+                                <label for="currency" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Moneda</label>
                                 <select wire:model="currency" id="currency" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @foreach($availableCurrencies as $currency_code)
                                         <option value="{{ $currency_code }}">{{ $currency_code }}</option>
@@ -325,37 +325,37 @@ new class extends Component {
 
 
                             <div class="sm:col-span-2">
-                                <label for="bedrooms" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Bedrooms</label>
+                                <label for="bedrooms" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Habitaciones</label>
                                 <input type="number" wire:model="bedrooms" id="bedrooms" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                  @error('bedrooms') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
                             
                             <div class="sm:col-span-2">
-                                <label for="bathrooms" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Bathrooms</label>
+                                <label for="bathrooms" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Baños</label>
                                 <input type="number" wire:model="bathrooms" id="bathrooms" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                  @error('bathrooms') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="parking_spaces" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Parking Spaces</label>
+                                <label for="parking_spaces" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Espacios de Estacionamiento</label>
                                 <input type="number" wire:model="parking_spaces" id="parking_spaces" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="area" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Area (sqft)</label>
+                                <label for="area" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Superficie (m2)</label>
                                 <input type="number" wire:model="area" id="area" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                  @error('area') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="lotsize" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Lot Size (sqft)</label>
+                                <label for="lotsize" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tamaño del Lote (m2)</label>
                                 <input type="number" wire:model="lotsize" id="lotsize" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                  @error('lotsize') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
 
                             <div class="sm:col-span-6">
-                                <label for="conditions" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Conditions</label>
+                                <label for="conditions" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Condiciones</label>
                                 <textarea wire:model="conditions" id="conditions" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                                 @error('conditions') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -363,14 +363,14 @@ new class extends Component {
                     </div>
 
                     <div class="p-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700" x-data @country-selected-for-map.window="window.initAndPan()">
-                        <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Location</h2>
+                        <h2 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Ubicación</h2>
                         <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
                             
                             
                             <div class="sm:col-span-2">
-                                <label for="state" class="block text-sm font-medium text-gray-700 dark:text-gray-300">State</label>
+                                <label for="state" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Provincia/Estado</label>
                                 <select wire:model.live="selectedState" id="state" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="">Select a state</option>
+                                    <option value="">Seleccionar</option>
                                     @foreach($states as $state)
                                         <option value="{{ $state->id }}">{{ $state->name }}</option>
                                     @endforeach
@@ -379,9 +379,9 @@ new class extends Component {
                             </div>
                             
                             <div class="sm:col-span-2">
-                                <label for="city" class="block text-sm font-medium text-gray-700 dark:text-gray-300">City</label>
+                                <label for="city" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Ciudad</label>
                                 <select wire:model="city" id="city" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="">Select a city</option>
+                                    <option value="">Seleccionar</option>
                                     @foreach($cities as $city)
                                         <option value="{{ $city->name }}">{{ $city->name }}</option>
                                     @endforeach
@@ -390,23 +390,23 @@ new class extends Component {
                             </div>
 
                             <div class="sm:col-span-6">
-                                <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
+                                <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dirección</label>
                                 <div class="flex mt-1 space-x-2">
                                     <input type="text" wire:model="address" id="address" class="block w-full border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     <button type="button" id="search-address-btn" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
                                         <x-phosphor-magnifying-glass class="w-4 h-4 mr-2" />
-                                        Search location
+                                        Buscar ubicación
                                     </button>
                                 </div>
                                 @error('address') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="sm:col-span-6">
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Location on Map</label>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Ubicación en el Mapa</label>
 
 <div id="map" class="relative w-full h-64 mt-2 rounded-md bg-gray-100 dark:bg-gray-700" wire:ignore>
                                     <div id="map-placeholder" class="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full">
-                                        <p class="text-gray-500 dark:text-gray-400">Please select a country to display the map.</p>
+                                        <p class="text-gray-500 dark:text-gray-400">Por favor selecciona un país para mostrar el mapa.</p>
                                     </div>
                                 </div>
 
@@ -422,14 +422,14 @@ new class extends Component {
                     </div>
 
                     <div class="flex justify-end pt-5">
-                        <a href="{{ route('property-listings.index') }}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</a>
+                        <a href="{{ route('property-listings.index') }}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancelar</a>
                         <button type="submit" wire:loading.attr="disabled" wire:target="save" class="inline-flex items-center justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-75 disabled:cursor-wait">
                             <span wire:loading.remove wire:target="save">
-                                Next: Add Images
+                                Siguiente: Agregar Imágenes
                             </span>
                             <span wire:loading wire:target="save">
                                 <svg class="inline-block w-4 h-4 mr-2 animate-spin" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.4857 8.02381C14.4857 4.42133 11.5787 1.51429 8 1.51429C4.42133 1.51429 1.51429 4.42133 1.51429 8.02381C1.51429 11.6263 4.42133 14.5333 8 14.5333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-25"></path><path d="M8 1.51429V4.51429" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-75"></path></svg>
-                                <span>Saving...</span>
+                                <span>Guardando...</span>
                             </span>
                         </button>
                     </div>
@@ -444,7 +444,7 @@ new class extends Component {
                                 <input type="file" x-ref="imageInput" @change="handleFiles" id="imageUploads" multiple class="block w-full mt-1 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"/>
                                 <div x-show="isResizing" class="mt-2 text-sm text-gray-500">
                                     <svg class="inline-block w-4 h-4 mr-2 animate-spin" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.4857 8.02381C14.4857 4.42133 11.5787 1.51429 8 1.51429C4.42133 1.51429 1.51429 4.42133 1.51429 8.02381C1.51429 11.6263 4.42133 14.5333 8 14.5333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-25"></path><path d="M8 1.51429V4.51429" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-75"></path></svg>
-                                    <span>Processing and uploading images...</span>
+                                    <span>Procesando y subiendo imágenes...</span>
                                 </div>
                                 @error('imageUploads.*') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
 
@@ -459,7 +459,7 @@ new class extends Component {
                                                 <div class="mt-2 text-center">
                                                     <label class="flex items-center justify-center space-x-2 text-sm">
                                                         <input type="radio" wire:model="primaryImageIndex" value="{{ $index }}" name="primary_image">
-                                                        <span>Primary</span>
+                                                        <span>Principal</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -474,11 +474,11 @@ new class extends Component {
                         <button type="button" wire:click="$set('step', 1)" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Back</button>
                         <button type="submit" wire:loading.attr="disabled" wire:target="saveImages" class="inline-flex items-center justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-75 disabled:cursor-wait" @if (empty($images)) disabled @endif>
                             <span wire:loading.remove wire:target="saveImages">
-                                Save Images & Finish
+                                Guardar Imágenes y Finalizar
                             </span>
                             <span wire:loading wire:target="saveImages">
                                 <svg class="inline-block w-4 h-4 mr-2 animate-spin" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.4857 8.02381C14.4857 4.42133 11.5787 1.51429 8 1.51429C4.42133 1.51429 1.51429 4.42133 1.51429 8.02381C1.51429 11.6263 4.42133 14.5333 8 14.5333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-25"></path><path d="M8 1.51429V4.51429" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-75"></path></svg>
-                                <span>Finishing...</span>
+                                <span>Finalizando...</span>
                             </span>
                         </button>
                     </div>

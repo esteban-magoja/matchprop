@@ -11,12 +11,12 @@
 <x-layouts.app>
         <div class="relative">
             <x-app.settings-layout
-                title="Invoices"
-                description="Your past plan invoices"
+                title="Facturas"
+                description="Tus facturas de plan anteriores"
             >
                 @empty($invoices)
-                    <x-app.alert id="dashboard_alert">No invoices available.</x-app.alert>
-                    <p class="mt-3">You do not have any past invoices. When you subscribe to a plan you'll see your past invoices here.</p>
+                    <x-app.alert id="dashboard_alert">No hay facturas disponibles.</x-app.alert>
+                    <p class="mt-3">No tienes facturas anteriores. Cuando te suscribas a un plan, verás tus facturas anteriores aquí.</p>
                 @else
                     <div class="overflow-hidden border border-gray-200 rounded-lg">
                         <table class="min-w-full divide-y divide-zinc-200">

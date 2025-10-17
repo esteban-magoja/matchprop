@@ -30,39 +30,39 @@
             return $schema
                 ->components([
                     \Filament\Forms\Components\TextInput::make('name')
-                        ->label('Name')
+                        ->label('Nombre completo')
                         ->required()
 						->rules('required|string')
 						->default(auth()->user()->name),
 					\Filament\Forms\Components\TextInput::make('email')
-                        ->label('Email Address')
+                        ->label('Correo electrónico')
                         ->required()
 						->rules('sometimes|required|email|unique:users,email,' . auth()->user()->id)
 						->default(auth()->user()->email),
 					\Filament\Forms\Components\TextInput::make('agency')
-                        ->label('Agency')
+                        ->label('Agencia/Inmobiliaria')
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->agency),
 					\Filament\Forms\Components\TextInput::make('movil')
-                        ->label('Mobile Phone (WhatsApp)')
+                        ->label('Teléfono móvil (WhatsApp)')
                         ->placeholder('+34600123456')
                         ->required()
 						->rules('required|string|max:20')
 						->default(auth()->user()->movil),
 					\Filament\Forms\Components\TextInput::make('address')
-                        ->label('Address')
+                        ->label('Dirección')
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->address),
 					\Filament\Forms\Components\TextInput::make('city')
-                        ->label('City')
+                        ->label('Ciudad')
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->city),
 					\Filament\Forms\Components\TextInput::make('state')
-                        ->label('State/Province')
+                        ->label('Estado/Provincia')
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->state),
 					\Filament\Forms\Components\TextInput::make('country')
-                        ->label('Country')
+                        ->label('País')
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->country),
 					...($this->dynamicFields( config('profile.fields') ))
@@ -121,8 +121,8 @@
 <x-layouts.app>
 
     <x-app.settings-layout
-        title="Settings"
-        description="Manage your account avatar, name, email, and more.">
+        title="Mi cuenta"
+        description="Administra tu avatar, nombre, correo electrónico y más.">
 
 		@volt('settings.profile')
 		<div x-data="{
@@ -216,7 +216,7 @@
 						{{ $this->form }}
 					</div>
 					<div class="w-full pt-6 text-right">
-						<x-button type="submit">Save</x-button>
+						<x-button type="submit">Guardar</x-button>
 					</div>
 				</div>
 

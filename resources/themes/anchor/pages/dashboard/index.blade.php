@@ -29,7 +29,7 @@
 		<x-app.alert id="dashboard_alert" class="hidden lg:flex">Panel de control donde puedes gestionar tus anuncios, solicitudes y ver coincidencias.</x-app.alert>
 
         <x-app.heading
-                title="Dashboard"
+                title="Panel de Control"
                 description="Gestiona tus propiedades y solicitudes"
                 :border="false"
             />
@@ -111,10 +111,10 @@
 
 		<div class="mt-5 space-y-5">
 			@subscriber
-				<p>You are a subscribed user with the <strong>{{ auth()->user()->roles()->first()->name }}</strong> role. Learn <a href="https://devdojo.com/wave/docs/features/roles-permissions" target="_blank" class="underline">more about roles</a> here.</p>
+				<p>Usted tiene el rol de <strong>{{ auth()->user()->roles()->first()->name }}</strong>.</p>
 				<x-app.message-for-subscriber />
 			@else
-				<p>This current logged in user has a <strong>{{ auth()->user()->roles()->first()->name }}</strong> role. To upgrade, <a href="{{ route('settings.subscription') }}" class="underline">subscribe to a plan</a>. Learn <a href="https://devdojo.com/wave/docs/features/roles-permissions" target="_blank" class="underline">more about roles</a> here.</p>
+				<p>Usted tiene el rol de <strong>{{ auth()->user()->roles()->first()->name }}</strong>.</p>
 			@endsubscriber
 			
 			@admin

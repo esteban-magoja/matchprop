@@ -63,7 +63,7 @@
                                     <div class="relative w-full md:w-auto">
                                         @if(config('wave.billing_provider') == 'stripe')
                                             <x-billing.button wire:click="redirectToStripeCheckout('{{ $plan->id }}')" wire:target="redirectToPaymentProvider" rounded="md" color="{{ config('devdojo.billing.style.color') }}">
-                                                Subscribe to this Plan
+                                                Suscribirme a este Plan
                                             </x-billing.button>
                                         @else
                                             @if($change)

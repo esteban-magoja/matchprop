@@ -17,7 +17,7 @@
         <x-card class="lg:p-10">
             <x-app.heading
                 title="Changelog"
-                description="This is your application changelog where users can visit to stay in the loop about your latest updates and improvements."
+                description="Este es el registro de cambios de su aplicación que los usuarios pueden visitar para mantenerse informados sobre las últimas actualizaciones y mejoras."
             />
 
         <div class="max-w-full mt-8 prose-sm prose dark:prose-invert">

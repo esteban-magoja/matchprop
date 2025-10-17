@@ -63,14 +63,14 @@ new class extends Component {
     @volt('search-property-listings')
     <x-app.container>
         <div class="flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Search All Property Listings</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Buscar Todos los Anuncios</h1>
         </div>
 
         <div class="mt-6">
             <form wire:submit.prevent="search" class="flex items-center space-x-2">
-                <input type="text" wire:model="searchTerm" placeholder="Search for properties..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200">
+                <input type="text" wire:model="searchTerm" placeholder="Buscar anuncios..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200">
                 <button type="submit" wire:loading.attr="disabled" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-75 disabled:cursor-not-allowed">
-                    <span wire:loading.remove wire:target="search">Search</span>
+                    <span wire:loading.remove wire:target="search">Buscar</span>
                     <span wire:loading wire:target="search">
                         <svg class="w-5 h-5 mr-2 -ml-1 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -92,7 +92,7 @@ new class extends Component {
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Searching...
+            Buscando...
         </div>
 
         <div class="mt-6" wire:loading.remove wire:target="search">
@@ -161,11 +161,11 @@ new class extends Component {
                             <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
-                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">No property listings found</h3>
+                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">No se encontraron anuncios</h3>
                             @if($searchTerm)
-                                <p class="mt-1 text-sm text-gray-500">Try adjusting your search term.</p>
+                                <p class="mt-1 text-sm text-gray-500">Intenta ajustar tu término de búsqueda.</p>
                             @else
-                                <p class="mt-1 text-sm text-gray-500">Enter a term above to search for properties.</p>
+                                <p class="mt-1 text-sm text-gray-500">Ingresa un término arriba para buscar propiedades.</p>
                             @endif
                         </div>
                     </div>

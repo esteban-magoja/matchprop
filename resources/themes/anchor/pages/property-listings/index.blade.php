@@ -108,17 +108,17 @@ new class extends Component {
     @volt('property-listings')
     <x-app.container>
         <div class="flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">My published properties</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Mis Anuncios</h1>
             <a href="{{ route('property-listings.create') }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-900 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                Create
+                Publicar
             </a>
         </div>
 
         <div class="mt-6">
             <form wire:submit.prevent="search" class="flex items-center space-x-2">
-                <input type="text" wire:model="searchTerm" placeholder="Search for properties..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200">
+                <input type="text" wire:model="searchTerm" placeholder="Buscar en mis anuncios..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200">
                 <button type="submit" wire:loading.attr="disabled" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-75 disabled:cursor-not-allowed">
-                    <span wire:loading.remove wire:target="search">Search</span>
+                    <span wire:loading.remove wire:target="search">Buscar</span>
                     <span wire:loading wire:target="search">
                         <svg class="w-5 h-5 mr-2 -ml-1 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -140,7 +140,7 @@ new class extends Component {
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Searching...
+            Buscando...
         </div>
 
         <div class="mt-6" wire:loading.remove wire:target="search">
@@ -161,9 +161,9 @@ new class extends Component {
                             <!-- Status Badge -->
                             <div class="absolute top-2 right-2">
                                 @if($listing->is_active)
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Activo</span>
                                 @else
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Inactive</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Inactivo</span>
                                 @endif
                             </div>
                         </div>
@@ -185,7 +185,7 @@ new class extends Component {
                             <!-- Similarity -->
                             @if($searchTerm)
                                 <div class="mt-2">
-                                    <p class="text-sm font-medium text-green-600 dark:text-green-400">Similarity: {{ number_format($listing->similarity, 2) }}%</p>
+                                    <p class="text-sm font-medium text-green-600 dark:text-green-400">Coincidencia: {{ number_format($listing->similarity, 2) }}%</p>
                                 </div>
                             @endif
                         </div>
@@ -193,8 +193,8 @@ new class extends Component {
                         <!-- Card Footer (Actions) -->
                         <div class="p-4 mt-auto bg-gray-50 dark:bg-gray-900/50 rounded-b-lg">
                             <div class="flex justify-end space-x-2">
-                                <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Edit</a>
-                                <button wire:click="confirmDelete({{ $listing->id }})" class="text-sm font-medium text-red-600 hover:text-red-900">Delete</button>
+                                <!--<a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Editar</a>-->
+                                <button wire:click="confirmDelete({{ $listing->id }})" class="text-sm font-medium text-red-600 hover:text-red-900">Eliminar</button>
                             </div>
                         </div>
                     </div>
@@ -205,8 +205,8 @@ new class extends Component {
                             <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                             </svg>
-                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">No property listings found.</h3>
-                            <p class="mt-1 text-sm text-gray-500">Get started by creating a new property listing.</p>
+                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">No se encontraron anuncios.</h3>
+                            <p class="mt-1 text-sm text-gray-500">Comienza creando un nuevo anuncio.</p>
                         </div>
                     </div>
                 @endforelse
@@ -227,21 +227,21 @@ new class extends Component {
                         </div>
                         <div class="mt-3 text-center sm:mt-5">
                             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100" id="modal-title">
-                                Delete Property Listing
+                                Borrar anuncio
                             </h3>
                             <div class="mt-2">
                                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                                    Are you sure you want to delete "{{ $listingToDelete->title }}"? This will permanently delete the listing and all its images. This action cannot be undone.
+                                    Estas seguro de que deseas eliminar "{{ $listingToDelete->title }}"? Esto eliminará permanentemente el anuncio y todas sus imágenes. Esta acción no se puede deshacer.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                         <button wire:click="delete" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:col-start-2 sm:text-sm">
-                            Delete
+                            Eliminar
                         </button>
                         <button wire:click="cancelDelete" type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600">
-                            Cancel
+                            Cancelar
                         </button>
                     </div>
                 </div>
