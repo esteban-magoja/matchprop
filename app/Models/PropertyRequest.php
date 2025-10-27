@@ -17,6 +17,9 @@ class PropertyRequest extends Model
      */
     protected $fillable = [
         'user_id',
+        'client_name',
+        'client_email',
+        'client_phone',
         'title',
         'description',
         'property_type',

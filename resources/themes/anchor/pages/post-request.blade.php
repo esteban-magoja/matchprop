@@ -14,6 +14,15 @@ name('requests.create');
 new class extends Component {
     
     #[Rule('required|string|max:255')]
+    public string $client_name = '';
+
+    #[Rule('required|email|max:255')]
+    public string $client_email = '';
+
+    #[Rule('required|string|max:20')]
+    public string $client_phone = '';
+
+    #[Rule('required|string|max:255')]
     public string $title = '';
 
     #[Rule('required|string|min:20')]
@@ -257,6 +266,59 @@ new class extends Component {
 
                 <form wire:submit.prevent="save" class="space-y-8">
                     
+                    <!-- Datos del Cliente -->
+                    <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                            Datos de Contacto
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-6">Ingresa tus datos</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label for="client_name" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Nombre completo <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" 
+                                       wire:model="client_name" 
+                                       id="client_name" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                                       placeholder="Juan Pérez"
+                                       required>
+                                @error('client_name') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label for="client_email" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Email <span class="text-red-500">*</span>
+                                </label>
+                                <input type="email" 
+                                       wire:model="client_email" 
+                                       id="client_email" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                                       placeholder="cliente@email.com"
+                                       required>
+                                @error('client_email') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label for="client_phone" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Teléfono WhatsApp <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" 
+                                       wire:model="client_phone" 
+                                       id="client_phone" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                                       placeholder="+54 9 351 1234567"
+                                       required>
+                                <p class="mt-2 text-sm text-gray-500">Formato: código país + número completo</p>
+                                @error('client_phone') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Información Básica -->
                     <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
                         <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
@@ -325,57 +387,6 @@ new class extends Component {
                         </div>
                     </div>
 
-                    <!-- Presupuesto -->
-                    <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
-                        <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                            <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            Presupuesto
-                        </h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div>
-                                <label for="currency" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Moneda <span class="text-red-500">*</span>
-                                </label>
-                                <select wire:model="currency" 
-                                        id="currency" 
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
-                                    @foreach($availableCurrencies as $curr)
-                                        <option value="{{ $curr }}">{{ $curr }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="min_budget" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Presupuesto Mínimo
-                                </label>
-                                <input type="number" 
-                                       wire:model="min_budget" 
-                                       id="min_budget" 
-                                       step="0.01"
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                       placeholder="0">
-                                @error('min_budget') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
-                            </div>
-
-                            <div>
-                                <label for="max_budget" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Presupuesto Máximo <span class="text-red-500">*</span>
-                                </label>
-                                <input type="number" 
-                                       wire:model="max_budget" 
-                                       id="max_budget" 
-                                       step="0.01"
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                       placeholder="250000">
-                                @error('max_budget') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Ubicación -->
                     <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
                         <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
@@ -433,6 +444,58 @@ new class extends Component {
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Presupuesto -->
+                    <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Presupuesto
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label for="currency" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Moneda <span class="text-red-500">*</span>
+                                </label>
+                                <select wire:model="currency" 
+                                        id="currency" 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
+                                    @foreach($availableCurrencies as $curr)
+                                        <option value="{{ $curr }}">{{ $curr }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="min_budget" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Presupuesto Mínimo
+                                </label>
+                                <input type="number" 
+                                       wire:model="min_budget" 
+                                       id="min_budget" 
+                                       step="0.01"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                                       placeholder="0">
+                                @error('min_budget') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label for="max_budget" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Presupuesto Máximo <span class="text-red-500">*</span>
+                                </label>
+                                <input type="number" 
+                                       wire:model="max_budget" 
+                                       id="max_budget" 
+                                       step="0.01"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                                       placeholder="250000">
+                                @error('max_budget') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                            </div>
+                        </div>
+                    </div>
+
 
                     <!-- Características Mínimas -->
                     <div class="bg-white rounded-lg shadow-md p-6 md:p-8">

@@ -15,6 +15,15 @@ name('dashboard.requests.create-livewire');
 new class extends Component {
     
     #[Rule('required|string|max:255')]
+    public string $client_name = '';
+
+    #[Rule('required|email|max:255')]
+    public string $client_email = '';
+
+    #[Rule('required|string|max:20')]
+    public string $client_phone = '';
+
+    #[Rule('required|string|max:255')]
     public string $title = '';
 
     #[Rule('required|string|min:20')]
@@ -154,13 +163,59 @@ new class extends Component {
     @volt('property-request-create')
     <x-app.container>
         <x-app.heading
-            title="Nueva Solicitud"
-            description="Describe la propiedad que estás buscando"
+            title="Nueva Solicitud/Cliente"
+            description="Describe la propiedad que estás buscando para tu cliente."
             :border="false"
         />
 
         <div class="mt-6">
             <form wire:submit.prevent="save" class="space-y-6">
+                <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">Datos del Cliente</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="client_name" class="block text-sm font-medium text-gray-700 mb-2">
+                                Nombre del Cliente *
+                            </label>
+                            <input type="text" 
+                                   wire:model="client_name" 
+                                   id="client_name" 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="Juan Pérez"
+                                   required>
+                            @error('client_name') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label for="client_email" class="block text-sm font-medium text-gray-700 mb-2">
+                                Email del Cliente *
+                            </label>
+                            <input type="email" 
+                                   wire:model="client_email" 
+                                   id="client_email" 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="cliente@email.com"
+                                   required>
+                            @error('client_email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label for="client_phone" class="block text-sm font-medium text-gray-700 mb-2">
+                                Teléfono WhatsApp *
+                            </label>
+                            <input type="text" 
+                                   wire:model="client_phone" 
+                                   id="client_phone" 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="+54 9 351 1234567"
+                                   required>
+                            <p class="mt-1 text-sm text-gray-500">Formato: código país + número completo</p>
+                            @error('client_phone') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+                    </div>
+                </div>
+
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Información Básica</h3>
                     
@@ -224,51 +279,6 @@ new class extends Component {
                 </div>
 
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Presupuesto</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div>
-                            <label for="currency" class="block text-sm font-medium text-gray-700 mb-2">
-                                Moneda *
-                            </label>
-                            <select wire:model="currency" 
-                                    id="currency" 
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                @foreach($availableCurrencies as $curr)
-                                    <option value="{{ $curr }}">{{ $curr }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="min_budget" class="block text-sm font-medium text-gray-700 mb-2">
-                                Presupuesto Mínimo
-                            </label>
-                            <input type="number" 
-                                   wire:model="min_budget" 
-                                   id="min_budget" 
-                                   step="0.01"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="0">
-                            @error('min_budget') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                        </div>
-
-                        <div>
-                            <label for="max_budget" class="block text-sm font-medium text-gray-700 mb-2">
-                                Presupuesto Máximo *
-                            </label>
-                            <input type="number" 
-                                   wire:model="max_budget" 
-                                   id="max_budget" 
-                                   step="0.01"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="250000">
-                            @error('max_budget') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Ubicación</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -318,6 +328,53 @@ new class extends Component {
                         </div>
                     </div>
                 </div>
+
+
+                <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">Presupuesto</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="currency" class="block text-sm font-medium text-gray-700 mb-2">
+                                Moneda *
+                            </label>
+                            <select wire:model="currency" 
+                                    id="currency" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                @foreach($availableCurrencies as $curr)
+                                    <option value="{{ $curr }}">{{ $curr }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="min_budget" class="block text-sm font-medium text-gray-700 mb-2">
+                                Presupuesto Mínimo
+                            </label>
+                            <input type="number" 
+                                   wire:model="min_budget" 
+                                   id="min_budget" 
+                                   step="0.01"
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="0">
+                            @error('min_budget') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label for="max_budget" class="block text-sm font-medium text-gray-700 mb-2">
+                                Presupuesto Máximo *
+                            </label>
+                            <input type="number" 
+                                   wire:model="max_budget" 
+                                   id="max_budget" 
+                                   step="0.01"
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="250000">
+                            @error('max_budget') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Características Mínimas (Opcional)</h3>

@@ -45,6 +45,9 @@ class PropertyRequestController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'client_name' => 'required|string|max:255',
+            'client_email' => 'required|email|max:255',
+            'client_phone' => 'required|string|max:20',
             'title' => 'required|string|max:255',
             'description' => 'required|string|min:20',
             'property_type' => 'required|string',
@@ -117,6 +120,9 @@ class PropertyRequestController extends Controller
         }
 
         $validated = $request->validate([
+            'client_name' => 'required|string|max:255',
+            'client_email' => 'required|email|max:255',
+            'client_phone' => 'required|string|max:20',
             'title' => 'required|string|max:255',
             'description' => 'required|string|min:20',
             'property_type' => 'required|string',

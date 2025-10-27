@@ -2,8 +2,8 @@
     <x-app.container class="lg:space-y-6">
         
         <x-app.heading
-            title="Editar Solicitud"
-            description="Actualiza los detalles de tu solicitud"
+            title="Editar Solicitud/Cliente"
+            description="Actualiza los detalles de tu solicitud o cliente."
             :border="false"
         />
 
@@ -11,6 +11,61 @@
             <form action="{{ route('dashboard.requests.update', $propertyRequest) }}" method="POST" class="space-y-6">
                 @csrf
                 @method('PUT')
+
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">Datos del Cliente</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label for="client_name" class="block text-sm font-medium text-gray-700 mb-2">
+                                Nombre del Cliente *
+                            </label>
+                            <input type="text" 
+                                   name="client_name" 
+                                   id="client_name" 
+                                   value="{{ old('client_name', $propertyRequest->client_name) }}"
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="Juan Pérez"
+                                   required>
+                            @error('client_name')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="client_email" class="block text-sm font-medium text-gray-700 mb-2">
+                                Email del Cliente *
+                            </label>
+                            <input type="email" 
+                                   name="client_email" 
+                                   id="client_email" 
+                                   value="{{ old('client_email', $propertyRequest->client_email) }}"
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="cliente@email.com"
+                                   required>
+                            @error('client_email')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="client_phone" class="block text-sm font-medium text-gray-700 mb-2">
+                                Teléfono WhatsApp *
+                            </label>
+                            <input type="text" 
+                                   name="client_phone" 
+                                   id="client_phone" 
+                                   value="{{ old('client_phone', $propertyRequest->client_phone) }}"
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="+54 9 351 1234567"
+                                   required>
+                            <p class="mt-1 text-sm text-gray-500">Formato: código país + número completo</p>
+                            @error('client_phone')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
 
                 <div>
                     <label for="title" class="block text-sm font-medium text-gray-700 mb-2">

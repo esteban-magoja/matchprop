@@ -2,8 +2,8 @@
     <x-app.container class="lg:space-y-6">
         
         <x-app.heading
-            title="Mis Solicitudes"
-            description="Gestiona tus solicitudes de búsqueda de propiedades"
+            title="Mis Clientes"
+            description="Gestiona tus clientes y solicitudes de búsqueda de propiedades"
             :border="false"
         >
             <x-slot name="actions">
@@ -83,6 +83,43 @@
                                 <p class="font-medium text-gray-900">{{ $request->city ?? $request->state ?? $request->country }}</p>
                             </div>
                         </div>
+
+                        @if($request->client_name || $request->client_email || $request->client_phone)
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                                <div class="flex items-center gap-1 mb-2">
+                                    <svg class="w-4 h-4 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <span class="text-xs font-semibold text-blue-900">Cliente</span>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
+                                    @if($request->client_name)
+                                        <div class="flex items-center gap-1">
+                                            <span class="text-blue-700">👤</span>
+                                            <span class="text-blue-900 font-medium">{{ $request->client_name }}</span>
+                                        </div>
+                                    @endif
+                                    @if($request->client_email)
+                                        <div class="flex items-center gap-1">
+                                            <span class="text-blue-700">✉️</span>
+                                            <a href="mailto:{{ $request->client_email }}" class="text-blue-900 hover:underline truncate">
+                                                {{ $request->client_email }}
+                                            </a>
+                                        </div>
+                                    @endif
+                                    @if($request->client_phone)
+                                        <div class="flex items-center gap-1">
+                                            <span class="text-blue-700">📱</span>
+                                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $request->client_phone) }}" 
+                                               target="_blank" 
+                                               class="text-blue-900 hover:underline">
+                                                {{ $request->client_phone }}
+                                            </a>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
 
                         @if($request->min_bedrooms || $request->min_bathrooms || $request->min_area)
                             <div class="flex gap-4 mb-4 text-sm text-gray-600">

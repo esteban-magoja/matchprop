@@ -30,7 +30,7 @@
 
         <x-app.heading
                 title="Panel de Control"
-                description="Gestiona tus propiedades y solicitudes"
+                description="Gestiona tus propiedades y solicitudes y clientes potenciales desde aquí."
                 :border="false"
             />
 
@@ -39,42 +39,42 @@
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
 				<div class="flex items-center justify-between">
 					<div>
-						<p class="text-sm text-gray-600 mb-1">Mis Anuncios</p>
+						<p class="text-md text-gray-600 mb-3">Mis Anuncios</p>
 						<p class="text-3xl font-bold text-gray-900">{{ $userListings }}</p>
 					</div>
-					<svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="w-12 h-12 text-blue-500 mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
 					</svg>
 				</div>
 				<div class="mt-3 text-blue-600">
-					<a href="/property-listings" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Ver anuncios</a> | 
-					<a href="/property-listings/create" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Publicar anuncio</a>
+					<p><a href="/property-listings" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Ver anuncios</a></p>
+					<p><a href="/property-listings/create" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Publicar anuncio</a></p>
 				</div>
 			</div>
 
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
 				<div class="flex items-center justify-between">
 					<div>
-						<p class="text-sm text-gray-600 mb-1">Mis Solicitudes</p>
+						<p class="text-md text-gray-600 mb-3">Clientes</p>
 						<p class="text-3xl font-bold text-gray-900">{{ $userRequests }}</p>
 					</div>
-					<svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="w-12 h-12 text-green-500 mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
 					</svg>
 				</div>
 				<div class="mt-3 text-green-600">
-					<a href="{{ route('dashboard.requests.index') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Ver solicitudes</a> | 
-					<a href="{{ route('dashboard.requests.create') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Agregar solicitud</a>
+					<p><a href="{{ route('dashboard.requests.index') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Ver solicitudes</a></p>
+					<p><a href="{{ route('dashboard.requests.create') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Agregar solicitud</a></p>
 				</div>
 			</div>
 
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-orange-500">
 				<div class="flex items-center justify-between">
 					<div>
-						<p class="text-sm text-gray-600 mb-1">Mensajes</p>
+						<p class="text-md text-gray-600 mb-3">Mensajes</p>
 						<p class="text-3xl font-bold text-gray-900">{{ $unreadMessages }}</p>
 					</div>
-					<svg class="w-12 h-12 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="w-12 h-12 text-orange-500 mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
 					</svg>
 				</div>
@@ -92,10 +92,10 @@
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
 				<div class="flex items-center justify-between">
 					<div>
-						<p class="text-sm text-gray-600 mb-1">Matches Encontrados</p>
+						<p class="text-md text-gray-600 mb-3">Matches</p>
 						<p class="text-3xl font-bold text-gray-900">{{ $totalMatches }}</p>
 					</div>
-					<svg class="w-12 h-12 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="w-12 h-12 text-purple-500 mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
 					</svg>
 				</div>
