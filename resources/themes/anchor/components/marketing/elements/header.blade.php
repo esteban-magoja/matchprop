@@ -56,11 +56,6 @@
             <nav :class="{ 'hidden' : !mobileMenuOpen, 'block md:relative absolute top-0 left-0 md:w-auto w-screen md:h-auto h-screen pointer-events-none md:z-10 z-10' : mobileMenuOpen }" class="h-full md:flex">
                 <ul :class="{ 'hidden md:flex' : !mobileMenuOpen, 'flex flex-col absolute md:relative md:w-auto w-screen h-full md:h-full md:overflow-auto overflow-scroll md:pt-0 mt-24 md:pb-0 pb-48 bg-white md:bg-transparent' : mobileMenuOpen }" id="menu" class="flex items-stretch justify-start flex-1 w-full h-full ml-0 border-t border-gray-100 pointer-events-auto md:items-center md:justify-center gap-x-8 md:w-auto md:border-t-0 md:flex-row">
                     <li class="flex-shrink-0 h-16 border-b border-gray-100 md:border-b-0 md:h-full">
-                        <a href="{{ route('pricing') }}" class="flex items-center h-full text-sm font-semibold text-gray-700 transition duration-300 md:px-0 px-7 hover:bg-gray-100 md:hover:bg-transparent hover:text-gray-900">
-                            Precios
-                        </a>
-                    </li>
-                    <li class="flex-shrink-0 h-16 border-b border-gray-100 md:border-b-0 md:h-full">
                         <a href="{{ route('property.search') }}" class="flex items-center h-full text-sm font-semibold text-gray-700 transition duration-300 md:px-0 px-7 hover:bg-gray-100 md:hover:bg-transparent hover:text-gray-900">
                             Buscar Propiedades
                         </a>
@@ -70,6 +65,57 @@
                             Publicar Solicitud
                         </a>
                     </li>
+
+                    <li x-data="{ open: false }" @mouseenter="showOverlay=true" @mouseleave="showOverlay=false" class="z-30 flex flex-col items-start h-auto border-b border-gray-100 md:h-full md:border-b-0 group md:flex-row md:items-center">
+                        <a href="#_" x-on:click="open=!open" class="flex items-center w-full h-16 gap-1 text-sm font-semibold text-gray-700 transition duration-300 hover:bg-gray-100 md:hover:bg-transparent px-7 md:h-full md:px-0 md:w-auto hover:text-gray-900">
+                            <span class="">Como funciona</span>
+                            <svg :class="{ 'group-hover:-rotate-180' : !mobileMenuOpen, '-rotate-180' : mobileMenuOpen && open }" class="w-5 h-5 transition-all duration-300 ease-out" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" class=""></path></svg>
+                        </a>
+                        <div 
+                            :class="{ 'hidden md:block opacity-0 invisible md:absolute' : !open, 'md:invisible md:opacity-0 md:hidden md:absolute' : open }"
+                            class="top-0 left-0 w-screen space-y-3 transition-transform duration-300 ease-out bg-white border-t border-b border-gray-100 md:shadow-md md:-translate-y-2 md:mt-24 md:block md:group-hover:block md:group-hover:visible md:group-hover:opacity-100 md:group-hover:translate-y-0" x-cloak>
+                            <ul class="flex flex-col justify-between mx-auto max-w-7xl md:flex-row md:px-12">
+                                <div class="flex flex-col w-full border-l border-r divide-x md:flex-row divide-zinc-100 border-zinc-100">
+                                    <div class="w-4/12 divide-y divide-zinc-100">
+                                        <a href="/nuestra-mision" class="block text-sm p-7 hover:bg-neutral-100 group">
+                                            <span class="block mb-1 font-medium text-black">Nuestra Misión</span>
+                                            <span class="block font-light leading-5 opacity-50">En Raxta creemos que el futuro del mercado inmobiliario es colaborativo, transparente y global.</span>
+                                        </a>
+                                        <a href="/join_us" class="block text-sm p-7 hover:bg-neutral-100 group">
+                                            <span class="block mb-1 font-medium text-black">Asóciate a nuestra red</span>
+                                            <span class="block leading-5 opacity-50">Ser miembro de Raxta te permite acceder a un ecosistema diseñado para potenciar tu éxito.</span>
+                                        </a>
+                                        <a href="{{ route('pricing') }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">Precios</span>
+                                            <span class="block leading-5 opacity-50">Asóciate para ser parte de nuestro selecto grupo inmobiliario.</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-4/12 divide-y divide-zinc-100">
+                                        <a href="/mediation" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">Mediación entre participantes</span>
+                                            <span class="block leading-5 opacity-50">Transparencia, confianza y diálogo como medios prioritarios para resolver cualquier diferencia o reclamo.</span>
+                                        </a>
+                                        <a href="/contract" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">Términos y Condiciones de Participación</span>
+                                            <span class="block leading-5 opacity-50">Términos que rigen la participación en el programa de ventas colectivas inmobiliarias de la plataforma.</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-4/12 divide-y divide-zinc-100">
+                                        <a href="/buyer_guide" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">Guía del Comprador</span>
+                                            <span class="block font-light leading-5 opacity-50">Easily write blog articles and create pages for your application</span>
+                                        </a>
+                                        <a href="/seller-guide" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">Guía del Vendedor</span>
+                                            <span class="block leading-5 opacity-50">Kick-start your app with a pre-built theme or create your own</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </li>
+
+
 
                     @guest
                         <li class="relative z-30 flex flex-col items-center justify-center flex-shrink-0 w-full h-auto pt-3 space-y-3 text-sm md:hidden px-7">

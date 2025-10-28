@@ -141,25 +141,28 @@
             <ul class="flex flex-wrap space-x-5 text-xs">
                 <li class="mb-6 text-center flex-full lg:flex-none lg:mb-0">&copy; {{ date('Y') }} {{ setting('site.title', 'Laravel Wave') }}, Inc. All rights reserved.</li>
                 <li class="lg:ml-6">
-                    <a href="#_" class="relative inline-block text-black group">
+                    <a href="/politica-de-privacidad" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
-                        <span>Privacy Policy</span>
-                    </a>
-                </li>
-                <li class="ml-auto mr-auto text-center lg:ml-6 lg:mr-0">
-                    <a href="#_" class="relative inline-block text-black group">
-                        <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
-                        <span>Disclaimers</span>
+                        <span>Política de Privacidad</span>
                     </a>
                 </li>
                 <li class="lg:ml-6">
-                    <a href="#_" class="relative inline-block text-black group">
+                    <a href="/terminos-y-condiciones" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
-                        <span>Terms and Conditions</span>
+                        <span>Términos y Condiciones</span>
                     </a>
                 </li>
-            </ul>
+                <li class="lg:ml-6">
+                    <a href="/contact" class="relative inline-block text-black group">
+                        <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
+                        <span>Contacto</span>
+                    </a>
+                </li>
 
+            </ul>
+            <?php
+            // ocultamos redes sociales 
+            /*
             <ul class="flex items-center mt-10 space-x-5 lg:mt-0">
                 <li>
                     <a href="#" class="text-zinc-600 hover:text-zinc-900">
@@ -202,6 +205,8 @@
                     </a>
                 </li>
             </ul>
+            */
+            ?>
         </div>
     </x-container>
 </footer>
