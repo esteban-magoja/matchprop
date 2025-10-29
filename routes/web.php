@@ -17,11 +17,15 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyRequestController;
 use App\Http\Controllers\PropertyMatchController;
 use App\Http\Controllers\PropertyMessageController;
+use App\Http\Controllers\RequestSearchController;
 
 // Property routes
 Route::get('/search-properties', [PropertySearchController::class, 'index'])->name('property.search');
 Route::get('/property/{id}', [PropertyController::class, 'show'])->name('property.show');
 Route::post('/property/{id}/message', [PropertyController::class, 'sendMessage'])->name('property.message')->middleware('auth');
+
+// Request Search routes (Public)
+Route::get('/search-requests', [RequestSearchController::class, 'index'])->name('requests.search');
 
 // Property Request routes (Dashboard)
 Route::middleware('auth')->group(function () {

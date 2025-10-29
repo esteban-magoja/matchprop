@@ -26,6 +26,34 @@
 <x-layouts.app>
 	<x-app.container x-data class="lg:space-y-6" x-cloak>
         
+		<!-- Mensaje de Verificación Exitosa -->
+		@if(request()->query('verified') == '1')
+			<div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6 rounded-md shadow-sm">
+				<div class="flex items-center">
+					<div class="flex-shrink-0">
+						<svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+						</svg>
+					</div>
+					<div class="ml-3">
+						<h3 class="text-sm font-medium text-green-800">
+							¡Email verificado exitosamente!
+						</h3>
+						<p class="mt-1 text-sm text-green-700">
+							Tu dirección de email ha sido verificada correctamente. Ya puedes utilizar todas las funcionalidades de la plataforma.
+						</p>
+					</div>
+					<div class="ml-auto pl-3">
+						<button type="button" onclick="this.parentElement.parentElement.parentElement.remove()" class="inline-flex text-green-500 hover:text-green-700 focus:outline-none">
+							<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+		@endif
+
 		<x-app.alert id="dashboard_alert" class="hidden lg:flex">Panel de control donde puedes gestionar tus anuncios, solicitudes y ver coincidencias.</x-app.alert>
 
         <x-app.heading
