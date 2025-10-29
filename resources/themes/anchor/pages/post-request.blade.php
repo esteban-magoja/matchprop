@@ -165,17 +165,17 @@ new class extends Component {
 <x-layouts.marketing>
     
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-r from-blue-600 to-blue-800 py-20">
-        <div class="absolute inset-0 bg-black/20"></div>
+    <section class="relative bg-gradient-to-r from-gray-100 to-gray-200 py-10">
+        <div class="absolute inset-0 bg-white/10"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                     Publica tu Solicitud de Búsqueda
                 </h1>
-                <p class="text-xl text-white mb-4 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-700 mb-4 max-w-3xl mx-auto">
                     Describe la propiedad que estás buscando y te ayudaremos a encontrarla
                 </p>
-                <p class="text-lg text-white max-w-2xl mx-auto">
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
                     Nuestro sistema con IA te notificará cuando encontremos propiedades que coincidan con tus criterios
                 </p>
             </div>

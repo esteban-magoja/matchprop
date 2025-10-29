@@ -1,36 +1,19 @@
 <x-layouts.marketing>
     
     <!-- Hero Section with Search -->
-    <section class="relative bg-gradient-to-r from-blue-600 to-blue-800 py-20">
-        <div class="absolute inset-0 bg-black/20"></div>
+    <section class="relative bg-gradient-to-r from-gray-100 to-gray-200 py-10">
+        <div class="absolute inset-0 bg-white/10"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                     Encuentra la Propiedad de tus Sueños
                 </h1>
-                <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
                     Búsqueda inteligente impulsada por IA para encontrar exactamente lo que necesitas
                 </p>
                 
                 <!-- Search Form -->
                 <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-6">
-                    <!-- Helper Text -->
-                    <div class="mb-4 p-3 bg-blue-50 border-l-4 border-blue-400 rounded-r-md">
-                        <div class="flex">
-                            <div class="flex-shrink-0">
-                                <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm text-blue-700">
-                                    <strong>Cómo buscar:</strong> Selecciona un país <strong>Y</strong> escribe al menos 5 caracteres describiendo la propiedad que buscas. 
-                                    La búsqueda usa IA para encontrar propiedades similares en el país seleccionado.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <form method="GET" action="{{ route('property.search') }}" class="space-y-4" id="propertySearchForm">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <!-- Country Selection -->
@@ -349,7 +332,7 @@
 
     <!-- CTA Section -->
     @if($properties->isEmpty() && !$searchTerm && !$selectedCountry)
-        <section class="py-16 bg-white">
+        <section class="py-8 bg-white">
             <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">
                     ¿Listo para encontrar tu próximo hogar?
