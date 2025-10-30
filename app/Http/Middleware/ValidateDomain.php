@@ -10,7 +10,7 @@ class ValidateDomain
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $allowedDomainsStr = env('ALLOWED_DOMAINS', '');
+        $allowedDomainsStr = config('app.allowed_domains', '');
         
         // Si no hay dominios configurados, permitir todos
         if (empty($allowedDomainsStr)) {
