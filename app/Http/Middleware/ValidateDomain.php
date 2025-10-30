@@ -10,17 +10,26 @@ class ValidateDomain
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $allowedDomains = explode(',', env('ALLOWED_DOMAINS', ''));
+        $allowedDomainsStr = env('ALLOWED_DOMAINS', '');
+        
+        // Si no hay dominios configurados, permitir todos
+        if (empty($allowedDomainsStr)) {
+            return $next($request);
+        }
+        
+        $allowedDomains = array_map('trim', explode(',', $allowedDomainsStr));
         $currentDomain = $request->getHost();
 
-        if (!empty($allowedDomains) && !in_array($currentDomain, $allowedDomains)) {
-            // Redirigir al dominio principal
-            $primaryDomain = $allowedDomains[0] ?? env('APP_URL');
-            $url = ($request->secure() ? 'https://' : 'http://') . $primaryDomain . $request->getRequestUri();
-            
-            return redirect($url, 301);
+        // Si el dominio actual está en la lista, permitir
+        if (in_array($currentDomain, $allowedDomains)) {
+            return $next($request);
         }
 
-        return $next($request);
+        // Redirigir al dominio principal
+        $primaryDomain = trim($allowedDomains[0]);
+        $scheme = $request->secure() ? 'https' : 'http';
+        $url = $scheme . '://' . $primaryDomain . $request->getRequestUri();
+        
+        return redirect()->away($url, 301);
     }
 }
