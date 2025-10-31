@@ -88,6 +88,12 @@ new class extends Component {
     {
         if (auth()->check()) {
             $this->countries = Country::all();
+            
+            // Precargar datos del usuario logueado
+            $user = auth()->user();
+            $this->client_name = $user->name ?? '';
+            $this->client_email = $user->email ?? '';
+            $this->client_phone = $user->movil ?? '';
         }
     }
 

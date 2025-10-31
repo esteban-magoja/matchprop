@@ -11,6 +11,11 @@ class RequestSearchController extends Controller
 {
     public function index(Request $request)
     {
+        $user = auth()->user();
+        
+        // Verificar membresía premium
+        $canSearch = $user && ($user->hasRole('admin') || $user->hasRole('premium'));
+        
         $startTime = microtime(true);
         
         $searchTerm = trim($request->get('search', ''));
@@ -30,8 +35,13 @@ class RequestSearchController extends Controller
             ->sort()
             ->values();
         
+        // Solo procesar búsqueda si tiene membresía premium
+        if (!$canSearch && $isSearchRequest) {
+            $validationErrors[] = 'Necesitas una membresía premium para buscar solicitudes de clientes.';
+        }
+        
         // Validation
-        if ($isSearchRequest) {
+        if ($isSearchRequest && $canSearch) {
             if (empty($selectedCountry)) {
                 $validationErrors[] = 'Debes seleccionar un país.';
             }
@@ -112,6 +122,7 @@ class RequestSearchController extends Controller
             'searchTime' => $searchTime,
             'validationErrors' => $validationErrors,
             'isSearchRequest' => $isSearchRequest,
+            'canSearch' => $canSearch,
         ]);
     }
     

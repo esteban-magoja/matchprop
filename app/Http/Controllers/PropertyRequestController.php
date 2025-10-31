@@ -106,7 +106,10 @@ class PropertyRequestController extends Controller
             abort(403);
         }
 
-        return view('theme::pages.dashboard.requests.edit', compact('propertyRequest'));
+        $countries = \Nnjeim\World\Models\Country::all();
+        $currencies = ['USD', 'ARS', 'EUR', 'BRL', 'MXN', 'CLP'];
+
+        return view('theme::pages.dashboard.requests.edit', compact('propertyRequest', 'countries', 'currencies'));
     }
 
     /**

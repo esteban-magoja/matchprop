@@ -12,6 +12,47 @@
                     Encuentra clientes potenciales que buscan propiedades que puedas ofrecer
                 </p>
                 
+                @if (!$canSearch)
+                    <!-- Mensaje de Membresía Requerida -->
+                    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-8">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4 text-left">
+                                <h3 class="text-xl font-medium text-yellow-800">
+                                    Membresía Premium Requerida
+                                </h3>
+                                <div class="mt-3 text-sm text-yellow-700">
+                                    <p class="mb-3">Para buscar solicitudes de clientes necesitas una membresía premium. Las membresías te permiten:</p>
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>Buscar clientes potenciales ilimitados</li>
+                                        <li>Contactar directamente a clientes interesados</li>
+                                        <li>Recibir notificaciones de nuevas solicitudes</li>
+                                        <li>Acceso a búsqueda inteligente con IA</li>
+                                        <li>Ver información completa de contacto</li>
+                                    </ul>
+                                </div>
+                                <div class="mt-6">
+                                    @auth
+                                        <a href="{{ route('settings.subscription') }}" class="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                            </svg>
+                                            Obtener Membresía Premium
+                                        </a>
+                                    @else
+                                        <a href="{{ route('login') }}" class="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            Iniciar Sesión
+                                        </a>
+                                    @endauth
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
                 <!-- Search Form -->
                 <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-6">
                     <form method="GET" action="{{ route('requests.search') }}" class="space-y-4" id="requestSearchForm">
@@ -113,6 +154,7 @@
                         </div>
                     @endif
                 </div>
+                @endif
             </div>
         </div>
     </section>

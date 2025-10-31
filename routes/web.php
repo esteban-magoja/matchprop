@@ -18,6 +18,10 @@ use App\Http\Controllers\PropertyRequestController;
 use App\Http\Controllers\PropertyMatchController;
 use App\Http\Controllers\PropertyMessageController;
 use App\Http\Controllers\RequestSearchController;
+use App\Http\Controllers\TermsController;
+
+// Terms acceptance route (only POST, GET is handled by Folio)
+Route::post('/dashboard/terms/accept', [TermsController::class, 'accept'])->name('terms.accept')->middleware('auth');
 
 // Property routes
 Route::get('/search-properties', [PropertySearchController::class, 'index'])->name('property.search');

@@ -34,6 +34,8 @@ class User extends WaveUser
         'city',
         'state',
         'country',
+        'terms_accepted',
+        'terms_accepted_at',
     ];
 
     /**
@@ -44,6 +46,16 @@ class User extends WaveUser
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'terms_accepted' => 'boolean',
+        'terms_accepted_at' => 'datetime',
     ];
 
     protected static function boot()
@@ -90,5 +102,22 @@ class User extends WaveUser
         return $this->hasMany(\App\Models\PropertyRequest::class);
     }
 
-    
+    /**
+     * Check if user has accepted terms and conditions.
+     */
+    public function hasAcceptedTerms(): bool
+    {
+        return $this->terms_accepted;
+    }
+
+    /**
+     * Accept terms and conditions.
+     */
+    public function acceptTerms(): void
+    {
+        $this->update([
+            'terms_accepted' => true,
+            'terms_accepted_at' => now(),
+        ]);
+    }
 }

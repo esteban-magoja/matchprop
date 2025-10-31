@@ -102,6 +102,14 @@ new class extends Component {
     public function mount()
     {
         $user = auth()->user();
+        
+        // Verificar que el usuario haya aceptado los términos
+        if (!$user->hasAcceptedTerms()) {
+            session()->flash('error', 'Debes aceptar los términos y condiciones antes de publicar anuncios.');
+            $this->redirect(route('dashboard.terms'));
+            return;
+        }
+        
         $this->canPublish = $user->hasRole('admin') || $user->hasRole('premium');
         
         $this->countries = Country::all();
@@ -139,6 +147,13 @@ new class extends Component {
 
     public function save(): void
     {
+        // Verificar que el usuario haya aceptado los términos
+        if (!auth()->user()->hasAcceptedTerms()) {
+            session()->flash('error', 'Debes aceptar los términos y condiciones antes de publicar anuncios.');
+            $this->redirect(route('dashboard.terms'));
+            return;
+        }
+        
         if (!$this->canPublish) {
             $this->redirect(route('settings.subscription'));
             return;

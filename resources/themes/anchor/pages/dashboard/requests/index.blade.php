@@ -1,6 +1,24 @@
 <x-layouts.app>
     <x-app.container class="lg:space-y-6">
         
+        <!-- Mensaje de error de sesión -->
+        @if(session('error'))
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-md shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-red-800">
+                            {{ session('error') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @endif
+        
         <x-app.heading
             title="Mis Clientes"
             description="Gestiona tus clientes y solicitudes de búsqueda de propiedades"
