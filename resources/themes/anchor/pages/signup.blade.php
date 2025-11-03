@@ -24,9 +24,20 @@ new class extends Component
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'movil' => 'nullable|string|max:20',
+            'movil' => 'required|string|max:20',
         ];
     }
+
+
+    public function messages()
+    {
+        return [
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+        ];
+    }
+
+
 
     public function register()
     {
@@ -108,18 +119,19 @@ new class extends Component
             <!-- Teléfono Móvil -->
             <div>
                 <x-auth::elements.input 
-                    label="Teléfono Móvil (WhatsApp) - Opcional" 
+                    label="Teléfono Móvil (WhatsApp)" 
                     id="movil" 
                     name="movil" 
                     type="tel" 
                     wire:model="movil" 
                     placeholder="+34600123456" 
-                    autocomplete="tel" 
+                    autocomplete="tel"
+                    required
                 />
                 @error('movil') 
                     <span class="text-red-500 text-sm">{{ $message }}</span> 
                 @enderror
-                <p class="text-sm text-gray-500 mt-1">Formato internacional recomendado para WhatsApp</p>
+                <p class="text-sm text-gray-500 mt-1">Formato internacional para WhatsApp Ej: +1600123456</p>
             </div>
 
             <!-- Contraseña -->
