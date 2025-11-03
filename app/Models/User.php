@@ -120,4 +120,14 @@ class User extends WaveUser
             'terms_accepted_at' => now(),
         ]);
     }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new \App\Notifications\VerifyEmail);
+    }
 }
