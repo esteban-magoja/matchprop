@@ -146,6 +146,20 @@ new class extends Component {
             return null;
         }
     }
+
+    public function grantPremiumRole(): void
+    {
+        $user = auth()->user();
+        
+        // Buscar el rol premium
+        $premiumRole = \Spatie\Permission\Models\Role::where('name', 'premium')->first();
+        
+        if ($premiumRole && !$user->hasRole('premium')) {
+            $user->assignRole('premium');
+            $this->canSearch = true;
+            session()->flash('success', '¡Rol premium otorgado exitosamente! Ahora puedes buscar solicitudes de clientes.');
+        }
+    }
 };
 ?>
 
@@ -158,6 +172,41 @@ new class extends Component {
             description="Encuentra clientes potenciales que buscan propiedades que puedas ofrecer."
             :border="false"
         />
+
+        {{-- Mensajes flash --}}
+        @if (session()->has('success'))
+            <div class="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-green-800">
+                            {{ session('success') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        @if (session()->has('error'))
+            <div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-red-800">
+                            {{ session('error') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         @if (!$canSearch)
             <div class="mt-6 p-8 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -181,13 +230,19 @@ new class extends Component {
                                 <li>Ver información completa de contacto</li>
                             </ul>
                         </div>
-                        <div class="mt-4">
+                        <div class="mt-4 flex gap-3">
                             <a href="{{ route('settings.subscription') }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                                 </svg>
                                 Obtener Membresía Premium
                             </a>
+                            <button wire:click="grantPremiumRole" type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Ya soy socio premium en BienesOnline
+                            </button>
                         </div>
                     </div>
                 </div>
