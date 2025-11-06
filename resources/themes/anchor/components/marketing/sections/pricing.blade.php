@@ -1,8 +1,8 @@
 <section>
     <x-marketing.elements.heading
         level="h2"
-        title="Planes para Cada Necesidad"
-        description="Tanto si eres un particular buscando tu próximo hogar, como si eres un agente inmobiliario gestionando múltiples propiedades, tenemos un plan para ti." 
+        title="Plan Premium"
+        description="Asóciate a la red inmobiliaria más confiable y profesional." 
     />
 
     <div x-data="{ on: false, billing: '{{ get_default_billing_cycle() }}',

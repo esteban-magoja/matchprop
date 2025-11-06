@@ -1,20 +1,30 @@
 <section>
     <x-marketing.elements.heading
         level="h2"
-        title="Qué es Raxta"
-        description="Raxta no es solo un portal.
-Es una red privada de agentes y particulares verificados que colaboran en la venta, compra o alquiler de propiedades mediante un sistema de match inteligente y comisiones compartidas." 
+        title="Herramientas Inteligentes"
+        description="Una plataforma diseñada para cerrar más operaciones con menos esfuerzo." 
     />
     <div class="text-center">
         <div class="grid grid-cols-1 gap-x-6 gap-y-12 mt-12 text-center sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
             <div>
                 <div class="flex justify-center items-center mx-auto bg-zinc-100 rounded-full size-12">
-                    <x-phosphor-brain class="w-6 h-6" />
+                    <x-phosphor-magnifying-glass class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Control y Monitoreo</h3>
+                    <h3 class="font-medium text-zinc-900">Búsqueda Inteligente y Matchs</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        Todo lo publicado es revisado para garantizar calidad y exclusividad.
+                        Conecta tus anuncios con la demanda ideal.
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-center items-center mx-auto bg-zinc-100 rounded-full size-12">
+                    <x-phosphor-users-three class="w-6 h-6" />
+                </div>
+                <div class="mt-6">
+                    <h3 class="font-medium text-zinc-900">Perfiles Profesionales Verificados</h3>
+                    <p class="mt-2 text-sm text-zinc-500">
+                        Resalta tus propiedades o definí tus criterios de búsqueda.
                     </p>
                 </div>
             </div>
@@ -23,31 +33,20 @@ Es una red privada de agentes y particulares verificados que colaboran en la ven
                     <x-phosphor-handshake class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Colaboración Real</h3>
+                    <h3 class="font-medium text-zinc-900">Colaboración entre Agentes</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        Los agentes comparten clientes y oportunidades para cerrar operaciones conjuntas.
+                        Compartí clientes, anuncios y cerrá ventas conjuntas.
                     </p>
                 </div>
             </div>
             <div>
                 <div class="flex justify-center items-center mx-auto bg-zinc-100 rounded-full size-12">
-                    <x-phosphor-lock-key class="w-6 h-6" />
+                    <x-phosphor-bell-ringing class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Transparencia</h3>
+                    <h3 class="font-medium text-zinc-900">Alertas en Tiempo Real</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        Cada transacción es trazable y sin conflictos de comisión.
-                    </p>
-                </div>
-            </div>
-            <div>
-                <div class="flex justify-center items-center mx-auto bg-zinc-100 rounded-full size-12">
-                    <x-phosphor-globe-hemisphere-west class="w-6 h-6" />
-                </div>
-                <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Alcance Global</h3>
-                    <p class="mt-2 text-sm text-zinc-500">
-                        Red de profesionales e inversores en constante expansión.
+                        Nunca te pierdas una oportunidad.
                     </p>
                 </div>
             </div>

@@ -1,11 +1,11 @@
 <section class="w-full">
-    <x-marketing.elements.heading level="h2" title="Historias de Éxito en MatchProp" description="Descubre cómo nuestra plataforma ha ayudado a agentes y particulares a encontrar su oportunidad inmobiliaria ideal." />
+    <x-marketing.elements.heading level="h2" title="Historias de Éxito en Raxta" description="Donde la colaboración genera <strong><u>resultados reales.</u></strong>" />
     <ul role="list" class="grid grid-cols-1 gap-12 py-12 mx-auto max-w-2xl lg:max-w-none lg:grid-cols-3">
         <li>
             <figure class="flex flex-col justify-between h-full">
                 <blockquote class="">
                     <p class="text-sm sm:text-base font-medium text-zinc-500">
-                        "Gracias a MatchProp, he duplicado mi cartera de clientes en tres meses. La capacidad de encontrar 'matchs' precisos entre mis propiedades y la demanda del mercado es simplemente revolucionaria."
+                        "Gracias a Raxta, he duplicado mi cartera de clientes en tres meses. La capacidad de encontrar 'matchs' precisos entre mis propiedades y la demanda del mercado es simplemente revolucionaria."
                     </p>
                 </blockquote>
                 <figcaption class="flex flex-col justify-between mt-6">
@@ -23,7 +23,7 @@
             <figure class="flex flex-col justify-between h-full">
                 <blockquote class="">
                     <p class="text-sm sm:text-base font-medium text-zinc-500">
-                        "Estuve buscando casa por meses sin éxito. Con las alertas de MatchProp, encontré la casa de mis sueños en menos de una semana. ¡El proceso fue increíblemente rápido y eficiente!"
+                        "Estuve buscando casa por meses sin éxito. Con las alertas de Raxta, encontré la casa de mis sueños en menos de una semana. ¡El proceso fue increíblemente rápido y eficiente!"
                     </p>
                 </blockquote>
                 <figcaption class="flex flex-col justify-between mt-6">
