@@ -32,7 +32,7 @@ Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () {
     
     // Home route (temporal, hasta que Wave/Folio se actualice)
     Route::get('/', function () {
-        return view('theme::home');
+        return view('theme::index');
     })->name('home');
     
     // Terms acceptance route (only POST, GET is handled by Folio)
