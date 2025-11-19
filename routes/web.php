@@ -30,6 +30,11 @@ Route::get('/', function () {
 // Rutas con prefijo de locale
 Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () {
     
+    // Home route (temporal, hasta que Wave/Folio se actualice)
+    Route::get('/', function () {
+        return view('theme::home');
+    })->name('home');
+    
     // Terms acceptance route (only POST, GET is handled by Folio)
     Route::post('/dashboard/terms/accept', [TermsController::class, 'accept'])->name('terms.accept')->middleware('auth');
 
