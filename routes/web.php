@@ -32,7 +32,13 @@ Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () {
     
     // Home route (temporal, hasta que Wave/Folio se actualice)
     Route::get('/', function () {
-        return view('theme::index');
+        $seo = [
+            'title' => setting('site.title', 'Raxta - Plataforma Inmobiliaria Inteligente'),
+            'description' => setting('site.description', 'Conectamos propiedades con compradores y agentes de forma inteligente.'),
+            'image' => url('/og_image.png'),
+            'type' => 'website'
+        ];
+        return view('theme::pages.index', compact('seo'));
     })->name('home');
     
     // Terms acceptance route (only POST, GET is handled by Folio)
