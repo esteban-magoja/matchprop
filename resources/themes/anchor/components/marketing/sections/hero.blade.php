@@ -8,13 +8,13 @@
                 Conectamos con IA, propiedades con compradores y agentes. En Raxta, solo se publican propiedades monitoreadas y auténticas.
             </p>
             <div class="flex flex-col gap-3 justify-center items-center mx-auto mt-8 md:gap-2 md:flex-row">
-                <x-button size="lg" class="w-full md:w-auto" href="{{ route('property.search') }}" tag="a">Buscar Propiedades</x-button>
+                <x-button size="lg" class="w-full md:w-auto" href="{{ route_localized('property.search') }}" tag="a">Buscar Propiedades</x-button>
                 @guest
                 <x-button size="lg" color="secondary" class="w-full md:w-auto" href="/join_us" tag="a">Agregar Inmueble</x-button>
-                <x-button size="lg" color="secondary" class="w-full md:w-auto" href="{{ route('requests.create') }}" tag="a">Publicar Solicitud</x-button>
+                <x-button size="lg" color="secondary" class="w-full md:w-auto" href="{{ route_localized('requests.create') }}" tag="a">Publicar Solicitud</x-button>
                 @else
                 <x-button size="lg" color="secondary" class="w-full md:w-auto" href="/property-listings/create" tag="a">Agregar Inmueble</x-button>
-                <x-button size="lg" color="secondary" class="w-full md:w-auto" href="/dashboard/requests/create" tag="a">Publicar Solicitud</x-button>
+                <x-button size="lg" color="secondary" class="w-full md:w-auto" href="{{ route_localized('dashboard.requests.create') }}" tag="a">Publicar Solicitud</x-button>
                 @endguest
             </div>
         </div>

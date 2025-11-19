@@ -19,6 +19,13 @@ use App\Http\Controllers\PropertyMatchController;
 use App\Http\Controllers\PropertyMessageController;
 use App\Http\Controllers\RequestSearchController;
 use App\Http\Controllers\TermsController;
+use Illuminate\Support\Facades\Route;
+
+// Redirect de raíz al locale por defecto
+Route::get('/', function () {
+    $locale = session('locale', config('locales.default', 'es'));
+    return redirect("/{$locale}");
+});
 
 // Rutas con prefijo de locale
 Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () {
