@@ -131,6 +131,11 @@
                 </ul>
             </nav>
             
+            {{-- Language Switcher --}}
+            <div class="relative z-30 items-center justify-center flex-shrink-0 hidden h-full mr-3 md:flex">
+                <x-language-switcher />
+            </div>
+
             @guest
                 <div class="relative z-30 items-center justify-center flex-shrink-0 hidden h-full space-x-3 text-sm md:flex">
                     <x-button href="{{ route('login') }}" tag="a" class="text-sm" color="secondary">Ingresar</x-button>

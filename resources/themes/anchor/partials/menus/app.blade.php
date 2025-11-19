@@ -57,6 +57,11 @@
             </div>
         @endif
 
+        {{-- Language Switcher --}}
+        <div class="hidden relative justify-center items-center h-full mr-3 md:flex">
+            <x-language-switcher />
+        </div>
+
         @include('theme::partials.notifications')
 
         <!-- Profile dropdown -->
