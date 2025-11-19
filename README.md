@@ -31,6 +31,7 @@ Hemos creado un plan estructurado de 12 días para implementar i18n completo:
 Ejecuta `./VIEW_I18N_STATUS.sh` para ver el progreso detallado.
 
 Estado: 🔴 No iniciado (0/12 días completados)
+Tiempo estimado: 53-69 horas (optimizado)
 
 ### 🎯 Características i18n Planificadas
 

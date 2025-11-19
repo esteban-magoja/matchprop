@@ -158,18 +158,19 @@ php artisan serve
 
 ---
 
-## 📅 DÍA 6: Vistas Públicas
+## 📅 DÍA 6: Vistas Públicas Esenciales
 **Estado:** ⏸️ Pendiente | **Fecha:** _____
 
 ### Morning Setup
 - [ ] Branch: `git checkout -b i18n/day-06-views-public`
 - [ ] Identificar strings hardcodeados: `grep -r "Casa\|Buscar" resources/themes/`
 
-### Tareas Core (6-8 horas)
+### Tareas Core (5-6 horas)
 - [ ] Actualizar `search-property-listings/index.blade.php`
 - [ ] Actualizar `property-listings/show.blade.php`
 - [ ] Actualizar `layouts/marketing.blade.php`
 - [ ] Actualizar `components/property-card.blade.php`
+- [ ] Actualizar `components/breadcrumb.blade.php` (si existe)
 - [ ] Reemplazar TODOS los strings hardcodeados con `__()`
 
 ### Testing
@@ -185,13 +186,41 @@ php artisan serve
 
 ---
 
-## 📅 DÍA 7: Vistas Dashboard
+## 📅 DÍA 7: Dashboard - Anuncios
 **Estado:** ⏸️ Pendiente | **Fecha:** _____
 
 ### Morning Setup
-- [ ] Branch: `git checkout -b i18n/day-07-views-dashboard`
+- [ ] Branch: `git checkout -b i18n/day-07-dashboard-listings`
 
-### Tareas Core (7-9 horas) - DÍA MÁS LARGO
+### Tareas Core (5-6 horas)
+- [ ] Actualizar `dashboard/index.blade.php`
+- [ ] Actualizar `dashboard/property-listings/index.blade.php` (si existe)
+- [ ] Actualizar `dashboard/property-listings/create.blade.php` (agregar tabs Alpine.js)
+- [ ] Actualizar `dashboard/property-listings/edit.blade.php` (agregar tabs)
+- [ ] Actualizar `dashboard/property-listings/show.blade.php`
+- [ ] Implementar tabs ES/EN con Alpine.js en formularios
+
+### Testing
+```bash
+# Testing del dashboard de anuncios
+# 1. Crear anuncio en ES y EN
+# 2. Editar anuncio
+# 3. Verificar que tabs funcionen correctamente
+```
+
+### End of Day
+- [ ] Commit y push
+- [ ] Actualizar checklist
+
+---
+
+## 📅 DÍA 8: Dashboard - Solicitudes y Matches
+**Estado:** ⏸️ Pendiente | **Fecha:** _____
+
+### Morning Setup
+- [ ] Branch: `git checkout -b i18n/day-08-dashboard-requests`
+
+### Tareas Core (4-5 horas)
 - [ ] Actualizar `dashboard/requests/index.blade.php`
 - [ ] Actualizar `dashboard/requests/create.blade.php` (agregar tabs Alpine.js)
 - [ ] Actualizar `dashboard/requests/edit.blade.php` (agregar tabs)
@@ -200,25 +229,22 @@ php artisan serve
 - [ ] Actualizar `dashboard/matches/show.blade.php`
 - [ ] Actualizar `dashboard/messages/index.blade.php`
 - [ ] Actualizar `dashboard/messages/show.blade.php`
-- [ ] Actualizar `dashboard/index.blade.php`
 
 ### Testing
 ```bash
-# Testing completo del dashboard
-# 1. Crear anuncio en ES y EN
-# 2. Editar anuncio
-# 3. Ver matches
-# 4. Enviar mensaje
+# Testing completo
+# 1. Crear solicitud en ES y EN
+# 2. Ver matches
+# 3. Enviar mensaje
 ```
 
 ### End of Day
 - [ ] Commit y push
 - [ ] Actualizar checklist
-- [ ] ¡Felicitarse! Día más difícil completado 🎉
 
 ---
 
-## 📅 DÍA 8: Embeddings Multiidioma
+## 📅 DÍA 9: Embeddings IA Multiidioma
 **Estado:** ⏸️ Pendiente | **Fecha:** _____
 
 ### Morning Setup
@@ -248,34 +274,30 @@ php artisan tinker
 
 ---
 
-## 📅 DÍA 9: SEO y Sitemap
+## 📅 DÍA 10: SEO Esencial
 **Estado:** ⏸️ Pendiente | **Fecha:** _____
 
 ### Morning Setup
-- [ ] Branch: `git checkout -b i18n/day-09-seo`
+- [ ] Branch: `git checkout -b i18n/day-10-seo`
 
-### Tareas Core (4-5 horas)
+### Tareas Core (3 horas)
+- [ ] Verificar tags hreflang en todas las páginas (ya implementado en Día 4)
+- [ ] Verificar canonical URLs
+- [ ] Crear sitemap básico multiidioma
 - [ ] Crear `app/Http/Controllers/SitemapController.php`
-- [ ] Crear `app/Services/SchemaService.php`
-- [ ] Crear `app/Console/Commands/GenerateSitemaps.php`
 - [ ] Crear vistas: `resources/views/sitemap/index.blade.php`
 - [ ] Crear vistas: `resources/views/sitemap/properties.blade.php`
 - [ ] Agregar rutas de sitemap en `routes/web.php`
 - [ ] Actualizar `public/robots.txt`
-- [ ] Mejorar `SeoService.php` con Schema.org
 
 ### Testing
 ```bash
-php artisan sitemaps:generate
 curl http://localhost/sitemap.xml
 curl http://localhost/sitemap-es.xml
 curl http://localhost/sitemap-en.xml
+# Verificar hreflang en páginas
+curl -s http://localhost/es/propiedad/1 | grep 'hreflang'
 ```
-
-### Validación Externa
-- [ ] Google Rich Results Test
-- [ ] Schema.org Validator
-- [ ] hreflang Testing Tool
 
 ### End of Day
 - [ ] Commit y push
@@ -283,13 +305,13 @@ curl http://localhost/sitemap-en.xml
 
 ---
 
-## 📅 DÍA 10: Emails y Notificaciones
+## 📅 DÍA 11: Emails Críticos
 **Estado:** ⏸️ Pendiente | **Fecha:** _____
 
 ### Morning Setup
-- [ ] Branch: `git checkout -b i18n/day-10-emails`
+- [ ] Branch: `git checkout -b i18n/day-11-emails`
 
-### Tareas Core (4-5 horas)
+### Tareas Core (3-4 horas)
 - [ ] Crear migración: `add_locale_to_users`
 - [ ] Ejecutar: `php artisan migrate`
 - [ ] Actualizar `app/Models/User.php`
@@ -298,6 +320,8 @@ curl http://localhost/sitemap-en.xml
 - [ ] Crear `resources/views/emails/en/property-match-found.blade.php`
 - [ ] Crear `resources/views/emails/es/message-received.blade.php`
 - [ ] Crear `resources/views/emails/en/message-received.blade.php`
+- [ ] Crear `resources/views/emails/es/request-created.blade.php`
+- [ ] Crear `resources/views/emails/en/request-created.blade.php`
 - [ ] Actualizar `app/Notifications/PropertyMatchFoundNotification.php`
 
 ### Testing
@@ -315,36 +339,9 @@ php artisan tinker
 
 ---
 
-## 📅 DÍA 11: Filament Admin
-**Estado:** ⏸️ Pendiente | **Fecha:** _____
-
-### Morning Setup
-- [ ] Branch: `git checkout -b i18n/day-11-filament`
-
-### Tareas Core (5-6 horas)
-- [ ] Crear `lang/es/filament.php`
-- [ ] Crear `lang/en/filament.php`
-- [ ] Actualizar `app/Filament/Resources/PropertyListingResource.php` (tabs)
-- [ ] Actualizar tabla de PropertyListingResource (mostrar ambos idiomas)
-- [ ] Actualizar filtros y acciones
-- [ ] Actualizar widgets si existen
-
-### Testing
-```bash
-# Acceder a /admin
-# Crear/editar property listing
-# Verificar que tabs funcionen
-# Verificar que se guarden ambas traducciones
-```
-
-### End of Day
-- [ ] Commit y push
-- [ ] Actualizar checklist
-
----
-
 ## 📅 DÍA 12: Testing y Optimización
 **Estado:** ⏸️ Pendiente | **Fecha:** _____
+
 
 ### Morning Setup
 - [ ] Branch: `git checkout -b i18n/day-12-testing`

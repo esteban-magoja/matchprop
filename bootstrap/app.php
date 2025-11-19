@@ -35,6 +35,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->web(\RalphJSmit\Livewire\Urls\Middleware\LivewireUrlsMiddleware::class);
         $middleware->web(\App\Http\Middleware\ValidateDomain::class);
+        $middleware->web(\App\Http\Middleware\SetLocale::class);
 
         $middleware->throttleApi();
     })
