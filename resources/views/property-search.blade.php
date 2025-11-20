@@ -294,8 +294,12 @@
                             @endif
                             
                             <!-- Action Button -->
+                            @php
+                                $seoService = app(\App\Services\SeoService::class);
+                                $slug = $seoService->generatePropertySlug($listing);
+                            @endphp
                             <a 
-                                href="{{ route('property.show', $listing->id) }}"
+                                href="{{ route_localized('property.show', ['id' => $listing->id, 'slug' => $slug]) }}"
                                 class="block w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200 font-medium text-center"
                             >
                                 Ver Detalles
