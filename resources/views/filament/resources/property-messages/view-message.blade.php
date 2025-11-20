@@ -6,7 +6,11 @@
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
             {{ $record->propertyListing->city }}, {{ $record->propertyListing->state }}
         </p>
-        <a href="{{ route('property.show', $record->propertyListing->id) }}" 
+        @php
+            $seoService = app(\App\Services\SeoService::class);
+            $propertySlug = $seoService->generatePropertySlug($record->propertyListing);
+        @endphp
+        <a href="{{ route_localized('property.show', ['id' => $record->propertyListing->id, 'slug' => $propertySlug]) }}" 
            target="_blank"
            class="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mt-2 inline-block">
             Ver anuncio →

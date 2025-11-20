@@ -58,7 +58,11 @@
                                 <p class="text-sm font-semibold text-green-600 mt-1">
                                     {{ $message->propertyListing->currency }} {{ number_format($message->propertyListing->price) }}
                                 </p>
-                                <a href="{{ route('property.show', $message->propertyListing->id) }}" 
+                                @php
+                                    $seoService = app(\App\Services\SeoService::class);
+                                    $propertySlug = $seoService->generatePropertySlug($message->propertyListing);
+                                @endphp
+                                <a href="{{ route_localized('property.show', ['id' => $message->propertyListing->id, 'slug' => $propertySlug]) }}" 
                                    target="_blank"
                                    class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 mt-2">
                                     Ver anuncio completo

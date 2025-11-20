@@ -634,7 +634,7 @@ new class extends Component {
                                 Guardando...
                             </span>
                         </button>
-                        <a href="{{ route('home') }}" 
+                        <a href="{{ route_localized('home') }}" 
                            class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-200">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>

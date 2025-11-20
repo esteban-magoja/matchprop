@@ -3,7 +3,7 @@
     <x-elements.back-button
         class="max-w-3xl mx-auto mt-4 md:mt-8"
         text="Return Back Home"
-        :href="route('home')"
+        :href="route_localized('home')"
     />
     
     <article id="post-{{ $page['id'] }}" class="max-w-3xl px-5 mx-auto mb-32 prose prose-lg lg:prose-xl lg:px-0">

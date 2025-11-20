@@ -128,7 +128,11 @@
                             </div>
 
                             <div class="flex gap-2">
-                                <a href="{{ route('property.show', $message->propertyListing->id) }}" 
+                                @php
+                                    $seoService = app(\App\Services\SeoService::class);
+                                    $propertySlug = $seoService->generatePropertySlug($message->propertyListing);
+                                @endphp
+                                <a href="{{ route_localized('property.show', ['id' => $message->propertyListing->id, 'slug' => $propertySlug]) }}" 
                                    target="_blank"
                                    class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
                                    onclick="event.stopPropagation();">
