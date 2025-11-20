@@ -10,6 +10,6 @@ class Reset
     {
         File::delete(database_path('database.sqlite'));
 
-        return redirect()->route('home');
+        return redirect(route_localized('home'));
     }
 }

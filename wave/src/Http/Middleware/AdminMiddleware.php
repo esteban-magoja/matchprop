@@ -19,7 +19,7 @@ class AdminMiddleware
         
         // Use cached admin check from User model
         if (! $user->isAdmin()) {
-            return redirect()->route('home');
+            return redirect(route_localized('home'));
         }
 
         return $next($request);
