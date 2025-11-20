@@ -76,6 +76,12 @@ I18N_INDEX.md (este archivo)
 │       ├── Arquitectura
 │       └── Troubleshooting
 │
+├── 🏗️ Arquitectura Clave
+│   ├── I18N_HYBRID_STRATEGY.md ⭐ NUEVO
+│   │   └── Estrategia híbrida: URLs públicas vs. Dashboard
+│   └── FOLIO_I18N_NOTES.md
+│       └── Soluciones para Laravel Folio
+│
 ├── ✅ Checklist Diario
 │   └── I18N_DAILY_CHECKLIST.md
 │       ├── Checklist Día 1
@@ -97,6 +103,9 @@ I18N_INDEX.md (este archivo)
 
 ### "¿Qué tengo que hacer hoy?"
 → Consulta **I18N_DAILY_CHECKLIST.md** (tu día actual)
+
+### "¿Por qué el dashboard no usa /es/ en las URLs?"
+→ Lee **I18N_HYBRID_STRATEGY.md** ⭐ IMPORTANTE
 
 ### "¿Por qué se decidió usar JSON en BD?"
 → Lee **I18N_IMPLEMENTATION_PLAN.md** → Sección "Arquitectura de Decisiones"

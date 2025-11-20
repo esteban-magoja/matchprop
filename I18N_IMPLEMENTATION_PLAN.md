@@ -21,7 +21,7 @@
 | Día | Fase | Estado | Fecha | Notas |
 |-----|------|--------|-------|-------|
 | 1 | Fundamentos y Configuración | ✅ Completado | 2025-11-19 | Middleware, rutas, helpers, migraciones |
-| 2 | Base de Datos y Modelos | ✅ Completado | 2025-11-20 | Trait Translatable, modelos, factory, seeders |
+| 2 | Base de Datos y Modelos | ✅ Completado | 2025-11-20 | Trait Translatable, modelos, factory, seeders. **HÍBRIDO**: Dashboard usa sesión |
 | 3 | Archivos de Traducción | ⏸️ Pendiente | - | - |
 | 4 | Controladores - Search & Detail | ⏸️ Pendiente | - | - |
 | 5 | Controladores - Dashboard CRUD | ⏸️ Pendiente | - | - |
@@ -802,6 +802,28 @@ git push origin main
 ---
 
 ## 🏗️ Arquitectura de Decisiones
+
+### ⭐ Estrategia Híbrida: URLs Públicas vs Dashboard
+
+**Decisión (Día 2):** Usar enfoque híbrido para gestión de idiomas
+
+**Rutas Públicas (con `{locale}` en URL):**
+- `/es/search-properties`, `/en/property/123`
+- **Razón:** SEO - Google necesita URLs diferentes por idioma
+- **Aplica a:** Búsqueda, detalle, home, todas las páginas indexables
+
+**Rutas Privadas (locale en sesión):**
+- `/dashboard/requests`, `/dashboard/matches` (sin prefijo)
+- **Razón:** UX - Evita complejidad para usuarios autenticados
+- **Aplica a:** Todo el panel `/dashboard/*` y funciones privadas
+
+**Documentación completa:** Ver [I18N_HYBRID_STRATEGY.md](I18N_HYBRID_STRATEGY.md)
+
+**Impacto en el plan:**
+- ✅ Días 1-2: Estrategia ya implementada
+- ✅ Días 3-5: Usar `route_localized()` solo para rutas públicas
+- ✅ Días 6-8: Distinguir entre enlaces públicos y privados en vistas
+- ✅ Día 9: SEO funciona gracias a URLs con `{locale}`
 
 ### ¿Por qué JSON en BD y no tabla separada?
 
