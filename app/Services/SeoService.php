@@ -11,7 +11,7 @@ class SeoService
     /**
      * Generate SEO data for property listing
      */
-    public function generatePropertySeo(PropertyListing $property, string $locale = null): object
+    public function generatePropertySeo(PropertyListing $property, ?string $locale = null): object
     {
         $locale = $locale ?? app()->getLocale();
         
@@ -86,8 +86,9 @@ class SeoService
     public function generateHreflangTags(PropertyListing $property): array
     {
         $tags = [];
+        $supported = config('locales.supported', ['es', 'en']);
         
-        foreach (config('locales.supported') as $locale) {
+        foreach ($supported as $locale) {
             $title = $property->getTranslation('title', $locale);
             $slug = Str::slug($title);
             $url = route_localized('property.show', ['id' => $property->id, 'slug' => $slug], $locale);
@@ -114,7 +115,7 @@ class SeoService
     /**
      * Generate slug for property in specific locale
      */
-    public function generatePropertySlug(PropertyListing $property, string $locale = null): string
+    public function generatePropertySlug(PropertyListing $property, ?string $locale = null): string
     {
         $locale = $locale ?? app()->getLocale();
         $title = $property->getTranslation('title', $locale);
@@ -126,8 +127,9 @@ class SeoService
      */
     private function getAlternateLocales(string $currentLocale): array
     {
+        $supported = config('locales.supported', ['es', 'en']);
         return array_filter(
-            config('locales.supported'),
+            $supported,
             fn($locale) => $locale !== $currentLocale
         );
     }
@@ -143,9 +145,10 @@ class SeoService
         ];
         
         $ogLocale = $localeMap[$locale] ?? 'es_ES';
+        $supported = config('locales.supported', ['es', 'en']);
         
         $alternates = array_filter(
-            array_map(fn($l) => $localeMap[$l] ?? null, config('locales.supported')),
+            array_map(fn($l) => $localeMap[$l] ?? null, $supported),
             fn($l) => $l !== $ogLocale
         );
         
