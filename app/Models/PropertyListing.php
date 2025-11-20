@@ -2,13 +2,27 @@
 
 namespace App\Models;
 
+use App\Traits\Translatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\HasNeighbors;
 use Pgvector\Laravel\Vector;
 
 class PropertyListing extends Model
 {
-    use HasNeighbors;
+    use HasFactory, HasNeighbors, Translatable;
+
+    /**
+     * The attributes that are translatable.
+     *
+     * @var array
+     */
+    protected $translatable = [
+        'title',
+        'description',
+        'features',
+        'location_details'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -38,7 +52,12 @@ class PropertyListing extends Model
         'embedding',
         'conditions',
         'currency',
-        'lotsize'
+        'lotsize',
+        // i18n fields
+        'title_i18n',
+        'description_i18n',
+        'features_i18n',
+        'location_details_i18n'
     ];
 
     /**
@@ -52,7 +71,12 @@ class PropertyListing extends Model
         'longitude' => 'decimal:8',
         'is_featured' => 'boolean',
         'is_active' => 'boolean',
-        'embedding' => Vector::class
+        'embedding' => Vector::class,
+        // i18n casts
+        'title_i18n' => 'array',
+        'description_i18n' => 'array',
+        'features_i18n' => 'array',
+        'location_details_i18n' => 'array'
     ];
 
     /**

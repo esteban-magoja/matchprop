@@ -29,6 +29,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingsTableSeeder::class);
         $this->call(ProfileKeyValuesTableSeeder::class);
         $this->call(ThemesTableSeeder::class);
+        
+        // i18n: Migrar datos existentes a formato bilingüe
+        $this->call(TranslateExistingPropertiesSeeder::class);
+        
         fixPostgresSequence();
     }
 }

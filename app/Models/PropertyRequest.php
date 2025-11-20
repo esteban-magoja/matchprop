@@ -2,13 +2,25 @@
 
 namespace App\Models;
 
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Pgvector\Laravel\HasNeighbors;
 use Pgvector\Laravel\Vector;
 
 class PropertyRequest extends Model
 {
-    use HasNeighbors;
+    use HasNeighbors, Translatable;
+
+    /**
+     * The attributes that are translatable.
+     *
+     * @var array
+     */
+    protected $translatable = [
+        'title',
+        'description',
+        'requirements'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -36,7 +48,11 @@ class PropertyRequest extends Model
         'country',
         'is_active',
         'expires_at',
-        'embedding'
+        'embedding',
+        // i18n fields
+        'title_i18n',
+        'description_i18n',
+        'requirements_i18n'
     ];
 
     /**
@@ -49,7 +65,11 @@ class PropertyRequest extends Model
         'max_budget' => 'decimal:2',
         'is_active' => 'boolean',
         'expires_at' => 'datetime',
-        'embedding' => Vector::class
+        'embedding' => Vector::class,
+        // i18n casts
+        'title_i18n' => 'array',
+        'description_i18n' => 'array',
+        'requirements_i18n' => 'array'
     ];
 
     /**
