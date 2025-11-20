@@ -32,7 +32,7 @@
                     <x-app.sidebar-link href="{{ route('dashboard.matches.index') }}" icon="phosphor-equals" :active="Request::is('dashboard/matches')">Matches</x-app.sidebar-link>
                     <x-app.sidebar-link href="/dashboard/search-requests" icon="phosphor-magnifying-glass" :active="Request::is('dashboard/search-requests')">Buscar Clientes/Solicitudes</x-app.sidebar-link>
                     <x-app.sidebar-link href="{{ route('dashboard.messages.index') }}" icon="phosphor-envelope" :active="Request::is('dashboard/messages') || Request::is('dashboard/messages/*')">Mensajes</x-app.sidebar-link>
-                    <x-app.sidebar-link href="{{ route_localized('property.search') }}" icon="phosphor-magnifying-glass" :active="Request::is('*/search-property-listings') || Request::is('*/search-properties')">Buscar Propiedades</x-app.sidebar-link>
+                    <x-app.sidebar-link href="{{ '/' . current_locale() . '/search-properties' }}" icon="phosphor-magnifying-glass" :active="Request::is('*/search-properties')">Buscar Propiedades</x-app.sidebar-link>
                 </div>
             </div>
 
