@@ -34,6 +34,28 @@
         <meta property="og:image:width" content="{{ $seo->image_w }}">
         <meta property="og:image:height" content="{{ $seo->image_h }}">
     @endif
+    
+    {{-- OG Locale Tags --}}
+    @if(isset($seo->og_locale))
+        <meta property="og:locale" content="{{ $seo->og_locale }}">
+        @if(isset($seo->og_alternate_locales))
+            @foreach($seo->og_alternate_locales as $altLocale)
+                <meta property="og:locale:alternate" content="{{ $altLocale }}">
+            @endforeach
+        @endif
+    @endif
+@endif
+
+{{-- Hreflang Tags for SEO --}}
+@if(isset($seo->hreflang_tags))
+    @foreach($seo->hreflang_tags as $tag)
+        <link rel="{{ $tag['rel'] }}" hreflang="{{ $tag['hreflang'] }}" href="{{ $tag['href'] }}">
+    @endforeach
+@endif
+
+{{-- Canonical URL --}}
+@if(isset($seo->canonical))
+    <link rel="canonical" href="{{ $seo->canonical }}">
 @endif
 
 <meta name="robots" content="index,follow">
