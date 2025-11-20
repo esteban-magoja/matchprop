@@ -49,7 +49,7 @@
                             <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <a href="{{ route('property.search') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">Búsqueda</a>
+                            <a href="{{ route_localized('property.search') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">Búsqueda</a>
                         </div>
                     </li>
                     <li aria-current="page">
@@ -373,7 +373,7 @@
                         <!-- Contact Form -->
                         @auth
                             @if($property->user_id !== auth()->id())
-                                <form action="{{ route('property.message', $property->id) }}" method="POST" class="space-y-4">
+                                <form action="{{ route_localized('property.message', ['id' => $property->id]) }}" method="POST" class="space-y-4">
                                     @csrf
                                     
                                     <div>
@@ -496,7 +496,11 @@
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Propiedades Relacionadas</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach($relatedProperties as $related)
-                            <a href="{{ route('property.show', $related->id) }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            @php
+                                $seoService = app(\App\Services\SeoService::class);
+                                $relatedSlug = $seoService->generatePropertySlug($related);
+                            @endphp
+                            <a href="{{ route_localized('property.show', ['id' => $related->id, 'slug' => $relatedSlug]) }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
                                 <!-- Property Image -->
                                 <div class="relative">
                                     @if($related->primaryImage)
