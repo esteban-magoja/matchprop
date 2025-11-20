@@ -8,7 +8,7 @@ use Pgvector\Laravel\Vector;
 
 class PropertySearchController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $locale)
     {
         $startTime = microtime(true);
         

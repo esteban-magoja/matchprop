@@ -22,7 +22,7 @@ class PropertyController extends Controller
     /**
      * Display the specified property listing.
      */
-    public function show($id, $slug = null)
+    public function show($locale, $id, $slug = null)
     {
         $property = PropertyListing::with(['user', 'images'])
             ->where('is_active', true)
@@ -60,7 +60,7 @@ class PropertyController extends Controller
     /**
      * Store a contact message for a property listing.
      */
-    public function sendMessage(Request $request, $id)
+    public function sendMessage(Request $request, $locale, $id)
     {
         // Verificar que el usuario esté autenticado
         if (!Auth::check()) {
