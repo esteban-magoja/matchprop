@@ -71,6 +71,12 @@ Route::post('/locale/switch', function(Request $request) {
 })->name('locale.switch');
 
 // ============================================================================
+// 3.5 RUTAS DE AUTENTICACIÓN (sobrescribir DevDojo Auth)
+// ============================================================================
+Route::post('/auth/logout', \App\Http\Controllers\Auth\LogoutController::class)->name('logout');
+Route::get('/auth/logout', \App\Http\Controllers\Auth\LogoutController::class)->name('logout.get');
+
+// ============================================================================
 // 4. RUTAS PRIVADAS SIN PREFIJO (usan locale de sesión)
 // ============================================================================
 Route::middleware('auth')->group(function () {
