@@ -96,7 +96,7 @@
 							Para poder publicar anuncios en la plataforma, debes aceptar nuestros términos y condiciones.
 						</p>
 						<div class="mt-4">
-							<a href="{{ route_localized('dashboard.terms') }}" 
+							<a href="{{ route('dashboard.terms') }}" 
 								class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-yellow-800 bg-yellow-100 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
 								Ver y Aceptar Términos
 								<svg class="ml-2 -mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,8 +137,8 @@
 					</svg>
 				</div>
 				<div class="mt-3 text-blue-600">
-					<p><a href="{{ '/' . current_locale() . '/property-listings' }}" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Ver anuncios</a></p>
-					<p><a href="{{ '/' . current_locale() . '/property-listings/create' }}" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Publicar anuncio</a></p>
+					<p><a href="/property-listings" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Ver anuncios</a></p>
+					<p><a href="/property-listings/create" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Publicar anuncio</a></p>
 				</div>
 			</div>
 
@@ -153,8 +153,8 @@
 					</svg>
 				</div>
 				<div class="mt-3 text-green-600">
-					<p><a href="{{ route_localized('dashboard.requests.index') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Ver solicitudes</a></p>
-					<p><a href="{{ route_localized('dashboard.requests.create') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Agregar solicitud</a></p>
+					<p><a href="{{ route('dashboard.requests.index') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Ver solicitudes</a></p>
+					<p><a href="{{ route('dashboard.requests.create') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Agregar solicitud</a></p>
 				</div>
 			</div>
 
@@ -170,11 +170,11 @@
 				</div>
 				@if($unreadMessages > 0)
 					<div class="mt-3 text-orange-600">
-						<a href="{{ route_localized('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">{{ $unreadMessages }} sin leer</a>
+						<a href="{{ route('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">{{ $unreadMessages }} sin leer</a>
 					</div>
 				@else
 					<div class="mt-3 text-orange-600">
-						<a href="{{ route_localized('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">Ver mensajes</a>
+						<a href="{{ route('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">Ver mensajes</a>
 					</div>
 				@endif
 			</div>
@@ -190,7 +190,7 @@
 					</svg>
 				</div>
 				<div class="mt-3 text-purple-600">
-					<a href="{{ route_localized('dashboard.matches.index') }}" class="mt-4 text-sm text-purple-600 hover:text-purple-700 font-medium">Ver matches</a>
+					<a href="{{ route('dashboard.matches.index') }}" class="mt-4 text-sm text-purple-600 hover:text-purple-700 font-medium">Ver matches</a>
 				</div>	
 			</div>
 		</div>
