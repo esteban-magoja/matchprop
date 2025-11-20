@@ -14,7 +14,7 @@
                 
                 <!-- Search Form -->
                 <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-6">
-                    <form method="GET" action="{{ route('property.search') }}" class="space-y-4" id="propertySearchForm">
+                    <form method="GET" action="{{ route_localized('property.search') }}" class="space-y-4" id="propertySearchForm">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <!-- Country Selection -->
                             <div class="md:col-span-1">
@@ -89,7 +89,7 @@
                             
                             @if($searchTerm || $selectedCountry)
                                 <a 
-                                    href="{{ route('property.search') }}" 
+                                    href="{{ route_localized('property.search') }}" 
                                     class="inline-flex items-center px-6 py-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                 >
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,7 +315,7 @@
                                     Intenta con otros términos de búsqueda o cambia el país seleccionado.
                                 </p>
                                 <div class="mt-6">
-                                    <a href="{{ route('property.search') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    <a href="{{ route_localized('property.search') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                         </svg>
