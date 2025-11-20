@@ -46,8 +46,8 @@
                     </label>
                     <select name="locale" onchange="this.form.submit()" 
                             class="w-full px-3 py-2 text-sm border rounded-lg bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <option value="es" {{ current_locale() == 'es' ? 'selected' : '' }}>🇪🇸 Español</option>
-                        <option value="en" {{ current_locale() == 'en' ? 'selected' : '' }}>🇬🇧 English</option>
+                        <option value="es" {{ current_locale() == 'es' ? 'selected' : '' }}>Español</option>
+                        <option value="en" {{ current_locale() == 'en' ? 'selected' : '' }}>English</option>
                     </select>
                 </form>
 
