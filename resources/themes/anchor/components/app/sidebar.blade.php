@@ -38,6 +38,19 @@
 
             <div class="relative px-2.5 space-y-1.5 text-zinc-700 dark:text-zinc-400">
                 
+                {{-- Language Selector --}}
+                <form method="POST" action="{{ route('locale.switch') }}" class="px-1 py-2">
+                    @csrf
+                    <label class="block text-xs font-semibold text-zinc-600 dark:text-zinc-400 mb-2">
+                        {{ __('Idioma') }}
+                    </label>
+                    <select name="locale" onchange="this.form.submit()" 
+                            class="w-full px-3 py-2 text-sm border rounded-lg bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="es" {{ current_locale() == 'es' ? 'selected' : '' }}>🇪🇸 Español</option>
+                        <option value="en" {{ current_locale() == 'en' ? 'selected' : '' }}>🇬🇧 English</option>
+                    </select>
+                </form>
+
                 <x-app.sidebar-link :href="route('changelogs')" icon="phosphor-book-open-text-duotone" :active="Request::is('changelog') || Request::is('changelog/*')">Changelog</x-app.sidebar-link>
 
                 <div x-show="sidebarTip" x-data="{ sidebarTip: $persist(true) }" class="px-1 py-3" x-collapse x-cloak>
