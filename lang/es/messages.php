@@ -61,12 +61,17 @@ return [
     'registered_successfully' => 'Registro exitoso',
     
     // Validación común
-    'required_field' => 'Este campo es requerido',
-    'invalid_email' => 'Email inválido',
-    'invalid_phone' => 'Teléfono inválido',
-    'min_length' => 'Mínimo :min caracteres',
-    'max_length' => 'Máximo :max caracteres',
-    'must_match' => 'Los campos deben coincidir',
+    'validation' => [
+        'required_field' => 'Este campo es requerido',
+        'country_required' => 'Debes seleccionar un país.',
+        'search_term_required' => 'Debes escribir un término de búsqueda.',
+        'search_term_min' => 'El término de búsqueda debe tener al menos :min caracteres.',
+        'invalid_email' => 'Email inválido',
+        'invalid_phone' => 'Teléfono inválido',
+        'min_length' => 'Mínimo :min caracteres',
+        'max_length' => 'Máximo :max caracteres',
+        'must_match' => 'Los campos deben coincidir',
+    ],
     
     // Paginación
     'previous' => 'Anterior',
@@ -163,4 +168,15 @@ return [
     'accept_cookies' => 'Aceptar',
     'privacy_policy' => 'Política de Privacidad',
     'terms_of_service' => 'Términos de Servicio',
+    
+    // Mensajes específicos de propiedades
+    'property' => [
+        'message_sent' => '¡Tu mensaje ha sido enviado! El anunciante se pondrá en contacto contigo pronto.',
+        'cannot_contact_own' => 'No puedes enviar un mensaje a tu propia propiedad.',
+    ],
+    
+    // Mensajes de autenticación
+    'auth' => [
+        'login_required' => 'Debes iniciar sesión para enviar un mensaje.',
+    ],
 ];

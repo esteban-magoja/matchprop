@@ -49,8 +49,8 @@ Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () {
     // Property Search (pública)
     Route::get('/search-properties', [PropertySearchController::class, 'index'])->name('property.search');
     
-    // Property Detail (pública)
-    Route::get('/property/{id}', [PropertyController::class, 'show'])->name('property.show');
+    // Property Detail (pública) - Con slug opcional para SEO
+    Route::get('/property/{id}/{slug?}', [PropertyController::class, 'show'])->name('property.show');
     
     // Property Message (requiere auth pero es parte de la vista pública)
     Route::post('/property/{id}/message', [PropertyController::class, 'sendMessage'])->name('property.message')->middleware('auth');

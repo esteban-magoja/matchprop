@@ -61,12 +61,17 @@ return [
     'registered_successfully' => 'Registration successful',
     
     // Common validation
-    'required_field' => 'This field is required',
-    'invalid_email' => 'Invalid email',
-    'invalid_phone' => 'Invalid phone',
-    'min_length' => 'Minimum :min characters',
-    'max_length' => 'Maximum :max characters',
-    'must_match' => 'Fields must match',
+    'validation' => [
+        'required_field' => 'This field is required',
+        'country_required' => 'You must select a country.',
+        'search_term_required' => 'You must enter a search term.',
+        'search_term_min' => 'The search term must be at least :min characters.',
+        'invalid_email' => 'Invalid email',
+        'invalid_phone' => 'Invalid phone',
+        'min_length' => 'Minimum :min characters',
+        'max_length' => 'Maximum :max characters',
+        'must_match' => 'Fields must match',
+    ],
     
     // Pagination
     'previous' => 'Previous',
@@ -163,4 +168,15 @@ return [
     'accept_cookies' => 'Accept',
     'privacy_policy' => 'Privacy Policy',
     'terms_of_service' => 'Terms of Service',
+    
+    // Property specific messages
+    'property' => [
+        'message_sent' => 'Your message has been sent! The advertiser will contact you soon.',
+        'cannot_contact_own' => 'You cannot send a message to your own property.',
+    ],
+    
+    // Auth messages
+    'auth' => [
+        'login_required' => 'You must log in to send a message.',
+    ],
 ];

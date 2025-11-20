@@ -6,15 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\PropertyListing;
 use App\Models\PropertyMessage;
 use App\Mail\PropertyMessageReceived;
+use App\Services\SeoService;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
+    protected $seoService;
+
+    public function __construct(SeoService $seoService)
+    {
+        $this->seoService = $seoService;
+    }
+
     /**
      * Display the specified property listing.
      */
-    public function show($id)
+    public function show($id, $slug = null)
     {
         $property = PropertyListing::with(['user', 'images'])
             ->where('is_active', true)
@@ -33,63 +41,20 @@ class PropertyController extends Controller
             ->limit(4)
             ->get();
 
-        // SEO data
-        $seo = (object) [
-            'title' => $property->title . ' - ' . ucfirst($property->transaction_type) . ' en ' . $property->city,
-            'description' => $this->generateMetaDescription($property),
-            'image' => $property->primaryImage?->image_url ?? ($property->images->first()?->image_url ?? asset('images/default-property.jpg')),
-            'type' => 'article',
-            'image_w' => 1200,
-            'image_h' => 630,
-        ];
+        // Generate SEO data using SeoService
+        $locale = app()->getLocale();
+        $seo = $this->seoService->generatePropertySeo($property, $locale);
+        
+        // Add hreflang tags
+        $hreflangTags = $this->seoService->generateHreflangTags($property);
+        $seo->hreflang_tags = $hreflangTags;
+        
+        // Add OG locale tags
+        $ogLocale = $this->seoService->generateOgLocaleTags($locale);
+        $seo->og_locale = $ogLocale['locale'];
+        $seo->og_alternate_locales = $ogLocale['alternate_locales'];
 
         return view('property-detail', compact('property', 'relatedProperties', 'seo'));
-    }
-
-    /**
-     * Generate SEO-friendly meta description for the property.
-     */
-    private function generateMetaDescription($property)
-    {
-        $parts = [];
-        
-        // Tipo de propiedad y transacción
-        $parts[] = ucfirst($property->property_type) . ' en ' . $property->transaction_type;
-        
-        // Ubicación
-        $parts[] = $property->city . ', ' . $property->state . ', ' . $property->country;
-        
-        // Precio
-        $parts[] = $property->currency . ' ' . number_format($property->price);
-        
-        // Características principales
-        $features = [];
-        if ($property->bedrooms) {
-            $features[] = $property->bedrooms . ' hab.';
-        }
-        if ($property->bathrooms) {
-            $features[] = $property->bathrooms . ' baños';
-        }
-        if ($property->area) {
-            $features[] = number_format($property->area) . 'm²';
-        }
-        if ($property->parking_spaces) {
-            $features[] = $property->parking_spaces . ' cochera' . ($property->parking_spaces > 1 ? 's' : '');
-        }
-        
-        if (!empty($features)) {
-            $parts[] = implode(', ', $features);
-        }
-        
-        // Unir todas las partes
-        $description = implode(' • ', $parts);
-        
-        // Limitar a 160 caracteres para SEO
-        if (strlen($description) > 160) {
-            $description = substr($description, 0, 157) . '...';
-        }
-        
-        return $description;
     }
 
     /**
@@ -99,7 +64,7 @@ class PropertyController extends Controller
     {
         // Verificar que el usuario esté autenticado
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'Debes iniciar sesión para enviar un mensaje.');
+            return redirect()->route('login')->with('error', __('messages.auth.login_required'));
         }
 
         // Validar los datos del formulario
@@ -115,7 +80,7 @@ class PropertyController extends Controller
 
         // Verificar que el usuario no esté contactando su propia propiedad
         if ($property->user_id === Auth::id()) {
-            return back()->with('error', 'No puedes enviar un mensaje a tu propia propiedad.');
+            return back()->with('error', __('messages.property.cannot_contact_own'));
         }
 
         // Crear el mensaje
@@ -136,6 +101,7 @@ class PropertyController extends Controller
             \Log::error('Failed to send property message email: ' . $e->getMessage());
         }
 
-        return back()->with('success', '¡Tu mensaje ha sido enviado! El anunciante se pondrá en contacto contigo pronto.');
+        return back()->with('success', __('messages.property.message_sent'));
     }
 }
+

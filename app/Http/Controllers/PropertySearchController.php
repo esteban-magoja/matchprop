@@ -25,13 +25,13 @@ class PropertySearchController extends Controller
         if ($isSearchRequest) {
             // Both country and search term are required when searching
             if (empty($selectedCountry)) {
-                $validationErrors[] = 'Debes seleccionar un país.';
+                $validationErrors[] = __('messages.validation.country_required');
             }
             
             if (empty($searchTerm)) {
-                $validationErrors[] = 'Debes escribir un término de búsqueda.';
+                $validationErrors[] = __('messages.validation.search_term_required');
             } elseif (strlen($searchTerm) < 5) {
-                $validationErrors[] = 'El término de búsqueda debe tener al menos 5 caracteres.';
+                $validationErrors[] = __('messages.validation.search_term_min', ['min' => 5]);
             }
             
             // Only proceed if both validations pass

@@ -31,9 +31,12 @@ return [
     // Property features
     'features' => [
         'bedrooms' => 'Bedrooms',
+        'bedrooms_short' => 'bed.',
         'bathrooms' => 'Bathrooms',
+        'bathrooms_short' => 'bath.',
         'garage' => 'Garage',
         'garages' => 'Garages',
+        'parking_short' => 'parking',
         'covered_area' => 'Covered Area',
         'land_area' => 'Land Area',
         'pool' => 'Pool',
@@ -52,6 +55,8 @@ return [
     ],
 
     // UI labels and texts
+    'in' => 'in',
+    'for' => 'for',
     'search_properties' => 'Search Properties',
     'property_detail' => 'Property Detail',
     'view_details' => 'View Details',

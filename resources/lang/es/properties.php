@@ -31,9 +31,12 @@ return [
     // Características de propiedades
     'features' => [
         'bedrooms' => 'Habitaciones',
+        'bedrooms_short' => 'hab.',
         'bathrooms' => 'Baños',
+        'bathrooms_short' => 'baños',
         'garage' => 'Cochera',
         'garages' => 'Cocheras',
+        'parking_short' => 'cochera',
         'covered_area' => 'Área Cubierta',
         'land_area' => 'Área de Terreno',
         'pool' => 'Piscina',
@@ -52,6 +55,8 @@ return [
     ],
 
     // Labels y textos de UI
+    'in' => 'en',
+    'for' => 'para',
     'search_properties' => 'Buscar Propiedades',
     'property_detail' => 'Detalle de Propiedad',
     'view_details' => 'Ver Detalles',
