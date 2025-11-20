@@ -25,11 +25,12 @@
     <div class="flex flex-col pl-0 min-h-screen justify-stretch lg:pl-64">
         {{-- Mobile Header --}}
         <header class="lg:hidden px-5 block flex justify-between sticky top-0 z-40 bg-gray-50 dark:bg-zinc-900 -mb-px border-b border-zinc-200/70 dark:border-zinc-700 h-[72px] items-center">
-            <button x-on:click="window.dispatchEvent(new CustomEvent('open-sidebar'))" class="flex flex-shrink-0 justify-center items-center w-10 h-10 rounded-md text-zinc-700 dark:text-zinc-200 hover:bg-gray-200/70 dark:hover:bg-zinc-700/70">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" /></svg>
-            </button>
-            <div class="flex items-center gap-3">
-                <x-language-switcher />
+            <div class="flex items-center justify-between w-full px-5 py-3 border-b lg:hidden border-zinc-200 dark:border-zinc-700">
+                <button @click="$dispatch('open-sidebar')" class="flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-md text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 dark:hover:bg-zinc-700/70 hover:bg-gray-200/70">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+                </button>
+                <x-logo class="w-auto h-7" />
+                {{-- Language switcher removed - now in sidebar --}}
                 <x-app.user-menu position="top" />
             </div>
         </header>
