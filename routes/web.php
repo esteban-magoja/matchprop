@@ -41,6 +41,26 @@ Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () {
         return view('theme::pages.index', compact('seo'));
     })->name('home');
     
+    // Dashboard route (Folio no soporta prefijo de locale dinámico)
+    Route::get('/dashboard', function () {
+        // Importar las clases necesarias
+        $userListings = \App\Models\PropertyListing::where('user_id', auth()->id())->active()->count();
+        $userRequests = \App\Models\PropertyRequest::where('user_id', auth()->id())->active()->count();
+        $unreadMessages = \App\Models\PropertyMessage::whereHas('propertyListing', function($query) {
+            $query->where('user_id', auth()->id());
+        })->where('is_read', false)->count();
+        
+        // Obtener algunos matches recientes
+        $matchingService = app(\App\Services\PropertyMatchingService::class);
+        $recentListings = \App\Models\PropertyListing::where('user_id', auth()->id())->active()->take(3)->get();
+        $totalMatches = 0;
+        foreach ($recentListings as $listing) {
+            $totalMatches += $matchingService->findMatchesForListing($listing, 5)->count();
+        }
+        
+        return view('theme::pages.dashboard.index', compact('userListings', 'userRequests', 'unreadMessages', 'totalMatches'));
+    })->name('dashboard')->middleware('auth');
+    
     // Terms acceptance route (only POST, GET is handled by Folio)
     Route::post('/dashboard/terms/accept', [TermsController::class, 'accept'])->name('terms.accept')->middleware('auth');
 
