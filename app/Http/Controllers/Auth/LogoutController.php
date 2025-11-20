@@ -14,13 +14,15 @@ class LogoutController extends Controller
      */
     public function __invoke(Request $request): RedirectResponse
     {
+        // Guardar el locale ANTES de invalidar la sesión
+        $locale = session('locale', config('locales.default', 'es'));
+        
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        // Redirect to home with current locale
-        $locale = session('locale', config('locales.default', 'es'));
+        // Redirect to home with the saved locale
         return redirect('/' . $locale);
     }
 }
