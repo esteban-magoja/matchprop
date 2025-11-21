@@ -34,10 +34,10 @@ DAY_5_DATE=2025-11-21
 DAY_5_HOURS=2
 DAY_5_NOTES="Dashboard controllers actualizados. Request classes con validación bilingüe. PropertyListing se gestiona en Filament (Día 11)."
 
-DAY_6_STATUS=not_started
+DAY_6_STATUS=completed
 DAY_6_DATE=
-DAY_6_HOURS=0
-DAY_6_NOTES=
+DAY_6_HOURS=3
+DAY_6_NOTES="Traducidas completamente search-property-listings y property-detail. Todas las vistas públicas con __() helper. 77 traducciones agregadas."
 
 DAY_7_STATUS=not_started
 DAY_7_DATE=
