@@ -27,19 +27,19 @@
             return $schema
                 ->components([
                     TextInput::make('current_password')
-                        ->label('Actual Password')
+                        ->label(__('settings.security.current_password'))
                         ->required()
                         ->currentPassword()
                         ->password()
                         ->revealable(),
                     TextInput::make('password')
-                        ->label('Nuevo Password')
+                        ->label(__('settings.security.new_password'))
                         ->required()
                         ->minLength(4)
                         ->password()
                         ->revealable(),
                     TextInput::make('password_confirmation')
-                        ->label('Confirmar Nuevo Password')
+                        ->label(__('settings.security.confirm_password'))
                         ->required()
                         ->password()
                         ->revealable()
@@ -61,7 +61,7 @@
             $this->form->fill();
 
             Notification::make()
-                ->title('Successfully changed password')
+                ->title(__('settings.security.password_changed'))
                 ->success()
                 ->send();
         }
@@ -74,13 +74,13 @@
     @volt('settings.security') 
         <div class="relative">
             <x-app.settings-layout
-                title="Seguridad"
-                description="Actualiza y cambia tu contraseña de cuenta actual."
+                title="{{ __('settings.security.title') }}"
+                description="{{ __('settings.security.change_password') }}"
             >
                 <form wire:submit="save" class="w-full max-w-lg">
                     {{ $this->form }}
                     <div class="w-full pt-6 text-right">
-                        <x-button type="submit">Guardar</x-button>
+                        <x-button type="submit">{{ __('settings.general.save') }}</x-button>
                     </div>
                 </form>
 
