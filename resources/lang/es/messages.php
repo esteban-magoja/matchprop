@@ -232,4 +232,9 @@ return [
     'changelog_description' => 'Este es el registro de cambios de su aplicación que los usuarios pueden visitar para mantenerse informados sobre las últimas actualizaciones y mejoras.',
     'how_it_works' => 'Cómo funciona',
     'publish_request' => 'Publicar Solicitud',
+    'notifications' => 'Notificaciones',
+    'settings' => 'Configuración',
+    'membership' => 'Membresía',
+    'view_admin' => 'Ver Panel Admin',
+    'leave_impersonation' => 'Dejar suplantación',
 ];

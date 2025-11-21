@@ -232,4 +232,9 @@ return [
     'changelog_description' => 'This is your application changelog that users can visit to stay informed about the latest updates and improvements.',
     'how_it_works' => 'How it works',
     'publish_request' => 'Publish Request',
+    'notifications' => 'Notifications',
+    'settings' => 'Settings',
+    'membership' => 'Membership',
+    'view_admin' => 'View Admin',
+    'leave_impersonation' => 'Leave impersonation',
 ];
