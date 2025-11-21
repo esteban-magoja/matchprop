@@ -168,8 +168,8 @@ new class extends Component {
     <x-app.container>
         
         <x-app.heading
-            title="Buscar Solicitudes de Clientes"
-            description="Encuentra clientes potenciales que buscan propiedades que puedas ofrecer."
+            title="{{ __('dashboard.search_requests.title') }}"
+            description="{{ __('dashboard.search_requests.description') }}"
             :border="false"
         />
 
@@ -218,16 +218,16 @@ new class extends Component {
                     </div>
                     <div class="ml-4">
                         <h3 class="text-lg font-medium text-yellow-800">
-                            Membresía Premium Requerida
+                            {{ __('dashboard.search_requests.premium_required') }}
                         </h3>
                         <div class="mt-2 text-sm text-yellow-700">
-                            <p>Para buscar solicitudes de clientes necesitas una membresía premium. Las membresías te permiten:</p>
+                            <p>{{ __('dashboard.search_requests.premium_description') }}</p>
                             <ul class="list-disc list-inside mt-2 space-y-1">
-                                <li>Buscar clientes potenciales ilimitados</li>
-                                <li>Contactar directamente a clientes interesados</li>
-                                <li>Recibir notificaciones de nuevas solicitudes</li>
-                                <li>Acceso a búsqueda inteligente con IA</li>
-                                <li>Ver información completa de contacto</li>
+                                <li>{{ __('dashboard.search_requests.premium_benefit_1') }}</li>
+                                <li>{{ __('dashboard.search_requests.premium_benefit_2') }}</li>
+                                <li>{{ __('dashboard.search_requests.premium_benefit_3') }}</li>
+                                <li>{{ __('dashboard.search_requests.premium_benefit_4') }}</li>
+                                <li>{{ __('dashboard.search_requests.premium_benefit_5') }}</li>
                             </ul>
                         </div>
                         <div class="mt-4 flex gap-3">
@@ -235,13 +235,13 @@ new class extends Component {
                                 <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                                 </svg>
-                                Obtener Membresía Premium
+                                {{ __('dashboard.search_requests.get_premium') }}
                             </a>
                             <button wire:click="grantPremiumRole" type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                Ya soy socio premium en BienesOnline
+                                {{ __('dashboard.search_requests.already_premium') }}
                             </button>
                         </div>
                     </div>
@@ -256,14 +256,14 @@ new class extends Component {
                         <!-- Country Selection -->
                         <div class="md:col-span-1">
                             <label for="country" class="block text-sm font-medium text-gray-700 mb-2">
-                                País <span class="text-red-500">*</span>
+                                {{ __('dashboard.search_requests.country') }} <span class="text-red-500">*</span>
                             </label>
                             <select 
                                 wire:model="selectedCountry" 
                                 id="country" 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
-                                <option value="">Selecciona un país</option>
+                                <option value="">{{ __('dashboard.search_requests.select_country') }}</option>
                                 @foreach($countries as $country)
                                     <option value="{{ $country }}">{{ $country }}</option>
                                 @endforeach
@@ -273,14 +273,14 @@ new class extends Component {
                         <!-- Search Input -->
                         <div class="md:col-span-2">
                             <label for="search" class="block text-sm font-medium text-gray-700 mb-2">
-                                ¿Qué tipo de propiedad buscan? <span class="text-red-500">*</span>
-                                <span class="text-gray-500 text-xs">(mínimo 5 caracteres)</span>
+                                {{ __('dashboard.search_requests.search_label') }} <span class="text-red-500">*</span>
+                                <span class="text-gray-500 text-xs">({{ __('dashboard.search_requests.min_5_chars') }})</span>
                             </label>
                             <input 
                                 type="text" 
                                 wire:model="searchTerm"
                                 id="search"
-                                placeholder="Ej: casa con jardín, departamento céntrico, terreno..." 
+                                :placeholder="__('dashboard.search_requests.search_placeholder')" 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required
                                 minlength="5"
@@ -299,14 +299,14 @@ new class extends Component {
                                 <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
-                                Buscar
+                                {{ __('dashboard.search_requests.search_button') }}
                             </span>
                             <span wire:loading wire:target="search">
                                 <svg class="animate-spin -ml-1 mr-2 h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
-                                Buscando...
+                                {{ __('dashboard.search_requests.searching') }}
                             </span>
                         </button>
                         
@@ -319,7 +319,7 @@ new class extends Component {
                                 <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
-                                Limpiar
+                                {{ __('dashboard.search_requests.clear') }}
                             </button>
                         @endif
                     </div>
@@ -485,9 +485,9 @@ new class extends Component {
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                    <h3 class="mt-2 text-sm font-medium text-gray-900">No se encontraron solicitudes</h3>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">{{ __('dashboard.search_requests.no_results') }}</h3>
                     <p class="mt-1 text-sm text-gray-500">
-                        Intenta con otros términos de búsqueda o cambia el país seleccionado.
+                        {{ __('dashboard.search_requests.no_results_desc') }}
                     </p>
                 </div>
             </div>
