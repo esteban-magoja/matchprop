@@ -30,39 +30,39 @@
             return $schema
                 ->components([
                     \Filament\Forms\Components\TextInput::make('name')
-                        ->label('Nombre completo')
+                        ->label(__('settings.profile.full_name'))
                         ->required()
 						->rules('required|string')
 						->default(auth()->user()->name),
 					\Filament\Forms\Components\TextInput::make('email')
-                        ->label('Correo electrónico')
+                        ->label(__('settings.profile.email'))
                         ->required()
 						->rules('sometimes|required|email|unique:users,email,' . auth()->user()->id)
 						->default(auth()->user()->email),
 					\Filament\Forms\Components\TextInput::make('agency')
-                        ->label('Agencia/Inmobiliaria')
+                        ->label(__('settings.profile.agency'))
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->agency),
 					\Filament\Forms\Components\TextInput::make('movil')
-                        ->label('Teléfono móvil (WhatsApp)')
-                        ->placeholder('+34600123456')
+                        ->label(__('settings.profile.phone'))
+                        ->placeholder(__('settings.profile.phone_placeholder'))
                         ->required()
 						->rules('required|string|max:20')
 						->default(auth()->user()->movil),
 					\Filament\Forms\Components\TextInput::make('address')
-                        ->label('Dirección')
+                        ->label(__('settings.profile.address'))
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->address),
 					\Filament\Forms\Components\TextInput::make('city')
-                        ->label('Ciudad')
+                        ->label(__('settings.profile.city'))
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->city),
 					\Filament\Forms\Components\TextInput::make('state')
-                        ->label('Estado/Provincia')
+                        ->label(__('settings.profile.state'))
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->state),
 					\Filament\Forms\Components\TextInput::make('country')
-                        ->label('País')
+                        ->label(__('settings.profile.country'))
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->country),
 					...($this->dynamicFields( config('profile.fields') ))
@@ -86,7 +86,7 @@
 			$this->saveFormFields($state);
 
 			Notification::make()
-                ->title('Successfully saved your profile settings')
+                ->title(__('settings.profile.saved_success'))
                 ->success()
                 ->send();
 		}
