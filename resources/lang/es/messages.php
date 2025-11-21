@@ -199,7 +199,6 @@ return [
     'no_image' => 'Sin Imagen',
     'home' => 'Inicio',
     'copy_link' => 'Copiar',
-];
 
     // Subscription Welcome
     'subscription_welcome' => [

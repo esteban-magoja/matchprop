@@ -199,7 +199,6 @@ return [
     'no_image' => 'No Image',
     'home' => 'Home',
     'copy_link' => 'Copy',
-];
 
     // Subscription Welcome
     'subscription_welcome' => [
