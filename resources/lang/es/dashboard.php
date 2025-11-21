@@ -328,7 +328,6 @@ return [
         'in_country' => 'en :country',
         'for_term' => 'para ":term"',
     ],
-];
 
     // Sidebar Menu
     'menu' => [

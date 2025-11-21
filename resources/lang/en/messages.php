@@ -224,7 +224,6 @@ return [
         'step_4' => 'Check your matches panel to see opportunities',
         'go_to_dashboard' => 'Go to My Dashboard',
     ],
-];
 
     // Dashboard & Navigation
     'dashboard' => 'Dashboard',
