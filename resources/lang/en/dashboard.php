@@ -123,20 +123,28 @@ return [
     
     // Matches
     'matches_section' => [
-        'title' => 'Matches',
+        'title' => 'My Matches',
+        'description' => 'Requests that match your published listings',
         'for_listing' => 'Matches for',
         'for_request' => 'Matching Properties',
-        'no_matches' => 'No matches found',
+        'no_matches' => 'No matches available',
+        'no_matches_desc' => 'Publish a listing to start receiving compatible requests',
+        'publish_listing' => 'Publish Listing',
         'match_level' => 'Match Level',
-        'exact_match' => 'Exact Match',
-        'intelligent_match' => 'Intelligent Match',
-        'flexible_match' => 'Flexible Match',
+        'exact_match' => '✓ Exact Match',
+        'intelligent_match' => '⚡ Intelligent Match',
+        'semantic_match' => '⚡ Intelligent Match',
+        'flexible_match' => '~ Flexible Match',
         'match_score' => ':score% match',
+        'match_count' => ':count Match|:count Matches',
         'reasons' => 'Reasons',
         'contact_requester' => 'Contact Requester',
         'requester_info' => 'Requester Information',
         'see_all_matches' => 'See All Matches',
+        'see_all' => 'See all',
         'matches_summary' => 'Matches Summary',
+        'budget' => 'Budget',
+        'looking_for' => 'Looking for',
     ],
     
     // Messages

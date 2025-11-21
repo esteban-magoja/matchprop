@@ -2,8 +2,8 @@
     <x-app.container class="lg:space-y-6">
         
         <x-app.heading
-            title="Mis Matches"
-            description="Solicitudes que coinciden con tus anuncios publicados"
+            :title="__('dashboard.matches_section.title')"
+            :description="__('dashboard.matches_section.description')"
             :border="false"
         />
 
@@ -12,11 +12,11 @@
                 <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">No hay matches disponibles</h3>
-                <p class="text-gray-600 mb-4">Publica un anuncio para comenzar a recibir solicitudes compatibles</p>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">{{ __('dashboard.matches_section.no_matches') }}</h3>
+                <p class="text-gray-600 mb-4">{{ __('dashboard.matches_section.no_matches_desc') }}</p>
                 <a href="/dashboard/property-listings" 
                    class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
-                    Publicar Anuncio
+                    {{ __('dashboard.matches_section.publish_listing') }}
                 </a>
             </div>
         @else
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <span class="px-4 py-2 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">
-                                        {{ $matches->count() }} {{ $matches->count() == 1 ? 'Match' : 'Matches' }}
+                                        {{ trans_choice('dashboard.matches_section.match_count', $matches->count(), ['count' => $matches->count()]) }}
                                     </span>
                                 </div>
                             </div>
@@ -60,15 +60,15 @@
                                         <div class="flex justify-between items-start mb-3">
                                             @if($request->match_level === 'exact')
                                                 <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                                                    ✓ Match Exacto
+                                                    {{ __('dashboard.matches_section.exact_match') }}
                                                 </span>
                                             @elseif($request->match_level === 'semantic')
                                                 <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-                                                    ⚡ Match Inteligente
+                                                    {{ __('dashboard.matches_section.semantic_match') }}
                                                 </span>
                                             @else
                                                 <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
-                                                    ~ Match Flexible
+                                                    {{ __('dashboard.matches_section.flexible_match') }}
                                                 </span>
                                             @endif
                                             <span class="text-xs text-gray-500">{{ $request->match_score }}%</span>
@@ -88,7 +88,7 @@
                                         <!-- Match Details -->
                                         @if(!empty($request->match_details))
                                             <div class="mb-3 p-2 bg-gray-50 rounded text-xs text-gray-600">
-                                                <strong>Coincide en:</strong>
+                                                <strong>{{ __('dashboard.matches_section.reasons') }}:</strong>
                                                 <ul class="list-disc list-inside mt-1">
                                                     @foreach(array_slice($request->match_details, 0, 2) as $detail)
                                                         <li>{{ $detail }}</li>
@@ -115,7 +115,7 @@
                                             @if($request->user->email)
                                                 <a href="mailto:{{ $request->user->email }}" 
                                                    class="text-xs text-blue-600 hover:text-blue-700 font-medium">
-                                                    Contactar
+                                                    {{ __('dashboard.matches_section.contact_requester') }}
                                                 </a>
                                             @endif
                                         </div>
@@ -128,7 +128,7 @@
                                 <div class="mt-4 text-center">
                                     <a href="{{ route('dashboard.matches.show', $listing) }}" 
                                        class="text-sm text-blue-600 hover:text-blue-700 font-medium">
-                                        Ver todos los matches de este anuncio →
+                                        {{ __('dashboard.matches_section.see_all') }} →
                                     </a>
                                 </div>
                             @endif

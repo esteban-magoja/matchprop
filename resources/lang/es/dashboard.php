@@ -123,20 +123,28 @@ return [
     
     // Coincidencias (Matches)
     'matches_section' => [
-        'title' => 'Coincidencias',
+        'title' => 'Mis Matches',
+        'description' => 'Solicitudes que coinciden con tus anuncios publicados',
         'for_listing' => 'Coincidencias para',
         'for_request' => 'Propiedades que coinciden',
-        'no_matches' => 'No se encontraron coincidencias',
+        'no_matches' => 'No hay matches disponibles',
+        'no_matches_desc' => 'Publica un anuncio para comenzar a recibir solicitudes compatibles',
+        'publish_listing' => 'Publicar Anuncio',
         'match_level' => 'Nivel de Coincidencia',
-        'exact_match' => 'Coincidencia Exacta',
-        'intelligent_match' => 'Coincidencia Inteligente',
-        'flexible_match' => 'Coincidencia Flexible',
+        'exact_match' => '✓ Match Exacto',
+        'intelligent_match' => '⚡ Match Inteligente',
+        'semantic_match' => '⚡ Match Inteligente',
+        'flexible_match' => '~ Match Flexible',
         'match_score' => ':score% de coincidencia',
+        'match_count' => ':count Match|:count Matches',
         'reasons' => 'Razones',
         'contact_requester' => 'Contactar Solicitante',
         'requester_info' => 'Información del Solicitante',
         'see_all_matches' => 'Ver Todas las Coincidencias',
+        'see_all' => 'Ver todos',
         'matches_summary' => 'Resumen de Coincidencias',
+        'budget' => 'Presupuesto',
+        'looking_for' => 'Buscando',
     ],
     
     // Mensajes
