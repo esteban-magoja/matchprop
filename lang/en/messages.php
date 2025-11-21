@@ -197,4 +197,6 @@ return [
     'searching' => 'Searching...',
     'search_error' => 'Could not perform search',
     'no_image' => 'No Image',
+    'home' => 'Home',
+    'copy_link' => 'Copy',
 ];

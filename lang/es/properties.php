@@ -121,4 +121,19 @@ return [
     'similarity' => 'Similitud',
     'by' => 'Por',
     'view_details' => 'Ver Detalles',
+    
+    // Property detail
+    'property_detail' => 'Detalle de Propiedad',
+    'property_type' => 'Tipo de Propiedad',
+    'transaction_type' => 'Tipo de Operación',
+    'condition' => 'Estado',
+    'covered_area_sqm' => 'm² Cubiertos',
+    'land_area_sqm' => 'm² Terreno',
+    'contact_advertiser' => 'Contactar al Anunciante',
+    'whatsapp_message' => 'Hola, estoy interesado en la propiedad: :property',
+    'message_placeholder' => 'Estoy interesado en esta propiedad...',
+    'default_message' => 'Hola, estoy interesado en la propiedad ":property". Me gustaría recibir más información.',
+    'send_inquiry' => 'Enviar Consulta',
+    'your_property' => 'Esta es tu propiedad',
+    'related_properties' => 'Propiedades Relacionadas',
 ];

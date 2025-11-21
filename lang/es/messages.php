@@ -197,4 +197,6 @@ return [
     'searching' => 'Buscando...',
     'search_error' => 'No se pudo realizar la búsqueda',
     'no_image' => 'Sin Imagen',
+    'home' => 'Inicio',
+    'copy_link' => 'Copiar',
 ];
