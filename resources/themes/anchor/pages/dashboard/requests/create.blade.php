@@ -163,7 +163,7 @@ new class extends Component {
     @volt('property-request-create')
     <x-app.container>
         <x-app.heading
-            title="Nueva Solicitud/Cliente"
+            :title="__('dashboard.request_form.new_title')"
             description="Describe la propiedad que estás buscando para tu cliente."
             :border="false"
         />
