@@ -179,4 +179,16 @@ return [
     'auth' => [
         'login_required' => 'Debes iniciar sesión para enviar un mensaje.',
     ],
+    
+    // Request messages
+    'request_created_successfully' => 'Solicitud creada exitosamente',
+    'request_updated_successfully' => 'Solicitud actualizada exitosamente',
+    'request_deleted_successfully' => 'Solicitud eliminada exitosamente',
+    'request_activated' => 'Solicitud activada exitosamente',
+    'request_deactivated' => 'Solicitud desactivada exitosamente',
+    
+    // Message messages
+    'message_marked_read' => 'Mensaje marcado como leído',
+    'message_marked_unread' => 'Mensaje marcado como no leído',
+    'message_deleted' => 'Mensaje eliminado correctamente',
 ];

@@ -61,7 +61,7 @@ class PropertyMessageController extends Controller
 
         $message->update(['is_read' => true]);
 
-        return back()->with('success', 'Mensaje marcado como leído.');
+        return back()->with('success', __('messages.message_marked_read'));
     }
 
     /**
@@ -76,7 +76,7 @@ class PropertyMessageController extends Controller
 
         $message->update(['is_read' => false]);
 
-        return back()->with('success', 'Mensaje marcado como no leído.');
+        return back()->with('success', __('messages.message_marked_unread'));
     }
 
     /**
@@ -91,6 +91,6 @@ class PropertyMessageController extends Controller
 
         $message->delete();
 
-        return redirect()->route('dashboard.messages.index')->with('success', 'Mensaje eliminado correctamente.');
+        return redirect()->route('dashboard.messages.index')->with('success', __('messages.message_deleted'));
     }
 }

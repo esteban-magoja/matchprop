@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PropertyRequest;
 use App\Services\PropertyMatchingService;
+use App\Http\Requests\StorePropertyRequestRequest;
+use App\Http\Requests\UpdatePropertyRequestRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -42,42 +44,35 @@ class PropertyRequestController extends Controller
     /**
      * Store a newly created property request.
      */
-    public function store(Request $request)
+    public function store(StorePropertyRequestRequest $request)
     {
-        $validated = $request->validate([
-            'client_name' => 'required|string|max:255',
-            'client_email' => 'required|email|max:255',
-            'client_phone' => 'required|string|max:20',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|min:20',
-            'property_type' => 'required|string',
-            'transaction_type' => 'required|string',
-            'max_budget' => 'required|numeric|min:0',
-            'min_budget' => 'nullable|numeric|min:0|lt:max_budget',
-            'currency' => 'required|string|max:10',
-            'min_bedrooms' => 'nullable|integer|min:0',
-            'min_bathrooms' => 'nullable|integer|min:0',
-            'min_parking_spaces' => 'nullable|integer|min:0',
-            'min_area' => 'nullable|integer|min:0',
-            'city' => 'nullable|string|max:255',
-            'state' => 'nullable|string|max:255',
-            'country' => 'required|string|max:255',
-            'expires_at' => 'nullable|date|after:today',
-        ]);
-
+        $validated = $request->validated();
+        
         $validated['user_id'] = auth()->id();
 
-        // Generar embedding
-        $embedding = $this->generateEmbedding($validated['title'], $validated['description']);
+        // Generar embedding usando el idioma del usuario
+        $userLocale = session('locale', 'es');
+        $title = $validated['title'][$userLocale];
+        $description = $validated['description'][$userLocale];
+        
+        $embedding = $this->generateEmbedding($title, $description);
         if ($embedding) {
             $validated['embedding'] = $embedding;
         }
+
+        // Convertir arrays a JSON para campos i18n
+        $validated['title_i18n'] = json_encode($validated['title']);
+        $validated['description_i18n'] = json_encode($validated['description']);
+        
+        // Mantener campos legacy para compatibilidad
+        $validated['title'] = $title;
+        $validated['description'] = $description;
 
         $propertyRequest = PropertyRequest::create($validated);
 
         return redirect()
             ->route('dashboard.requests.show', $propertyRequest)
-            ->with('success', 'Solicitud creada exitosamente');
+            ->with('success', __('messages.request_created_successfully'));
     }
 
     /**
@@ -115,49 +110,39 @@ class PropertyRequestController extends Controller
     /**
      * Update the specified property request.
      */
-    public function update(Request $request, PropertyRequest $propertyRequest)
+    public function update(UpdatePropertyRequestRequest $request, PropertyRequest $propertyRequest)
     {
-        // Verificar que el usuario sea el dueño
-        if ($propertyRequest->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $validated = $request->validated();
 
-        $validated = $request->validate([
-            'client_name' => 'required|string|max:255',
-            'client_email' => 'required|email|max:255',
-            'client_phone' => 'required|string|max:20',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|min:20',
-            'property_type' => 'required|string',
-            'transaction_type' => 'required|string',
-            'max_budget' => 'required|numeric|min:0',
-            'min_budget' => 'nullable|numeric|min:0|lt:max_budget',
-            'currency' => 'required|string|max:10',
-            'min_bedrooms' => 'nullable|integer|min:0',
-            'min_bathrooms' => 'nullable|integer|min:0',
-            'min_parking_spaces' => 'nullable|integer|min:0',
-            'min_area' => 'nullable|integer|min:0',
-            'city' => 'nullable|string|max:255',
-            'state' => 'nullable|string|max:255',
-            'country' => 'required|string|max:255',
-            'expires_at' => 'nullable|date|after:today',
-            'is_active' => 'boolean',
-        ]);
+        // Obtener idioma del usuario
+        $userLocale = session('locale', 'es');
+        $title = $validated['title'][$userLocale];
+        $description = $validated['description'][$userLocale];
 
-        // Regenerar embedding si cambió la descripción
-        if ($propertyRequest->description !== $validated['description'] || 
-            $propertyRequest->title !== $validated['title']) {
-            $embedding = $this->generateEmbedding($validated['title'], $validated['description']);
+        // Regenerar embedding si cambió el contenido
+        $oldTitle = $propertyRequest->getTranslation('title', $userLocale);
+        $oldDescription = $propertyRequest->getTranslation('description', $userLocale);
+        
+        if ($oldTitle !== $title || $oldDescription !== $description) {
+            $embedding = $this->generateEmbedding($title, $description);
             if ($embedding) {
                 $validated['embedding'] = $embedding;
             }
         }
 
+        // Convertir arrays a JSON
+        $validated['title_i18n'] = json_encode($validated['title']);
+        $validated['description_i18n'] = json_encode($validated['description']);
+        
+        // Mantener campos legacy
+        $validated['title'] = $title;
+        $validated['description'] = $description;
+
         $propertyRequest->update($validated);
 
         return redirect()
             ->route('dashboard.requests.show', $propertyRequest)
-            ->with('success', 'Solicitud actualizada exitosamente');
+            ->with('success', __('messages.request_updated_successfully'));
     }
 
     /**
@@ -174,7 +159,7 @@ class PropertyRequestController extends Controller
 
         return redirect()
             ->route('dashboard.requests.index')
-            ->with('success', 'Solicitud eliminada exitosamente');
+            ->with('success', __('messages.request_deleted_successfully'));
     }
 
     /**
@@ -191,9 +176,11 @@ class PropertyRequestController extends Controller
             'is_active' => !$propertyRequest->is_active
         ]);
 
-        $status = $propertyRequest->is_active ? 'activada' : 'desactivada';
+        $message = $propertyRequest->is_active 
+            ? __('messages.request_activated') 
+            : __('messages.request_deactivated');
 
-        return back()->with('success', "Solicitud {$status} exitosamente");
+        return back()->with('success', $message);
     }
 
     /**
