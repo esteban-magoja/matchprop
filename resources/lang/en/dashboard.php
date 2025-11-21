@@ -322,6 +322,10 @@ return [
         'search_time' => 'in :time seconds',
         'no_results' => 'No requests found',
         'no_results_desc' => 'Try modifying your search or selecting another country.',
-        'result_title' => 'Search Results',
+        'results_title' => 'Search Results',
+        'request_found' => 'request found',
+        'requests_found' => 'requests found',
+        'in_country' => 'in :country',
+        'for_term' => 'for ":term"',
     ],
 ];

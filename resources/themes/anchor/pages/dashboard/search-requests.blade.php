@@ -356,15 +356,15 @@ new class extends Component {
                 <!-- Results Header -->
                 <div class="mb-4">
                     <h2 class="text-xl font-bold text-gray-900">
-                        Resultados de búsqueda
+                        {{ __('dashboard.search_requests.results_title') }}
                     </h2>
                     <p class="text-gray-600 text-sm">
-                        {{ number_format($totalResults) }} {{ $totalResults === 1 ? 'solicitud encontrada' : 'solicitudes encontradas' }}
+                        {{ number_format($totalResults) }} {{ $totalResults === 1 ? __('dashboard.search_requests.request_found') : __('dashboard.search_requests.requests_found') }}
                         @if($selectedCountry)
-                            en {{ $selectedCountry }}
+                            {{ __('dashboard.search_requests.in_country', ['country' => $selectedCountry]) }}
                         @endif
                         @if($searchTerm)
-                            para "{{ $searchTerm }}"
+                            {{ __('dashboard.search_requests.for_term', ['term' => $searchTerm]) }}
                         @endif
                         @if($searchTime > 0)
                             <span class="text-gray-500">

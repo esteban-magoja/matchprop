@@ -322,6 +322,10 @@ return [
         'search_time' => 'en :time segundos',
         'no_results' => 'No se encontraron solicitudes',
         'no_results_desc' => 'Intenta modificar tu búsqueda o seleccionar otro país.',
-        'result_title' => 'Resultados de Búsqueda',
+        'results_title' => 'Resultados de búsqueda',
+        'request_found' => 'solicitud encontrada',
+        'requests_found' => 'solicitudes encontradas',
+        'in_country' => 'en :country',
+        'for_term' => 'para ":term"',
     ],
 ];
