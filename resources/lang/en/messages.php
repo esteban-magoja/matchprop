@@ -225,3 +225,8 @@ return [
         'go_to_dashboard' => 'Go to My Dashboard',
     ],
 ];
+
+    // Dashboard & Navigation
+    'dashboard' => 'Dashboard',
+    'language' => 'Language',
+];

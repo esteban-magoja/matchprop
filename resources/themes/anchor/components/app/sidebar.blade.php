@@ -24,15 +24,15 @@
                 </div>
 
                 <div class="flex flex-col justify-start items-center px-4 space-y-1.5 w-full h-full text-slate-600 dark:text-zinc-400">
-                    <x-app.sidebar-link href="/dashboard" icon="phosphor-house" :active="Request::is('dashboard')">Dashboard</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/property-listings" icon="phosphor-buildings" :active="Request::is('property-listings')">Mis Anuncios</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/property-listings/create" icon="phosphor-buildings" :active="Request::is('property-listings/create')">Publicar Anuncio</x-app.sidebar-link>
-                    <x-app.sidebar-link href="{{ route('dashboard.requests.index') }}" icon="phosphor-user-list" :active="Request::is('dashboard/requests')">Clientes/Solicitudes</x-app.sidebar-link>
-                    <x-app.sidebar-link href="{{ route('dashboard.requests.create') }}" icon="phosphor-file-plus" :active="Request::is('dashboard/requests/create')">Publicar Cliente/Solicitud</x-app.sidebar-link>
-                    <x-app.sidebar-link href="{{ route('dashboard.matches.index') }}" icon="phosphor-equals" :active="Request::is('dashboard/matches')">Matches</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/dashboard/search-requests" icon="phosphor-magnifying-glass" :active="Request::is('dashboard/search-requests')">Buscar Clientes/Solicitudes</x-app.sidebar-link>
-                    <x-app.sidebar-link href="{{ route('dashboard.messages.index') }}" icon="phosphor-envelope" :active="Request::is('dashboard/messages') || Request::is('dashboard/messages/*')">Mensajes</x-app.sidebar-link>
-                    <x-app.sidebar-link href="/search-property-listings" icon="phosphor-magnifying-glass" :active="Request::is('search-property-listings')">Buscar Propiedades</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/dashboard" icon="phosphor-house" :active="Request::is('dashboard')">{{ __('messages.dashboard') }}</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/property-listings" icon="phosphor-buildings" :active="Request::is('property-listings')">{{ __('listings.my_listings') }}</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/property-listings/create" icon="phosphor-buildings" :active="Request::is('property-listings/create')">{{ __('listings.publish_listing') }}</x-app.sidebar-link>
+                    <x-app.sidebar-link href="{{ route('dashboard.requests.index') }}" icon="phosphor-user-list" :active="Request::is('dashboard/requests')">{{ __('dashboard.menu.requests') }}</x-app.sidebar-link>
+                    <x-app.sidebar-link href="{{ route('dashboard.requests.create') }}" icon="phosphor-file-plus" :active="Request::is('dashboard/requests/create')">{{ __('dashboard.menu.publish_request') }}</x-app.sidebar-link>
+                    <x-app.sidebar-link href="{{ route('dashboard.matches.index') }}" icon="phosphor-equals" :active="Request::is('dashboard/matches')">{{ __('dashboard.menu.matches') }}</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/dashboard/search-requests" icon="phosphor-magnifying-glass" :active="Request::is('dashboard/search-requests')">{{ __('dashboard.menu.search_requests') }}</x-app.sidebar-link>
+                    <x-app.sidebar-link href="{{ route('dashboard.messages.index') }}" icon="phosphor-envelope" :active="Request::is('dashboard/messages') || Request::is('dashboard/messages/*')">{{ __('dashboard.menu.messages') }}</x-app.sidebar-link>
+                    <x-app.sidebar-link href="/search-property-listings" icon="phosphor-magnifying-glass" :active="Request::is('search-property-listings')">{{ __('properties.search_properties') }}</x-app.sidebar-link>
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
                 <form method="POST" action="{{ route('locale.switch') }}" class="px-1 py-2">
                     @csrf
                     <label class="block text-xs font-semibold text-zinc-600 dark:text-zinc-400 mb-2">
-                        {{ __('Idioma') }}
+                        {{ __('messages.language') }}
                     </label>
                     <select name="locale" onchange="this.form.submit()" 
                             class="w-full px-3 py-2 text-sm border rounded-lg bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent">

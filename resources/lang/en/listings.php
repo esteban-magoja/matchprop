@@ -58,6 +58,7 @@ return [
     'delete' => 'Delete',
     'view' => 'View',
     'publish' => 'Publish',
+    'publish_listing' => 'Publish Listing',
     'unpublish' => 'Unpublish',
     'feature' => 'Feature',
     'unfeature' => 'Unfeature',

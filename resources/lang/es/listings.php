@@ -58,6 +58,7 @@ return [
     'delete' => 'Eliminar',
     'view' => 'Ver',
     'publish' => 'Publicar',
+    'publish_listing' => 'Publicar Anuncio',
     'unpublish' => 'Despublicar',
     'feature' => 'Destacar',
     'unfeature' => 'Quitar destacado',

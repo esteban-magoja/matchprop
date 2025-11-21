@@ -225,3 +225,8 @@ return [
         'go_to_dashboard' => 'Ir a Mi Panel de Control',
     ],
 ];
+
+    // Dashboard & Navigation
+    'dashboard' => 'Panel de Control',
+    'language' => 'Idioma',
+];

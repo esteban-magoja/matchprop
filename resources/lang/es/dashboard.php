@@ -329,3 +329,13 @@ return [
         'for_term' => 'para ":term"',
     ],
 ];
+
+    // Sidebar Menu
+    'menu' => [
+        'requests' => 'Clientes/Solicitudes',
+        'publish_request' => 'Publicar Cliente/Solicitud',
+        'matches' => 'Matches',
+        'search_requests' => 'Buscar Clientes/Solicitudes',
+        'messages' => 'Mensajes',
+    ],
+];
