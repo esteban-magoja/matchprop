@@ -2,7 +2,7 @@
     <x-app.container class="lg:space-y-6">
         
         <x-app.heading
-            title="Editar Solicitud/Cliente"
+            :title="__('dashboard.request_form.edit_title')"
             description="Actualiza los detalles de tu solicitud o cliente."
             :border="false"
         />
@@ -13,12 +13,12 @@
                 @method('PUT')
 
                 <div class="border-b border-gray-200 pb-6">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Datos del Cliente</h3>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __("dashboard.request_form.client_data") }}</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
                             <label for="client_name" class="block text-sm font-medium text-gray-700 mb-2">
-                                Nombre del Cliente *
+                                {{ __("dashboard.request_form.client_name") }} *
                             </label>
                             <input type="text" 
                                    name="client_name" 
@@ -34,7 +34,7 @@
 
                         <div>
                             <label for="client_email" class="block text-sm font-medium text-gray-700 mb-2">
-                                Email del Cliente *
+                                {{ __("dashboard.request_form.client_email") }} *
                             </label>
                             <input type="email" 
                                    name="client_email" 
@@ -50,7 +50,7 @@
 
                         <div>
                             <label for="client_phone" class="block text-sm font-medium text-gray-700 mb-2">
-                                Teléfono WhatsApp *
+                                {{ __("dashboard.request_form.client_phone") }} *
                             </label>
                             <input type="text" 
                                    name="client_phone" 
