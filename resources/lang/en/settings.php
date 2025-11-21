@@ -109,4 +109,15 @@ return [
         'error' => 'Error',
         'loading' => 'Loading...',
     ],
+
+    // Menu
+    'menu' => [
+        'configuration' => 'Configuration',
+        'profile' => 'Profile',
+        'security' => 'Security',
+        'api' => 'API Keys',
+        'billing' => 'Billing',
+        'subscription' => 'Subscription',
+        'invoices' => 'Invoices',
+    ],
 ];
