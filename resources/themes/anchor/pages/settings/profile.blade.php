@@ -121,8 +121,8 @@
 <x-layouts.app>
 
     <x-app.settings-layout
-        title="Mi cuenta"
-        description="Administra tu avatar, nombre, correo electrónico y más.">
+        title="{{ __('settings.profile.my_account') }}"
+        description="{{ __('settings.profile.my_account_description') }}">
 
 		@volt('settings.profile')
 		<div x-data="{

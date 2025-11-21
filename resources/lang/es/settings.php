@@ -13,6 +13,8 @@ return [
     // Profile
     'profile' => [
         'title' => 'Perfil',
+        'my_account' => 'Mi cuenta',
+        'my_account_description' => 'Administra tu avatar, nombre, correo electrónico y más.',
         'update_profile' => 'Actualizar Perfil',
         'full_name' => 'Nombre completo',
         'email' => 'Correo electrónico',
