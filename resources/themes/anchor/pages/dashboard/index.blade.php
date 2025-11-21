@@ -37,10 +37,10 @@
 					</div>
 					<div class="ml-3">
 						<h3 class="text-sm font-medium text-green-800">
-							¡Email verificado exitosamente!
+							{{ __('dashboard.alerts.email_verified') }}
 						</h3>
 						<p class="mt-1 text-sm text-green-700">
-							Tu dirección de email ha sido verificada correctamente. Ya puedes utilizar todas las funcionalidades de la plataforma.
+							{{ __('dashboard.alerts.email_verified_desc') }}
 						</p>
 					</div>
 					<div class="ml-auto pl-3">
@@ -90,15 +90,15 @@
 					</div>
 					<div class="ml-3 flex-1">
 						<h3 class="text-sm font-medium text-yellow-800">
-							Términos y Condiciones Pendientes
+							{{ __('dashboard.alerts.terms_pending_title') }}
 						</h3>
 						<p class="mt-2 text-sm text-yellow-700">
-							Para poder publicar anuncios en la plataforma, debes aceptar nuestros términos y condiciones.
+							{{ __('dashboard.alerts.terms_pending_desc') }}
 						</p>
 						<div class="mt-4">
 							<a href="{{ route('dashboard.terms') }}" 
 								class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-yellow-800 bg-yellow-100 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-								Ver y Aceptar Términos
+								{{ __('dashboard.alerts.view_accept_terms') }}
 								<svg class="ml-2 -mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
 								</svg>
@@ -116,11 +116,11 @@
 			</div>
 		@endif
 
-		<x-app.alert id="dashboard_alert" class="hidden lg:flex">Panel de control donde puedes gestionar tus anuncios, solicitudes y ver coincidencias.</x-app.alert>
+		<x-app.alert id="dashboard_alert" class="hidden lg:flex">{{ __('dashboard.alerts.welcome_message') }}</x-app.alert>
 
         <x-app.heading
-                title="Panel de Control"
-                description="Gestiona tus propiedades y solicitudes y clientes potenciales desde aquí."
+                :title="__('dashboard.home.title')"
+                :description="__('dashboard.home.description')"
                 :border="false"
             />
 
@@ -129,7 +129,7 @@
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
 				<div class="flex items-center justify-between">
 					<div>
-						<p class="text-md text-gray-600 mb-3">Mis Anuncios</p>
+						<p class="text-md text-gray-600 mb-3">{{ __('dashboard.home.my_listings') }}</p>
 						<p class="text-3xl font-bold text-gray-900">{{ $userListings }}</p>
 					</div>
 					<svg class="w-12 h-12 text-blue-500 mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,15 +137,15 @@
 					</svg>
 				</div>
 				<div class="mt-3 text-blue-600">
-					<p><a href="/property-listings" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Ver anuncios</a></p>
-					<p><a href="/property-listings/create" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">Publicar anuncio</a></p>
+					<p><a href="/property-listings" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">{{ __('dashboard.home.view_listings') }}</a></p>
+					<p><a href="/property-listings/create" class="mt-4 text-sm text-blue-600 hover:text-blue-700 font-medium">{{ __('dashboard.home.publish_listing') }}</a></p>
 				</div>
 			</div>
 
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
 				<div class="flex items-center justify-between">
 					<div>
-						<p class="text-md text-gray-600 mb-3">Clientes</p>
+						<p class="text-md text-gray-600 mb-3">{{ __('dashboard.home.clients') }}</p>
 						<p class="text-3xl font-bold text-gray-900">{{ $userRequests }}</p>
 					</div>
 					<svg class="w-12 h-12 text-green-500 mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,15 +153,15 @@
 					</svg>
 				</div>
 				<div class="mt-3 text-green-600">
-					<p><a href="{{ route('dashboard.requests.index') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Ver solicitudes</a></p>
-					<p><a href="{{ route('dashboard.requests.create') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">Agregar solicitud</a></p>
+					<p><a href="{{ route('dashboard.requests.index') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">{{ __('dashboard.home.view_requests') }}</a></p>
+					<p><a href="{{ route('dashboard.requests.create') }}" class="mt-4 text-sm text-green-600 hover:text-green-700 font-medium">{{ __('dashboard.home.add_request') }}</a></p>
 				</div>
 			</div>
 
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-orange-500">
 				<div class="flex items-center justify-between">
 					<div>
-						<p class="text-md text-gray-600 mb-3">Mensajes</p>
+						<p class="text-md text-gray-600 mb-3">{{ __('dashboard.home.messages') }}</p>
 						<p class="text-3xl font-bold text-gray-900">{{ $unreadMessages }}</p>
 					</div>
 					<svg class="w-12 h-12 text-orange-500 mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,11 +170,11 @@
 				</div>
 				@if($unreadMessages > 0)
 					<div class="mt-3 text-orange-600">
-						<a href="{{ route('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">{{ $unreadMessages }} sin leer</a>
+						<a href="{{ route('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">{{ __('dashboard.home.unread_messages', ['count' => $unreadMessages]) }}</a>
 					</div>
 				@else
 					<div class="mt-3 text-orange-600">
-						<a href="{{ route('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">Ver mensajes</a>
+						<a href="{{ route('dashboard.messages.index') }}" class="mt-4 text-sm text-orange-600 hover:text-orange-700 font-medium">{{ __('dashboard.home.view_messages') }}</a>
 					</div>
 				@endif
 			</div>
@@ -182,7 +182,7 @@
 			<div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
 				<div class="flex items-center justify-between">
 					<div>
-						<p class="text-md text-gray-600 mb-3">Matches</p>
+						<p class="text-md text-gray-600 mb-3">{{ __('dashboard.home.matches') }}</p>
 						<p class="text-3xl font-bold text-gray-900">{{ $totalMatches }}</p>
 					</div>
 					<svg class="w-12 h-12 text-purple-500 mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,7 +190,7 @@
 					</svg>
 				</div>
 				<div class="mt-3 text-purple-600">
-					<a href="{{ route('dashboard.matches.index') }}" class="mt-4 text-sm text-purple-600 hover:text-purple-700 font-medium">Ver matches</a>
+					<a href="{{ route('dashboard.matches.index') }}" class="mt-4 text-sm text-purple-600 hover:text-purple-700 font-medium">{{ __('dashboard.home.view_matches') }}</a>
 				</div>	
 			</div>
 		</div>
@@ -201,10 +201,10 @@
 
 		<div class="mt-5 space-y-5">
 			@subscriber
-				<p>Usted tiene el rol de <strong>{{ auth()->user()->roles()->first()->name }}</strong>.</p>
+				<p>{{ __('dashboard.home.role_message') }} <strong>{{ auth()->user()->roles()->first()->name }}</strong>.</p>
 				<x-app.message-for-subscriber />
 			@else
-				<p>Usted tiene el rol de <strong>{{ auth()->user()->roles()->first()->name }}</strong>.</p>
+				<p>{{ __('dashboard.home.role_message') }} <strong>{{ auth()->user()->roles()->first()->name }}</strong>.</p>
 			@endsubscriber
 			
 			@admin

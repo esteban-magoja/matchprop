@@ -20,8 +20,8 @@
         @endif
         
         <x-app.heading
-            title="Mis Clientes"
-            description="Gestiona tus clientes y solicitudes de búsqueda de propiedades"
+            :title="__('dashboard.requests.title')"
+            :description="__('dashboard.requests.description')"
             :border="false"
         >
             <x-slot name="actions">
@@ -30,7 +30,7 @@
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
-                    Nueva Solicitud
+                    {{ __('dashboard.requests.create') }}
                 </a>
             </x-slot>
         </x-app.heading>
@@ -46,11 +46,11 @@
                 <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                 </svg>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">No tienes solicitudes</h3>
-                <p class="text-gray-600 mb-4">Crea tu primera solicitud para encontrar la propiedad ideal</p>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">{{ __('dashboard.requests.no_requests') }}</h3>
+                <p class="text-gray-600 mb-4">{{ __('dashboard.requests.create_first') }}</p>
                 <a href="{{ route('dashboard.requests.create') }}" 
                    class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
-                    Crear Solicitud
+                    {{ __('dashboard.requests.create_button') }}
                 </a>
             </div>
         @else
@@ -65,16 +65,16 @@
                                     @if($request->is_active)
                                         @if($request->isExpired())
                                             <span class="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded-full">
-                                                Expirada
+                                                {{ __('dashboard.requests.expired') }}
                                             </span>
                                         @else
                                             <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                                                Activa
+                                                {{ __('dashboard.requests.active') }}
                                             </span>
                                         @endif
                                     @else
                                         <span class="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">
-                                            Inactiva
+                                            {{ __('dashboard.requests.inactive') }}
                                         </span>
                                     @endif
                                 </div>
@@ -85,19 +85,19 @@
 
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                             <div>
-                                <span class="text-sm text-gray-500">Tipo</span>
+                                <span class="text-sm text-gray-500">{{ __('dashboard.requests.type') }}</span>
                                 <p class="font-medium text-gray-900 capitalize">{{ $request->property_type }}</p>
                             </div>
                             <div>
-                                <span class="text-sm text-gray-500">Operación</span>
+                                <span class="text-sm text-gray-500">{{ __('dashboard.requests.operation') }}</span>
                                 <p class="font-medium text-gray-900 capitalize">{{ $request->transaction_type }}</p>
                             </div>
                             <div>
-                                <span class="text-sm text-gray-500">Presupuesto</span>
+                                <span class="text-sm text-gray-500">{{ __('dashboard.requests.budget') }}</span>
                                 <p class="font-medium text-gray-900">{{ $request->budget_range }}</p>
                             </div>
                             <div>
-                                <span class="text-sm text-gray-500">Ubicación</span>
+                                <span class="text-sm text-gray-500">{{ __('dashboard.requests.location') }}</span>
                                 <p class="font-medium text-gray-900">{{ $request->city ?? $request->state ?? $request->country }}</p>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                                     <svg class="w-4 h-4 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                     </svg>
-                                    <span class="text-xs font-semibold text-blue-900">Cliente</span>
+                                    <span class="text-xs font-semibold text-blue-900">{{ __('dashboard.requests.client') }}</span>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
                                     @if($request->client_name)
@@ -142,33 +142,33 @@
                         @if($request->min_bedrooms || $request->min_bathrooms || $request->min_area)
                             <div class="flex gap-4 mb-4 text-sm text-gray-600">
                                 @if($request->min_bedrooms)
-                                    <span>Min. {{ $request->min_bedrooms }} hab.</span>
+                                    <span>{{ __('dashboard.requests.min_bedrooms_short', ['count' => $request->min_bedrooms]) }}</span>
                                 @endif
                                 @if($request->min_bathrooms)
-                                    <span>Min. {{ $request->min_bathrooms }} baños</span>
+                                    <span>{{ __('dashboard.requests.min_bathrooms_short', ['count' => $request->min_bathrooms]) }}</span>
                                 @endif
                                 @if($request->min_area)
-                                    <span>Min. {{ $request->min_area }}m²</span>
+                                    <span>{{ __('dashboard.requests.min_area_short', ['area' => $request->min_area]) }}</span>
                                 @endif
                             </div>
                         @endif
 
                         <div class="flex items-center justify-between pt-4 border-t border-gray-200">
                             <div class="text-sm text-gray-500">
-                                Creada {{ $request->created_at->diffForHumans() }}
+                                {{ __('dashboard.requests.created') }} {{ $request->created_at->diffForHumans() }}
                                 @if($request->expires_at)
-                                    • Expira {{ $request->expires_at->format('d/m/Y') }}
+                                    • {{ __('dashboard.requests.expires_at') }} {{ $request->expires_at->format('d/m/Y') }}
                                 @endif
                             </div>
 
                             <div class="flex gap-2">
                                 <a href="{{ route('dashboard.requests.show', $request) }}" 
                                    class="px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors">
-                                    Ver Matches
+                                    {{ __('dashboard.requests.view_matches') }}
                                 </a>
                                 <a href="{{ route('dashboard.requests.edit', $request) }}" 
                                    class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                                    Editar
+                                    {{ __('dashboard.requests.edit') }}
                                 </a>
                                 <form action="{{ route('dashboard.requests.toggle-active', $request) }}" 
                                       method="POST" 
@@ -176,7 +176,7 @@
                                     @csrf
                                     <button type="submit" 
                                             class="px-3 py-2 text-sm font-medium {{ $request->is_active ? 'text-orange-600 hover:bg-orange-50' : 'text-green-600 hover:bg-green-50' }} rounded-lg transition-colors">
-                                        {{ $request->is_active ? 'Desactivar' : 'Activar' }}
+                                        {{ $request->is_active ? __('dashboard.requests.deactivate') : __('dashboard.requests.activate') }}
                                     </button>
                                 </form>
                             </div>

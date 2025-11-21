@@ -49,21 +49,32 @@ return [
     
     // Requests
     'requests' => [
-        'title' => 'My Requests',
-        'create' => 'Create Request',
-        'edit' => 'Edit Request',
+        'title' => 'My Clients',
+        'description' => 'Manage your clients and property search requests',
+        'create' => 'New Request',
+        'edit' => 'Edit',
         'delete' => 'Delete Request',
         'view' => 'View Request',
         'view_matches' => 'View Matches',
-        'no_requests' => 'You have no active requests',
-        'create_first' => 'Create your first request',
+        'no_requests' => 'You have no requests',
+        'create_first' => 'Create your first request to find the ideal property',
+        'create_button' => 'Create Request',
         'active' => 'Active',
         'inactive' => 'Inactive',
         'expired' => 'Expired',
         'activate' => 'Activate',
         'deactivate' => 'Deactivate',
-        'expires_at' => 'Expires at',
+        'expires_at' => 'Expires',
         'never_expires' => 'No expiration',
+        'created' => 'Created',
+        'type' => 'Type',
+        'operation' => 'Operation',
+        'budget' => 'Budget',
+        'location' => 'Location',
+        'client' => 'Client',
+        'min_bedrooms_short' => 'Min. :count bd.',
+        'min_bathrooms_short' => 'Min. :count ba.',
+        'min_area_short' => 'Min. :areasqm',
     ],
     
     // Request form
@@ -155,5 +166,33 @@ return [
         'fill_both' => 'Fill in information in both languages',
         'spanish_required' => 'Spanish (required)',
         'english_optional' => 'English (optional)',
+    ],
+    
+    // Dashboard alerts and messages
+    'alerts' => [
+        'welcome_message' => 'Control panel where you can manage your listings, requests and view matches.',
+        'email_verified' => 'Email verified successfully!',
+        'email_verified_desc' => 'Your email address has been verified correctly. You can now use all platform features.',
+        'terms_pending_title' => 'Terms and Conditions Pending',
+        'terms_pending_desc' => 'To publish listings on the platform, you must accept our terms and conditions.',
+        'view_accept_terms' => 'View and Accept Terms',
+    ],
+    
+    // Titles and descriptions
+    'home' => [
+        'title' => 'Dashboard',
+        'description' => 'Manage your properties, requests and leads from here.',
+        'my_listings' => 'My Listings',
+        'clients' => 'Clients',
+        'messages' => 'Messages',
+        'matches' => 'Matches',
+        'view_listings' => 'View listings',
+        'publish_listing' => 'Publish listing',
+        'view_requests' => 'View requests',
+        'add_request' => 'Add request',
+        'unread_messages' => ':count unread',
+        'view_messages' => 'View messages',
+        'view_matches' => 'View matches',
+        'role_message' => 'You have the role of',
     ],
 ];

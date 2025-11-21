@@ -49,21 +49,32 @@ return [
     
     // Solicitudes (Requests)
     'requests' => [
-        'title' => 'Mis Solicitudes',
-        'create' => 'Crear Solicitud',
-        'edit' => 'Editar Solicitud',
+        'title' => 'Mis Clientes',
+        'description' => 'Gestiona tus clientes y solicitudes de búsqueda de propiedades',
+        'create' => 'Nueva Solicitud',
+        'edit' => 'Editar',
         'delete' => 'Eliminar Solicitud',
         'view' => 'Ver Solicitud',
-        'view_matches' => 'Ver Coincidencias',
-        'no_requests' => 'No tienes solicitudes activas',
-        'create_first' => 'Crea tu primera solicitud',
+        'view_matches' => 'Ver Matches',
+        'no_requests' => 'No tienes solicitudes',
+        'create_first' => 'Crea tu primera solicitud para encontrar la propiedad ideal',
+        'create_button' => 'Crear Solicitud',
         'active' => 'Activa',
         'inactive' => 'Inactiva',
         'expired' => 'Expirada',
         'activate' => 'Activar',
         'deactivate' => 'Desactivar',
-        'expires_at' => 'Expira el',
+        'expires_at' => 'Expira',
         'never_expires' => 'Sin expiración',
+        'created' => 'Creada',
+        'type' => 'Tipo',
+        'operation' => 'Operación',
+        'budget' => 'Presupuesto',
+        'location' => 'Ubicación',
+        'client' => 'Cliente',
+        'min_bedrooms_short' => 'Min. :count hab.',
+        'min_bathrooms_short' => 'Min. :count baños',
+        'min_area_short' => 'Min. :aream²',
     ],
     
     // Formulario de solicitud
@@ -155,5 +166,33 @@ return [
         'fill_both' => 'Completa la información en ambos idiomas',
         'spanish_required' => 'Español (requerido)',
         'english_optional' => 'English (opcional)',
+    ],
+    
+    // Mensajes y alertas del dashboard principal
+    'alerts' => [
+        'welcome_message' => 'Panel de control donde puedes gestionar tus anuncios, solicitudes y ver coincidencias.',
+        'email_verified' => '¡Email verificado exitosamente!',
+        'email_verified_desc' => 'Tu dirección de email ha sido verificada correctamente. Ya puedes utilizar todas las funcionalidades de la plataforma.',
+        'terms_pending_title' => 'Términos y Condiciones Pendientes',
+        'terms_pending_desc' => 'Para poder publicar anuncios en la plataforma, debes aceptar nuestros términos y condiciones.',
+        'view_accept_terms' => 'Ver y Aceptar Términos',
+    ],
+    
+    // Títulos y descripciones
+    'home' => [
+        'title' => 'Panel de Control',
+        'description' => 'Gestiona tus propiedades y solicitudes y clientes potenciales desde aquí.',
+        'my_listings' => 'Mis Anuncios',
+        'clients' => 'Clientes',
+        'messages' => 'Mensajes',
+        'matches' => 'Matches',
+        'view_listings' => 'Ver anuncios',
+        'publish_listing' => 'Publicar anuncio',
+        'view_requests' => 'Ver solicitudes',
+        'add_request' => 'Agregar solicitud',
+        'unread_messages' => ':count sin leer',
+        'view_messages' => 'Ver mensajes',
+        'view_matches' => 'Ver matches',
+        'role_message' => 'Usted tiene el rol de',
     ],
 ];
