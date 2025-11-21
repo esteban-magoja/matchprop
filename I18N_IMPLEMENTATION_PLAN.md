@@ -22,9 +22,9 @@
 |-----|------|--------|-------|-------|
 | 1 | Fundamentos y Configuración | ✅ Completado | 2025-11-19 | Middleware, rutas, helpers, migraciones |
 | 2 | Base de Datos y Modelos | ✅ Completado | 2025-11-20 | Trait Translatable, modelos, factory, seeders. **HÍBRIDO**: Dashboard usa sesión |
-| 3 | Archivos de Traducción | ⏸️ Pendiente | - | - |
-| 4 | Controladores - Search & Detail | ⏸️ Pendiente | - | - |
-| 5 | Controladores - Dashboard CRUD | ⏸️ Pendiente | - | - |
+| 3 | Archivos de Traducción | ✅ Completado | 2025-11-20 | properties.php, messages.php, seo.php, dashboard.php (es/en) |
+| 4 | Controladores - Search & Detail | ✅ Completado | 2025-11-21 | SeoService, hreflang, canonical URLs, PropertySearchController actualizado |
+| 5 | Controladores - Dashboard CRUD | ✅ Completado | 2025-11-21 | Request classes, PropertyRequestController, PropertyMessageController con i18n |
 | 6 | Vistas Blade - Páginas Públicas | ⏸️ Pendiente | - | - |
 | 7 | Vistas Blade - Dashboard | ⏸️ Pendiente | - | - |
 | 8 | Embeddings y Búsqueda IA | ⏸️ Pendiente | - | - |

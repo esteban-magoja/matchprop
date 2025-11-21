@@ -132,18 +132,21 @@ curl -s http://localhost/es/propiedad/1 | grep 'hreflang'
 ---
 
 ## 📅 DÍA 5: Controladores Dashboard
-**Estado:** ⏸️ Pendiente | **Fecha:** _____
+**Estado:** ✅ Completado | **Fecha:** 2025-11-21
 
 ### Morning Setup
-- [ ] Branch: `git checkout -b i18n/day-05-controllers-dashboard`
+- [x] Branch: `git checkout -b i18n/day-05-controllers-dashboard`
 
 ### Tareas Core (6-7 horas)
-- [ ] Crear `app/Http/Requests/StorePropertyListingRequest.php`
-- [ ] Crear `app/Http/Requests/UpdatePropertyListingRequest.php`
-- [ ] Crear `app/Http/Requests/StorePropertyRequestRequest.php`
-- [ ] Actualizar `PropertyRequestController.php` (todos los métodos)
-- [ ] Actualizar `PropertyMatchController.php`
-- [ ] Actualizar `PropertyMessageController.php`
+- [N/A] Crear `app/Http/Requests/StorePropertyListingRequest.php` (gestionado vía Filament - Día 11)
+- [N/A] Crear `app/Http/Requests/UpdatePropertyListingRequest.php` (gestionado vía Filament - Día 11)
+- [x] Crear `app/Http/Requests/StorePropertyRequestRequest.php`
+- [x] Crear `app/Http/Requests/UpdatePropertyRequestRequest.php`
+- [x] Actualizar `PropertyRequestController.php` (todos los métodos)
+- [x] Actualizar `PropertyMatchController.php` (no requiere cambios)
+- [x] Actualizar `PropertyMessageController.php`
+- [x] Crear `lang/{es,en}/attributes.php`
+- [x] Agregar traducciones a `messages.php`
 
 ### Testing
 ```bash
@@ -153,8 +156,8 @@ php artisan serve
 ```
 
 ### End of Day
-- [ ] Commit y push
-- [ ] Actualizar checklist
+- [x] Commit y push
+- [x] Actualizar checklist
 
 ---
 
