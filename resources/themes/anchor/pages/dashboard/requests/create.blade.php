@@ -164,114 +164,114 @@ new class extends Component {
     <x-app.container>
         <x-app.heading
             :title="__('dashboard.request_form.new_title')"
-            description="Describe la propiedad que estás buscando para tu cliente."
+            :description="__('dashboard.request_form.new_description')"
             :border="false"
         />
 
         <div class="mt-6">
             <form wire:submit.prevent="save" class="space-y-6">
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Datos del Cliente</h3>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('dashboard.request_form.client_data') }}</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label for="client_name" class="block text-sm font-medium text-gray-700 mb-2">
-                                Nombre del Cliente *
+                                {{ __('dashboard.request_form.client_name') }} *
                             </label>
                             <input type="text" 
                                    wire:model="client_name" 
                                    id="client_name" 
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="Juan Pérez"
+                                   :placeholder="__('dashboard.request_form.client_name_placeholder')"
                                    required>
                             @error('client_name') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
                             <label for="client_email" class="block text-sm font-medium text-gray-700 mb-2">
-                                Email del Cliente *
+                                {{ __('dashboard.request_form.client_email') }} *
                             </label>
                             <input type="email" 
                                    wire:model="client_email" 
                                    id="client_email" 
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="cliente@email.com"
+                                   :placeholder="__('dashboard.request_form.client_email_placeholder')"
                                    required>
                             @error('client_email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
                             <label for="client_phone" class="block text-sm font-medium text-gray-700 mb-2">
-                                Teléfono WhatsApp *
+                                {{ __('dashboard.request_form.client_phone') }} *
                             </label>
                             <input type="text" 
                                    wire:model="client_phone" 
                                    id="client_phone" 
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="+54 9 351 1234567"
+                                   :placeholder="__('dashboard.request_form.client_phone_placeholder')"
                                    required>
-                            <p class="mt-1 text-sm text-gray-500">Formato: código país + número completo</p>
+                            <p class="mt-1 text-sm text-gray-500">{{ __('dashboard.request_form.phone_format') }}</p>
                             @error('client_phone') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
                     </div>
                 </div>
 
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Información Básica</h3>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('dashboard.request_form.basic_info') }}</h3>
                     
                     <div class="space-y-4">
                         <div>
                             <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
-                                Título de la solicitud *
+                                {{ __('dashboard.request_form.title') }} *
                             </label>
                             <input type="text" 
                                    wire:model="title" 
                                    id="title" 
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="Ej: Busco casa con jardín en Córdoba">
+                                   :placeholder="__('dashboard.request_form.title_placeholder')">
                             @error('title') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
-                                Descripción detallada *
+                                {{ __('dashboard.request_form.description') }} *
                             </label>
                             <textarea wire:model="description" 
                                       id="description" 
                                       rows="5"
                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                      placeholder="Describe con detalle qué tipo de propiedad estás buscando..."></textarea>
-                            <p class="mt-1 text-sm text-gray-500">Mínimo 20 caracteres</p>
+                                      :placeholder="__('dashboard.request_form.description_placeholder')"></textarea>
+                            <p class="mt-1 text-sm text-gray-500">{{ __('dashboard.request_form.min_chars', ['min' => 20]) }}</p>
                             @error('description') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label for="property_type" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Tipo de Propiedad *
+                                    {{ __('dashboard.request_form.property_type') }} *
                                 </label>
                                 <select wire:model="property_type" 
                                         id="property_type" 
                                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                    <option value="casa">Casa</option>
-                                    <option value="departamento">Departamento</option>
-                                    <option value="local">Local Comercial</option>
-                                    <option value="oficina">Oficina</option>
-                                    <option value="terreno">Terreno</option>
-                                    <option value="campo">Campo</option>
-                                    <option value="galpon">Galpón</option>
+                                    <option value="casa">{{ __('properties.types.house') }}</option>
+                                    <option value="departamento">{{ __('properties.types.apartment') }}</option>
+                                    <option value="local">{{ __('properties.types.commercial') }}</option>
+                                    <option value="oficina">{{ __('properties.types.office') }}</option>
+                                    <option value="terreno">{{ __('properties.types.land') }}</option>
+                                    <option value="campo">{{ __('properties.types.farm') }}</option>
+                                    <option value="galpon">{{ __('properties.types.warehouse') }}</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label for="transaction_type" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Tipo de Operación *
+                                    {{ __('dashboard.request_form.transaction_type') }} *
                                 </label>
                                 <select wire:model="transaction_type" 
                                         id="transaction_type" 
                                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                    <option value="venta">Venta</option>
-                                    <option value="alquiler">Alquiler</option>
+                                    <option value="venta">{{ __('properties.transaction_types.sale') }}</option>
+                                    <option value="alquiler">{{ __('properties.transaction_types.rent') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -279,17 +279,17 @@ new class extends Component {
                 </div>
 
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Ubicación</h3>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('dashboard.request_form.location') }}</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label for="country" class="block text-sm font-medium text-gray-700 mb-2">
-                                País *
+                                {{ __('dashboard.request_form.country') }} *
                             </label>
                             <select wire:model.live="selectedCountry" 
                                     id="country" 
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="">Seleccionar país...</option>
+                                <option value="">{{ __('dashboard.request_form.select_country') }}</option>
                                 @foreach($countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
@@ -299,13 +299,13 @@ new class extends Component {
 
                         <div>
                             <label for="state" class="block text-sm font-medium text-gray-700 mb-2">
-                                Provincia/Estado
+                                {{ __('dashboard.request_form.state') }}
                             </label>
                             <select wire:model.live="selectedState" 
                                     id="state" 
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                     {{ empty($states) ? 'disabled' : '' }}>
-                                <option value="">Seleccionar provincia...</option>
+                                <option value="">{{ __('dashboard.request_form.select_state') }}</option>
                                 @foreach($states as $state)
                                     <option value="{{ $state->id }}">{{ $state->name }}</option>
                                 @endforeach
@@ -314,13 +314,13 @@ new class extends Component {
 
                         <div>
                             <label for="city" class="block text-sm font-medium text-gray-700 mb-2">
-                                Ciudad
+                                {{ __('dashboard.request_form.city') }}
                             </label>
                             <select wire:model="city" 
                                     id="city" 
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                     {{ empty($cities) ? 'disabled' : '' }}>
-                                <option value="">Seleccionar ciudad...</option>
+                                <option value="">{{ __('dashboard.request_form.select_city') }}</option>
                                 @foreach($cities as $cityItem)
                                     <option value="{{ $cityItem->name }}">{{ $cityItem->name }}</option>
                                 @endforeach
@@ -331,12 +331,12 @@ new class extends Component {
 
 
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Presupuesto</h3>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('dashboard.request_form.budget') }}</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label for="currency" class="block text-sm font-medium text-gray-700 mb-2">
-                                Moneda *
+                                {{ __('dashboard.request_form.currency') }} *
                             </label>
                             <select wire:model="currency" 
                                     id="currency" 
@@ -349,7 +349,7 @@ new class extends Component {
 
                         <div>
                             <label for="min_budget" class="block text-sm font-medium text-gray-700 mb-2">
-                                Presupuesto Mínimo
+                                {{ __('dashboard.request_form.min_budget') }}
                             </label>
                             <input type="number" 
                                    wire:model="min_budget" 
@@ -362,7 +362,7 @@ new class extends Component {
 
                         <div>
                             <label for="max_budget" class="block text-sm font-medium text-gray-700 mb-2">
-                                Presupuesto Máximo *
+                                {{ __('dashboard.request_form.max_budget') }} *
                             </label>
                             <input type="number" 
                                    wire:model="max_budget" 
@@ -377,12 +377,12 @@ new class extends Component {
 
 
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Características Mínimas (Opcional)</h3>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('dashboard.request_form.min_features') }}</h3>
                     
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div>
                             <label for="min_bedrooms" class="block text-sm font-medium text-gray-700 mb-2">
-                                Habitaciones
+                                {{ __('properties.features.bedrooms') }}
                             </label>
                             <input type="number" 
                                    wire:model="min_bedrooms" 
@@ -393,7 +393,7 @@ new class extends Component {
 
                         <div>
                             <label for="min_bathrooms" class="block text-sm font-medium text-gray-700 mb-2">
-                                Baños
+                                {{ __('properties.features.bathrooms') }}
                             </label>
                             <input type="number" 
                                    wire:model="min_bathrooms" 
@@ -404,7 +404,7 @@ new class extends Component {
 
                         <div>
                             <label for="min_parking_spaces" class="block text-sm font-medium text-gray-700 mb-2">
-                                Cocheras
+                                {{ __('properties.features.parking_spaces') }}
                             </label>
                             <input type="number" 
                                    wire:model="min_parking_spaces" 
@@ -415,7 +415,7 @@ new class extends Component {
 
                         <div>
                             <label for="min_area" class="block text-sm font-medium text-gray-700 mb-2">
-                                Área (m²)
+                                {{ __('properties.features.covered_area_short') }}
                             </label>
                             <input type="number" 
                                    wire:model="min_area" 
@@ -429,14 +429,14 @@ new class extends Component {
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
                     <div>
                         <label for="expires_at" class="block text-sm font-medium text-gray-700 mb-2">
-                            Fecha de Expiración (Opcional)
+                            {{ __('dashboard.request_form.expires_at') }}
                         </label>
                         <input type="date" 
                                wire:model="expires_at" 
                                id="expires_at" 
                                min="{{ now()->addDay()->format('Y-m-d') }}"
                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <p class="mt-1 text-sm text-gray-500">Si no especificas una fecha, la solicitud permanecerá activa indefinidamente.</p>
+                        <p class="mt-1 text-sm text-gray-500">{{ __('dashboard.request_form.expires_at_help') }}</p>
                         @error('expires_at') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                     </div>
                 </div>
@@ -446,12 +446,12 @@ new class extends Component {
                             wire:loading.attr="disabled"
                             wire:target="save"
                             class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-150 disabled:opacity-75 disabled:cursor-wait">
-                        <span wire:loading.remove wire:target="save">Crear Solicitud</span>
-                        <span wire:loading wire:target="save">Guardando...</span>
+                        <span wire:loading.remove wire:target="save">{{ __('dashboard.request_form.create_button') }}</span>
+                        <span wire:loading wire:target="save">{{ __('dashboard.request_form.saving') }}</span>
                     </button>
                     <a href="{{ route('dashboard.requests.index') }}" 
                        class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-lg transition-colors duration-150">
-                        Cancelar
+                        {{ __('dashboard.request_form.cancel') }}
                     </a>
                 </div>
             </form>
