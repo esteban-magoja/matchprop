@@ -2,8 +2,8 @@
     <x-app.container class="lg:space-y-6">
         
         <x-app.heading
-            title="Detalle del Mensaje"
-            description="Consulta recibida"
+            :title="__('dashboard.messages_section.message')"
+            :description="__('dashboard.messages_section.description')"
             :border="false"
         >
             <x-slot name="actions">
@@ -12,7 +12,7 @@
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                     </svg>
-                    Volver a Mensajes
+                    {{ __('dashboard.request_form.back') }}
                 </a>
             </x-slot>
         </x-app.heading>
@@ -37,7 +37,7 @@
                             </div>
                             @if(!$message->is_read)
                                 <span class="px-3 py-1 text-xs font-medium bg-orange-100 text-orange-800 rounded-full">
-                                    Nuevo
+                                    {{ __('dashboard.messages_section.new_badge') }}
                                 </span>
                             @endif
                         </div>
@@ -45,7 +45,7 @@
 
                     <!-- Property Info -->
                     <div class="px-6 py-4 bg-blue-50 border-b border-blue-100">
-                        <h3 class="text-sm font-semibold text-gray-700 mb-2">Propiedad Consultada:</h3>
+                        <h3 class="text-sm font-semibold text-gray-700 mb-2">{{ __('dashboard.messages_section.property') }}:</h3>
                         <div class="flex items-start gap-4">
                             @if($message->propertyListing->primaryImage)
                                 <img src="{{ $message->propertyListing->primaryImage->image_url }}" 
@@ -65,7 +65,7 @@
                                 <a href="{{ route_localized('property.show', ['id' => $message->propertyListing->id, 'slug' => $propertySlug]) }}" 
                                    target="_blank"
                                    class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 mt-2">
-                                    Ver anuncio completo
+                                    {{ __('properties.view_full_listing') }}
                                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                                     </svg>
@@ -76,7 +76,7 @@
 
                     <!-- Message Content -->
                     <div class="px-6 py-6">
-                        <h3 class="text-sm font-semibold text-gray-700 mb-3">Mensaje:</h3>
+                        <h3 class="text-sm font-semibold text-gray-700 mb-3">{{ __('dashboard.messages_section.message') }}:</h3>
                         <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-800 whitespace-pre-line leading-relaxed">{{ $message->message }}</p>
                         </div>
