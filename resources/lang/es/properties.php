@@ -112,4 +112,28 @@ return [
     'message_sent' => 'Mensaje enviado exitosamente',
     'message_error' => 'Error al enviar el mensaje',
     'loading' => 'Cargando...',
+    
+    // Búsqueda avanzada
+    'search_all_listings' => 'Buscar Todos los Anuncios',
+    'no_listings_found' => 'No se encontraron anuncios',
+    'adjust_search_term' => 'Intenta ajustar tu término de búsqueda',
+    'enter_search_term' => 'Ingresa un término arriba para buscar propiedades',
+    'similarity' => 'Similitud',
+    'by' => 'Por',
+    'view_details' => 'Ver Detalles',
+    
+    // Property detail
+    'property_detail' => 'Detalle de Propiedad',
+    'property_type' => 'Tipo de Propiedad',
+    'transaction_type' => 'Tipo de Operación',
+    'condition' => 'Estado',
+    'covered_area_sqm' => 'm² Cubiertos',
+    'land_area_sqm' => 'm² Terreno',
+    'contact_advertiser' => 'Contactar al Anunciante',
+    'whatsapp_message' => 'Hola, estoy interesado en la propiedad: :property',
+    'message_placeholder' => 'Estoy interesado en esta propiedad...',
+    'default_message' => 'Hola, estoy interesado en la propiedad ":property". Me gustaría recibir más información.',
+    'send_inquiry' => 'Enviar Consulta',
+    'your_property' => 'Esta es tu propiedad',
+    'related_properties' => 'Propiedades Relacionadas',
 ];

@@ -112,4 +112,28 @@ return [
     'message_sent' => 'Message sent successfully',
     'message_error' => 'Error sending message',
     'loading' => 'Loading...',
+    
+    // Advanced search
+    'search_all_listings' => 'Search All Listings',
+    'no_listings_found' => 'No listings found',
+    'adjust_search_term' => 'Try adjusting your search term',
+    'enter_search_term' => 'Enter a search term above to find properties',
+    'similarity' => 'Similarity',
+    'by' => 'By',
+    'view_details' => 'View Details',
+    
+    // Property detail
+    'property_detail' => 'Property Detail',
+    'property_type' => 'Property Type',
+    'transaction_type' => 'Transaction Type',
+    'condition' => 'Condition',
+    'covered_area_sqm' => 'Covered Area (sqm)',
+    'land_area_sqm' => 'Land Area (sqm)',
+    'contact_advertiser' => 'Contact Advertiser',
+    'whatsapp_message' => 'Hello, I\'m interested in the property: :property',
+    'message_placeholder' => 'I am interested in this property...',
+    'default_message' => 'Hello, I am interested in the property ":property". I would like to receive more information.',
+    'send_inquiry' => 'Send Inquiry',
+    'your_property' => 'This is your property',
+    'related_properties' => 'Related Properties',
 ];

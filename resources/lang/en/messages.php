@@ -179,4 +179,24 @@ return [
     'auth' => [
         'login_required' => 'You must log in to send a message.',
     ],
+    
+    // Request messages
+    'request_created_successfully' => 'Request created successfully',
+    'request_updated_successfully' => 'Request updated successfully',
+    'request_deleted_successfully' => 'Request deleted successfully',
+    'request_activated' => 'Request activated successfully',
+    'request_deactivated' => 'Request deactivated successfully',
+    
+    // Message messages
+    'message_marked_read' => 'Message marked as read',
+    'message_marked_unread' => 'Message marked as unread',
+    'message_deleted' => 'Message deleted successfully',
+    
+    // Additional UI
+    'clear' => 'Clear',
+    'searching' => 'Searching...',
+    'search_error' => 'Could not perform search',
+    'no_image' => 'No Image',
+    'home' => 'Home',
+    'copy_link' => 'Copy',
 ];
