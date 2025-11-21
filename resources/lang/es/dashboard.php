@@ -212,4 +212,27 @@ return [
         'view_matches' => 'Ver matches',
         'role_message' => 'Usted tiene el rol de',
     ],
+    
+    // Detalle de solicitud (show)
+    'request_detail' => [
+        'title' => 'Detalle de Solicitud',
+        'description' => 'Propiedades que coinciden con tu búsqueda',
+        'client_data' => 'Datos del Cliente',
+        'name' => 'Nombre',
+        'email' => 'Email',
+        'whatsapp' => 'WhatsApp',
+        'property_type' => 'Tipo de Propiedad',
+        'operation' => 'Operación',
+        'budget' => 'Presupuesto',
+        'location' => 'Ubicación',
+        'min_bedrooms' => 'Habitaciones mín.',
+        'min_bathrooms' => 'Baños mín.',
+        'min_parking' => 'Cocheras mín.',
+        'min_area' => 'Área mín.',
+        'matching_properties' => 'Propiedades Coincidentes',
+        'no_matches' => 'No se encontraron coincidencias',
+        'no_matches_desc' => 'Aún no hay propiedades que coincidan con esta solicitud.',
+        'match_score' => ':score% de coincidencia',
+        'contact_owner' => 'Contactar Propietario',
+    ],
 ];

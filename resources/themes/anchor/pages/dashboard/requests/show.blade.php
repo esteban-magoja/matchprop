@@ -2,18 +2,18 @@
     <x-app.container class="lg:space-y-6">
         
         <x-app.heading
-            title="Detalle de Solicitud"
-            description="Propiedades que coinciden con tu búsqueda"
+            :title="__('dashboard.request_detail.title')"
+            :description="__('dashboard.request_detail.description')"
             :border="false"
         >
             <x-slot name="actions">
                 <a href="{{ route('dashboard.requests.edit', $propertyRequest) }}" 
                    class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                    Editar
+                    {{ __('dashboard.requests.edit') }}
                 </a>
                 <a href="{{ route('dashboard.requests.index') }}" 
                    class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors">
-                    Volver
+                    {{ __('dashboard.request_form.back') }}
                 </a>
             </x-slot>
         </x-app.heading>
@@ -33,16 +33,16 @@
                         @if($propertyRequest->is_active)
                             @if($propertyRequest->isExpired())
                                 <span class="px-3 py-1 text-sm font-medium bg-red-100 text-red-800 rounded-full">
-                                    Expirada
+                                    {{ __('dashboard.requests.expired') }}
                                 </span>
                             @else
                                 <span class="px-3 py-1 text-sm font-medium bg-green-100 text-green-800 rounded-full">
-                                    Activa
+                                    {{ __('dashboard.requests.active') }}
                                 </span>
                             @endif
                         @else
                             <span class="px-3 py-1 text-sm font-medium bg-gray-100 text-gray-800 rounded-full">
-                                Inactiva
+                                {{ __('dashboard.requests.inactive') }}
                             </span>
                         @endif
                     </div>
@@ -53,17 +53,17 @@
 
             @if($propertyRequest->client_name || $propertyRequest->client_email || $propertyRequest->client_phone)
                 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                    <h3 class="text-sm font-semibold text-blue-900 mb-3">Datos del Cliente</h3>
+                    <h3 class="text-sm font-semibold text-blue-900 mb-3">{{ __('dashboard.request_detail.client_data') }}</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         @if($propertyRequest->client_name)
                             <div>
-                                <span class="text-sm text-blue-700">Nombre</span>
+                                <span class="text-sm text-blue-700">{{ __('dashboard.request_detail.name') }}</span>
                                 <p class="font-medium text-blue-900">{{ $propertyRequest->client_name }}</p>
                             </div>
                         @endif
                         @if($propertyRequest->client_email)
                             <div>
-                                <span class="text-sm text-blue-700">Email</span>
+                                <span class="text-sm text-blue-700">{{ __('dashboard.request_detail.email') }}</span>
                                 <p class="font-medium text-blue-900">
                                     <a href="mailto:{{ $propertyRequest->client_email }}" class="hover:underline">
                                         {{ $propertyRequest->client_email }}
@@ -73,7 +73,7 @@
                         @endif
                         @if($propertyRequest->client_phone)
                             <div>
-                                <span class="text-sm text-blue-700">WhatsApp</span>
+                                <span class="text-sm text-blue-700">{{ __('dashboard.request_detail.whatsapp') }}</span>
                                 <p class="font-medium text-blue-900">
                                     <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $propertyRequest->client_phone) }}" 
                                        target="_blank" 
@@ -92,19 +92,19 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 pb-4 border-b border-gray-200">
                 <div>
-                    <span class="text-sm text-gray-500">Tipo de Propiedad</span>
+                    <span class="text-sm text-gray-500">{{ __('dashboard.request_detail.property_type') }}</span>
                     <p class="font-medium text-gray-900 capitalize">{{ $propertyRequest->property_type }}</p>
                 </div>
                 <div>
-                    <span class="text-sm text-gray-500">Operación</span>
+                    <span class="text-sm text-gray-500">{{ __('dashboard.request_detail.operation') }}</span>
                     <p class="font-medium text-gray-900 capitalize">{{ $propertyRequest->transaction_type }}</p>
                 </div>
                 <div>
-                    <span class="text-sm text-gray-500">Presupuesto</span>
+                    <span class="text-sm text-gray-500">{{ __('dashboard.request_detail.budget') }}</span>
                     <p class="font-medium text-gray-900">{{ $propertyRequest->budget_range }}</p>
                 </div>
                 <div>
-                    <span class="text-sm text-gray-500">Ubicación</span>
+                    <span class="text-sm text-gray-500">{{ __('dashboard.request_detail.location') }}</span>
                     <p class="font-medium text-gray-900">{{ $propertyRequest->city ?? $propertyRequest->state ?? $propertyRequest->country }}</p>
                 </div>
             </div>
@@ -113,25 +113,25 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @if($propertyRequest->min_bedrooms)
                         <div>
-                            <span class="text-sm text-gray-500">Habitaciones mín.</span>
+                            <span class="text-sm text-gray-500">{{ __('dashboard.request_detail.min_bedrooms') }}</span>
                             <p class="font-medium text-gray-900">{{ $propertyRequest->min_bedrooms }}</p>
                         </div>
                     @endif
                     @if($propertyRequest->min_bathrooms)
                         <div>
-                            <span class="text-sm text-gray-500">Baños mín.</span>
+                            <span class="text-sm text-gray-500">{{ __('dashboard.request_detail.min_bathrooms') }}</span>
                             <p class="font-medium text-gray-900">{{ $propertyRequest->min_bathrooms }}</p>
                         </div>
                     @endif
                     @if($propertyRequest->min_parking_spaces)
                         <div>
-                            <span class="text-sm text-gray-500">Cocheras mín.</span>
+                            <span class="text-sm text-gray-500">{{ __('dashboard.request_detail.min_parking') }}</span>
                             <p class="font-medium text-gray-900">{{ $propertyRequest->min_parking_spaces }}</p>
                         </div>
                     @endif
                     @if($propertyRequest->min_area)
                         <div>
-                            <span class="text-sm text-gray-500">Área mín.</span>
+                            <span class="text-sm text-gray-500">{{ __('dashboard.request_detail.min_area') }}</span>
                             <p class="font-medium text-gray-900">{{ $propertyRequest->min_area }}m²</p>
                         </div>
                     @endif
@@ -142,7 +142,7 @@
         <!-- Matches Section -->
         <div>
             <h3 class="text-xl font-bold text-gray-900 mb-4">
-                Propiedades Coincidentes ({{ $matches->count() }})
+                {{ __('dashboard.request_detail.matching_properties') }} ({{ $matches->count() }})
             </h3>
 
             @if($matches->isEmpty())
@@ -150,8 +150,8 @@
                     <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
-                    <h3 class="text-lg font-medium text-gray-900 mb-2">No hay coincidencias aún</h3>
-                    <p class="text-gray-600">Revisa tu solicitud más tarde, las propiedades se actualizan constantemente.</p>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">{{ __('dashboard.request_detail.no_matches') }}</h3>
+                    <p class="text-gray-600">{{ __('dashboard.request_detail.no_matches_desc') }}</p>
                 </div>
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -212,4 +212,27 @@ return [
         'view_matches' => 'View matches',
         'role_message' => 'You have the role of',
     ],
+    
+    // Request detail (show)
+    'request_detail' => [
+        'title' => 'Request Details',
+        'description' => 'Properties that match your search',
+        'client_data' => 'Client Data',
+        'name' => 'Name',
+        'email' => 'Email',
+        'whatsapp' => 'WhatsApp',
+        'property_type' => 'Property Type',
+        'operation' => 'Operation',
+        'budget' => 'Budget',
+        'location' => 'Location',
+        'min_bedrooms' => 'Min. bedrooms',
+        'min_bathrooms' => 'Min. bathrooms',
+        'min_parking' => 'Min. parking',
+        'min_area' => 'Min. area',
+        'matching_properties' => 'Matching Properties',
+        'no_matches' => 'No matches found',
+        'no_matches_desc' => 'There are no properties that match this request yet.',
+        'match_score' => ':score% match',
+        'contact_owner' => 'Contact Owner',
+    ],
 ];
