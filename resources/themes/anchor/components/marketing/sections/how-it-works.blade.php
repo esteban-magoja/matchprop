@@ -2,7 +2,7 @@
 <section>
     <x-marketing.elements.heading
         level="h2"
-        title="Cómo Funciona"
+        :title="__('messages.home.how_it_works_title')"
         description="" 
     />
     <div class="text-center">
@@ -12,9 +12,9 @@
                     <x-phosphor-number-one class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Publicá o solicitá una propiedad</h3>
+                    <h3 class="font-medium text-zinc-900">{{ __('messages.home.step_1_title') }}</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        El sistema analiza coincidencias automáticas entre tu oferta y la demanda existente.
+                        {{ __('messages.home.step_1_desc') }}
                     </p>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="mt-6">
                     <h3 class="font-medium text-zinc-900">Encontrá tu “Match Inmobiliario”</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        Raxta te conecta con agentes o compradores que buscan exactamente lo que ofrecés.
+                        {{ __('messages.home.step_2_desc') }}
                     </p>
                 </div>
             </div>
@@ -34,9 +34,9 @@
                     <x-phosphor-number-three class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Negociá y compartí comisión con seguridad</h3>
+                    <h3 class="font-medium text-zinc-900">{{ __('messages.home.step_3_title') }}</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        Todo queda documentado dentro de la plataforma, con historial y soporte en cada etapa.
+                        {{ __('messages.home.step_3_desc') }}
                     </p>
                 </div>
             </div>

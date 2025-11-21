@@ -238,4 +238,34 @@ return [
     'view_admin' => 'Ver Panel Admin',
     'leave_impersonation' => 'Dejar suplantación',
     'logout' => 'Salir',
+
+    // Home Page
+    'home' => [
+        // Hero Section
+        'hero_title_1' => 'Encuentra tu',
+        'hero_title_2' => 'Match Inmobiliario',
+        'hero_subtitle' => 'Conectamos con IA, propiedades con compradores y agentes. En Raxta, solo se publican propiedades monitoreadas y auténticas.',
+        'add_property' => 'Agregar Inmueble',
+        
+        // Features Section
+        'features_title' => 'Qué es Raxta',
+        'features_description' => 'Raxta no es solo un portal. Es una red privada de agentes y particulares verificados que colaboran en la venta, compra o alquiler de propiedades mediante un sistema de match inteligente y comisiones compartidas.',
+        'feature_1_title' => 'Control y Monitoreo',
+        'feature_1_desc' => 'Todo lo publicado es revisado para garantizar calidad y exclusividad.',
+        'feature_2_title' => 'Colaboración Real',
+        'feature_2_desc' => 'Los agentes comparten clientes y oportunidades para cerrar operaciones conjuntas.',
+        'feature_3_title' => 'Transparencia',
+        'feature_3_desc' => 'Cada transacción es trazable y sin conflictos de comisión.',
+        'feature_4_title' => 'Alcance Global',
+        'feature_4_desc' => 'Red de profesionales e inversores en constante expansión.',
+        
+        // How It Works Section
+        'how_it_works_title' => 'Cómo Funciona',
+        'step_1_title' => 'Publicá o solicitá una propiedad',
+        'step_1_desc' => 'El sistema analiza coincidencias automáticas entre tu oferta y la demanda existente.',
+        'step_2_title' => 'Encontrá tu "Match Inmobiliario"',
+        'step_2_desc' => 'Raxta te conecta con agentes o compradores que buscan exactamente lo que ofrecés.',
+        'step_3_title' => 'Negociá y compartí comisión con seguridad',
+        'step_3_desc' => 'Todo queda documentado dentro de la plataforma, con historial y soporte en cada etapa.',
+    ],
 ];

@@ -238,4 +238,34 @@ return [
     'view_admin' => 'View Admin',
     'leave_impersonation' => 'Leave impersonation',
     'logout' => 'Logout',
+
+    // Home Page
+    'home' => [
+        // Hero Section
+        'hero_title_1' => 'Find your',
+        'hero_title_2' => 'Real Estate Match',
+        'hero_subtitle' => 'We connect properties with buyers and agents using AI. At Raxta, only monitored and authentic properties are published.',
+        'add_property' => 'Add Property',
+        
+        // Features Section
+        'features_title' => 'What is Raxta',
+        'features_description' => 'Raxta is not just a portal. It is a private network of verified agents and individuals who collaborate in the sale, purchase or rental of properties through an intelligent match system and shared commissions.',
+        'feature_1_title' => 'Control and Monitoring',
+        'feature_1_desc' => 'Everything published is reviewed to guarantee quality and exclusivity.',
+        'feature_2_title' => 'Real Collaboration',
+        'feature_2_desc' => 'Agents share clients and opportunities to close joint operations.',
+        'feature_3_title' => 'Transparency',
+        'feature_3_desc' => 'Every transaction is traceable and without commission conflicts.',
+        'feature_4_title' => 'Global Reach',
+        'feature_4_desc' => 'Network of professionals and investors in constant expansion.',
+        
+        // How It Works Section
+        'how_it_works_title' => 'How It Works',
+        'step_1_title' => 'Post or request a property',
+        'step_1_desc' => 'The system analyzes automatic matches between your offer and existing demand.',
+        'step_2_title' => 'Find your "Real Estate Match"',
+        'step_2_desc' => 'Raxta connects you with agents or buyers looking for exactly what you offer.',
+        'step_3_title' => 'Negotiate and share commission securely',
+        'step_3_desc' => 'Everything is documented within the platform, with history and support at every stage.',
+    ],
 ];
