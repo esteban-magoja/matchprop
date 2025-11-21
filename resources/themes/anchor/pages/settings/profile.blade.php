@@ -216,7 +216,7 @@
 						{{ $this->form }}
 					</div>
 					<div class="w-full pt-6 text-right">
-						<x-button type="submit">Guardar</x-button>
+						<x-button type="submit">{{ __('settings.profile.save') }}</x-button>
 					</div>
 				</div>
 
