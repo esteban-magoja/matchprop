@@ -16,8 +16,8 @@
     <x-app.container>
         <x-card class="lg:p-10">
             <x-app.heading
-                title="Changelog"
-                description="Este es el registro de cambios de su aplicación que los usuarios pueden visitar para mantenerse informados sobre las últimas actualizaciones y mejoras."
+                title="{{ __('messages.changelog') }}"
+                :description="__('messages.changelog_description')"
             />
 
         <div class="max-w-full mt-8 prose-sm prose dark:prose-invert">

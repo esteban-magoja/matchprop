@@ -228,4 +228,6 @@ return [
     // Dashboard & Navigation
     'dashboard' => 'Dashboard',
     'language' => 'Language',
+    'changelog' => 'Changelog',
+    'changelog_description' => 'This is your application changelog that users can visit to stay informed about the latest updates and improvements.',
 ];

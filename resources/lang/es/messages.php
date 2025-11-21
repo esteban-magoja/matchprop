@@ -228,4 +228,6 @@ return [
     // Dashboard & Navigation
     'dashboard' => 'Panel de Control',
     'language' => 'Idioma',
+    'changelog' => 'Registro de Cambios',
+    'changelog_description' => 'Este es el registro de cambios de su aplicación que los usuarios pueden visitar para mantenerse informados sobre las últimas actualizaciones y mejoras.',
 ];
