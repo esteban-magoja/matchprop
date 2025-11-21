@@ -1,19 +1,19 @@
 <section class="w-full">
-    <x-marketing.elements.heading level="h2" title="Historias de Éxito en Raxta" description="Donde la colaboración genera <strong><u>resultados reales.</u></strong>" />
+    <x-marketing.elements.heading level="h2" :title="__('messages.home.testimonials_title')" :description="__('messages.home.testimonials_description')" />
     <ul role="list" class="grid grid-cols-1 gap-12 py-12 mx-auto max-w-2xl lg:max-w-none lg:grid-cols-3">
         <li>
             <figure class="flex flex-col justify-between h-full">
                 <blockquote class="">
                     <p class="text-sm sm:text-base font-medium text-zinc-500">
-                        "Gracias a Raxta, he duplicado mi cartera de clientes en tres meses. La capacidad de encontrar 'matchs' precisos entre mis propiedades y la demanda del mercado es simplemente revolucionaria."
+                        {{ __('messages.home.testimonial_1_quote') }}
                     </p>
                 </blockquote>
                 <figcaption class="flex flex-col justify-between mt-6">
                     <img alt="Laura Gómez" src="https://randomuser.me/api/portraits/women/44.jpg" class="object-cover rounded-full grayscale size-14">
                     <div class="mt-4">
-                        <div class="font-medium text-zinc-900">Laura Gómez</div>
+                        <div class="font-medium text-zinc-900">{{ __('messages.home.testimonial_1_name') }}</div>
                         <div class="mt-1 text-sm text-zinc-500">
-                            Agente Inmobiliario
+                            {{ __('messages.home.testimonial_1_role') }}
                         </div>
                     </div>
                 </figcaption>
@@ -23,15 +23,15 @@
             <figure class="flex flex-col justify-between h-full">
                 <blockquote class="">
                     <p class="text-sm sm:text-base font-medium text-zinc-500">
-                        "Estuve buscando casa por meses sin éxito. Con las alertas de Raxta, encontré la casa de mis sueños en menos de una semana. ¡El proceso fue increíblemente rápido y eficiente!"
+                        {{ __('messages.home.testimonial_2_quote') }}
                     </p>
                 </blockquote>
                 <figcaption class="flex flex-col justify-between mt-6">
                     <img alt="Carlos Fernández" src="https://randomuser.me/api/portraits/men/32.jpg" class="object-cover rounded-full grayscale size-14">
                     <div class="mt-4">
-                        <div class="font-medium text-zinc-900">Carlos Fernández</div>
+                        <div class="font-medium text-zinc-900">{{ __('messages.home.testimonial_2_name') }}</div>
                         <div class="mt-1 text-sm text-zinc-500">
-                            Comprador Satisfecho
+                            {{ __('messages.home.testimonial_2_role') }}
                         </div>
                     </div>
                 </figcaption>
@@ -41,15 +41,15 @@
             <figure class="flex flex-col justify-between h-full">
                 <blockquote class="">
                     <p class="text-sm sm:text-base font-medium text-zinc-500">
-                        "La plataforma me permitió conectar con otros agentes para vender una propiedad complicada. La colaboración fue clave y cerramos el trato en tiempo récord. ¡Totalmente recomendado!"
+                        {{ __('messages.home.testimonial_3_quote') }}
                     </p>
                 </blockquote>
                 <figcaption class="flex flex-col justify-between mt-6">
                     <img alt="Sofía Rodríguez" src="https://randomuser.me/api/portraits/women/47.jpg" class="object-cover rounded-full grayscale size-14">
                     <div class="mt-4">
-                        <div class="font-medium text-zinc-900">Sofía Rodríguez</div>
+                        <div class="font-medium text-zinc-900">{{ __('messages.home.testimonial_3_name') }}</div>
                         <div class="mt-1 text-sm text-zinc-500">
-                            Vendedora y Agente Asociada
+                            {{ __('messages.home.testimonial_3_role') }}
                         </div>
                     </div>
                 </figcaption>

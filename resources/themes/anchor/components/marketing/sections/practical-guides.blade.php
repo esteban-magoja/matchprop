@@ -2,7 +2,7 @@
 <section>
     <x-marketing.elements.heading
         level="h2"
-        title="Guías Prácticas"
+        :title="__('messages.home.guides_title')"
         description="" 
     />
     <div class="text-center max-w-3xl mx-auto">
@@ -12,9 +12,9 @@
                     <x-phosphor-note class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Guía del Comprador</h3>
+                    <h3 class="font-medium text-zinc-900">{{ __('messages.home.buyer_guide_title') }}</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        Cómo aprovechar Raxta para encontrar propiedades exclusivas y seguras.
+                        {{ __('messages.home.buyer_guide_desc') }}
                     </p>
                 </div></a>
             </div>
@@ -23,9 +23,9 @@
                     <x-phosphor-note-pencil class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Guía del Vendedor</h3>
+                    <h3 class="font-medium text-zinc-900">{{ __('messages.home.seller_guide_title') }}</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        Cómo publicar de forma efectiva y cerrar ventas en colaboración con otros agentes.
+                        {{ __('messages.home.seller_guide_desc') }}
                     </p>
                 </div></a>
             </div>

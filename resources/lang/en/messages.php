@@ -267,5 +267,37 @@ return [
         'step_2_desc' => 'Raxta connects you with agents or buyers looking for exactly what you offer.',
         'step_3_title' => 'Negotiate and share commission securely',
         'step_3_desc' => 'Everything is documented within the platform, with history and support at every stage.',
+        
+        // Practical Guides Section
+        'guides_title' => 'Practical Guides',
+        'buyer_guide_title' => 'Buyer\'s Guide',
+        'buyer_guide_desc' => 'How to leverage Raxta to find exclusive and secure properties.',
+        'seller_guide_title' => 'Seller\'s Guide',
+        'seller_guide_desc' => 'How to publish effectively and close sales in collaboration with other agents.',
+        
+        // Smart Tools Section
+        'tools_title' => 'Smart Tools',
+        'tools_description' => 'A platform designed to close more deals with less effort.',
+        'tool_1_title' => 'Smart Search and Matches',
+        'tool_1_desc' => 'Connect your listings with ideal demand.',
+        'tool_2_title' => 'Verified Professional Profiles',
+        'tool_2_desc' => 'Highlight your properties or define your search criteria.',
+        'tool_3_title' => 'Agent Collaboration',
+        'tool_3_desc' => 'Share clients, listings and close joint sales.',
+        'tool_4_title' => 'Real-Time Alerts',
+        'tool_4_desc' => 'Never miss an opportunity.',
+        
+        // Testimonials Section
+        'testimonials_title' => 'Success Stories at Raxta',
+        'testimonials_description' => 'Where collaboration generates <strong><u>real results.</u></strong>',
+        'testimonial_1_quote' => '"Thanks to Raxta, I have doubled my client portfolio in three months. The ability to find precise \'matches\' between my properties and market demand is simply revolutionary."',
+        'testimonial_1_name' => 'Laura Gómez',
+        'testimonial_1_role' => 'Real Estate Agent',
+        'testimonial_2_quote' => '"I was looking for a house for months without success. With Raxta\'s alerts, I found my dream home in less than a week. The process was incredibly fast and efficient!"',
+        'testimonial_2_name' => 'Carlos Fernández',
+        'testimonial_2_role' => 'Satisfied Buyer',
+        'testimonial_3_quote' => '"The platform allowed me to connect with other agents to sell a complicated property. Collaboration was key and we closed the deal in record time. Totally recommended!"',
+        'testimonial_3_name' => 'Sofía Rodríguez',
+        'testimonial_3_role' => 'Seller and Associated Agent',
     ],
 ];

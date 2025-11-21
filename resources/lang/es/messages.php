@@ -267,5 +267,37 @@ return [
         'step_2_desc' => 'Raxta te conecta con agentes o compradores que buscan exactamente lo que ofrecés.',
         'step_3_title' => 'Negociá y compartí comisión con seguridad',
         'step_3_desc' => 'Todo queda documentado dentro de la plataforma, con historial y soporte en cada etapa.',
+        
+        // Practical Guides Section
+        'guides_title' => 'Guías Prácticas',
+        'buyer_guide_title' => 'Guía del Comprador',
+        'buyer_guide_desc' => 'Cómo aprovechar Raxta para encontrar propiedades exclusivas y seguras.',
+        'seller_guide_title' => 'Guía del Vendedor',
+        'seller_guide_desc' => 'Cómo publicar de forma efectiva y cerrar ventas en colaboración con otros agentes.',
+        
+        // Smart Tools Section
+        'tools_title' => 'Herramientas Inteligentes',
+        'tools_description' => 'Una plataforma diseñada para cerrar más operaciones con menos esfuerzo.',
+        'tool_1_title' => 'Búsqueda Inteligente y Matchs',
+        'tool_1_desc' => 'Conecta tus anuncios con la demanda ideal.',
+        'tool_2_title' => 'Perfiles Profesionales Verificados',
+        'tool_2_desc' => 'Resalta tus propiedades o definí tus criterios de búsqueda.',
+        'tool_3_title' => 'Colaboración entre Agentes',
+        'tool_3_desc' => 'Compartí clientes, anuncios y cerrá ventas conjuntas.',
+        'tool_4_title' => 'Alertas en Tiempo Real',
+        'tool_4_desc' => 'Nunca te pierdas una oportunidad.',
+        
+        // Testimonials Section
+        'testimonials_title' => 'Historias de Éxito en Raxta',
+        'testimonials_description' => 'Donde la colaboración genera <strong><u>resultados reales.</u></strong>',
+        'testimonial_1_quote' => '"Gracias a Raxta, he duplicado mi cartera de clientes en tres meses. La capacidad de encontrar \'matchs\' precisos entre mis propiedades y la demanda del mercado es simplemente revolucionaria."',
+        'testimonial_1_name' => 'Laura Gómez',
+        'testimonial_1_role' => 'Agente Inmobiliario',
+        'testimonial_2_quote' => '"Estuve buscando casa por meses sin éxito. Con las alertas de Raxta, encontré la casa de mis sueños en menos de una semana. ¡El proceso fue increíblemente rápido y eficiente!"',
+        'testimonial_2_name' => 'Carlos Fernández',
+        'testimonial_2_role' => 'Comprador Satisfecho',
+        'testimonial_3_quote' => '"La plataforma me permitió conectar con otros agentes para vender una propiedad complicada. La colaboración fue clave y cerramos el trato en tiempo récord. ¡Totalmente recomendado!"',
+        'testimonial_3_name' => 'Sofía Rodríguez',
+        'testimonial_3_role' => 'Vendedora y Agente Asociada',
     ],
 ];
