@@ -335,3 +335,59 @@ The application uses Pest for testing with PHPUnit as the underlying framework. 
 - All caching methods include fallbacks for when cache service is unavailable
 - Service provider guards against cache binding issues during package discovery
 - Compatible with automated testing environments and CI/CD pipelines
+
+---
+
+## Internacionalización (i18n) - Español/Inglés
+
+### Estructura de Archivos
+**⚠️ IMPORTANTE: Wave usa `/resources/lang/` NO `/lang/`**
+
+```
+resources/lang/
+├── es/
+│   ├── properties.php      # Traducciones de propiedades
+│   ├── messages.php         # Mensajes generales
+│   ├── dashboard.php        # Dashboard
+│   ├── seo.php             # Meta tags SEO
+│   ├── attributes.php      # Nombres de atributos para validación
+│   └── validation.php      # Mensajes de validación
+└── en/
+    └── [mismos archivos]
+```
+
+### Documentación i18n
+- **`I18N_INDEX.md`**: Índice principal del proyecto i18n
+- **`I18N_IMPLEMENTATION_PLAN.md`**: Plan detallado de 12 días
+- **`I18N_DAILY_CHECKLIST.md`**: Checklist diario
+- **`I18N_TROUBLESHOOTING.md`**: ⭐ **Solución a problemas comunes**
+- **`I18N_HYBRID_STRATEGY.md`**: Estrategia de rutas (público con locale, dashboard con sesión)
+
+### Scripts de Gestión
+```bash
+./START_I18N.sh           # Iniciar día de trabajo
+./FINISH_I18N_DAY.sh      # Finalizar día (commit + tracking)
+./VIEW_I18N_STATUS.sh     # Ver estado del proyecto
+```
+
+### Problema Común: Traducciones No Se Cargan
+**Síntoma**: Ver `messages.home` o `properties.contact_advertiser` en lugar del texto traducido.
+
+**Solución**:
+```bash
+# 1. Asegurar que archivos estén en resources/lang/
+cp lang/en/*.php resources/lang/en/
+cp lang/es/*.php resources/lang/es/
+
+# 2. Limpiar cache
+php artisan optimize:clear
+
+# 3. Reiniciar servidor
+# Ctrl+C y luego:
+php artisan serve
+```
+
+**Ver más**: `I18N_TROUBLESHOOTING.md`
+
+---
+- Compatible with automated testing environments and CI/CD pipelines
