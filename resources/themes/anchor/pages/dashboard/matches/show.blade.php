@@ -2,14 +2,14 @@
     <x-app.container class="lg:space-y-6">
         
         <x-app.heading
-            title="Matches para: {{ $listing->title }}"
-            description="Solicitudes que coinciden con este anuncio"
+            :title="__('dashboard.matches_section.for_listing') . ': ' . $listing->title"
+            description="{{ __('dashboard.matches_section.description') }}"
             :border="false"
         >
             <x-slot name="actions">
                 <a href="{{ route('dashboard.matches.index') }}" 
                    class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors">
-                    Volver
+                    {{ __('dashboard.request_form.back') }}
                 </a>
             </x-slot>
         </x-app.heading>
@@ -35,19 +35,19 @@
                     
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div>
-                            <span class="text-sm text-gray-500">Tipo</span>
+                            {{ __("dashboard.requests.type") }}
                             <p class="font-medium text-gray-900 capitalize">{{ $listing->property_type }}</p>
                         </div>
                         <div>
-                            <span class="text-sm text-gray-500">Operación</span>
+                            {{ __("dashboard.requests.operation") }}
                             <p class="font-medium text-gray-900 capitalize">{{ $listing->transaction_type }}</p>
                         </div>
                         <div>
-                            <span class="text-sm text-gray-500">Precio</span>
+                            {{ __("properties.price") }}
                             <p class="font-medium text-blue-600">{{ $listing->currency }} {{ number_format($listing->price, 0) }}</p>
                         </div>
                         <div>
-                            <span class="text-sm text-gray-500">Ubicación</span>
+                            {{ __("dashboard.requests.location") }}
                             <p class="font-medium text-gray-900">{{ $listing->city }}, {{ $listing->state }}</p>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
         <!-- Matches Section -->
         <div>
             <h3 class="text-xl font-bold text-gray-900 mb-4">
-                Solicitudes Coincidentes ({{ $matches->count() }})
+                {{ __('dashboard.request_detail.matching_properties') }} ({{ $matches->count() }})
             </h3>
 
             @if($matches->isEmpty())
