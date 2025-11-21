@@ -84,16 +84,17 @@ return [
     // API
     'api' => [
         'title' => 'API',
-        'api_tokens' => 'API Tokens',
-        'create_token' => 'Create New Token',
-        'token_name' => 'Token Name',
-        'token_created' => 'Token created successfully',
+        'api_tokens' => 'Manage your API Keys',
+        'create_token' => 'Create New Key',
+        'token_name' => 'Name',
+        'token_created' => 'Successfully created new API Key',
         'token_revoked' => 'Token revoked successfully',
         'revoke' => 'Revoke',
         'permissions' => 'Permissions',
         'last_used' => 'Last Used',
         'never' => 'Never',
         'created_at' => 'Created',
+        'current_tokens' => 'Current API Keys',
         'documentation' => 'API Documentation',
     ],
 

@@ -84,16 +84,17 @@ return [
     // API
     'api' => [
         'title' => 'API',
-        'api_tokens' => 'Tokens de API',
-        'create_token' => 'Crear Nuevo Token',
-        'token_name' => 'Nombre del Token',
-        'token_created' => 'Token creado exitosamente',
+        'api_tokens' => 'Gestiona tus claves de API',
+        'create_token' => 'Crear Nueva Clave',
+        'token_name' => 'Nombre',
+        'token_created' => 'Clave de API creada exitosamente',
         'token_revoked' => 'Token revocado exitosamente',
         'revoke' => 'Revocar',
         'permissions' => 'Permisos',
         'last_used' => 'Último Uso',
         'never' => 'Nunca',
         'created_at' => 'Creado',
+        'current_tokens' => 'Claves de API Actuales',
         'documentation' => 'Documentación de API',
     ],
 

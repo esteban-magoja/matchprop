@@ -43,7 +43,7 @@
             return $schema
                 ->components([
                     TextInput::make('key')
-                        ->label('Create a new API Key')
+                        ->label(__('settings.api.create_token'))
                         ->required()
                 ])
                 ->statePath('data');
@@ -57,7 +57,7 @@
             $apiKey = auth()->user()->createApiKey(Str::slug($state['key']));
 
             Notification::make()
-                ->title('Successfully created new API Key')
+                ->title(__('settings.api.token_created'))
                 ->success()
                 ->send();
 
@@ -70,8 +70,8 @@
         {
             return $table->query(Wave\ApiKey::query()->where('user_id', auth()->user()->id))
                 ->columns([
-                    TextColumn::make('name'),
-                    TextColumn::make('created_at')->label('Created'),
+                    TextColumn::make('name')->label(__('settings.api.token_name')),
+                    TextColumn::make('created_at')->label(__('settings.api.created_at')),
                 ])
                 ->actions([
                     ViewAction::make()
@@ -108,18 +108,18 @@
     @volt('settings.api') 
         <div class="relative">
             <x-app.settings-layout
-                title="API Keys"
-                description="Manage your API Keys"
+                title="{{ __('settings.api.title') }}"
+                description="{{ __('settings.api.api_tokens') }}"
             >
                 <div class="flex flex-col">
                     <form wire:submit="add" class="w-full max-w-lg">
                         {{ $this->form }}
                         <div class="w-full pt-6 text-right">
-                            <x-button type="submit">Create New Key</x-button>
+                            <x-button type="submit">{{ __('settings.api.create_token') }}</x-button>
                         </div>
                     </form>
                     <hr class="my-8 border-zinc-200">
-                    <x-elements.label class="block text-sm font-medium leading-5 text-zinc-700">Current API Keys</x-elements.label>
+                    <x-elements.label class="block text-sm font-medium leading-5 text-zinc-700">{{ __('settings.api.current_tokens') }}</x-elements.label>
                     <div class="pt-5">
                         {{ $this->table }}
                     </div>
