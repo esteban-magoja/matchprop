@@ -294,7 +294,6 @@ return [
         'saving' => 'Saving...',
         'cancel' => 'Cancel',
     ],
-];
 
     // Search Requests
     'search_requests' => [

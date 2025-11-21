@@ -294,7 +294,6 @@ return [
         'saving' => 'Guardando...',
         'cancel' => 'Cancelar',
     ],
-];
 
     // Search Requests (Buscar Solicitudes)
     'search_requests' => [
