@@ -200,3 +200,29 @@ return [
     'home' => 'Inicio',
     'copy_link' => 'Copiar',
 ];
+
+    // Subscription Welcome
+    'subscription_welcome' => [
+        'title' => '¡Bienvenido a Premium! 🎉',
+        'description' => 'Gracias por unirte a nuestra comunidad premium.',
+        'congratulations' => '¡Felicitaciones por tu suscripción!',
+        'congratulations_message' => 'Has dado un paso importante para potenciar tu búsqueda de propiedades. Ahora tienes acceso a todas las funcionalidades premium de nuestra plataforma.',
+        'benefits_title' => 'Beneficios de tu Cuenta Premium',
+        'benefit_unlimited' => 'Publicación ilimitada de anuncios',
+        'benefit_unlimited_desc' => 'Publica todas las propiedades que necesites sin restricciones',
+        'benefit_requests' => 'Solicitudes de búsqueda premium',
+        'benefit_requests_desc' => 'Crea solicitudes detalladas para encontrar propiedades específicas',
+        'benefit_ai' => 'Matching inteligente con IA',
+        'benefit_ai_desc' => 'Nuestro sistema te conecta automáticamente con solicitudes compatibles',
+        'benefit_notifications' => 'Notificaciones prioritarias',
+        'benefit_notifications_desc' => 'Sé el primero en recibir alertas sobre nuevas oportunidades',
+        'benefit_support' => 'Soporte prioritario',
+        'benefit_support_desc' => 'Atención preferencial para resolver tus consultas',
+        'next_steps' => 'Próximos Pasos',
+        'step_1' => 'Completa tu perfil con todos tus datos de contacto',
+        'step_2' => 'Publica tu primer anuncio de propiedad',
+        'step_3' => 'Crea solicitudes de búsqueda para encontrar propiedades',
+        'step_4' => 'Revisa tu panel de matches para ver oportunidades',
+        'go_to_dashboard' => 'Ir a Mi Panel de Control',
+    ],
+];

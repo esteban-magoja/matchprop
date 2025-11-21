@@ -8,14 +8,14 @@
 	<x-app.container x-data class="space-y-6" x-cloak>
         <div class="w-full">
             <x-app.heading
-                title="¡Bienvenido a Premium! 🎉"
-                description="Gracias por unirte a nuestra comunidad premium."
+                title="{{ __('messages.subscription_welcome.title') }}"
+                description="{{ __('messages.subscription_welcome.description') }}"
             />
             <div class="py-5 space-y-6">
                 <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">¡Felicitaciones por tu suscripción!</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('messages.subscription_welcome.congratulations') }}</h3>
                     <p class="text-gray-700 mb-4">
-                        Has dado un paso importante para potenciar tu búsqueda de propiedades. Ahora tienes acceso a todas las funcionalidades premium de nuestra plataforma.
+                        {{ __('messages.subscription_welcome.congratulations_message') }}
                     </p>
                 </div>
 
@@ -24,38 +24,38 @@
                         <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        Beneficios de tu Cuenta Premium
+                        {{ __('messages.subscription_welcome.benefits_title') }}
                     </h4>
                     <ul class="space-y-3 text-gray-700">
                         <li class="flex items-start">
                             <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            <span><strong>Publicación ilimitada de anuncios</strong> - Publica todas las propiedades que necesites sin restricciones</span>
+                            <span><strong>{{ __('messages.subscription_welcome.benefit_unlimited') }}</strong> - {{ __('messages.subscription_welcome.benefit_unlimited_desc') }}</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            <span><strong>Solicitudes de búsqueda premium</strong> - Crea solicitudes detalladas para encontrar propiedades específicas</span>
+                            <span><strong>{{ __('messages.subscription_welcome.benefit_requests') }}</strong> - {{ __('messages.subscription_welcome.benefit_requests_desc') }}</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            <span><strong>Matching inteligente con IA</strong> - Nuestro sistema te conecta automáticamente con solicitudes compatibles</span>
+                            <span><strong>{{ __('messages.subscription_welcome.benefit_ai') }}</strong> - {{ __('messages.subscription_welcome.benefit_ai_desc') }}</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            <span><strong>Notificaciones prioritarias</strong> - Sé el primero en recibir alertas sobre nuevas oportunidades</span>
+                            <span><strong>{{ __('messages.subscription_welcome.benefit_notifications') }}</strong> - {{ __('messages.subscription_welcome.benefit_notifications_desc') }}</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
-                            <span><strong>Soporte prioritario</strong> - Atención preferencial para resolver tus consultas</span>
+                            <span><strong>{{ __('messages.subscription_welcome.benefit_support') }}</strong> - {{ __('messages.subscription_welcome.benefit_support_desc') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -66,12 +66,12 @@
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                         </svg>
                         <div>
-                            <h4 class="text-lg font-semibold text-blue-900 mb-2">Próximos Pasos</h4>
+                            <h4 class="text-lg font-semibold text-blue-900 mb-2">{{ __('messages.subscription_welcome.next_steps') }}</h4>
                             <ul class="text-sm text-blue-800 space-y-2">
-                                <li>✓ Completa tu perfil con todos tus datos de contacto</li>
-                                <li>✓ Publica tu primer anuncio de propiedad</li>
-                                <li>✓ Crea solicitudes de búsqueda para encontrar propiedades</li>
-                                <li>✓ Revisa tu panel de matches para ver oportunidades</li>
+                                <li>✓ {{ __('messages.subscription_welcome.step_1') }}</li>
+                                <li>✓ {{ __('messages.subscription_welcome.step_2') }}</li>
+                                <li>✓ {{ __('messages.subscription_welcome.step_3') }}</li>
+                                <li>✓ {{ __('messages.subscription_welcome.step_4') }}</li>
                             </ul>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                         </svg>
-                        Ir a Mi Panel de Control
+                        {{ __('messages.subscription_welcome.go_to_dashboard') }}
                     </a>
                 </div>
             </div>

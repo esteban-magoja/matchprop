@@ -200,3 +200,29 @@ return [
     'home' => 'Home',
     'copy_link' => 'Copy',
 ];
+
+    // Subscription Welcome
+    'subscription_welcome' => [
+        'title' => 'Welcome to Premium! 🎉',
+        'description' => 'Thank you for joining our premium community.',
+        'congratulations' => 'Congratulations on your subscription!',
+        'congratulations_message' => 'You\'ve taken an important step to boost your property search. You now have access to all premium features of our platform.',
+        'benefits_title' => 'Your Premium Account Benefits',
+        'benefit_unlimited' => 'Unlimited listing publication',
+        'benefit_unlimited_desc' => 'Post as many properties as you need without restrictions',
+        'benefit_requests' => 'Premium search requests',
+        'benefit_requests_desc' => 'Create detailed requests to find specific properties',
+        'benefit_ai' => 'AI-powered intelligent matching',
+        'benefit_ai_desc' => 'Our system automatically connects you with compatible requests',
+        'benefit_notifications' => 'Priority notifications',
+        'benefit_notifications_desc' => 'Be the first to receive alerts about new opportunities',
+        'benefit_support' => 'Priority support',
+        'benefit_support_desc' => 'Preferential attention to resolve your queries',
+        'next_steps' => 'Next Steps',
+        'step_1' => 'Complete your profile with all your contact details',
+        'step_2' => 'Publish your first property listing',
+        'step_3' => 'Create search requests to find properties',
+        'step_4' => 'Check your matches panel to see opportunities',
+        'go_to_dashboard' => 'Go to My Dashboard',
+    ],
+];
