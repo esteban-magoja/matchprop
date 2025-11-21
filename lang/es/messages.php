@@ -191,4 +191,10 @@ return [
     'message_marked_read' => 'Mensaje marcado como leído',
     'message_marked_unread' => 'Mensaje marcado como no leído',
     'message_deleted' => 'Mensaje eliminado correctamente',
+    
+    // Additional UI
+    'clear' => 'Limpiar',
+    'searching' => 'Buscando...',
+    'search_error' => 'No se pudo realizar la búsqueda',
+    'no_image' => 'Sin Imagen',
 ];

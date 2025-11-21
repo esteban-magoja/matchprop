@@ -112,4 +112,13 @@ return [
     'message_sent' => 'Message sent successfully',
     'message_error' => 'Error sending message',
     'loading' => 'Loading...',
+    
+    // Advanced search
+    'search_all_listings' => 'Search All Listings',
+    'no_listings_found' => 'No listings found',
+    'adjust_search_term' => 'Try adjusting your search term',
+    'enter_search_term' => 'Enter a search term above to find properties',
+    'similarity' => 'Similarity',
+    'by' => 'By',
+    'view_details' => 'View Details',
 ];

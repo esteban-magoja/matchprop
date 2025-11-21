@@ -112,4 +112,13 @@ return [
     'message_sent' => 'Mensaje enviado exitosamente',
     'message_error' => 'Error al enviar el mensaje',
     'loading' => 'Cargando...',
+    
+    // Búsqueda avanzada
+    'search_all_listings' => 'Buscar Todos los Anuncios',
+    'no_listings_found' => 'No se encontraron anuncios',
+    'adjust_search_term' => 'Intenta ajustar tu término de búsqueda',
+    'enter_search_term' => 'Ingresa un término arriba para buscar propiedades',
+    'similarity' => 'Similitud',
+    'by' => 'Por',
+    'view_details' => 'Ver Detalles',
 ];

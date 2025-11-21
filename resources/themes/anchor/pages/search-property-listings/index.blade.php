@@ -46,7 +46,7 @@ new class extends Component {
 
         } catch (\Exception $e) {
             // Handle exceptions, e.g., show an error message
-            $this->dispatch('error', 'Could not perform search: ' . $e->getMessage());
+            $this->dispatch('error', __('messages.search_error') . ': ' . $e->getMessage());
             $this->propertyListings = new Collection();
         }
     }
@@ -63,14 +63,14 @@ new class extends Component {
     @volt('search-property-listings')
     <x-app.container>
         <div class="flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Buscar Todos los Anuncios</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ __('properties.search_all_listings') }}</h1>
         </div>
 
         <div class="mt-6">
             <form wire:submit.prevent="search" class="flex items-center space-x-2">
-                <input type="text" wire:model="searchTerm" placeholder="Buscar anuncios..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200">
+                <input type="text" wire:model="searchTerm" placeholder="{{ __('properties.search_placeholder') }}" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200">
                 <button type="submit" wire:loading.attr="disabled" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-75 disabled:cursor-not-allowed">
-                    <span wire:loading.remove wire:target="search">Buscar</span>
+                    <span wire:loading.remove wire:target="search">{{ __('messages.search') }}</span>
                     <span wire:loading wire:target="search">
                         <svg class="w-5 h-5 mr-2 -ml-1 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -81,7 +81,7 @@ new class extends Component {
                 </button>
                 @if($searchTerm)
                     <button type="button" wire:click="clear" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600">
-                        Clear
+                        {{ __('messages.clear') }}
                     </button>
                 @endif
             </form>
@@ -92,7 +92,7 @@ new class extends Component {
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Buscando...
+            {{ __('messages.searching') }}
         </div>
 
         <div class="mt-6" wire:loading.remove wire:target="search">
@@ -107,15 +107,15 @@ new class extends Component {
                                 <img src="{{ $listing->primaryImage->image_url }}" alt="{{ $listing->title }}" class="object-cover w-full h-48 rounded-t-lg">
                             @else
                                 <div class="flex items-center justify-center w-full h-48 text-gray-400 bg-gray-100 rounded-t-lg dark:bg-gray-700">
-                                    No Image
+                                    {{ __('messages.no_image') }}
                                 </div>
                             @endif
                             <!-- Status Badge -->
                             <div class="absolute top-2 right-2">
                                 @if($listing->is_active)
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ __('messages.active') }}</span>
                                 @else
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Inactive</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">{{ __('messages.inactive') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -131,18 +131,18 @@ new class extends Component {
                             <!-- Price and Type -->
                             <div class="mt-2">
                                 <p class="text-xl font-semibold text-gray-900 dark:text-gray-100">{{ $listing->currency }} {{ number_format($listing->price) }}</p>
-                                <p class="text-sm text-gray-500">{{ ucfirst($listing->property_type) }} / {{ ucfirst($listing->transaction_type) }}</p>
+                                <p class="text-sm text-gray-500">{{ __('properties.types.' . $listing->property_type) }} / {{ __('properties.transaction_types.' . $listing->transaction_type) }}</p>
                             </div>
 
                             <!-- Lister Info -->
                             <div class="mt-2">
-                                <p class="text-sm text-gray-400">By: {{ $listing->user->name }}</p>
+                                <p class="text-sm text-gray-400">{{ __('properties.by') }}: {{ $listing->user->name }}</p>
                             </div>
 
                             <!-- Similarity -->
                             @if($searchTerm)
                                 <div class="mt-2">
-                                    <p class="text-sm font-medium text-green-600 dark:text-green-400">Similarity: {{ number_format($listing->similarity, 2) }}%</p>
+                                    <p class="text-sm font-medium text-green-600 dark:text-green-400">{{ __('properties.similarity') }}: {{ number_format($listing->similarity, 2) }}%</p>
                                 </div>
                             @endif
                         </div>
@@ -150,7 +150,7 @@ new class extends Component {
                         <!-- Card Footer (Actions) -->
                         <div class="p-4 mt-auto bg-gray-50 dark:bg-gray-900/50 rounded-b-lg">
                             <div class="flex justify-end">
-                                <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-900">View Details</a>
+                                <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-900">{{ __('properties.view_details') }}</a>
                             </div>
                         </div>
                     </div>
@@ -161,11 +161,11 @@ new class extends Component {
                             <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
-                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">No se encontraron anuncios</h3>
+                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ __('properties.no_listings_found') }}</h3>
                             @if($searchTerm)
-                                <p class="mt-1 text-sm text-gray-500">Intenta ajustar tu término de búsqueda.</p>
+                                <p class="mt-1 text-sm text-gray-500">{{ __('properties.adjust_search_term') }}</p>
                             @else
-                                <p class="mt-1 text-sm text-gray-500">Ingresa un término arriba para buscar propiedades.</p>
+                                <p class="mt-1 text-sm text-gray-500">{{ __('properties.enter_search_term') }}</p>
                             @endif
                         </div>
                     </div>
