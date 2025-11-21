@@ -39,9 +39,9 @@ DAY_6_DATE=
 DAY_6_HOURS=3
 DAY_6_NOTES="Traducidas completamente search-property-listings y property-detail. Todas las vistas públicas con __() helper. 77 traducciones agregadas."
 
-DAY_7_STATUS=not_started
+DAY_7_STATUS=completed
 DAY_7_DATE=
-DAY_7_HOURS=0
+DAY_7_HOURS=5.5
 DAY_7_NOTES=
 
 DAY_8_STATUS=not_started
