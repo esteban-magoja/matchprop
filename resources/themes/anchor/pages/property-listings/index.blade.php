@@ -129,7 +129,7 @@ new class extends Component {
                 </button>
                 @if($searchTerm)
                     <button type="button" wire:click="clear" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600">
-                        Clear
+                        {{ __('listings.clear') }}
                     </button>
                 @endif
             </form>
@@ -140,7 +140,7 @@ new class extends Component {
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Buscando...
+            {{ __('listings.searching') }}
         </div>
 
         <div class="mt-6" wire:loading.remove wire:target="search">
@@ -155,15 +155,15 @@ new class extends Component {
                                 <img src="{{ $listing->primaryImage->image_url }}" alt="{{ $listing->title }}" class="object-cover w-full h-48 rounded-t-lg">
                             @else
                                 <div class="flex items-center justify-center w-full h-48 text-gray-400 bg-gray-100 rounded-t-lg dark:bg-gray-700">
-                                    No Image
+                                    {{ __('listings.no_image') }}
                                 </div>
                             @endif
                             <!-- Status Badge -->
                             <div class="absolute top-2 right-2">
                                 @if($listing->is_active)
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Activo</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ __('listings.active') }}</span>
                                 @else
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">Inactivo</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">{{ __('listings.inactive') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -185,7 +185,7 @@ new class extends Component {
                             <!-- Similarity -->
                             @if($searchTerm)
                                 <div class="mt-2">
-                                    <p class="text-sm font-medium text-green-600 dark:text-green-400">Coincidencia: {{ number_format($listing->similarity, 2) }}%</p>
+                                    <p class="text-sm font-medium text-green-600 dark:text-green-400">{{ __('listings.match') }}: {{ number_format($listing->similarity, 2) }}%</p>
                                 </div>
                             @endif
                         </div>
@@ -193,8 +193,8 @@ new class extends Component {
                         <!-- Card Footer (Actions) -->
                         <div class="p-4 mt-auto bg-gray-50 dark:bg-gray-900/50 rounded-b-lg">
                             <div class="flex justify-end space-x-2">
-                                <!--<a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-900">Editar</a>-->
-                                <button wire:click="confirmDelete({{ $listing->id }})" class="text-sm font-medium text-red-600 hover:text-red-900">Eliminar</button>
+                                <!--<a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-900">{{ __('listings.edit') }}</a>-->
+                                <button wire:click="confirmDelete({{ $listing->id }})" class="text-sm font-medium text-red-600 hover:text-red-900">{{ __('listings.delete') }}</button>
                             </div>
                         </div>
                     </div>
@@ -205,8 +205,8 @@ new class extends Component {
                             <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                             </svg>
-                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">No se encontraron anuncios.</h3>
-                            <p class="mt-1 text-sm text-gray-500">Comienza creando un nuevo anuncio.</p>
+                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">{{ __('listings.no_listings') }}</h3>
+                            <p class="mt-1 text-sm text-gray-500">{{ __('listings.no_listings_desc') }}</p>
                         </div>
                     </div>
                 @endforelse
@@ -227,21 +227,21 @@ new class extends Component {
                         </div>
                         <div class="mt-3 text-center sm:mt-5">
                             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100" id="modal-title">
-                                Borrar anuncio
+                                {{ __('listings.confirm_delete_title') }}
                             </h3>
                             <div class="mt-2">
                                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                                    Estas seguro de que deseas eliminar "{{ $listingToDelete->title }}"? Esto eliminará permanentemente el anuncio y todas sus imágenes. Esta acción no se puede deshacer.
+                                    {{ __('listings.confirm_delete_message') }}
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                         <button wire:click="delete" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:col-start-2 sm:text-sm">
-                            Eliminar
+                            {{ __('listings.delete') }}
                         </button>
                         <button wire:click="cancelDelete" type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600">
-                            Cancelar
+                            {{ __('listings.cancel') }}
                         </button>
                     </div>
                 </div>
