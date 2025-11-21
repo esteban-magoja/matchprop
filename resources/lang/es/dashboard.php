@@ -149,15 +149,25 @@ return [
     
     // Mensajes
     'messages_section' => [
-        'title' => 'Mensajes',
+        'title' => 'Mis Mensajes',
+        'description' => 'Consultas recibidas sobre tus anuncios',
         'inbox' => 'Bandeja de Entrada',
         'sent' => 'Enviados',
         'no_messages' => 'No tienes mensajes',
+        'no_messages_desc' => 'Cuando recibas consultas sobre tus propiedades, aparecerán aquí',
+        'view_listings' => 'Ver Mis Anuncios',
+        'unread_count' => ':count sin leer',
+        'new_badge' => 'Nuevo',
         'new_message' => 'Nuevo Mensaje',
         'reply' => 'Responder',
         'delete' => 'Eliminar',
         'mark_read' => 'Marcar como Leído',
         'mark_unread' => 'Marcar como No Leído',
+        'property' => 'Propiedad',
+        'from' => 'De',
+        'received' => 'Recibido',
+        'message' => 'Mensaje',
+        'phone' => 'Teléfono',
     ],
     
     // Acciones comunes

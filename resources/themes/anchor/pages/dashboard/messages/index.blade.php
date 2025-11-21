@@ -2,8 +2,8 @@
     <x-app.container class="lg:space-y-6">
         
         <x-app.heading
-            title="Mis Mensajes"
-            description="Consultas recibidas sobre tus anuncios"
+            :title="__('dashboard.messages_section.title')"
+            :description="__('dashboard.messages_section.description')"
             :border="false"
         >
             <x-slot name="actions">
@@ -13,7 +13,7 @@
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                         </svg>
-                        {{ $unreadCount }} sin leer
+                        {{ __('dashboard.messages_section.unread_count', ['count' => $unreadCount]) }}
                     </div>
                 @endif
             </x-slot>
@@ -30,11 +30,11 @@
                 <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <h3 class="text-lg font-medium text-gray-900 mb-2">No tienes mensajes</h3>
-                <p class="text-gray-600 mb-4">Cuando recibas consultas sobre tus propiedades, aparecerán aquí</p>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">{{ __('dashboard.messages_section.no_messages') }}</h3>
+                <p class="text-gray-600 mb-4">{{ __('dashboard.messages_section.no_messages_desc') }}</p>
                 <a href="/property-listings" 
                    class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
-                    Ver Mis Anuncios
+                    {{ __('dashboard.messages_section.view_listings') }}
                 </a>
             </div>
         @else
@@ -69,7 +69,7 @@
                                                 <h3 class="text-base font-semibold text-gray-900">{{ $message->name }}</h3>
                                                 @if(!$message->is_read)
                                                     <span class="px-2 py-0.5 text-xs font-medium bg-orange-100 text-orange-800 rounded-full">
-                                                        Nuevo
+                                                        {{ __('dashboard.messages_section.new_badge') }}
                                                     </span>
                                                 @endif
                                             </div>

@@ -149,15 +149,25 @@ return [
     
     // Messages
     'messages_section' => [
-        'title' => 'Messages',
+        'title' => 'My Messages',
+        'description' => 'Inquiries received about your listings',
         'inbox' => 'Inbox',
         'sent' => 'Sent',
         'no_messages' => 'You have no messages',
+        'no_messages_desc' => 'When you receive inquiries about your properties, they will appear here',
+        'view_listings' => 'View My Listings',
+        'unread_count' => ':count unread',
+        'new_badge' => 'New',
         'new_message' => 'New Message',
         'reply' => 'Reply',
         'delete' => 'Delete',
         'mark_read' => 'Mark as Read',
         'mark_unread' => 'Mark as Unread',
+        'property' => 'Property',
+        'from' => 'From',
+        'received' => 'Received',
+        'message' => 'Message',
+        'phone' => 'Phone',
     ],
     
     // Common actions
