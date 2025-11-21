@@ -45,7 +45,7 @@
                     @csrf
                     <button onclick="event.preventDefault(); this.closest('form').submit();" class="relative w-full flex cursor-pointer hover:text-zinc-700 dark:hover:text-zinc-100 select-none hover:bg-zinc-200 dark:hover:bg-zinc-700/60 items-center rounded-lg p-2 text-sm outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
                         <x-phosphor-sign-out-duotone class="flex-shrink-0 w-auto h-5 ml-1 mr-2" />
-                        <span>{{ __('auth.logout') }}</span>
+                        <span>{{ __('messages.logout') }}</span>
                     </button>
                 </form>
                 @impersonating

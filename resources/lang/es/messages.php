@@ -237,4 +237,5 @@ return [
     'membership' => 'Membresía',
     'view_admin' => 'Ver Panel Admin',
     'leave_impersonation' => 'Dejar suplantación',
+    'logout' => 'Salir',
 ];

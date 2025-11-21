@@ -237,4 +237,5 @@ return [
     'membership' => 'Membership',
     'view_admin' => 'View Admin',
     'leave_impersonation' => 'Leave impersonation',
+    'logout' => 'Logout',
 ];
