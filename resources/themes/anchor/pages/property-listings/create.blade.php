@@ -372,8 +372,8 @@ new class extends Component {
                             <div class="sm:col-span-3">
                                 <label for="transaction_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('listings.form.transaction_type') }}</label>
                                 <select wire:model="transaction_type" id="transaction_type" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="venta">{{ __('properties.transaction.sale') }}</option>
-                                    <option value="alquiler">{{ __('properties.transaction.rent') }}</option>
+                                    <option value="venta">{{ __('properties.transaction_types.sale') }}</option>
+                                    <option value="alquiler">{{ __('properties.transaction_types.rent') }}</option>
                                 </select>
                             </div>
 
