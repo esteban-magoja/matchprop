@@ -12,9 +12,23 @@ return [
 
     // Main titles
     'my_listings' => 'My Listings',
-    'create_listing' => 'New Listing',
+    'create_listing' => 'Create New Listing',
     'edit_listing' => 'Edit Listing',
     'listing_details' => 'Listing Details',
+    
+    // Form steps
+    'step_1_description' => 'Step 1: Complete the form below to add a new listing.',
+    'step_2_description' => 'Step 2: Upload images for your listing.',
+    
+    // Premium
+    'premium_required' => 'Premium Membership Required',
+    'premium_description' => 'To publish property listings you need a premium membership. Memberships allow you to:',
+    'premium_benefit_unlimited' => 'Publish unlimited property listings',
+    'premium_benefit_notifications' => 'Receive notifications for matching requests',
+    'premium_benefit_stats' => 'Access to advanced statistics',
+    'premium_benefit_support' => 'Priority support',
+    'get_premium' => 'Get Premium Membership',
+    'already_premium' => 'I\'m already a premium member on BienesOnline',
     
     // Search
     'search' => 'Search',
@@ -23,6 +37,14 @@ return [
     'clear' => 'Clear',
     'no_results' => 'No results found',
     'match' => 'Match',
+    
+    // Selectors
+    'select_country' => 'Select a country',
+    'select_state' => 'Select',
+    'select_city' => 'Select',
+    'search_location' => 'Search location',
+    'map_location' => 'Location on Map',
+    'select_country_for_map' => 'Please select a country to show the map.',
     
     // Status
     'active' => 'Active',
@@ -38,9 +60,19 @@ return [
     'publish' => 'Publish',
     'unpublish' => 'Unpublish',
     'feature' => 'Feature',
-    'unfeature' => 'Remove featured',
+    'unfeature' => 'Unfeature',
+    'back' => 'Back',
+    'next_add_images' => 'Next: Add Images',
+    'save_images_finish' => 'Save Images and Finish',
+    'saving' => 'Saving...',
     
-    // Empty states
+    // Images
+    'upload_images' => 'Upload Images',
+    'add_property_images' => 'Add Property Images',
+    'processing_images' => 'Processing and uploading images...',
+    'primary_image' => 'Primary',
+    
+    // Empty messages
     'no_listings' => 'You have no listings',
     'no_listings_desc' => 'Start by publishing your first property',
     'no_image' => 'No Image',
@@ -51,7 +83,7 @@ return [
     'cancel' => 'Cancel',
     'confirm' => 'Confirm',
     
-    // Create/Edit form
+    // Create/edit form
     'form' => [
         // Basic info
         'basic_info' => 'Basic Information',
@@ -59,6 +91,7 @@ return [
         'title_placeholder' => 'E.g: Modern house with garden',
         'description' => 'Description',
         'description_placeholder' => 'Describe the property in detail...',
+        'conditions' => 'Conditions',
         
         // Type and operation
         'property_type' => 'Property Type',
@@ -79,16 +112,16 @@ return [
         'address' => 'Address',
         'postal_code' => 'Postal Code',
         'latitude' => 'Latitude',
-        'longitude' => 'Longitude',
+        'longitude' => 'Longitud',
         
         // Features
         'features' => 'Features',
         'bedrooms' => 'Bedrooms',
         'bathrooms' => 'Bathrooms',
         'parking_spaces' => 'Parking Spaces',
-        'covered_area' => 'Covered Area (sqm)',
-        'total_area' => 'Total Area (sqm)',
-        'land_area' => 'Land Area (sqm)',
+        'covered_area' => 'Covered Area (m²)',
+        'total_area' => 'Total Area (m²)',
+        'land_area' => 'Land Area (m²)',
         'year_built' => 'Year Built',
         
         // Images
@@ -108,7 +141,7 @@ return [
         'english' => 'English',
         'spanish_required' => 'Spanish (required)',
         'english_optional' => 'English (optional)',
-        'fill_both_languages' => 'Fill in information in both languages',
+        'fill_both_languages' => 'Fill information in both languages',
         
         // Buttons
         'save' => 'Save Listing',
@@ -117,7 +150,7 @@ return [
         'back' => 'Back',
     ],
     
-    // Success/Error messages
+    // Success/error messages
     'created' => 'Listing created successfully',
     'updated' => 'Listing updated successfully',
     'deleted' => 'Listing deleted successfully',
@@ -128,5 +161,5 @@ return [
     'error_updating' => 'Error updating listing',
     'error_deleting' => 'Error deleting listing',
     'not_found' => 'Listing not found',
-    'unauthorized' => 'You are not authorized to perform this action',
+    'unauthorized' => 'You don\'t have permission to perform this action',
 ];

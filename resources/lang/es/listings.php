@@ -12,9 +12,23 @@ return [
 
     // Títulos principales
     'my_listings' => 'Mis Anuncios',
-    'create_listing' => 'Nuevo Anuncio',
+    'create_listing' => 'Publicar Nuevo Anuncio',
     'edit_listing' => 'Editar Anuncio',
-    'listing_details' => 'Detalles del Anuncio',
+    'listing_details' => 'Detalle del Anuncio',
+    
+    // Pasos del formulario
+    'step_1_description' => 'Paso 1: Completa el formulario a continuación para agregar un nuevo anuncio.',
+    'step_2_description' => 'Paso 2: Sube imágenes para tu anuncio.',
+    
+    // Premium
+    'premium_required' => 'Membresía Premium Requerida',
+    'premium_description' => 'Para publicar anuncios de propiedades necesitas una membresía premium. Las membresías te permiten:',
+    'premium_benefit_unlimited' => 'Publicar anuncios ilimitados de propiedades',
+    'premium_benefit_notifications' => 'Recibir notificaciones de solicitudes compatibles',
+    'premium_benefit_stats' => 'Acceso a estadísticas avanzadas',
+    'premium_benefit_support' => 'Soporte prioritario',
+    'get_premium' => 'Obtener Membresía Premium',
+    'already_premium' => 'Ya soy socio premium en BienesOnline',
     
     // Búsqueda
     'search' => 'Buscar',
@@ -23,6 +37,14 @@ return [
     'clear' => 'Limpiar',
     'no_results' => 'No se encontraron resultados',
     'match' => 'Coincidencia',
+    
+    // Selectores
+    'select_country' => 'Selecciona un país',
+    'select_state' => 'Seleccionar',
+    'select_city' => 'Seleccionar',
+    'search_location' => 'Buscar ubicación',
+    'map_location' => 'Ubicación en el Mapa',
+    'select_country_for_map' => 'Por favor selecciona un país para mostrar el mapa.',
     
     // Estados
     'active' => 'Activo',
@@ -39,6 +61,16 @@ return [
     'unpublish' => 'Despublicar',
     'feature' => 'Destacar',
     'unfeature' => 'Quitar destacado',
+    'back' => 'Volver',
+    'next_add_images' => 'Siguiente: Agregar Imágenes',
+    'save_images_finish' => 'Guardar Imágenes y Finalizar',
+    'saving' => 'Guardando...',
+    
+    // Imágenes
+    'upload_images' => 'Subir Imágenes',
+    'add_property_images' => 'Agregar Imágenes de la Propiedad',
+    'processing_images' => 'Procesando y subiendo imágenes...',
+    'primary_image' => 'Principal',
     
     // Mensajes vacíos
     'no_listings' => 'No tienes anuncios',
@@ -59,6 +91,7 @@ return [
         'title_placeholder' => 'Ej: Casa moderna con jardín',
         'description' => 'Descripción',
         'description_placeholder' => 'Describe la propiedad en detalle...',
+        'conditions' => 'Condiciones',
         
         // Tipo y operación
         'property_type' => 'Tipo de Propiedad',
