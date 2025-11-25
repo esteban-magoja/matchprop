@@ -176,13 +176,13 @@ new class extends Component {
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Publica tu Solicitud de Búsqueda
+                    {{ __('dashboard.post_request.hero_title') }}
                 </h1>
                 <p class="text-xl text-gray-700 mb-4 max-w-3xl mx-auto">
-                    Describe la propiedad que estás buscando y te ayudaremos a encontrarla
+                    {{ __('dashboard.post_request.hero_subtitle') }}
                 </p>
                 <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-                    Nuestro sistema con IA te notificará cuando encontremos propiedades que coincidan con tus criterios
+                    {{ __('dashboard.post_request.hero_desc') }}
                 </p>
             </div>
         </div>
@@ -199,35 +199,35 @@ new class extends Component {
                         </svg>
                     </div>
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                        Inicia Sesión para Continuar
+                        {{ __('dashboard.post_request.login_title') }}
                     </h2>
                     <p class="text-lg text-gray-600 mb-8">
-                        Para publicar una solicitud de búsqueda de propiedades necesitas tener una cuenta y estar logueado.
+                        {{ __('dashboard.post_request.login_desc') }}
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                             </svg>
-                            Iniciar Sesión
+                            {{ __('dashboard.post_request.login_button') }}
                         </a>
                         <a href="{{ route('signup') }}" class="inline-flex items-center justify-center px-8 py-3 border-2 border-blue-600 text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 transition-colors duration-200">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                             </svg>
-                            Crear Cuenta
+                            {{ __('dashboard.post_request.signup_button') }}
                         </a>
                     </div>
                     <div class="mt-8 pt-8 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">¿Por qué crear una solicitud?</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ __('dashboard.post_request.why_create') }}</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                             <div class="flex items-start">
                                 <svg class="h-6 w-6 text-green-500 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                                 <div>
-                                    <h4 class="font-medium text-gray-900">Búsqueda Automática</h4>
-                                    <p class="text-sm text-gray-600 mt-1">El sistema buscará propiedades que coincidan con tus criterios</p>
+                                    <h4 class="font-medium text-gray-900">{{ __('dashboard.post_request.feature_auto_search') }}</h4>
+                                    <p class="text-sm text-gray-600 mt-1">{{ __('dashboard.post_request.feature_auto_search_desc') }}</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -235,8 +235,8 @@ new class extends Component {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                                 <div>
-                                    <h4 class="font-medium text-gray-900">Notificaciones</h4>
-                                    <p class="text-sm text-gray-600 mt-1">Te avisaremos cuando encontremos opciones relevantes</p>
+                                    <h4 class="font-medium text-gray-900">{{ __('dashboard.post_request.feature_notifications') }}</h4>
+                                    <p class="text-sm text-gray-600 mt-1">{{ __('dashboard.post_request.feature_notifications_desc') }}</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -244,8 +244,8 @@ new class extends Component {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                                 <div>
-                                    <h4 class="font-medium text-gray-900">IA Inteligente</h4>
-                                    <p class="text-sm text-gray-600 mt-1">Matching inteligente con tecnología de IA</p>
+                                    <h4 class="font-medium text-gray-900">{{ __('dashboard.post_request.feature_ai') }}</h4>
+                                    <p class="text-sm text-gray-600 mt-1">{{ __('dashboard.post_request.feature_ai_desc') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -278,48 +278,48 @@ new class extends Component {
                             <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                             </svg>
-                            Datos de Contacto
+                            {{ __('dashboard.post_request.section_contact') }}
                         </h3>
-                        <p class="text-sm text-gray-500 mb-6">Ingresa tus datos</p>
+                        <p class="text-sm text-gray-500 mb-6">{{ __('dashboard.post_request.section_contact_desc') }}</p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div>
                                 <label for="client_name" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Nombre completo <span class="text-red-500">*</span>
+                                    {{ __('dashboard.request_form.client_name') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" 
                                        wire:model="client_name" 
                                        id="client_name" 
                                        class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                       placeholder="Juan Pérez"
+                                       placeholder="{{ __('dashboard.request_form.client_name_placeholder') }}"
                                        required>
                                 @error('client_name') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label for="client_email" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Email <span class="text-red-500">*</span>
+                                    {{ __('dashboard.request_form.client_email') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="email" 
                                        wire:model="client_email" 
                                        id="client_email" 
                                        class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                       placeholder="cliente@email.com"
+                                       placeholder="{{ __('dashboard.request_form.client_email_placeholder') }}"
                                        required>
                                 @error('client_email') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label for="client_phone" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Teléfono WhatsApp <span class="text-red-500">*</span>
+                                    {{ __('dashboard.request_form.client_phone') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" 
                                        wire:model="client_phone" 
                                        id="client_phone" 
                                        class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                       placeholder="+54 9 351 1234567"
+                                       placeholder="{{ __('dashboard.request_form.client_phone_placeholder') }}"
                                        required>
-                                <p class="mt-2 text-sm text-gray-500">Formato: código país + número completo</p>
+                                <p class="mt-2 text-sm text-gray-500">{{ __('dashboard.request_form.phone_format') }}</p>
                                 @error('client_phone') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
                         </div>
@@ -331,62 +331,62 @@ new class extends Component {
                             <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            Información Básica
+                            {{ __('dashboard.post_request.section_basic') }}
                         </h3>
                         
                         <div class="space-y-6">
                             <div>
                                 <label for="title" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Título de la solicitud <span class="text-red-500">*</span>
+                                    {{ __('dashboard.request_form.title_label') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" 
                                        wire:model="title" 
                                        id="title" 
                                        class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                       placeholder="Ej: Busco casa con jardín en Córdoba">
+                                       placeholder="{{ __('dashboard.request_form.title_placeholder') }}">
                                 @error('title') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Descripción detallada <span class="text-red-500">*</span>
+                                    {{ __('dashboard.request_form.description_label') }} <span class="text-red-500">*</span>
                                 </label>
                                 <textarea wire:model="description" 
                                           id="description" 
                                           rows="5"
                                           class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                                          placeholder="Describe con detalle qué tipo de propiedad estás buscando, zona preferida, características importantes, etc."></textarea>
-                                <p class="mt-2 text-sm text-gray-500">Mínimo 20 caracteres. Sé lo más específico posible para obtener mejores resultados.</p>
+                                          placeholder="{{ __('dashboard.request_form.description_placeholder') }}"></textarea>
+                                <p class="mt-2 text-sm text-gray-500">{{ __('dashboard.request_form.description_hint') }}</p>
                                 @error('description') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label for="property_type" class="block text-sm font-semibold text-gray-700 mb-2">
-                                        Tipo de Propiedad <span class="text-red-500">*</span>
+                                        {{ __('dashboard.request_form.property_type') }} <span class="text-red-500">*</span>
                                     </label>
                                     <select wire:model="property_type" 
                                             id="property_type" 
                                             class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
-                                        <option value="casa">Casa</option>
-                                        <option value="departamento">Departamento</option>
-                                        <option value="local">Local Comercial</option>
-                                        <option value="oficina">Oficina</option>
-                                        <option value="terreno">Terreno</option>
-                                        <option value="campo">Campo</option>
-                                        <option value="galpon">Galpón</option>
+                                        <option value="casa">{{ __('properties.types.house') }}</option>
+                                        <option value="departamento">{{ __('properties.types.apartment') }}</option>
+                                        <option value="local">{{ __('properties.types.commercial') }}</option>
+                                        <option value="oficina">{{ __('properties.types.office') }}</option>
+                                        <option value="terreno">{{ __('properties.types.land') }}</option>
+                                        <option value="campo">{{ __('properties.types.field') }}</option>
+                                        <option value="galpon">{{ __('properties.types.warehouse') }}</option>
                                     </select>
                                 </div>
 
                                 <div>
                                     <label for="transaction_type" class="block text-sm font-semibold text-gray-700 mb-2">
-                                        Tipo de Operación <span class="text-red-500">*</span>
+                                        {{ __('dashboard.request_form.transaction_type') }} <span class="text-red-500">*</span>
                                     </label>
                                     <select wire:model="transaction_type" 
                                             id="transaction_type" 
                                             class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
-                                        <option value="venta">Venta</option>
-                                        <option value="alquiler">Alquiler</option>
+                                        <option value="venta">{{ __('properties.transaction_types.sale') }}</option>
+                                        <option value="alquiler">{{ __('properties.transaction_types.rent') }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -400,18 +400,18 @@ new class extends Component {
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
-                            Ubicación
+                            {{ __('dashboard.post_request.section_location') }}
                         </h3>
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div>
                                 <label for="country" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    País <span class="text-red-500">*</span>
+                                    {{ __('dashboard.request_form.country') }} <span class="text-red-500">*</span>
                                 </label>
                                 <select wire:model.live="selectedCountry" 
                                         id="country" 
                                         class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
-                                    <option value="">Seleccionar país...</option>
+                                    <option value="">{{ __('dashboard.request_form.select_country') }}</option>
                                     @foreach($countries as $country)
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
                                     @endforeach
@@ -421,13 +421,13 @@ new class extends Component {
 
                             <div>
                                 <label for="state" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Provincia/Estado
+                                    {{ __('dashboard.request_form.state') }}
                                 </label>
                                 <select wire:model.live="selectedState" 
                                         id="state" 
                                         class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                                         {{ empty($states) ? 'disabled' : '' }}>
-                                    <option value="">Seleccionar provincia...</option>
+                                    <option value="">{{ __('dashboard.request_form.select_state') }}</option>
                                     @foreach($states as $state)
                                         <option value="{{ $state->id }}">{{ $state->name }}</option>
                                     @endforeach
@@ -436,13 +436,13 @@ new class extends Component {
 
                             <div>
                                 <label for="city" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Ciudad
+                                    {{ __('dashboard.request_form.city') }}
                                 </label>
                                 <select wire:model="city" 
                                         id="city" 
                                         class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                                         {{ empty($cities) ? 'disabled' : '' }}>
-                                    <option value="">Seleccionar ciudad...</option>
+                                    <option value="">{{ __('dashboard.request_form.select_city') }}</option>
                                     @foreach($cities as $cityItem)
                                         <option value="{{ $cityItem->name }}">{{ $cityItem->name }}</option>
                                     @endforeach
@@ -457,13 +457,13 @@ new class extends Component {
                             <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            Presupuesto
+                            {{ __('dashboard.post_request.section_budget') }}
                         </h3>
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div>
                                 <label for="currency" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Moneda <span class="text-red-500">*</span>
+                                    {{ __('dashboard.request_form.currency') }} <span class="text-red-500">*</span>
                                 </label>
                                 <select wire:model="currency" 
                                         id="currency" 
@@ -476,7 +476,7 @@ new class extends Component {
 
                             <div>
                                 <label for="min_budget" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Presupuesto Mínimo
+                                    {{ __('dashboard.request_form.min_budget') }}
                                 </label>
                                 <input type="number" 
                                        wire:model="min_budget" 
@@ -489,7 +489,7 @@ new class extends Component {
 
                             <div>
                                 <label for="max_budget" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Presupuesto Máximo <span class="text-red-500">*</span>
+                                    {{ __('dashboard.request_form.max_budget') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="number" 
                                        wire:model="max_budget" 
@@ -509,14 +509,14 @@ new class extends Component {
                             <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
                             </svg>
-                            Características Mínimas
+                            {{ __('dashboard.post_request.section_features') }}
                         </h3>
-                        <p class="text-sm text-gray-500 mb-6">Opcional - Define las características mínimas que debe tener la propiedad</p>
+                        <p class="text-sm text-gray-500 mb-6">{{ __('dashboard.post_request.section_features_desc') }}</p>
                         
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                             <div>
                                 <label for="min_bedrooms" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Habitaciones
+                                    {{ __('properties.features.bedrooms') }}
                                 </label>
                                 <input type="number" 
                                        wire:model="min_bedrooms" 
@@ -527,7 +527,7 @@ new class extends Component {
 
                             <div>
                                 <label for="min_bathrooms" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Baños
+                                    {{ __('properties.features.bathrooms') }}
                                 </label>
                                 <input type="number" 
                                        wire:model="min_bathrooms" 
@@ -538,7 +538,7 @@ new class extends Component {
 
                             <div>
                                 <label for="min_parking_spaces" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Cocheras
+                                    {{ __('properties.features.garages') }}
                                 </label>
                                 <input type="number" 
                                        wire:model="min_parking_spaces" 
@@ -549,7 +549,7 @@ new class extends Component {
 
                             <div>
                                 <label for="min_area" class="block text-sm font-semibold text-gray-700 mb-2">
-                                    Área (m²)
+                                    {{ __('properties.features.area') }}
                                 </label>
                                 <input type="number" 
                                        wire:model="min_area" 
@@ -566,20 +566,20 @@ new class extends Component {
                             <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
-                            Vigencia de la Solicitud
+                            {{ __('dashboard.post_request.section_expiration') }}
                         </h3>
-                        <p class="text-sm text-gray-500 mb-6">Opcional - Define hasta cuándo estará activa tu solicitud</p>
+                        <p class="text-sm text-gray-500 mb-6">{{ __('dashboard.post_request.section_expiration_desc') }}</p>
                         
                         <div class="max-w-md">
                             <label for="expires_at" class="block text-sm font-semibold text-gray-700 mb-2">
-                                Fecha de Expiración
+                                {{ __('dashboard.request_form.expiration') }}
                             </label>
                             <input type="date" 
                                    wire:model="expires_at" 
                                    id="expires_at" 
                                    min="{{ now()->addDay()->format('Y-m-d') }}"
                                    class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
-                            <p class="mt-2 text-sm text-gray-500">Si no especificas una fecha, la solicitud permanecerá activa indefinidamente.</p>
+                            <p class="mt-2 text-sm text-gray-500">{{ __('dashboard.request_form.expiration_hint') }}</p>
                             @error('expires_at') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
                         </div>
                     </div>
@@ -591,25 +591,25 @@ new class extends Component {
                                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                             </svg>
                             <div>
-                                <h4 class="text-lg font-semibold text-blue-900 mb-2">¿Qué sucede después de publicar?</h4>
+                                <h4 class="text-lg font-semibold text-blue-900 mb-2">{{ __('dashboard.post_request.info_title') }}</h4>
                                 <ul class="text-sm text-blue-800 space-y-2">
                                     <li class="flex items-start">
                                         <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        <span>Nuestro sistema con IA analizará tu solicitud y buscará automáticamente propiedades que coincidan con tus criterios</span>
+                                        <span>{{ __('dashboard.post_request.info_item1') }}</span>
                                     </li>
                                     <li class="flex items-start">
                                         <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        <span>Recibirás notificaciones por email cuando encontremos propiedades relevantes</span>
+                                        <span>{{ __('dashboard.post_request.info_item2') }}</span>
                                     </li>
                                     <li class="flex items-start">
                                         <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        <span>Podrás ver y gestionar todas tus solicitudes desde tu panel de control</span>
+                                        <span>{{ __('dashboard.post_request.info_item3') }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -625,13 +625,13 @@ new class extends Component {
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                             </svg>
-                            <span wire:loading.remove wire:target="save">Publicar Solicitud</span>
+                            <span wire:loading.remove wire:target="save">{{ __('dashboard.request_form.publish_button') }}</span>
                             <span wire:loading wire:target="save" class="flex items-center">
                                 <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
-                                Guardando...
+                                {{ __('dashboard.request_form.saving') }}
                             </span>
                         </button>
                         <a href="{{ route_localized('home') }}" 
@@ -639,7 +639,7 @@ new class extends Component {
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
-                            Cancelar
+                            {{ __('dashboard.request_form.cancel') }}
                         </a>
                     </div>
                 </form>

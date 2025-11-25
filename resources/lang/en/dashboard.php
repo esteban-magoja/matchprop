@@ -121,6 +121,53 @@ return [
         'select_option' => 'Select...',
         'required' => 'required',
         'optional' => 'optional',
+        'select_country' => 'Select country...',
+        'select_state' => 'Select state/province...',
+        'select_city' => 'Select city...',
+        'phone_format' => 'Format: country code + full number',
+        'description_hint' => 'Minimum 20 characters. Be as specific as possible for better results.',
+        'expiration_hint' => 'If you don\'t specify a date, the request will remain active indefinitely.',
+        'publish_button' => 'Publish Request',
+        'saving' => 'Saving...',
+    ],
+    
+    // Post Request Page (public form)
+    'post_request' => [
+        'hero_title' => 'Post Your Search Request',
+        'hero_subtitle' => 'Describe the property you\'re looking for and we\'ll help you find it',
+        'hero_desc' => 'Our AI-powered system will notify you when we find properties that match your criteria',
+        
+        // Login required
+        'login_title' => 'Login to Continue',
+        'login_desc' => 'To post a property search request, you need to have an account and be logged in.',
+        'login_button' => 'Login',
+        'signup_button' => 'Create Account',
+        'why_create' => 'Why create a request?',
+        
+        // Features
+        'feature_auto_search' => 'Automatic Search',
+        'feature_auto_search_desc' => 'The system will search for properties that match your criteria',
+        'feature_notifications' => 'Notifications',
+        'feature_notifications_desc' => 'We\'ll notify you when we find relevant options',
+        'feature_ai' => 'Intelligent AI',
+        'feature_ai_desc' => 'Smart matching with AI technology',
+        
+        // Form sections
+        'section_contact' => 'Contact Information',
+        'section_contact_desc' => 'Enter your details',
+        'section_basic' => 'Basic Information',
+        'section_location' => 'Location',
+        'section_budget' => 'Budget',
+        'section_features' => 'Minimum Features',
+        'section_features_desc' => 'Optional - Define the minimum features the property should have',
+        'section_expiration' => 'Request Validity',
+        'section_expiration_desc' => 'Optional - Define until when your request will be active',
+        
+        // Info box
+        'info_title' => 'What happens after publishing?',
+        'info_item1' => 'Our AI-powered system will analyze your request and automatically search for properties that match your criteria',
+        'info_item2' => 'You\'ll receive email notifications when we find relevant properties',
+        'info_item3' => 'You can view and manage all your requests from your dashboard',
     ],
     
     // Matches

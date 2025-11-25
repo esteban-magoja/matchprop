@@ -121,6 +121,53 @@ return [
         'select_option' => 'Seleccionar...',
         'required' => 'requerido',
         'optional' => 'opcional',
+        'select_country' => 'Seleccionar país...',
+        'select_state' => 'Seleccionar provincia...',
+        'select_city' => 'Seleccionar ciudad...',
+        'phone_format' => 'Formato: código país + número completo',
+        'description_hint' => 'Mínimo 20 caracteres. Sé lo más específico posible para obtener mejores resultados.',
+        'expiration_hint' => 'Si no especificas una fecha, la solicitud permanecerá activa indefinidamente.',
+        'publish_button' => 'Publicar Solicitud',
+        'saving' => 'Guardando...',
+    ],
+    
+    // Post Request Page (public form)
+    'post_request' => [
+        'hero_title' => 'Publica tu Solicitud de Búsqueda',
+        'hero_subtitle' => 'Describe la propiedad que estás buscando y te ayudaremos a encontrarla',
+        'hero_desc' => 'Nuestro sistema con IA te notificará cuando encontremos propiedades que coincidan con tus criterios',
+        
+        // Login required
+        'login_title' => 'Inicia Sesión para Continuar',
+        'login_desc' => 'Para publicar una solicitud de búsqueda de propiedades necesitas tener una cuenta y estar logueado.',
+        'login_button' => 'Iniciar Sesión',
+        'signup_button' => 'Crear Cuenta',
+        'why_create' => '¿Por qué crear una solicitud?',
+        
+        // Features
+        'feature_auto_search' => 'Búsqueda Automática',
+        'feature_auto_search_desc' => 'El sistema buscará propiedades que coincidan con tus criterios',
+        'feature_notifications' => 'Notificaciones',
+        'feature_notifications_desc' => 'Te avisaremos cuando encontremos opciones relevantes',
+        'feature_ai' => 'IA Inteligente',
+        'feature_ai_desc' => 'Matching inteligente con tecnología de IA',
+        
+        // Form sections
+        'section_contact' => 'Datos de Contacto',
+        'section_contact_desc' => 'Ingresa tus datos',
+        'section_basic' => 'Información Básica',
+        'section_location' => 'Ubicación',
+        'section_budget' => 'Presupuesto',
+        'section_features' => 'Características Mínimas',
+        'section_features_desc' => 'Opcional - Define las características mínimas que debe tener la propiedad',
+        'section_expiration' => 'Vigencia de la Solicitud',
+        'section_expiration_desc' => 'Opcional - Define hasta cuándo estará activa tu solicitud',
+        
+        // Info box
+        'info_title' => '¿Qué sucede después de publicar?',
+        'info_item1' => 'Nuestro sistema con IA analizará tu solicitud y buscará automáticamente propiedades que coincidan con tus criterios',
+        'info_item2' => 'Recibirás notificaciones por email cuando encontremos propiedades relevantes',
+        'info_item3' => 'Podrás ver y gestionar todas tus solicitudes desde tu panel de control',
     ],
     
     // Coincidencias (Matches)
