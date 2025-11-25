@@ -3,7 +3,7 @@
         
         <x-app.heading
             :title="__('dashboard.request_form.edit_title')"
-            description="Actualiza los detalles de tu solicitud o cliente."
+            :description="__('dashboard.request_form.edit_description')"
             :border="false"
         />
 
@@ -25,7 +25,7 @@
                                    id="client_name" 
                                    value="{{ old('client_name', $propertyRequest->client_name) }}"
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="Juan Pérez"
+                                   placeholder="{{ __('dashboard.request_form.client_name_placeholder') }}"
                                    required>
                             @error('client_name')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -41,7 +41,7 @@
                                    id="client_email" 
                                    value="{{ old('client_email', $propertyRequest->client_email) }}"
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="cliente@email.com"
+                                   placeholder="{{ __('dashboard.request_form.client_email_placeholder') }}"
                                    required>
                             @error('client_email')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -57,9 +57,9 @@
                                    id="client_phone" 
                                    value="{{ old('client_phone', $propertyRequest->client_phone) }}"
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                   placeholder="+54 9 351 1234567"
+                                   placeholder="{{ __('dashboard.request_form.client_phone_placeholder') }}"
                                    required>
-                            <p class="mt-1 text-sm text-gray-500">Formato: código país + número completo</p>
+                            <p class="mt-1 text-sm text-gray-500">{{ __('dashboard.request_form.phone_format') }}</p>
                             @error('client_phone')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -69,7 +69,7 @@
 
                 <div>
                     <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
-                        Título de la solicitud *
+                        {{ __('dashboard.request_form.title') }} *
                     </label>
                     <input type="text" 
                            name="title" 
@@ -84,7 +84,7 @@
 
                 <div>
                     <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
-                        Descripción detallada *
+                        {{ __('dashboard.request_form.description') }} *
                     </label>
                     <textarea name="description" 
                               id="description" 
@@ -99,19 +99,19 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label for="property_type" class="block text-sm font-medium text-gray-700 mb-2">
-                            Tipo de Propiedad *
+                            {{ __('dashboard.request_form.property_type') }} *
                         </label>
                         <select name="property_type" 
                                 id="property_type" 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
-                            <option value="casa" {{ old('property_type', $propertyRequest->property_type) == 'casa' ? 'selected' : '' }}>Casa</option>
-                            <option value="departamento" {{ old('property_type', $propertyRequest->property_type) == 'departamento' ? 'selected' : '' }}>Departamento</option>
-                            <option value="local" {{ old('property_type', $propertyRequest->property_type) == 'local' ? 'selected' : '' }}>Local Comercial</option>
-                            <option value="oficina" {{ old('property_type', $propertyRequest->property_type) == 'oficina' ? 'selected' : '' }}>Oficina</option>
-                            <option value="terreno" {{ old('property_type', $propertyRequest->property_type) == 'terreno' ? 'selected' : '' }}>Terreno</option>
-                            <option value="campo" {{ old('property_type', $propertyRequest->property_type) == 'campo' ? 'selected' : '' }}>Campo</option>
-                            <option value="galpon" {{ old('property_type', $propertyRequest->property_type) == 'galpon' ? 'selected' : '' }}>Galpón</option>
+                            <option value="casa" {{ old('property_type', $propertyRequest->property_type) == 'casa' ? 'selected' : '' }}>{{ __('properties.types.house') }}</option>
+                            <option value="departamento" {{ old('property_type', $propertyRequest->property_type) == 'departamento' ? 'selected' : '' }}>{{ __('properties.types.apartment') }}</option>
+                            <option value="local" {{ old('property_type', $propertyRequest->property_type) == 'local' ? 'selected' : '' }}>{{ __('properties.types.commercial') }}</option>
+                            <option value="oficina" {{ old('property_type', $propertyRequest->property_type) == 'oficina' ? 'selected' : '' }}>{{ __('properties.types.office') }}</option>
+                            <option value="terreno" {{ old('property_type', $propertyRequest->property_type) == 'terreno' ? 'selected' : '' }}>{{ __('properties.types.land') }}</option>
+                            <option value="campo" {{ old('property_type', $propertyRequest->property_type) == 'campo' ? 'selected' : '' }}>{{ __('properties.types.field') }}</option>
+                            <option value="galpon" {{ old('property_type', $propertyRequest->property_type) == 'galpon' ? 'selected' : '' }}>{{ __('properties.types.warehouse') }}</option>
                         </select>
                         @error('property_type')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -120,14 +120,14 @@
 
                     <div>
                         <label for="transaction_type" class="block text-sm font-medium text-gray-700 mb-2">
-                            Tipo de Operación *
+                            {{ __('dashboard.request_form.transaction_type') }} *
                         </label>
                         <select name="transaction_type" 
                                 id="transaction_type" 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 required>
-                            <option value="venta" {{ old('transaction_type', $propertyRequest->transaction_type) == 'venta' ? 'selected' : '' }}>Venta</option>
-                            <option value="alquiler" {{ old('transaction_type', $propertyRequest->transaction_type) == 'alquiler' ? 'selected' : '' }}>Alquiler</option>
+                            <option value="venta" {{ old('transaction_type', $propertyRequest->transaction_type) == 'venta' ? 'selected' : '' }}>{{ __('properties.transaction_types.sale') }}</option>
+                            <option value="alquiler" {{ old('transaction_type', $propertyRequest->transaction_type) == 'alquiler' ? 'selected' : '' }}>{{ __('properties.transaction_types.rent') }}</option>
                         </select>
                         @error('transaction_type')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -138,7 +138,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                         <label for="currency" class="block text-sm font-medium text-gray-700 mb-2">
-                            Moneda *
+                            {{ __('dashboard.request_form.currency') }} *
                         </label>
                         <select name="currency" 
                                 id="currency" 
@@ -155,7 +155,7 @@
 
                     <div>
                         <label for="min_budget" class="block text-sm font-medium text-gray-700 mb-2">
-                            Presupuesto Mínimo
+                            {{ __('dashboard.request_form.min_budget') }}
                         </label>
                         <input type="number" 
                                name="min_budget" 
@@ -170,7 +170,7 @@
 
                     <div>
                         <label for="max_budget" class="block text-sm font-medium text-gray-700 mb-2">
-                            Presupuesto Máximo *
+                            {{ __('dashboard.request_form.max_budget') }} *
                         </label>
                         <input type="number" 
                                name="max_budget" 
@@ -188,7 +188,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                         <label for="country" class="block text-sm font-medium text-gray-700 mb-2">
-                            País *
+                            {{ __('dashboard.request_form.country') }} *
                         </label>
                         <input type="text" 
                                name="country" 
@@ -203,7 +203,7 @@
 
                     <div>
                         <label for="state" class="block text-sm font-medium text-gray-700 mb-2">
-                            Provincia/Estado
+                            {{ __('dashboard.request_form.state') }}
                         </label>
                         <input type="text" 
                                name="state" 
@@ -217,7 +217,7 @@
 
                     <div>
                         <label for="city" class="block text-sm font-medium text-gray-700 mb-2">
-                            Ciudad
+                            {{ __('dashboard.request_form.city') }}
                         </label>
                         <input type="text" 
                                name="city" 
@@ -231,12 +231,12 @@
                 </div>
 
                 <div class="border-t border-gray-200 pt-6">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Características Mínimas</h3>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('dashboard.request_form.min_features') }}</h3>
                     
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                         <div>
                             <label for="min_bedrooms" class="block text-sm font-medium text-gray-700 mb-2">
-                                Habitaciones
+                                {{ __('properties.features.bedrooms') }}
                             </label>
                             <input type="number" 
                                    name="min_bedrooms" 
@@ -248,7 +248,7 @@
 
                         <div>
                             <label for="min_bathrooms" class="block text-sm font-medium text-gray-700 mb-2">
-                                Baños
+                                {{ __('properties.features.bathrooms') }}
                             </label>
                             <input type="number" 
                                    name="min_bathrooms" 
@@ -260,7 +260,7 @@
 
                         <div>
                             <label for="min_parking_spaces" class="block text-sm font-medium text-gray-700 mb-2">
-                                Cocheras
+                                {{ __('properties.features.parking_spaces') }}
                             </label>
                             <input type="number" 
                                    name="min_parking_spaces" 
@@ -272,7 +272,7 @@
 
                         <div>
                             <label for="min_area" class="block text-sm font-medium text-gray-700 mb-2">
-                                Área (m²)
+                                {{ __('properties.features.area') }}
                             </label>
                             <input type="number" 
                                    name="min_area" 
@@ -286,7 +286,7 @@
 
                 <div>
                     <label for="expires_at" class="block text-sm font-medium text-gray-700 mb-2">
-                        Fecha de Expiración
+                        {{ __('dashboard.request_form.expires_at') }}
                     </label>
                     <input type="date" 
                            name="expires_at" 
@@ -307,23 +307,23 @@
                            {{ old('is_active', $propertyRequest->is_active) ? 'checked' : '' }}
                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                     <label for="is_active" class="ml-2 text-sm font-medium text-gray-700">
-                        Solicitud activa
+                        {{ __('dashboard.request_form.is_active') }}
                     </label>
                 </div>
 
                 <div class="flex gap-4 pt-6 border-t border-gray-200">
                     <button type="submit" 
                             class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-150">
-                        Guardar Cambios
+                        {{ __('dashboard.request_form.save_changes') }}
                     </button>
                     <a href="{{ route('dashboard.requests.show', $propertyRequest) }}" 
                        class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-lg transition-colors duration-150">
-                        Cancelar
+                        {{ __('dashboard.request_form.cancel') }}
                     </a>
                     <button type="button"
-                            onclick="if(confirm('¿Estás seguro de que deseas eliminar esta solicitud?')) { document.getElementById('delete-form').submit(); }"
+                            onclick="if(confirm('{{ __('dashboard.request_form.delete_confirm') }}')) { document.getElementById('delete-form').submit(); }"
                             class="ml-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors duration-150">
-                        Eliminar
+                        {{ __('dashboard.request_form.delete') }}
                     </button>
                 </div>
             </form>
