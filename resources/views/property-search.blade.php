@@ -19,11 +19,11 @@
                             <!-- Country Selection -->
                             <div class="md:col-span-1">
                                 <label for="country" class="block text-sm font-medium text-gray-700 mb-2 text-left">
-                                    País <span class="text-red-500">*</span>
-                                    <span class="text-gray-500 text-xs">(obligatorio)</span>
+                                    {{ __('properties.search_form.country_label') }} <span class="text-red-500">*</span>
+                                    <span class="text-gray-500 text-xs">{{ __('properties.search_form.country_required') }}</span>
                                 </label>
                                 <select name="country" id="country" class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" required>
-                                    <option value="">Selecciona un país</option>
+                                    <option value="">{{ __('properties.search_form.select_country') }}</option>
                                     @foreach($countries as $country)
                                         <option value="{{ $country }}" {{ $selectedCountry === $country ? 'selected' : '' }}>
                                             {{ $country }}
@@ -35,8 +35,8 @@
                             <!-- Search Input -->
                             <div class="md:col-span-2">
                                 <label for="search" class="block text-sm font-medium text-gray-700 mb-2 text-left">
-                                    ¿Qué estás buscando? <span class="text-red-500">*</span>
-                                    <span class="text-gray-500 text-xs">(mínimo 5 caracteres)</span>
+                                    {{ __('properties.search_form.what_looking_for') }} <span class="text-red-500">*</span>
+                                    <span class="text-gray-500 text-xs">{{ __('properties.search_form.min_chars') }}</span>
                                 </label>
                                 <div class="relative">
                                     <input 
@@ -44,7 +44,7 @@
                                         name="search" 
                                         id="search"
                                         value="{{ $searchTerm }}"
-                                        placeholder="Ej: Casa moderna con piscina en zona tranquila, departamento céntrico..." 
+                                        placeholder="{{ __('properties.search_form.placeholder') }}" 
                                         class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                                         required
                                         minlength="5"
@@ -56,7 +56,7 @@
                                     </div>
                                     <!-- Character counter -->
                                     <div id="charCounter" class="absolute -bottom-5 right-0 text-xs text-gray-500">
-                                        <span id="charCount">0</span>/5 caracteres mínimos
+                                        <span id="charCount">0</span>/5 {{ __('properties.search_form.char_counter') }}
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                     </svg>
-                                    Buscar
+                                    {{ __('properties.search_form.search_button') }}
                                 </span>
                                 
                                 <!-- Loading state -->
@@ -83,7 +83,7 @@
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
-                                    Buscando...
+                                    {{ __('properties.search_form.searching') }}
                                 </span>
                             </button>
                             
@@ -95,7 +95,7 @@
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                     </svg>
-                                    Limpiar
+                                    {{ __('properties.search_form.clear') }}
                                 </a>
                             @endif
                         </div>
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="ml-3">
                                     <h3 class="text-sm font-medium text-red-800">
-                                        Revisa los siguientes campos:
+                                        {{ __('properties.search_form.check_fields') }}
                                     </h3>
                                     <div class="mt-2 text-sm text-red-700">
                                         <ul class="list-disc list-inside space-y-1">
@@ -143,8 +143,8 @@
                                 <div class="w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
                             </div>
                             <div class="text-left">
-                                <div class="text-lg font-semibold text-gray-900">Buscando propiedades</div>
-                                <div id="loadingStatusText" class="text-sm text-gray-600">Procesando tu búsqueda...</div>
+                                <div class="text-lg font-semibold text-gray-900">{{ __('properties.search_form.searching_properties') }}</div>
+                                <div id="loadingStatusText" class="text-sm text-gray-600">{{ __('properties.search_form.processing_search') }}</div>
                             </div>
                         </div>
                     </div>
@@ -160,15 +160,15 @@
             @if($totalResults > 0)
                 <div class="mb-8">
                     <h2 class="text-2xl font-bold text-gray-900 mb-2">
-                        Resultados de búsqueda
+                        {{ __('properties.search_results.title') }}
                     </h2>
                     <p class="text-gray-600">
-                        {{ number_format($totalResults) }} {{ $totalResults === 1 ? 'propiedad encontrada' : 'propiedades encontradas' }}
+                        {{ number_format($totalResults) }} {{ $totalResults === 1 ? __('properties.search_results.property_found') : __('properties.search_results.properties_found') }}
                         @if($selectedCountry)
-                            en {{ $selectedCountry }}
+                            {{ __('properties.search_results.in_country', ['country' => $selectedCountry]) }}
                         @endif
                         @if($searchTerm)
-                            para "{{ $searchTerm }}"
+                            {{ __('properties.search_results.for_term', ['term' => $searchTerm]) }}
                         @endif
                         @if(isset($searchTime) && $searchTime > 0)
                             <span class="text-sm text-gray-500">
@@ -211,7 +211,7 @@
                             <!-- Property Type Badge -->
                             <div class="absolute top-3 left-3">
                                 <span class="inline-block px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded">
-                                    {{ ucfirst($listing->transaction_type) }}
+                                    {{ __('properties.transaction_types.' . $listing->transaction_type) }}
                                 </span>
                             </div>
                             
@@ -219,7 +219,7 @@
                             @if($listing->is_featured)
                                 <div class="absolute top-3 right-3">
                                     <span class="inline-block px-2 py-1 text-xs font-semibold text-white bg-yellow-500 rounded">
-                                        Destacado
+                                        {{ __('properties.search_results.featured') }}
                                     </span>
                                 </div>
                             @endif
@@ -236,7 +236,7 @@
                             
                             <!-- Title -->
                             <h3 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                                {{ $listing->title }}
+                                {{ $listing->getTranslation('title', app()->getLocale()) }}
                             </h3>
                             
                             <!-- Location -->
@@ -277,14 +277,14 @@
                             
                             <!-- Property Type -->
                             <p class="text-sm text-gray-500 mb-3">
-                                {{ ucfirst($listing->property_type) }}
+                                {{ __('properties.types.' . $listing->property_type) }}
                             </p>
                             
                             <!-- Similarity Score (only if search term is used) -->
                             @if($searchTerm && isset($listing->similarity))
                                 <div class="mb-3">
                                     <div class="flex items-center justify-between text-sm">
-                                        <span class="text-gray-600">Relevancia:</span>
+                                        <span class="text-gray-600">{{ __('properties.search_results.relevance') }}:</span>
                                         <span class="font-medium text-green-600">{{ number_format($listing->similarity, 0) }}%</span>
                                     </div>
                                     <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
@@ -302,7 +302,7 @@
                                 href="{{ route_localized('property.show', ['id' => $listing->id, 'slug' => $slug]) }}"
                                 class="block w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200 font-medium text-center"
                             >
-                                Ver Detalles
+                                {{ __('properties.view_details') }}
                             </a>
                         </div>
                     </div>
@@ -314,16 +314,16 @@
                                 <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
-                                <h3 class="mt-2 text-sm font-medium text-gray-900">No se encontraron propiedades</h3>
+                                <h3 class="mt-2 text-sm font-medium text-gray-900">{{ __('properties.search_results.no_properties_found') }}</h3>
                                 <p class="mt-1 text-sm text-gray-500">
-                                    Intenta con otros términos de búsqueda o cambia el país seleccionado.
+                                    {{ __('properties.search_results.try_different_search') }}
                                 </p>
                                 <div class="mt-6">
                                     <a href="{{ route_localized('property.search') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                         </svg>
-                                        Limpiar filtros
+                                        {{ __('properties.search_form.clear_filters') }}
                                     </a>
                                 </div>
                             </div>
@@ -339,10 +339,10 @@
         <section class="py-8 bg-white">
             <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                    ¿Listo para encontrar tu próximo hogar?
+                    {{ __('properties.cta.ready_title') }}
                 </h2>
                 <p class="text-xl text-gray-600 mb-8">
-                    Usa nuestra búsqueda inteligente para encontrar exactamente lo que necesitas
+                    {{ __('properties.cta.ready_subtitle') }}
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     <div class="text-center">
@@ -351,8 +351,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Búsqueda Inteligente</h3>
-                        <p class="text-gray-600">Describe lo que buscas en lenguaje natural y nuestra IA encontrará las mejores coincidencias</p>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ __('properties.cta.smart_search_title') }}</h3>
+                        <p class="text-gray-600">{{ __('properties.cta.smart_search_desc') }}</p>
                     </div>
                     <div class="text-center">
                         <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -361,8 +361,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Múltiples Ubicaciones</h3>
-                        <p class="text-gray-600">Explora propiedades en diferentes países y encuentra el lugar perfecto para ti</p>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ __('properties.cta.multiple_locations_title') }}</h3>
+                        <p class="text-gray-600">{{ __('properties.cta.multiple_locations_desc') }}</p>
                     </div>
                     <div class="text-center">
                         <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -370,12 +370,12 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Resultados Relevantes</h3>
-                        <p class="text-gray-600">Ve un puntaje de relevancia para cada propiedad basado en tu búsqueda</p>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ __('properties.cta.relevant_results_title') }}</h3>
+                        <p class="text-gray-600">{{ __('properties.cta.relevant_results_desc') }}</p>
                     </div>
                 </div>
                 <p class="text-gray-500">
-                    Comienza tu búsqueda escribiendo algo como: "Casa moderna con jardín cerca del centro" o "Departamento luminoso con vista al mar"
+                    {{ __('properties.cta.search_hint') }}
                 </p>
             </div>
         </section>
@@ -383,6 +383,20 @@
 
     <!-- Loading State JavaScript -->
     <script>
+        // Translations for JavaScript
+        const translations = {
+            generatingEmbeddings: '{{ __('properties.js.generating_embeddings') }}',
+            analyzingSimilarities: '{{ __('properties.js.analyzing_similarities') }}',
+            sortingResults: '{{ __('properties.js.sorting_results') }}',
+            filteringProperties: '{{ __('properties.js.filtering_properties') }}',
+            smartSearchProgress: '{{ __('properties.js.smart_search_progress') }}',
+            searchingProperties: '{{ __('properties.js.searching_properties') }}',
+            selectCountryError: '{{ __('properties.js.select_country_error') }}',
+            enterSearchError: '{{ __('properties.js.enter_search_error') }}',
+            minCharsError: '{{ __('properties.js.min_chars_error') }}',
+            checkFields: '{{ __('properties.search_form.check_fields') }}'
+        };
+        
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('propertySearchForm');
             const searchButton = document.getElementById('searchButton');
@@ -436,16 +450,16 @@
                             if (hasSearchTerm) {
                                 // Simulate progressive loading messages for embedding search
                                 setTimeout(() => {
-                                    statusText.textContent = 'Generando embeddings con IA...';
+                                    statusText.textContent = translations.generatingEmbeddings;
                                 }, 500);
                                 setTimeout(() => {
-                                    statusText.textContent = 'Analizando similitudes semánticas...';
+                                    statusText.textContent = translations.analyzingSimilarities;
                                 }, 2000);
                                 setTimeout(() => {
-                                    statusText.textContent = 'Ordenando resultados por relevancia...';
+                                    statusText.textContent = translations.sortingResults;
                                 }, 3500);
                             } else {
-                                statusText.textContent = 'Filtrando propiedades...';
+                                statusText.textContent = translations.filteringProperties;
                             }
                         }
                         
@@ -464,7 +478,7 @@
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
-                                    ${hasSearchTerm ? 'Búsqueda inteligente en progreso...' : 'Buscando propiedades...'}
+                                    ${hasSearchTerm ? translations.smartSearchProgress : translations.searchingProperties}
                                 </div>
                             `;
                             
@@ -534,7 +548,7 @@
                             </div>
                             <div class="ml-3">
                                 <h3 class="text-sm font-medium text-red-800">
-                                    Revisa los siguientes campos:
+                                    ${translations.checkFields}
                                 </h3>
                                 <div class="mt-2 text-sm text-red-700">
                                     <ul class="list-disc list-inside space-y-1">
@@ -634,16 +648,16 @@
                     // Check country selection
                     if (!countrySelected) {
                         isValid = false;
-                        errorMessages.push('Debes seleccionar un país.');
+                        errorMessages.push(translations.selectCountryError);
                     }
                     
                     // Check search term
                     if (!searchTerm) {
                         isValid = false;
-                        errorMessages.push('Debes escribir un término de búsqueda.');
+                        errorMessages.push(translations.enterSearchError);
                     } else if (searchTerm.length < 5) {
                         isValid = false;
-                        errorMessages.push('El término de búsqueda debe tener al menos 5 caracteres.');
+                        errorMessages.push(translations.minCharsError);
                     }
                     
                     if (!isValid) {

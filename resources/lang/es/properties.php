@@ -128,6 +128,63 @@ return [
     'search_hero_title' => 'Encuentra la Propiedad de tus Sueños',
     'search_hero_subtitle' => 'Búsqueda inteligente impulsada por IA para encontrar exactamente lo que necesitas',
     
+    // Search form
+    'search_form' => [
+        'country_label' => 'País',
+        'country_required' => '(obligatorio)',
+        'select_country' => 'Selecciona un país',
+        'what_looking_for' => '¿Qué estás buscando?',
+        'min_chars' => '(mínimo 5 caracteres)',
+        'char_counter' => 'caracteres mínimos',
+        'search_button' => 'Buscar',
+        'searching' => 'Buscando...',
+        'clear' => 'Limpiar',
+        'clear_filters' => 'Limpiar filtros',
+        'check_fields' => 'Revisa los siguientes campos:',
+        'searching_properties' => 'Buscando propiedades',
+        'processing_search' => 'Procesando tu búsqueda...',
+        'placeholder' => 'Ej: Casa moderna con piscina en zona tranquila, departamento céntrico...',
+    ],
+    
+    // Search results
+    'search_results' => [
+        'title' => 'Resultados de búsqueda',
+        'property_found' => 'propiedad encontrada',
+        'properties_found' => 'propiedades encontradas',
+        'in_country' => 'en :country',
+        'for_term' => 'para ":term"',
+        'no_properties_found' => 'No se encontraron propiedades',
+        'try_different_search' => 'Intenta con otros términos de búsqueda o cambia el país seleccionado.',
+        'relevance' => 'Relevancia',
+        'featured' => 'Destacado',
+    ],
+    
+    // CTA Section
+    'cta' => [
+        'ready_title' => '¿Listo para encontrar tu próximo hogar?',
+        'ready_subtitle' => 'Usa nuestra búsqueda inteligente para encontrar exactamente lo que necesitas',
+        'smart_search_title' => 'Búsqueda Inteligente',
+        'smart_search_desc' => 'Describe lo que buscas en lenguaje natural y nuestra IA encontrará las mejores coincidencias',
+        'multiple_locations_title' => 'Múltiples Ubicaciones',
+        'multiple_locations_desc' => 'Explora propiedades en diferentes países y encuentra el lugar perfecto para ti',
+        'relevant_results_title' => 'Resultados Relevantes',
+        'relevant_results_desc' => 'Ve un puntaje de relevancia para cada propiedad basado en tu búsqueda',
+        'search_hint' => 'Comienza tu búsqueda escribiendo algo como: "Casa moderna con jardín cerca del centro" o "Departamento luminoso con vista al mar"',
+    ],
+    
+    // JS messages
+    'js' => [
+        'generating_embeddings' => 'Generando embeddings con IA...',
+        'analyzing_similarities' => 'Analizando similitudes semánticas...',
+        'sorting_results' => 'Ordenando resultados por relevancia...',
+        'filtering_properties' => 'Filtrando propiedades...',
+        'smart_search_progress' => 'Búsqueda inteligente en progreso...',
+        'searching_properties' => 'Buscando propiedades...',
+        'select_country_error' => 'Debes seleccionar un país.',
+        'enter_search_error' => 'Debes escribir un término de búsqueda.',
+        'min_chars_error' => 'El término de búsqueda debe tener al menos 5 caracteres.',
+    ],
+    
     // Property detail
     'property_detail' => 'Detalle de Propiedad',
     'property_type' => 'Tipo de Propiedad',

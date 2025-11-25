@@ -128,6 +128,63 @@ return [
     'search_hero_title' => 'Find Your Dream Property',
     'search_hero_subtitle' => 'AI-powered intelligent search to find exactly what you need',
     
+    // Search form
+    'search_form' => [
+        'country_label' => 'Country',
+        'country_required' => '(required)',
+        'select_country' => 'Select a country',
+        'what_looking_for' => 'What are you looking for?',
+        'min_chars' => '(minimum 5 characters)',
+        'char_counter' => 'minimum characters',
+        'search_button' => 'Search',
+        'searching' => 'Searching...',
+        'clear' => 'Clear',
+        'clear_filters' => 'Clear filters',
+        'check_fields' => 'Please check the following fields:',
+        'searching_properties' => 'Searching properties',
+        'processing_search' => 'Processing your search...',
+        'placeholder' => 'E.g.: Modern house with pool in quiet area, downtown apartment...',
+    ],
+    
+    // Search results
+    'search_results' => [
+        'title' => 'Search results',
+        'property_found' => 'property found',
+        'properties_found' => 'properties found',
+        'in_country' => 'in :country',
+        'for_term' => 'for ":term"',
+        'no_properties_found' => 'No properties found',
+        'try_different_search' => 'Try different search terms or change the selected country.',
+        'relevance' => 'Relevance',
+        'featured' => 'Featured',
+    ],
+    
+    // CTA Section
+    'cta' => [
+        'ready_title' => 'Ready to find your next home?',
+        'ready_subtitle' => 'Use our smart search to find exactly what you need',
+        'smart_search_title' => 'Smart Search',
+        'smart_search_desc' => 'Describe what you\'re looking for in natural language and our AI will find the best matches',
+        'multiple_locations_title' => 'Multiple Locations',
+        'multiple_locations_desc' => 'Explore properties in different countries and find the perfect place for you',
+        'relevant_results_title' => 'Relevant Results',
+        'relevant_results_desc' => 'See a relevance score for each property based on your search',
+        'search_hint' => 'Start your search by typing something like: "Modern house with garden near downtown" or "Bright apartment with sea view"',
+    ],
+    
+    // JS messages
+    'js' => [
+        'generating_embeddings' => 'Generating AI embeddings...',
+        'analyzing_similarities' => 'Analyzing semantic similarities...',
+        'sorting_results' => 'Sorting results by relevance...',
+        'filtering_properties' => 'Filtering properties...',
+        'smart_search_progress' => 'Smart search in progress...',
+        'searching_properties' => 'Searching properties...',
+        'select_country_error' => 'You must select a country.',
+        'enter_search_error' => 'You must enter a search term.',
+        'min_chars_error' => 'Search term must be at least 5 characters.',
+    ],
+    
     // Property detail
     'property_detail' => 'Property Detail',
     'property_type' => 'Property Type',
