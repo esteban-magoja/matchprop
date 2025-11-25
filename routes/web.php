@@ -153,7 +153,8 @@ try {
         foreach (\App\Models\Page::where('status', 'ACTIVE')->get() as $page) {
             // Ruta con locale
             Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () use ($page) {
-                Route::get($page->slug, [\App\Http\Controllers\PageController::class, 'page']);
+                Route::get($page->slug, [\App\Http\Controllers\PageController::class, 'page'])
+                    ->name('page.' . $page->slug);
             });
         }
     }
