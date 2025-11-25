@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\PropertyMessage;
 
-class PropertyMessageReceived extends Mailable
+class PropertyMessageReceived extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -29,8 +29,11 @@ class PropertyMessageReceived extends Mailable
      */
     public function envelope(): Envelope
     {
+        $locale = $this->propertyMessage->propertyListing->user->locale ?? 'es';
+        app()->setLocale($locale);
+
         return new Envelope(
-            subject: 'Nueva consulta sobre: ' . $this->propertyMessage->propertyListing->title,
+            subject: __('emails.message_received.subject'),
         );
     }
 
@@ -39,8 +42,15 @@ class PropertyMessageReceived extends Mailable
      */
     public function content(): Content
     {
+        $locale = $this->propertyMessage->propertyListing->user->locale ?? 'es';
+        app()->setLocale($locale);
+
         return new Content(
-            view: 'emails.property-message-received',
+            markdown: "emails.{$locale}.message-received",
+            with: [
+                'property' => $this->propertyMessage->propertyListing,
+                'message' => $this->propertyMessage,
+            ]
         );
     }
 

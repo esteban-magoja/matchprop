@@ -97,7 +97,6 @@ class PropertyController extends Controller
         try {
             Mail::to($property->user->email)->send(new PropertyMessageReceived($propertyMessage));
         } catch (\Exception $e) {
-            // Log the error but don't fail the request
             \Log::error('Failed to send property message email: ' . $e->getMessage());
         }
 
