@@ -316,4 +316,22 @@ return [
         'select_plan' => 'Select Plan',
         'current_plan' => 'Current Plan',
     ],
+
+    // Menu Navigation
+    'menu' => [
+        'our_mission' => 'Our Mission',
+        'our_mission_desc' => 'At Raxta we believe the future of real estate is collaborative, transparent and global.',
+        'join_us' => 'Join Our Network',
+        'join_us_desc' => 'Being a Raxta member gives you access to an ecosystem designed to boost your success.',
+        'pricing' => 'Pricing',
+        'pricing_desc' => 'Join to be part of our select real estate group.',
+        'mediation' => 'Mediation Between Participants',
+        'mediation_desc' => 'Transparency, trust and dialogue as priority means to resolve any difference or claim.',
+        'terms' => 'Terms and Conditions of Participation',
+        'terms_desc' => 'Terms governing participation in the platform\'s collective real estate sales program.',
+        'buyer_guide' => 'Buyer\'s Guide',
+        'buyer_guide_desc' => 'How to find your next property or investment within the Raxta global network.',
+        'seller_guide' => 'Seller\'s Guide',
+        'seller_guide_desc' => 'How to become a successful seller within the Raxta global network.',
+    ],
 ];

@@ -145,6 +145,27 @@ Route::middleware('auth')->group(function () {
 });
 
 // ============================================================================
+// 4.5. DYNAMIC PAGE ROUTES (Páginas creadas en admin con i18n)
+// ============================================================================
+try {
+    if (\App\Models\User::first()) {
+        foreach (\App\Models\Page::where('status', 'ACTIVE')->get() as $page) {
+            // Ruta con prefijo de locale
+            Route::get('/{locale}/' . $page->slug, [\App\Http\Controllers\PageController::class, 'page'])
+                ->where(['locale' => 'es|en'])
+                ->name('page.' . $page->slug);
+            
+            // Ruta sin locale (fallback a español)
+            Route::get('/' . $page->slug, function() use ($page) {
+                return redirect()->route('page.' . $page->slug, ['locale' => 'es']);
+            });
+        }
+    }
+} catch (\Exception $e) {
+    // Silent catch para evitar errores en instalación
+}
+
+// ============================================================================
 // 5. WAVE ROUTES (maneja sus propias rutas)
 // ============================================================================
 Wave::routes();

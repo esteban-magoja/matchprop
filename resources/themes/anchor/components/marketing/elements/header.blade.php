@@ -77,37 +77,37 @@
                             <ul class="flex flex-col justify-between mx-auto max-w-7xl md:flex-row md:px-12">
                                 <div class="flex flex-col w-full border-l border-r divide-x md:flex-row divide-zinc-100 border-zinc-100">
                                     <div class="w-auto divide-y divide-zinc-100">
-                                        <a href="/nuestra-mision" class="block text-sm p-7 hover:bg-neutral-100 group">
-                                            <span class="block mb-1 font-medium text-black">Nuestra Misión</span>
-                                            <span class="block font-light leading-5 opacity-50">En Raxta creemos que el futuro del mercado inmobiliario es colaborativo, transparente y global.</span>
+                                        <a href="{{ route('page.nuestra-mision', ['locale' => app()->getLocale()]) }}" class="block text-sm p-7 hover:bg-neutral-100 group">
+                                            <span class="block mb-1 font-medium text-black">{{ __('messages.menu.our_mission') }}</span>
+                                            <span class="block font-light leading-5 opacity-50">{{ __('messages.menu.our_mission_desc') }}</span>
                                         </a>
-                                        <a href="/join_us" class="block text-sm p-7 hover:bg-neutral-100 group">
-                                            <span class="block mb-1 font-medium text-black">Asóciate a nuestra red</span>
-                                            <span class="block leading-5 opacity-50">Ser miembro de Raxta te permite acceder a un ecosistema diseñado para potenciar tu éxito.</span>
+                                        <a href="{{ route('page.join_us', ['locale' => app()->getLocale()]) }}" class="block text-sm p-7 hover:bg-neutral-100 group">
+                                            <span class="block mb-1 font-medium text-black">{{ __('messages.menu.join_us') }}</span>
+                                            <span class="block leading-5 opacity-50">{{ __('messages.menu.join_us_desc') }}</span>
                                         </a>
                                         <a href="{{ route('pricing') }}" class="block text-sm p-7 hover:bg-neutral-100">
-                                            <span class="block mb-1 font-medium text-black">Precios</span>
-                                            <span class="block leading-5 opacity-50">Asóciate para ser parte de nuestro selecto grupo inmobiliario.</span>
+                                            <span class="block mb-1 font-medium text-black">{{ __('messages.menu.pricing') }}</span>
+                                            <span class="block leading-5 opacity-50">{{ __('messages.menu.pricing_desc') }}</span>
                                         </a>
                                     </div>
                                     <div class="w-auto divide-y divide-zinc-100">
-                                        <a href="/mediation" class="block text-sm p-7 hover:bg-neutral-100">
-                                            <span class="block mb-1 font-medium text-black">Mediación entre participantes</span>
-                                            <span class="block leading-5 opacity-50">Transparencia, confianza y diálogo como medios prioritarios para resolver cualquier diferencia o reclamo.</span>
+                                        <a href="{{ route('page.mediation', ['locale' => app()->getLocale()]) }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">{{ __('messages.menu.mediation') }}</span>
+                                            <span class="block leading-5 opacity-50">{{ __('messages.menu.mediation_desc') }}</span>
                                         </a>
-                                        <a href="/contract" class="block text-sm p-7 hover:bg-neutral-100">
-                                            <span class="block mb-1 font-medium text-black">Términos y Condiciones de Participación</span>
-                                            <span class="block leading-5 opacity-50">Términos que rigen la participación en el programa de ventas colectivas inmobiliarias de la plataforma.</span>
+                                        <a href="{{ route('page.contract', ['locale' => app()->getLocale()]) }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">{{ __('messages.menu.terms') }}</span>
+                                            <span class="block leading-5 opacity-50">{{ __('messages.menu.terms_desc') }}</span>
                                         </a>
                                     </div>
                                     <div class="w-auto divide-y divide-zinc-100">
-                                        <a href="/buyer_guide" class="block text-sm p-7 hover:bg-neutral-100">
-                                            <span class="block mb-1 font-medium text-black">Guía del Comprador</span>
-                                            <span class="block font-light leading-5 opacity-50">Cómo encontrar tu próxima propiedad o inversión dentro de la red global Raxta.</span>
+                                        <a href="{{ route('page.buyer_guide', ['locale' => app()->getLocale()]) }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">{{ __('messages.menu.buyer_guide') }}</span>
+                                            <span class="block font-light leading-5 opacity-50">{{ __('messages.menu.buyer_guide_desc') }}</span>
                                         </a>
-                                        <a href="/seller-guide" class="block text-sm p-7 hover:bg-neutral-100">
-                                            <span class="block mb-1 font-medium text-black">Guía del Vendedor</span>
-                                            <span class="block leading-5 opacity-50">Cómo convertirte en un vendedor exitoso dentro de la red global de Raxta.</span>
+                                        <a href="{{ route('page.seller-guide', ['locale' => app()->getLocale()]) }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                            <span class="block mb-1 font-medium text-black">{{ __('messages.menu.seller_guide') }}</span>
+                                            <span class="block leading-5 opacity-50">{{ __('messages.menu.seller_guide_desc') }}</span>
                                         </a>
                                     </div>
                                 </div>

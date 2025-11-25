@@ -316,4 +316,22 @@ return [
         'select_plan' => 'Seleccionar Plan',
         'current_plan' => 'Plan Actual',
     ],
+
+    // Menu Navigation
+    'menu' => [
+        'our_mission' => 'Nuestra Misión',
+        'our_mission_desc' => 'En Raxta creemos que el futuro del mercado inmobiliario es colaborativo, transparente y global.',
+        'join_us' => 'Asóciate a nuestra red',
+        'join_us_desc' => 'Ser miembro de Raxta te permite acceder a un ecosistema diseñado para potenciar tu éxito.',
+        'pricing' => 'Precios',
+        'pricing_desc' => 'Asóciate para ser parte de nuestro selecto grupo inmobiliario.',
+        'mediation' => 'Mediación entre participantes',
+        'mediation_desc' => 'Transparencia, confianza y diálogo como medios prioritarios para resolver cualquier diferencia o reclamo.',
+        'terms' => 'Términos y Condiciones de Participación',
+        'terms_desc' => 'Términos que rigen la participación en el programa de ventas colectivas inmobiliarias de la plataforma.',
+        'buyer_guide' => 'Guía del Comprador',
+        'buyer_guide_desc' => 'Cómo encontrar tu próxima propiedad o inversión dentro de la red global Raxta.',
+        'seller_guide' => 'Guía del Vendedor',
+        'seller_guide_desc' => 'Cómo convertirte en un vendedor exitoso dentro de la red global de Raxta.',
+    ],
 ];
