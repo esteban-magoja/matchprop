@@ -124,6 +124,10 @@ return [
     'by' => 'By',
     'view_details' => 'View Details',
     
+    // Search page
+    'search_hero_title' => 'Find Your Dream Property',
+    'search_hero_subtitle' => 'AI-powered intelligent search to find exactly what you need',
+    
     // Property detail
     'property_detail' => 'Property Detail',
     'property_type' => 'Property Type',

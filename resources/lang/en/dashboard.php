@@ -51,6 +51,8 @@ return [
     'requests' => [
         'title' => 'My Clients',
         'description' => 'Manage your clients and property search requests',
+        'search_title' => 'Search Client Requests',
+        'search_subtitle' => 'Find potential clients looking for properties you can offer',
         'create' => 'New Request',
         'edit' => 'Edit',
         'delete' => 'Delete Request',

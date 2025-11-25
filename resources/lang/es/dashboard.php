@@ -51,6 +51,8 @@ return [
     'requests' => [
         'title' => 'Mis Clientes',
         'description' => 'Gestiona tus clientes y solicitudes de búsqueda de propiedades',
+        'search_title' => 'Buscar Solicitudes de Clientes',
+        'search_subtitle' => 'Encuentra clientes potenciales que buscan propiedades que puedas ofrecer',
         'create' => 'Nueva Solicitud',
         'edit' => 'Editar',
         'delete' => 'Eliminar Solicitud',

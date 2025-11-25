@@ -124,6 +124,10 @@ return [
     'by' => 'Por',
     'view_details' => 'Ver Detalles',
     
+    // Search page
+    'search_hero_title' => 'Encuentra la Propiedad de tus Sueños',
+    'search_hero_subtitle' => 'Búsqueda inteligente impulsada por IA para encontrar exactamente lo que necesitas',
+    
     // Property detail
     'property_detail' => 'Detalle de Propiedad',
     'property_type' => 'Tipo de Propiedad',

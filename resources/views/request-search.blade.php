@@ -1,4 +1,4 @@
-<x-layouts.marketing>
+<x-layouts.marketing :seo="$seo ?? null">
     
     <!-- Hero Section with Search -->
     <section class="relative bg-gradient-to-r from-gray-100 to-gray-200 py-10">
@@ -6,10 +6,10 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    Buscar Solicitudes de Clientes
+                    {{ __('dashboard.requests.search_title') }}
                 </h1>
                 <p class="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-                    Encuentra clientes potenciales que buscan propiedades que puedas ofrecer
+                    {{ __('dashboard.requests.search_subtitle') }}
                 </p>
                 
                 @if (!$canSearch)
