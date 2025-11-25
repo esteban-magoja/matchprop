@@ -65,6 +65,10 @@ return [
         'updated_success' => 'Your subscription has been successfully updated',
         'no_active_subscription' => 'No active subscriptions found. Please select a plan below.',
         'billing_managed_by' => 'Billing is securely managed through',
+        'switch_plans_title' => 'Switch Plans',
+        'switch_plans_confirm' => 'Are you sure you want to switch to the',
+        'yes_switch' => 'Yes, Switch My Plan',
+        'no_thanks' => 'No Thanks',
     ],
 
     // Invoices

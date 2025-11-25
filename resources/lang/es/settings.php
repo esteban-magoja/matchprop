@@ -65,6 +65,10 @@ return [
         'updated_success' => 'Se ha actualizado correctamente tu suscripción',
         'no_active_subscription' => 'No se encontraron suscripciones activas. Por favor selecciona un plan a continuación.',
         'billing_managed_by' => 'La facturación se gestiona de forma segura a través de',
+        'switch_plans_title' => 'Cambiar de Plan',
+        'switch_plans_confirm' => '¿Estás seguro de que deseas cambiar al plan',
+        'yes_switch' => 'Sí, Cambiar Mi Plan',
+        'no_thanks' => 'No, Gracias',
     ],
 
     // Invoices
