@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Pages;
 use BackedEnum;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Tabs;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
@@ -45,9 +46,9 @@ class PageResource extends Resource
                     ->maxLength(191)
                     ->helperText('Same slug for all languages'),
                 
-                Forms\Components\Tabs::make('Translations')
+                Tabs::make('Translations')
                     ->tabs([
-                        Forms\Components\Tabs\Tab::make('Español')
+                        Tabs\Tab::make('Español')
                             ->schema([
                                 TextInput::make('title_i18n.es')
                                     ->label('Título')
@@ -76,7 +77,7 @@ class PageResource extends Resource
                                     ->rows(2)
                                     ->columnSpanFull(),
                             ]),
-                        Forms\Components\Tabs\Tab::make('English')
+                        Tabs\Tab::make('English')
                             ->schema([
                                 TextInput::make('title_i18n.en')
                                     ->label('Title')
