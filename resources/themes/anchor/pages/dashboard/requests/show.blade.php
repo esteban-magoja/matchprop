@@ -161,18 +161,18 @@
                             <div class="p-3 border-b border-gray-200 flex justify-between items-center">
                                 @if($listing->match_level === 'exact')
                                     <span class="px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                                        ✓ Match Exacto
+                                        {{ __('dashboard.matches_section.exact_match') }}
                                     </span>
                                 @elseif($listing->match_level === 'semantic')
                                     <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-                                        ⚡ Match Inteligente
+                                        {{ __('dashboard.matches_section.intelligent_match') }}
                                     </span>
                                 @else
                                     <span class="px-3 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
-                                        ~ Match Flexible
+                                        {{ __('dashboard.matches_section.flexible_match') }}
                                     </span>
                                 @endif
-                                <span class="text-xs text-gray-500">{{ $listing->match_score }}% coincidencia</span>
+                                <span class="text-xs text-gray-500">{{ __('dashboard.matches_section.match_score', ['score' => $listing->match_score]) }}</span>
                             </div>
 
                             <!-- Property Image -->
@@ -203,20 +203,20 @@
                                 <!-- Property Features -->
                                 <div class="flex gap-3 text-sm text-gray-600 mb-4">
                                     @if($listing->bedrooms)
-                                        <span>{{ $listing->bedrooms }} hab.</span>
+                                        <span>{{ __('dashboard.requests.min_bedrooms_short', ['count' => $listing->bedrooms]) }}</span>
                                     @endif
                                     @if($listing->bathrooms)
-                                        <span>{{ $listing->bathrooms }} baños</span>
+                                        <span>{{ __('dashboard.requests.min_bathrooms_short', ['count' => $listing->bathrooms]) }}</span>
                                     @endif
                                     @if($listing->area)
-                                        <span>{{ $listing->area }}m²</span>
+                                        <span>{{ __('dashboard.requests.min_area_short', ['area' => $listing->area]) }}</span>
                                     @endif
                                 </div>
 
                                 <!-- Match Details -->
                                 @if(!empty($listing->match_details))
                                     <div class="mb-4 p-2 bg-gray-50 rounded text-xs text-gray-600">
-                                        <strong>Coincide en:</strong>
+                                        <strong>{{ __('dashboard.matches_section.why_matches') }}:</strong>
                                         <ul class="list-disc list-inside mt-1">
                                             @foreach(array_slice($listing->match_details, 0, 3) as $detail)
                                                 <li>{{ $detail }}</li>
@@ -232,7 +232,7 @@
                                 @endphp
                                 <a href="{{ route_localized('property.show', ['id' => $listing->id, 'slug' => $listingSlug]) }}" 
                                    class="block w-full text-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
-                                    Ver Detalles
+                                    {{ __('properties.view_details') }}
                                 </a>
                             </div>
                         </div>

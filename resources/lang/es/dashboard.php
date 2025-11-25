@@ -356,6 +356,7 @@ return [
         'premium_benefit_5' => 'Ver información completa de contacto',
         'get_premium' => 'Obtener Membresía Premium',
         'already_premium' => 'Ya soy socio premium en BienesOnline',
+        'premium_granted' => '¡Rol premium otorgado exitosamente! Ahora puedes buscar solicitudes de clientes.',
         'country' => 'País',
         'select_country' => 'Selecciona un país',
         'search_label' => '¿Qué tipo de propiedad buscan?',
@@ -373,6 +374,15 @@ return [
         'requests_found' => 'solicitudes encontradas',
         'in_country' => 'en :country',
         'for_term' => 'para ":term"',
+        'relevance' => 'Relevancia',
+        'valid_until' => 'Válida hasta',
+        'validation' => [
+            'country_required' => 'Debes seleccionar un país.',
+            'search_required' => 'Debes escribir un término de búsqueda.',
+            'search_min_length' => 'El término de búsqueda debe tener al menos 5 caracteres.',
+            'search_error' => 'Error al realizar la búsqueda. Por favor intenta nuevamente.',
+            'check_fields' => 'Revisa los siguientes campos:',
+        ],
     ],
 
     // Sidebar Menu

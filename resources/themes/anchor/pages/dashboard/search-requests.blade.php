@@ -47,13 +47,13 @@ new class extends Component {
         
         // Validation
         if (empty($this->selectedCountry)) {
-            $this->validationErrors[] = 'Debes seleccionar un país.';
+            $this->validationErrors[] = __('dashboard.search_requests.validation.country_required');
         }
         
         if (empty($this->searchTerm)) {
-            $this->validationErrors[] = 'Debes escribir un término de búsqueda.';
+            $this->validationErrors[] = __('dashboard.search_requests.validation.search_required');
         } elseif (strlen($this->searchTerm) < 5) {
-            $this->validationErrors[] = 'El término de búsqueda debe tener al menos 5 caracteres.';
+            $this->validationErrors[] = __('dashboard.search_requests.validation.search_min_length');
         }
         
         if (!empty($this->validationErrors)) {
@@ -99,7 +99,7 @@ new class extends Component {
             
         } catch (\Exception $e) {
             Log::error('Error in request search: ' . $e->getMessage());
-            $this->validationErrors[] = 'Error al realizar la búsqueda. Por favor intenta nuevamente.';
+            $this->validationErrors[] = __('dashboard.search_requests.validation.search_error');
             $this->requests = collect();
             $this->totalResults = 0;
         }
@@ -157,7 +157,7 @@ new class extends Component {
         if ($premiumRole && !$user->hasRole('premium')) {
             $user->assignRole('premium');
             $this->canSearch = true;
-            session()->flash('success', '¡Rol premium otorgado exitosamente! Ahora puedes buscar solicitudes de clientes.');
+            session()->flash('success', __('dashboard.search_requests.premium_granted'));
         }
     }
 };
@@ -335,7 +335,7 @@ new class extends Component {
                                 </svg>
                             </div>
                             <div class="ml-3">
-                                <h3 class="text-sm font-medium text-red-800">Revisa los siguientes campos:</h3>
+                                <h3 class="text-sm font-medium text-red-800">{{ __('dashboard.search_requests.validation.check_fields') }}</h3>
                                 <div class="mt-2 text-sm text-red-700">
                                     <ul class="list-disc list-inside space-y-1">
                                         @foreach($validationErrors as $error)
@@ -459,7 +459,7 @@ new class extends Component {
                             @if($searchTerm && isset($propertyRequest->similarity))
                                 <div class="mb-3">
                                     <div class="flex items-center justify-between text-sm">
-                                        <span class="text-gray-600">Relevancia:</span>
+                                        <span class="text-gray-600">{{ __('dashboard.search_requests.relevance') }}:</span>
                                         <span class="font-medium text-green-600">{{ number_format($propertyRequest->similarity, 0) }}%</span>
                                     </div>
                                     <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
@@ -471,7 +471,7 @@ new class extends Component {
                             <!-- Expiration Date -->
                             @if($propertyRequest->expires_at)
                                 <p class="text-xs text-gray-500 mt-2">
-                                    Válida hasta: {{ $propertyRequest->expires_at->format('d/m/Y') }}
+                                    {{ __('dashboard.search_requests.valid_until') }}: {{ $propertyRequest->expires_at->format('d/m/Y') }}
                                 </p>
                             @endif
                         </div>

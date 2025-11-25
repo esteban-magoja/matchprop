@@ -356,6 +356,7 @@ return [
         'premium_benefit_5' => 'View full contact information',
         'get_premium' => 'Get Premium Membership',
         'already_premium' => 'I\'m already a premium member on BienesOnline',
+        'premium_granted' => 'Premium role granted successfully! You can now search for client requests.',
         'country' => 'Country',
         'select_country' => 'Select a country',
         'search_label' => 'What type of property are they looking for?',
@@ -373,6 +374,15 @@ return [
         'requests_found' => 'requests found',
         'in_country' => 'in :country',
         'for_term' => 'for ":term"',
+        'relevance' => 'Relevance',
+        'valid_until' => 'Valid until',
+        'validation' => [
+            'country_required' => 'You must select a country.',
+            'search_required' => 'You must enter a search term.',
+            'search_min_length' => 'The search term must be at least 5 characters.',
+            'search_error' => 'Error performing the search. Please try again.',
+            'check_fields' => 'Please check the following fields:',
+        ],
     ],
 
     // Sidebar Menu
