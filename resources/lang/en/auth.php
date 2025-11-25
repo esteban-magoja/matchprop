@@ -1,16 +1,24 @@
 <?php
 
-/*
- * Branding configs for your application
- * Note: These are default values. They can be overridden by lang files.
- * The translations are handled in the auth views using __() helper.
- */
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Translations for authentication pages
+    |
+    */
+
+    'failed' => 'These credentials do not match our records.',
+    'password' => 'The provided password is incorrect.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
+    // Login
     'login' => [
-        'page_title' => 'Sign in',
-        'headline' => 'Sign in',
+        'page_title' => 'Sign In',
+        'headline' => 'Sign In',
         'subheadline' => 'Login to your account below',
-        'show_subheadline' => false,
         'email_address' => 'Email Address',
         'password' => 'Password',
         'remember_me' => 'Remember me',
@@ -23,11 +31,12 @@ return [
         'change_email' => 'Change Email',
         'couldnt_find_your_account' => "Couldn't find your account",
     ],
+
+    // Register
     'register' => [
-        'page_title' => 'Sign up',
-        'headline' => 'Sign up',
+        'page_title' => 'Sign Up',
+        'headline' => 'Sign Up',
         'subheadline' => 'Register for your free account below.',
-        'show_subheadline' => false,
         'name' => 'Name',
         'email_address' => 'Email Address',
         'password' => 'Password',
@@ -38,53 +47,73 @@ return [
         'email_registration_disabled' => 'Email registration is currently disabled. Please use social login.',
         'registrations_disabled' => 'Registrations are currently disabled.',
     ],
+
+    // Verify Email
     'verify' => [
         'page_title' => 'Verify Your Account',
         'headline' => 'Verify your email address',
         'subheadline' => 'Before you can proceed you must verify your email.',
-        'show_subheadline' => false,
         'description' => 'Before proceeding, please check your email for a verification link. If you did not receive the email,',
         'new_request_link' => 'click here to request another',
         'new_link_sent' => 'A new link has been sent to your email address.',
         'or' => 'Or',
         'logout' => 'click here to logout',
     ],
-    'passwordConfirm' => [
+
+    // Password Confirm
+    'password_confirm' => [
         'page_title' => 'Confirm Your Password',
         'headline' => 'Confirm Password',
         'subheadline' => 'Be sure to confirm your password below',
-        'show_subheadline' => false,
         'password' => 'Password',
         'button' => 'Confirm password',
     ],
-    'passwordResetRequest' => [
+
+    // Password Reset Request
+    'password_reset_request' => [
         'page_title' => 'Request a Password Reset',
         'headline' => 'Reset password',
         'subheadline' => 'Enter your email below to reset your password',
-        'show_subheadline' => false,
         'email' => 'Email Address',
         'button' => 'Send password reset link',
         'or' => 'or',
         'return_to_login' => 'return to login',
     ],
-    'passwordReset' => [
+
+    // Password Reset
+    'password_reset' => [
         'page_title' => 'Reset Your Password',
         'headline' => 'Reset Password',
         'subheadline' => 'Reset your password below',
-        'show_subheadline' => false,
         'email' => 'Email Address',
         'password' => 'Password',
         'password_confirm' => 'Confirm Password',
         'button' => 'Reset Password',
     ],
-    'twoFactorChallenge' => [
+
+    // Two Factor Challenge
+    'two_factor_challenge' => [
         'page_title' => 'Two Factor Challenge',
         'headline_auth' => 'Authentication Code',
         'subheadline_auth' => 'Enter the authentication code provided by your authenticator application.',
-        'show_subheadline_auth' => false,
         'headline_recovery' => 'Recovery Code',
         'subheadline_recovery' => 'Please confirm access to your account by entering one of your emergency recovery codes.',
-        'show_subheadline_recovery' => false,
     ],
 
+    // Signup (Custom)
+    'signup' => [
+        'page_title' => 'Sign Up',
+        'headline' => 'Create Account',
+        'subheadline' => 'Join our platform',
+        'name' => 'Full Name',
+        'email' => 'Email Address',
+        'phone' => 'Mobile Phone (WhatsApp)',
+        'phone_placeholder' => '+1600123456',
+        'phone_help' => 'International format for WhatsApp e.g: +1600123456',
+        'password' => 'Password',
+        'password_confirmation' => 'Confirm Password',
+        'button' => 'Create Account',
+        'have_account' => 'Already have an account?',
+        'login_link' => 'Sign In',
+    ],
 ];

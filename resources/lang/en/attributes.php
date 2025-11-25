@@ -10,6 +10,12 @@ return [
     |
     */
 
+    // Authentication fields
+    'password' => 'password',
+    'password_confirmation' => 'password confirmation',
+    'movil' => 'mobile phone',
+    'remember' => 'remember me',
+
     // Property Request fields
     'client_name' => 'client name',
     'client_email' => 'client email',

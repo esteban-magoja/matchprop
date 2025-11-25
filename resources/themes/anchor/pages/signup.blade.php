@@ -32,8 +32,14 @@ new class extends Component
     public function messages()
     {
         return [
-            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
-            'password.confirmed' => 'Las contraseñas no coinciden.',
+            'name.required' => __('validation.required', ['attribute' => __('attributes.name')]),
+            'email.required' => __('validation.required', ['attribute' => __('attributes.email')]),
+            'email.email' => __('validation.email', ['attribute' => __('attributes.email')]),
+            'email.unique' => __('validation.unique', ['attribute' => __('attributes.email')]),
+            'password.required' => __('validation.required', ['attribute' => __('attributes.password')]),
+            'password.min' => __('validation.min.string', ['attribute' => __('attributes.password'), 'min' => 8]),
+            'password.confirmed' => __('validation.confirmed', ['attribute' => __('attributes.password')]),
+            'movil.required' => __('validation.required', ['attribute' => __('attributes.phone')]),
         ];
     }
 
@@ -76,11 +82,11 @@ new class extends Component
 
 ?>
 
-<x-auth::layouts.app title="Registro - {{ config('app.name') }}">
+<x-auth::layouts.app :title="__('auth.signup.page_title') . ' - ' . config('app.name')">
     @volt('signup')
     <x-auth::elements.container>
         
-        <x-auth::elements.heading text="Crear Cuenta" description="Únete a nuestra plataforma" />
+        <x-auth::elements.heading :text="__('auth.signup.headline')" :description="__('auth.signup.subheadline')" />
         
         <x-auth::elements.session-message />
 
@@ -89,7 +95,7 @@ new class extends Component
             <!-- Nombre -->
             <div>
                 <x-auth::elements.input 
-                    label="Nombre Completo" 
+                    :label="__('auth.signup.name')" 
                     type="text" 
                     wire:model="name" 
                     autofocus="true" 
@@ -103,7 +109,7 @@ new class extends Component
             <!-- Email -->
             <div>
                 <x-auth::elements.input 
-                    label="Dirección de Email" 
+                    :label="__('auth.signup.email')" 
                     id="email" 
                     name="email" 
                     type="email" 
@@ -119,25 +125,25 @@ new class extends Component
             <!-- Teléfono Móvil -->
             <div>
                 <x-auth::elements.input 
-                    label="Teléfono Móvil (WhatsApp)" 
+                    :label="__('auth.signup.phone')" 
                     id="movil" 
                     name="movil" 
                     type="tel" 
                     wire:model="movil" 
-                    placeholder="+34600123456" 
+                    :placeholder="__('auth.signup.phone_placeholder')" 
                     autocomplete="tel"
                     required
                 />
                 @error('movil') 
                     <span class="text-red-500 text-sm">{{ $message }}</span> 
                 @enderror
-                <p class="text-sm text-gray-500 mt-1">Formato internacional para WhatsApp Ej: +1600123456</p>
+                <p class="text-sm text-gray-500 mt-1">{{ __('auth.signup.phone_help') }}</p>
             </div>
 
             <!-- Contraseña -->
             <div>
                 <x-auth::elements.input 
-                    label="Contraseña" 
+                    :label="__('auth.signup.password')" 
                     type="password" 
                     wire:model="password" 
                     id="password" 
@@ -153,7 +159,7 @@ new class extends Component
             <!-- Confirmar Contraseña -->
             <div>
                 <x-auth::elements.input 
-                    label="Confirmar Contraseña" 
+                    :label="__('auth.signup.password_confirmation')" 
                     type="password" 
                     wire:model="password_confirmation" 
                     id="password_confirmation" 
@@ -168,15 +174,15 @@ new class extends Component
 
             <!-- Botón de Registro -->
             <x-auth::elements.button submit="true" rounded="md">
-                Crear Cuenta
+                {{ __('auth.signup.button') }}
             </x-auth::elements.button>
         </form>
 
         <!-- Link a Login -->
         <div class="mt-6 text-center">
-            <span class="text-sm opacity-70">¿Ya tienes una cuenta?</span>
+            <span class="text-sm opacity-70">{{ __('auth.signup.have_account') }}</span>
             <x-auth::elements.text-link href="{{ route('auth.login') }}">
-                Iniciar Sesión
+                {{ __('auth.signup.login_link') }}
             </x-auth::elements.text-link>
         </div>
 

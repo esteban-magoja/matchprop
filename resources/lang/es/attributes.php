@@ -10,6 +10,12 @@ return [
     |
     */
 
+    // Authentication fields
+    'password' => 'contraseña',
+    'password_confirmation' => 'confirmación de contraseña',
+    'movil' => 'teléfono móvil',
+    'remember' => 'recordarme',
+
     // Property Request fields
     'client_name' => 'nombre del cliente',
     'client_email' => 'email del cliente',
