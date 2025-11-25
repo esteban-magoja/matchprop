@@ -102,6 +102,7 @@ return [
     'update' => 'Update',
     'confirm' => 'Confirm',
     'back' => 'Back',
+    'back_home' => 'Back to home',
     'close' => 'Close',
     'yes' => 'Yes',
     'no' => 'No',

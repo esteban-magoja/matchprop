@@ -102,6 +102,7 @@ return [
     'update' => 'Actualizar',
     'confirm' => 'Confirmar',
     'back' => 'Volver',
+    'back_home' => 'Volver al inicio',
     'close' => 'Cerrar',
     'yes' => 'Sí',
     'no' => 'No',
