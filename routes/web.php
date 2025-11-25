@@ -68,8 +68,8 @@ Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () {
     // Request Search (pública)
     Route::get('/search-requests', [RequestSearchController::class, 'index'])->name('requests.search');
     
-    // Dynamic Pages - Con prefijo /page/ para evitar conflictos
-    Route::get('/page/{slug}', [\App\Http\Controllers\PageController::class, 'page'])
+    // Dynamic Pages - Con prefijo /content/ para evitar conflictos con Folio
+    Route::get('/content/{slug}', [\App\Http\Controllers\PageController::class, 'page'])
         ->where('slug', '[a-z0-9_-]+')
         ->name('page.show');
 });
@@ -153,3 +153,11 @@ Route::middleware('auth')->group(function () {
 // 5. WAVE ROUTES (maneja sus propias rutas - incluye rutas de páginas SIN locale)
 // ============================================================================
 Wave::routes();
+
+// ============================================================================
+// 6. PÁGINAS DINÁMICAS CON LOCALE (Después de Wave para evitar conflictos)
+// ============================================================================
+// Estas rutas DEBEN ir al final para tener prioridad sobre el fallback de Folio
+Route::get('/{locale}/content/{slug}', [\App\Http\Controllers\PageController::class, 'page'])
+    ->where(['locale' => 'es|en', 'slug' => '[a-z0-9_-]+'])
+    ->name('page.show');
