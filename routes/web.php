@@ -145,31 +145,23 @@ Route::middleware('auth')->group(function () {
 });
 
 // ============================================================================
-// 4.5. DYNAMIC PAGE ROUTES (Páginas creadas en admin con i18n)
+// 4.5. DYNAMIC PAGE ROUTES CON LOCALE (antes de Wave)
 // ============================================================================
+// Generar rutas con locale para todas las páginas activas
 try {
     if (\App\Models\User::first()) {
         foreach (\App\Models\Page::where('status', 'ACTIVE')->get() as $page) {
-            // Ruta con prefijo de locale (dentro del grupo de locale)
-            Route::prefix('{locale}')
-                ->where(['locale' => 'es|en'])
-                ->middleware('setlocale')
-                ->group(function () use ($page) {
-                    Route::get($page->slug, [\App\Http\Controllers\PageController::class, 'page'])
-                        ->name('page.' . $page->slug);
-                });
-            
-            // Ruta sin locale (fallback a español)
-            Route::get('/' . $page->slug, function() use ($page) {
-                return redirect()->route('page.' . $page->slug, ['locale' => 'es']);
+            // Ruta con locale
+            Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () use ($page) {
+                Route::get($page->slug, [\App\Http\Controllers\PageController::class, 'page']);
             });
         }
     }
 } catch (\Exception $e) {
-    // Silent catch para evitar errores en instalación
+    // Silent catch
 }
 
 // ============================================================================
-// 5. WAVE ROUTES (maneja sus propias rutas)
+// 5. WAVE ROUTES (maneja sus propias rutas - incluye rutas de páginas SIN locale)
 // ============================================================================
 Wave::routes();

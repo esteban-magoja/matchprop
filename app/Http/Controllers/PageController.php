@@ -10,7 +10,9 @@ class PageController extends Controller
 {
     public function page($slug): View
     {
-        $page = Page::where('slug', '=', $slug)->firstOrFail();
+        $page = Page::where('slug', '=', $slug)
+            ->where('status', 'ACTIVE')
+            ->firstOrFail();
 
         // El modelo Page ya maneja la traducción automáticamente
         // gracias a los accessors que retornan el contenido según app()->getLocale()
