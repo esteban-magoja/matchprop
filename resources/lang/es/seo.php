@@ -19,6 +19,24 @@ return [
     'search_title' => 'Buscar Propiedades - Raxta',
     'search_description' => 'Encuentra tu propiedad ideal con nuestra búsqueda inteligente. Miles de propiedades en venta y alquiler.',
     
+    // Property Search Page
+    'property_search' => [
+        'title' => 'Buscar Propiedades - Raxta',
+        'description' => 'Encuentra tu propiedad ideal con nuestra búsqueda inteligente potenciada por IA. Miles de propiedades en venta y alquiler.',
+    ],
+    
+    // Request Search Page
+    'request_search' => [
+        'title' => 'Buscar Solicitudes - Raxta',
+        'description' => 'Encuentra compradores e inquilinos buscando propiedades como la tuya. Conecta directamente con personas interesadas.',
+    ],
+    
+    // Pricing Page
+    'pricing' => [
+        'title' => 'Planes y Precios - Raxta',
+        'description' => 'Elige el plan perfecto para tus necesidades inmobiliarias. Desde publicación básica hasta herramientas avanzadas de IA.',
+    ],
+    
     // Detalle de propiedad
     'property_detail_title' => ':title - :transaction en :city',
     'property_detail_description' => ':type en :transaction • :location • :price • :features',

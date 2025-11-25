@@ -19,6 +19,24 @@ return [
     'search_title' => 'Search Properties - Raxta',
     'search_description' => 'Find your ideal property with our intelligent search. Thousands of properties for sale and rent.',
     
+    // Property Search Page
+    'property_search' => [
+        'title' => 'Search Properties - Raxta',
+        'description' => 'Find your ideal property with our AI-powered intelligent search. Thousands of properties for sale and rent.',
+    ],
+    
+    // Request Search Page
+    'request_search' => [
+        'title' => 'Search Requests - Raxta',
+        'description' => 'Find buyers and tenants looking for properties like yours. Connect directly with interested people.',
+    ],
+    
+    // Pricing Page
+    'pricing' => [
+        'title' => 'Plans and Pricing - Raxta',
+        'description' => 'Choose the perfect plan for your real estate needs. From basic publishing to advanced AI tools.',
+    ],
+    
     // Property detail
     'property_detail_title' => ':title - :transaction in :city',
     'property_detail_description' => ':type for :transaction • :location • :price • :features',

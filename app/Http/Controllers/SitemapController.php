@@ -62,6 +62,17 @@ class SitemapController extends Controller
             ];
         }
 
+        // Request search
+        foreach ($locales as $locale) {
+            $pages[] = [
+                'loc' => url("/{$locale}/search-requests"),
+                'lastmod' => now()->toW3cString(),
+                'changefreq' => 'hourly',
+                'priority' => '0.8',
+                'alternates' => $this->getAlternates("/{locale}/search-requests"),
+            ];
+        }
+
         // Pricing
         foreach ($locales as $locale) {
             $pages[] = [

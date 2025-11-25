@@ -113,6 +113,23 @@ class RequestSearchController extends Controller
             $searchTime = round((microtime(true) - $startTime) * 1000);
         }
         
+        // SEO data
+        $locale = app()->getLocale();
+        $seo = (object) [
+            'title' => __('seo.request_search.title'),
+            'description' => __('seo.request_search.description'),
+            'image' => url('/og_image.png'),
+            'type' => 'website',
+            'canonical' => route_localized('requests.search', [], $locale),
+            'hreflang_tags' => [
+                ['rel' => 'alternate', 'hreflang' => 'es', 'href' => route_localized('requests.search', [], 'es')],
+                ['rel' => 'alternate', 'hreflang' => 'en', 'href' => route_localized('requests.search', [], 'en')],
+                ['rel' => 'alternate', 'hreflang' => 'x-default', 'href' => route_localized('requests.search', [], 'es')],
+            ],
+            'og_locale' => $locale === 'es' ? 'es_ES' : 'en_US',
+            'og_alternate_locales' => $locale === 'es' ? ['en_US'] : ['es_ES'],
+        ];
+        
         return view('request-search', [
             'requests' => $requests,
             'countries' => $countries,
@@ -123,6 +140,7 @@ class RequestSearchController extends Controller
             'validationErrors' => $validationErrors,
             'isSearchRequest' => $isSearchRequest,
             'canSearch' => $canSearch,
+            'seo' => $seo,
         ]);
     }
     
