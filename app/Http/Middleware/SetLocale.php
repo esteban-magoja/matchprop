@@ -40,32 +40,38 @@ class SetLocale
 
     /**
      * Detectar el locale del usuario.
-     * Prioridad: URL > Sesión > Accept-Language > Default
+     * Prioridad: Query param > URL > Sesión > Accept-Language > Default
      *
      * @param Request $request
      * @return string
      */
     protected function detectLocale(Request $request): string
     {
-        // 1. Intentar obtener de la URL (parámetro de ruta)
+        // 1. Intentar obtener del query parameter (?locale=en)
+        $localeFromQuery = $request->query('locale');
+        if ($localeFromQuery && in_array($localeFromQuery, config('locales.available', ['es', 'en']))) {
+            return $localeFromQuery;
+        }
+
+        // 2. Intentar obtener de la URL (parámetro de ruta)
         $localeFromUrl = $request->route('locale');
         if ($localeFromUrl && in_array($localeFromUrl, config('locales.available', ['es', 'en']))) {
             return $localeFromUrl;
         }
 
-        // 2. Intentar obtener de la sesión
+        // 3. Intentar obtener de la sesión
         $localeFromSession = Session::get('locale');
         if ($localeFromSession && in_array($localeFromSession, config('locales.available', ['es', 'en']))) {
             return $localeFromSession;
         }
 
-        // 3. Intentar detectar del header Accept-Language
+                // 4. Intentar detectar del header Accept-Language
         $localeFromHeader = $this->detectFromHeader($request);
         if ($localeFromHeader) {
             return $localeFromHeader;
         }
 
-        // 4. Usar locale por defecto
+        // 5. Usar locale por defecto
         return config('locales.default', 'es');
     }
 
