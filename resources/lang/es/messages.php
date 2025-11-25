@@ -334,4 +334,12 @@ return [
         'seller_guide' => 'Guía del Vendedor',
         'seller_guide_desc' => 'Cómo convertirte en un vendedor exitoso dentro de la red global de Raxta.',
     ],
+
+    // Footer
+    'footer' => [
+        'all_rights' => 'Todos los derechos reservados.',
+        'privacy_policy' => 'Política de Privacidad',
+        'terms_conditions' => 'Términos y Condiciones',
+        'contact' => 'Contacto',
+    ],
 ];

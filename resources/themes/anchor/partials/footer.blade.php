@@ -139,23 +139,23 @@
         ?>
         <div class="flex flex-col items-center justify-between py-10 border-t border-solid lg:flex-row border-gray">
             <ul class="flex flex-wrap space-x-5 text-xs">
-                <li class="mb-6 text-center flex-full lg:flex-none lg:mb-0">&copy; {{ date('Y') }} {{ setting('site.title', 'Laravel Wave') }}, Inc. All rights reserved.</li>
+                <li class="mb-6 text-center flex-full lg:flex-none lg:mb-0">&copy; {{ date('Y') }} {{ setting('site.title', 'Laravel Wave') }}, Inc. {{ __('messages.footer.all_rights') }}</li>
                 <li class="lg:ml-6">
-                    <a href="/politica-de-privacidad" class="relative inline-block text-black group">
+                    <a href="/{{ app()->getLocale() }}/content/politica-de-privacidad" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
-                        <span>Política de Privacidad</span>
+                        <span>{{ __('messages.footer.privacy_policy') }}</span>
                     </a>
                 </li>
                 <li class="lg:ml-6">
-                    <a href="/terminos-y-condiciones" class="relative inline-block text-black group">
+                    <a href="/{{ app()->getLocale() }}/content/terminos-y-condiciones" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
-                        <span>Términos y Condiciones</span>
+                        <span>{{ __('messages.footer.terms_conditions') }}</span>
                     </a>
                 </li>
                 <li class="lg:ml-6">
-                    <a href="/contact" class="relative inline-block text-black group">
+                    <a href="/{{ app()->getLocale() }}/content/contact" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
-                        <span>Contacto</span>
+                        <span>{{ __('messages.footer.contact') }}</span>
                     </a>
                 </li>
 

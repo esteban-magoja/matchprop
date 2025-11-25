@@ -334,4 +334,12 @@ return [
         'seller_guide' => 'Seller\'s Guide',
         'seller_guide_desc' => 'How to become a successful seller within the Raxta global network.',
     ],
+
+    // Footer
+    'footer' => [
+        'all_rights' => 'All rights reserved.',
+        'privacy_policy' => 'Privacy Policy',
+        'terms_conditions' => 'Terms & Conditions',
+        'contact' => 'Contact',
+    ],
 ];
