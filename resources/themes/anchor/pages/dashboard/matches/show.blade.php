@@ -58,7 +58,7 @@
         <!-- Matches Section -->
         <div>
             <h3 class="text-xl font-bold text-gray-900 mb-4">
-                {{ __('dashboard.request_detail.matching_properties') }} ({{ $matches->count() }})
+                {{ __('dashboard.matches_section.matching_requests') }} ({{ $matches->count() }})
             </h3>
 
             @if($matches->isEmpty())
@@ -66,8 +66,8 @@
                     <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
-                    <h3 class="text-lg font-medium text-gray-900 mb-2">No hay solicitudes compatibles</h3>
-                    <p class="text-gray-600">Por el momento no hay solicitudes que coincidan con este anuncio.</p>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">{{ __('dashboard.matches_section.no_matching_requests') }}</h3>
+                    <p class="text-gray-600">{{ __('dashboard.matches_section.no_matching_requests_desc') }}</p>
                 </div>
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -77,18 +77,18 @@
                             <div class="flex justify-between items-start mb-4">
                                 @if($request->match_level === 'exact')
                                     <span class="px-3 py-1 text-sm font-medium bg-green-100 text-green-800 rounded-full">
-                                        ✓ Match Exacto
+                                        {{ __('dashboard.matches_section.exact_match') }}
                                     </span>
                                 @elseif($request->match_level === 'semantic')
                                     <span class="px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full">
-                                        ⚡ Match Inteligente
+                                        {{ __('dashboard.matches_section.intelligent_match') }}
                                     </span>
                                 @else
                                     <span class="px-3 py-1 text-sm font-medium bg-yellow-100 text-yellow-800 rounded-full">
-                                        ~ Match Flexible
+                                        {{ __('dashboard.matches_section.flexible_match') }}
                                     </span>
                                 @endif
-                                <span class="text-sm text-gray-500">{{ $request->match_score }}% coincidencia</span>
+                                <span class="text-sm text-gray-500">{{ __('dashboard.matches_section.match_score', ['score' => $request->match_score]) }}</span>
                             </div>
 
                             <!-- Request Details -->
@@ -98,11 +98,11 @@
                             <!-- Budget & Specs -->
                             <div class="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-gray-200">
                                 <div>
-                                    <span class="text-sm text-gray-500">Presupuesto</span>
+                                    <span class="text-sm text-gray-500">{{ __('dashboard.matches_section.budget') }}</span>
                                     <p class="font-medium text-gray-900">{{ $request->budget_range }}</p>
                                 </div>
                                 <div>
-                                    <span class="text-sm text-gray-500">Ubicación deseada</span>
+                                    <span class="text-sm text-gray-500">{{ __('dashboard.matches_section.desired_location') }}</span>
                                     <p class="font-medium text-gray-900">{{ $request->city ?? $request->state ?? $request->country }}</p>
                                 </div>
                             </div>
@@ -110,13 +110,13 @@
                             @if($request->min_bedrooms || $request->min_bathrooms || $request->min_area)
                                 <div class="flex gap-4 text-sm text-gray-600 mb-4">
                                     @if($request->min_bedrooms)
-                                        <span>Min. {{ $request->min_bedrooms }} hab.</span>
+                                        <span>{{ __('dashboard.requests.min_bedrooms_short', ['count' => $request->min_bedrooms]) }}</span>
                                     @endif
                                     @if($request->min_bathrooms)
-                                        <span>Min. {{ $request->min_bathrooms }} baños</span>
+                                        <span>{{ __('dashboard.requests.min_bathrooms_short', ['count' => $request->min_bathrooms]) }}</span>
                                     @endif
                                     @if($request->min_area)
-                                        <span>Min. {{ $request->min_area }}m²</span>
+                                        <span>{{ __('dashboard.requests.min_area_short', ['area' => $request->min_area]) }}</span>
                                     @endif
                                 </div>
                             @endif
@@ -124,7 +124,7 @@
                             <!-- Match Details -->
                             @if(!empty($request->match_details))
                                 <div class="mb-4 p-3 bg-gray-50 rounded text-sm">
-                                    <strong class="text-gray-900">Por qué coincide:</strong>
+                                    <strong class="text-gray-900">{{ __('dashboard.matches_section.why_matches') }}:</strong>
                                     <ul class="list-disc list-inside mt-2 text-gray-600 space-y-1">
                                         @foreach($request->match_details as $detail)
                                             <li>{{ $detail }}</li>
@@ -158,7 +158,7 @@
                                         @if($request->user->email)
                                             <a href="mailto:{{ $request->user->email }}" 
                                                class="px-3 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
-                                               title="Enviar email">
+                                               title="{{ __('dashboard.matches_section.send_email') }}">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                                 </svg>
@@ -179,7 +179,7 @@
                                 </div>
 
                                 <p class="text-xs text-gray-500 mt-3">
-                                    Solicitud creada {{ $request->created_at->diffForHumans() }}
+                                    {{ __('dashboard.matches_section.request_created') }} {{ $request->created_at->diffForHumans() }}
                                 </p>
                             </div>
                         </div>
