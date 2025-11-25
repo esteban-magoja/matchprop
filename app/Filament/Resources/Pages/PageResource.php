@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Pages;
 use BackedEnum;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Tabs;
+use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
