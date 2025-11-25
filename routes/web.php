@@ -150,10 +150,11 @@ Route::middleware('auth')->group(function () {
 try {
     if (\App\Models\User::first()) {
         foreach (\App\Models\Page::where('status', 'ACTIVE')->get() as $page) {
-            // Ruta con prefijo de locale
-            Route::get('/{locale}/' . $page->slug, [\App\Http\Controllers\PageController::class, 'page'])
-                ->where(['locale' => 'es|en'])
-                ->name('page.' . $page->slug);
+            // Ruta con prefijo de locale (dentro del grupo de locale)
+            Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () use ($page) {
+                Route::get($page->slug, [\App\Http\Controllers\PageController::class, 'page'])
+                    ->name('page.' . $page->slug);
+            });
             
             // Ruta sin locale (fallback a español)
             Route::get('/' . $page->slug, function() use ($page) {

@@ -8,7 +8,7 @@ use App\Models\Page;
 
 class PageController extends Controller
 {
-    public function page($locale, $slug): View
+    public function page($slug): View
     {
         $page = Page::where('slug', '=', $slug)->firstOrFail();
 
