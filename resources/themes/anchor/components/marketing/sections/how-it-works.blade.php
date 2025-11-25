@@ -23,7 +23,7 @@
                     <x-phosphor-number-two class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">Encontrá tu “Match Inmobiliario”</h3>
+                    <h3 class="font-medium text-zinc-900">{{ __('messages.home.step_2_title') }}</h3>
                     <p class="mt-2 text-sm text-zinc-500">
                         {{ __('messages.home.step_2_desc') }}
                     </p>
