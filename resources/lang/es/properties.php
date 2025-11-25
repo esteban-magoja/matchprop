@@ -18,6 +18,7 @@ return [
         'commercial' => 'Local Comercial',
         'land' => 'Terreno',
         'field' => 'Campo',
+        'farm' => 'Finca',
         'warehouse' => 'Galpón',
     ],
 

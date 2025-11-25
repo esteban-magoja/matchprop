@@ -18,6 +18,7 @@ return [
         'commercial' => 'Commercial Space',
         'land' => 'Land',
         'field' => 'Field',
+        'farm' => 'Farm',
         'warehouse' => 'Warehouse',
     ],
 
