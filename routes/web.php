@@ -19,8 +19,18 @@ use App\Http\Controllers\PropertyMatchController;
 use App\Http\Controllers\PropertyMessageController;
 use App\Http\Controllers\RequestSearchController;
 use App\Http\Controllers\TermsController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+
+// ============================================================================
+// 0. SITEMAP ROUTES (SEO - Sin prefijo de locale)
+// ============================================================================
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.index');
+Route::get('/sitemap-pages.xml', [SitemapController::class, 'pages'])->name('sitemap.pages');
+Route::get('/sitemap-properties-{locale}.xml', [SitemapController::class, 'properties'])
+    ->where('locale', 'es|en')
+    ->name('sitemap.properties');
 
 // ============================================================================
 // 1. REDIRECT RAÍZ AL LOCALE POR DEFECTO
