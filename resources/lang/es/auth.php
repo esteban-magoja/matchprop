@@ -116,4 +116,12 @@ return [
         'have_account' => '¿Ya tienes una cuenta?',
         'login_link' => 'Iniciar Sesión',
     ],
+
+    // Email de verificación
+    'verify_email' => [
+        'subject' => 'Verifica tu Correo Electrónico',
+        'greeting' => 'Bienvenido al sitio :name',
+        'body' => 'Tu correo registrado es :email. Por favor haz clic en el siguiente enlace para verificar tu cuenta.',
+        'action' => 'Verificar Email',
+    ],
 ];

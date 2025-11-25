@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome Email</title>
+    <title>{{ __('auth.verify_email.subject') }}</title>
 </head>
 
 <body>
-<h2>Welcome to the site {{$user['name']}}</h2>
+<h2>{{ __('auth.verify_email.greeting', ['name' => $user['name']]) }}</h2>
 <br/>
-Your registered email-id is {{$user['email']}} , Please click on the below link to verify your email account
+{{ __('auth.verify_email.body', ['email' => $user['email']]) }}
 <br/>
-<a href="{{ url('user/verify/', $user['verification_code']) }}">Verify Email</a>
+<a href="{{ url('user/verify/', $user['verification_code']) }}">{{ __('auth.verify_email.action') }}</a>
 </body>
 
 </html>

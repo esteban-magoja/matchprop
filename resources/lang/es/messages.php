@@ -300,4 +300,20 @@ return [
         'testimonial_3_name' => 'Sofía Rodríguez',
         'testimonial_3_role' => 'Vendedora y Agente Asociada',
     ],
+
+    // Pricing Section
+    'pricing' => [
+        'title' => 'Plan Premium',
+        'subtitle' => 'Asóciate a la red inmobiliaria más confiable y profesional.',
+        'monthly' => 'Mensual',
+        'yearly' => 'Anual',
+        'per_month' => '/mes',
+        'per_year' => '/año',
+        'get_started' => 'Comenzar',
+        'most_popular' => 'Más Popular',
+        'free' => 'Gratis',
+        'features_included' => 'Características incluidas',
+        'select_plan' => 'Seleccionar Plan',
+        'current_plan' => 'Plan Actual',
+    ],
 ];

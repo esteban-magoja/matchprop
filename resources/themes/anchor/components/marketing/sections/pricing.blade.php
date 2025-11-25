@@ -1,8 +1,8 @@
 <section>
     <x-marketing.elements.heading
         level="h2"
-        title="Plan Premium"
-        description="Asóciate a la red inmobiliaria más confiable y profesional." 
+        :title="__('messages.pricing.title')"
+        :description="__('messages.pricing.subtitle')" 
     />
 
     <div x-data="{ on: false, billing: '{{ get_default_billing_cycle() }}',
@@ -31,10 +31,10 @@
             <div class="flex relative justify-start items-center pb-5 -translate-y-2 md:justify-center">
                 <div class="inline-flex relative justify-center items-center p-1 w-auto text-center rounded-full border-2 -translate-y-3 md:mx-auto border-zinc-900">
                     <div x-ref="monthly" x-on:click="billing='Monthly'; toggleRepositionMarker($el)" :class="{ 'text-white': billing == 'Monthly', 'text-zinc-900' : billing != 'Monthly' }" class="relative z-20 px-3.5 py-1 text-sm font-medium leading-6 rounded-full duration-300 ease-out cursor-pointer">
-                        Mensual
+                        {{ __('messages.pricing.monthly') }}
                     </div>
                     <div x-ref="yearly" x-on:click="billing='Yearly'; toggleRepositionMarker($el)" :class="{ 'text-white': billing == 'Yearly', 'text-zinc-900' : billing != 'Yearly' }" class="relative z-20 px-3.5 py-1 text-sm font-medium leading-6 rounded-full duration-300 ease-out cursor-pointer">
-                        Anual
+                        {{ __('messages.pricing.yearly') }}
                     </div>
                     <div x-ref="marker" class="absolute left-0 z-10 w-1/2 h-full opacity-0">
                         <div class="w-full h-full rounded-full shadow-sm bg-zinc-900"></div>
@@ -59,7 +59,7 @@
 
                         <div class="px-8 mt-5">
                             <span class="text-5xl font-bold">$ <span x-text="billing == 'Monthly' ? '{{ $plan->monthly_price }}' : '{{ $plan->yearly_price }}'"></span></span>
-                            <span class="text-xl font-bold text-zinc-500"><span x-text="billing == 'Monthly' ? '/mes' : '/año'"></span></span>
+                            <span class="text-xl font-bold text-zinc-500"><span x-text="billing == 'Monthly' ? '{{ __('messages.pricing.per_month') }}' : '{{ __('messages.pricing.per_year') }}'"></span></span>
                         </div>
 
                         <div class="px-8 pb-10 mt-3">
@@ -83,11 +83,11 @@
                             <div class="mt-8">
                                 @auth
                                     <x-button class="w-full" tag="a" href="{{ url('/settings/subscription') }}">
-                                        Comenzar
+                                        {{ __('messages.pricing.get_started') }}
                                     </x-button>
                                 @else
                                     <x-button class="w-full" tag="a" href="{{ url('/signup') }}">
-                                        Comenzar
+                                        {{ __('messages.pricing.get_started') }}
                                     </x-button>
                                 @endauth
                             </div>

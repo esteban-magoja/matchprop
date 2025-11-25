@@ -300,4 +300,20 @@ return [
         'testimonial_3_name' => 'Emily Roberts',
         'testimonial_3_role' => 'Seller and Associated Agent',
     ],
+
+    // Pricing Section
+    'pricing' => [
+        'title' => 'Premium Plan',
+        'subtitle' => 'Join the most trusted and professional real estate network.',
+        'monthly' => 'Monthly',
+        'yearly' => 'Yearly',
+        'per_month' => '/month',
+        'per_year' => '/year',
+        'get_started' => 'Get Started',
+        'most_popular' => 'Most Popular',
+        'free' => 'Free',
+        'features_included' => 'Features included',
+        'select_plan' => 'Select Plan',
+        'current_plan' => 'Current Plan',
+    ],
 ];
