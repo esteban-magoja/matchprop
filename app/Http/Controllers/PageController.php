@@ -10,6 +10,8 @@ class PageController extends Controller
 {
     public function page($slug): View
     {
+        \Log::info('PageController::page called', ['slug' => $slug, 'locale' => app()->getLocale()]);
+        
         $page = Page::where('slug', '=', $slug)
             ->where('status', 'ACTIVE')
             ->firstOrFail();

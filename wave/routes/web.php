@@ -55,9 +55,10 @@ Route::redirect('billing', 'settings/subscription')->name('billing');
 try {
     if (User::first()) {
         /***** Dynamic Page Routes *****/
-        foreach (Page::all() as $page) {
-            Route::view($page->slug, 'theme::page', ['page' => $page->toArray()])->name($page->slug);
-        }
+        // DESACTIVADO: Ahora las páginas usan rutas con locale en routes/web.php
+        // foreach (Page::all() as $page) {
+        //     Route::view($page->slug, 'theme::page', ['page' => $page->toArray()])->name($page->slug);
+        // }
     }
 
     // If no users are found, redirect to the installer or dummy page

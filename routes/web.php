@@ -67,6 +67,11 @@ Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () {
 
     // Request Search (pública)
     Route::get('/search-requests', [RequestSearchController::class, 'index'])->name('requests.search');
+    
+    // Dynamic Pages - Con prefijo /page/ para evitar conflictos
+    Route::get('/page/{slug}', [\App\Http\Controllers\PageController::class, 'page'])
+        ->where('slug', '[a-z0-9_-]+')
+        ->name('page.show');
 });
 
 // ============================================================================
@@ -143,24 +148,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', [PropertyMessageController::class, 'destroy'])->name('destroy');
     });
 });
-
-// ============================================================================
-// 4.5. DYNAMIC PAGE ROUTES CON LOCALE (antes de Wave)
-// ============================================================================
-// Generar rutas con locale para todas las páginas activas
-try {
-    if (\App\Models\User::first()) {
-        foreach (\App\Models\Page::where('status', 'ACTIVE')->get() as $page) {
-            // Ruta con locale
-            Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () use ($page) {
-                Route::get($page->slug, [\App\Http\Controllers\PageController::class, 'page'])
-                    ->name('page.' . $page->slug);
-            });
-        }
-    }
-} catch (\Exception $e) {
-    // Silent catch
-}
 
 // ============================================================================
 // 5. WAVE ROUTES (maneja sus propias rutas - incluye rutas de páginas SIN locale)
