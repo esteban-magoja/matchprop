@@ -11,6 +11,9 @@ use Livewire\Attributes\Computed;
 
 name('requests.create');
 
+// Establecer locale inglés
+app()->setLocale('en');
+
 new class extends Component {
     
     #[Rule('required|string|max:255')]
