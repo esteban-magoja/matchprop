@@ -59,10 +59,10 @@ DAY_10_DATE=
 DAY_10_HOURS=3
 DAY_10_NOTES="Sistema completo de emails y notificaciones multiidioma implementado con deteccion automatica de locale"
 
-DAY_11_STATUS=not_started
+DAY_11_STATUS=completed
 DAY_11_DATE=
-DAY_11_HOURS=0
-DAY_11_NOTES=
+DAY_11_HOURS=3
+DAY_11_NOTES="CMS pages i18n with Folio, post-request locale URL, footer links, SetLocale middleware improved"
 
 DAY_12_STATUS=not_started
 DAY_12_DATE=
