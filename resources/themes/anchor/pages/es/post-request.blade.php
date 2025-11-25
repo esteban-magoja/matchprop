@@ -11,8 +11,7 @@ use Livewire\Attributes\Computed;
 
 name('requests.create');
 
-// Establecer locale español
-app()->setLocale('es');
+// Locale establecido por middleware SetLocale basado en URL /es/...
 
 new class extends Component {
     

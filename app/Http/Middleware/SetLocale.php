@@ -40,38 +40,46 @@ class SetLocale
 
     /**
      * Detectar el locale del usuario.
-     * Prioridad: Query param > URL > Sesión > Accept-Language > Default
+     * Prioridad: URL segment > Query param > Route param > Sesión > Accept-Language > Default
      *
      * @param Request $request
      * @return string
      */
     protected function detectLocale(Request $request): string
     {
-        // 1. Intentar obtener del query parameter (?locale=en)
+        $availableLocales = config('locales.available', ['es', 'en']);
+        
+        // 1. Intentar obtener del primer segmento de la URL (/en/..., /es/...)
+        $firstSegment = $request->segment(1);
+        if ($firstSegment && in_array($firstSegment, $availableLocales)) {
+            return $firstSegment;
+        }
+
+        // 2. Intentar obtener del query parameter (?locale=en)
         $localeFromQuery = $request->query('locale');
-        if ($localeFromQuery && in_array($localeFromQuery, config('locales.available', ['es', 'en']))) {
+        if ($localeFromQuery && in_array($localeFromQuery, $availableLocales)) {
             return $localeFromQuery;
         }
 
-        // 2. Intentar obtener de la URL (parámetro de ruta)
+        // 3. Intentar obtener de la URL (parámetro de ruta)
         $localeFromUrl = $request->route('locale');
-        if ($localeFromUrl && in_array($localeFromUrl, config('locales.available', ['es', 'en']))) {
+        if ($localeFromUrl && in_array($localeFromUrl, $availableLocales)) {
             return $localeFromUrl;
         }
 
-        // 3. Intentar obtener de la sesión
+        // 4. Intentar obtener de la sesión
         $localeFromSession = Session::get('locale');
-        if ($localeFromSession && in_array($localeFromSession, config('locales.available', ['es', 'en']))) {
+        if ($localeFromSession && in_array($localeFromSession, $availableLocales)) {
             return $localeFromSession;
         }
 
-                // 4. Intentar detectar del header Accept-Language
+                // 5. Intentar detectar del header Accept-Language
         $localeFromHeader = $this->detectFromHeader($request);
         if ($localeFromHeader) {
             return $localeFromHeader;
         }
 
-        // 5. Usar locale por defecto
+        // 6. Usar locale por defecto
         return config('locales.default', 'es');
     }
 

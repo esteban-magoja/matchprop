@@ -7,8 +7,7 @@
 ?>
 
 @php
-    // Establecer locale español
-    app()->setLocale('es');
+    // Locale establecido por middleware SetLocale basado en URL /es/...
     
     // Buscar la página por slug
     $page = \App\Models\Page::where('slug', $slug)
