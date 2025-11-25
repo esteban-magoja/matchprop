@@ -29,6 +29,8 @@ return [
         'change_avatar' => 'Cambiar foto',
         'save' => 'Guardar Cambios',
         'saved_success' => 'Perfil actualizado exitosamente',
+        'language' => 'Idioma preferido',
+        'language_description' => 'Selecciona el idioma para emails y notificaciones',
     ],
 
     // Security

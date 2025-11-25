@@ -34,6 +34,7 @@ class User extends WaveUser
         'city',
         'state',
         'country',
+        'locale',
         'terms_accepted',
         'terms_accepted_at',
     ];

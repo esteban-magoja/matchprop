@@ -49,10 +49,16 @@ new class extends Component
     {
         $this->validate();
 
+        // Detectar idioma del navegador
+        $acceptLanguage = request()->header('Accept-Language', 'es');
+        $locale = substr($acceptLanguage, 0, 2);
+        $locale = in_array($locale, ['es', 'en']) ? $locale : 'es';
+
         $userData = [
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
+            'locale' => $locale,
         ];
 
         // Agregar móvil si se proporciona

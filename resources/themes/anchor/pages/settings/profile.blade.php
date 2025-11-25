@@ -65,6 +65,15 @@
                         ->label(__('settings.profile.country'))
 						->rules('nullable|string|max:255')
 						->default(auth()->user()->country),
+					\Filament\Forms\Components\Select::make('locale')
+                        ->label(__('settings.profile.language'))
+                        ->helperText(__('settings.profile.language_description'))
+						->options([
+							'es' => 'Español',
+							'en' => 'English',
+						])
+						->default(auth()->user()->locale ?? 'es')
+						->required(),
 					...($this->dynamicFields( config('profile.fields') ))
                 ])
                 ->statePath('data');
@@ -110,6 +119,7 @@
 			auth()->user()->city = $state['city'] ?? null;
 			auth()->user()->state = $state['state'] ?? null;
 			auth()->user()->country = $state['country'] ?? null;
+			auth()->user()->locale = $state['locale'] ?? 'es';
 			auth()->user()->save();
 			$fieldsToSave = config('profile.fields');
 			$this->saveDynamicFields($fieldsToSave);
