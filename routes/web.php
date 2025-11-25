@@ -151,10 +151,13 @@ try {
     if (\App\Models\User::first()) {
         foreach (\App\Models\Page::where('status', 'ACTIVE')->get() as $page) {
             // Ruta con prefijo de locale (dentro del grupo de locale)
-            Route::prefix('{locale}')->where(['locale' => 'es|en'])->group(function () use ($page) {
-                Route::get($page->slug, [\App\Http\Controllers\PageController::class, 'page'])
-                    ->name('page.' . $page->slug);
-            });
+            Route::prefix('{locale}')
+                ->where(['locale' => 'es|en'])
+                ->middleware('setlocale')
+                ->group(function () use ($page) {
+                    Route::get($page->slug, [\App\Http\Controllers\PageController::class, 'page'])
+                        ->name('page.' . $page->slug);
+                });
             
             // Ruta sin locale (fallback a español)
             Route::get('/' . $page->slug, function() use ($page) {
