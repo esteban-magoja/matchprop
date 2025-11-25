@@ -44,10 +44,10 @@ DAY_7_DATE=
 DAY_7_HOURS=5.5
 DAY_7_NOTES=
 
-DAY_8_STATUS=not_started
+DAY_8_STATUS=completed
 DAY_8_DATE=
-DAY_8_HOURS=0
-DAY_8_NOTES=
+DAY_8_HOURS=3
+DAY_8_NOTES="Traduccion autenticacion, pricing, mensajes, switch-plans, pagination"
 
 DAY_9_STATUS=not_started
 DAY_9_DATE=
