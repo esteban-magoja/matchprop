@@ -20,6 +20,33 @@ class Page extends WavePage
     ];
 
     /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Antes de guardar, sincronizar campos legacy con versión en español
+        static::saving(function ($page) {
+            if (isset($page->title_i18n['es'])) {
+                $page->attributes['title'] = $page->title_i18n['es'];
+            }
+            if (isset($page->excerpt_i18n['es'])) {
+                $page->attributes['excerpt'] = $page->excerpt_i18n['es'];
+            }
+            if (isset($page->body_i18n['es'])) {
+                $page->attributes['body'] = $page->body_i18n['es'];
+            }
+            if (isset($page->meta_description_i18n['es'])) {
+                $page->attributes['meta_description'] = $page->meta_description_i18n['es'];
+            }
+            if (isset($page->meta_keywords_i18n['es'])) {
+                $page->attributes['meta_keywords'] = $page->meta_keywords_i18n['es'];
+            }
+        });
+    }
+
+    /**
      * Get the translated title for the current locale.
      */
     public function getTitleAttribute($value)
