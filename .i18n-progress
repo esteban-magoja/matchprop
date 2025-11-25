@@ -49,10 +49,10 @@ DAY_8_DATE=
 DAY_8_HOURS=3
 DAY_8_NOTES="Traduccion autenticacion, pricing, mensajes, switch-plans, pagination"
 
-DAY_9_STATUS=not_started
-DAY_9_DATE=
-DAY_9_HOURS=0
-DAY_9_NOTES=
+DAY_9_STATUS=completed
+DAY_9_DATE=2025-11-25
+DAY_9_HOURS=2
+DAY_9_NOTES="Sitemap multiidioma completo, robots.txt, SEO hreflang/OG en búsquedas, Twitter Cards"
 
 DAY_10_STATUS=not_started
 DAY_10_DATE=
