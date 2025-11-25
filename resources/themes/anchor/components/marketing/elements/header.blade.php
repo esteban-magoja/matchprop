@@ -77,11 +77,11 @@
                             <ul class="flex flex-col justify-between mx-auto max-w-7xl md:flex-row md:px-12">
                                 <div class="flex flex-col w-full border-l border-r divide-x md:flex-row divide-zinc-100 border-zinc-100">
                                     <div class="w-auto divide-y divide-zinc-100">
-                                        <a href="{{ route('page.show', ['locale' => app()->getLocale(), 'slug' => 'nuestra-mision']) }}" class="block text-sm p-7 hover:bg-neutral-100 group">
+                                        <a href="/{{ app()->getLocale() }}/content/nuestra-mision" class="block text-sm p-7 hover:bg-neutral-100 group">
                                             <span class="block mb-1 font-medium text-black">{{ __('messages.menu.our_mission') }}</span>
                                             <span class="block font-light leading-5 opacity-50">{{ __('messages.menu.our_mission_desc') }}</span>
                                         </a>
-                                        <a href="{{ route('page.show', ['locale' => app()->getLocale(), 'slug' => 'join_us']) }}" class="block text-sm p-7 hover:bg-neutral-100 group">
+                                        <a href="/{{ app()->getLocale() }}/content/join_us" class="block text-sm p-7 hover:bg-neutral-100 group">
                                             <span class="block mb-1 font-medium text-black">{{ __('messages.menu.join_us') }}</span>
                                             <span class="block leading-5 opacity-50">{{ __('messages.menu.join_us_desc') }}</span>
                                         </a>
@@ -91,21 +91,21 @@
                                         </a>
                                     </div>
                                     <div class="w-auto divide-y divide-zinc-100">
-                                        <a href="{{ route('page.dynamic', ['locale' => app()->getLocale(), 'slug' => 'mediation']) }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                        <a href="/{{ app()->getLocale() }}/content/mediation" class="block text-sm p-7 hover:bg-neutral-100">
                                             <span class="block mb-1 font-medium text-black">{{ __('messages.menu.mediation') }}</span>
                                             <span class="block leading-5 opacity-50">{{ __('messages.menu.mediation_desc') }}</span>
                                         </a>
-                                        <a href="{{ route('page.dynamic', ['locale' => app()->getLocale(), 'slug' => 'contract']) }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                        <a href="/{{ app()->getLocale() }}/content/contract" class="block text-sm p-7 hover:bg-neutral-100">
                                             <span class="block mb-1 font-medium text-black">{{ __('messages.menu.terms') }}</span>
                                             <span class="block leading-5 opacity-50">{{ __('messages.menu.terms_desc') }}</span>
                                         </a>
                                     </div>
                                     <div class="w-auto divide-y divide-zinc-100">
-                                        <a href="{{ route('page.show', ['locale' => app()->getLocale(), 'slug' => 'buyer_guide']) }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                        <a href="/{{ app()->getLocale() }}/content/buyer_guide" class="block text-sm p-7 hover:bg-neutral-100">
                                             <span class="block mb-1 font-medium text-black">{{ __('messages.menu.buyer_guide') }}</span>
                                             <span class="block font-light leading-5 opacity-50">{{ __('messages.menu.buyer_guide_desc') }}</span>
                                         </a>
-                                        <a href="{{ route('page.show', ['locale' => app()->getLocale(), 'slug' => 'seller-guide']) }}" class="block text-sm p-7 hover:bg-neutral-100">
+                                        <a href="/{{ app()->getLocale() }}/content/seller-guide" class="block text-sm p-7 hover:bg-neutral-100">
                                             <span class="block mb-1 font-medium text-black">{{ __('messages.menu.seller_guide') }}</span>
                                             <span class="block leading-5 opacity-50">{{ __('messages.menu.seller_guide_desc') }}</span>
                                         </a>
