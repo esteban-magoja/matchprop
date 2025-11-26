@@ -77,7 +77,7 @@
                             <ul class="flex flex-col justify-between mx-auto max-w-7xl md:flex-row md:px-12">
                                 <div class="flex flex-col w-full border-l border-r divide-x md:flex-row divide-zinc-100 border-zinc-100">
                                     <div class="w-auto divide-y divide-zinc-100">
-                                        <a href="/{{ app()->getLocale() }}/content/nuestra-mision" class="block text-sm p-7 hover:bg-neutral-100 group">
+                                        <a href="/{{ app()->getLocale() }}/content/our-mission" class="block text-sm p-7 hover:bg-neutral-100 group">
                                             <span class="block mb-1 font-medium text-black">{{ __('messages.menu.our_mission') }}</span>
                                             <span class="block font-light leading-5 opacity-50">{{ __('messages.menu.our_mission_desc') }}</span>
                                         </a>

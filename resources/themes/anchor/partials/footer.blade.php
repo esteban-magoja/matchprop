@@ -141,13 +141,13 @@
             <ul class="flex flex-wrap space-x-5 text-xs">
                 <li class="mb-6 text-center flex-full lg:flex-none lg:mb-0">&copy; {{ date('Y') }} {{ setting('site.title', 'Laravel Wave') }}, Inc. {{ __('messages.footer.all_rights') }}</li>
                 <li class="lg:ml-6">
-                    <a href="/{{ app()->getLocale() }}/content/politica-de-privacidad" class="relative inline-block text-black group">
+                    <a href="/{{ app()->getLocale() }}/content/privacy-policy" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
                         <span>{{ __('messages.footer.privacy_policy') }}</span>
                     </a>
                 </li>
                 <li class="lg:ml-6">
-                    <a href="/{{ app()->getLocale() }}/content/terminos-y-condiciones" class="relative inline-block text-black group">
+                    <a href="/{{ app()->getLocale() }}/content/terms-and-conditions" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
                         <span>{{ __('messages.footer.terms_conditions') }}</span>
                     </a>
