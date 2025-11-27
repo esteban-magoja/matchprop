@@ -117,6 +117,11 @@
 
 
 
+                    {{-- Language Switcher Mobile --}}
+                    <li class="flex items-center justify-center w-full h-16 border-b border-gray-100 md:hidden px-7">
+                        <x-language-switcher />
+                    </li>
+
                     @guest
                         <li class="relative z-30 flex flex-col items-center justify-center flex-shrink-0 w-full h-auto pt-3 space-y-3 text-sm md:hidden px-7">
                             <x-button href="{{ route('login') }}" tag="a" class="w-full text-sm" color="secondary">{{ __('messages.login') }}</x-button>

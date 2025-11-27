@@ -7,7 +7,7 @@
     />
     <div class="text-center max-w-3xl mx-auto">
         <div class="grid grid-cols-1 gap-x-6 gap-y-12 mt-12 text-center sm:grid-cols-2 lg:mt-16 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-16">
-            <div><a href="/buyer_guide">
+            <div><a href="/{{ app()->getLocale() }}/content/buyer_guide">
                 <div class="flex justify-center items-center mx-auto bg-zinc-100 rounded-full size-12">
                     <x-phosphor-note class="w-6 h-6" />
                 </div>
@@ -18,7 +18,7 @@
                     </p>
                 </div></a>
             </div>
-            <div><a href="/seller-guide">
+            <div><a href="/{{ app()->getLocale() }}/content/seller-guide">
                 <div class="flex justify-center items-center mx-auto bg-zinc-100 rounded-full size-12">
                     <x-phosphor-note-pencil class="w-6 h-6" />
                 </div>
