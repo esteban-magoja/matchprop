@@ -43,7 +43,7 @@ return [
     'select_state' => 'Seleccionar',
     'select_city' => 'Seleccionar',
     'search_location' => 'Buscar ubicación',
-    'map_location' => 'Ubicación en el Mapa',
+    'map_location' => 'Ubicación en el Mapa (opcional)',
     'select_country_for_map' => 'Por favor selecciona un país para mostrar el mapa.',
     
     // Estados
@@ -110,7 +110,7 @@ return [
         'country' => 'País',
         'state' => 'Provincia/Estado',
         'city' => 'Ciudad',
-        'address' => 'Dirección',
+        'address' => 'Dirección (opcional)',
         'postal_code' => 'Código Postal',
         'latitude' => 'Latitud',
         'longitude' => 'Longitud',

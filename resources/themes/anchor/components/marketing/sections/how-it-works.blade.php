@@ -2,7 +2,7 @@
 <section>
     <x-marketing.elements.heading
         level="h2"
-        :title="__('messages.home.how_it_works_title')"
+        :title="__('messages.home_page.how_it_works_title')"
         description="" 
     />
     <div class="text-center">
@@ -12,9 +12,9 @@
                     <x-phosphor-number-one class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">{{ __('messages.home.step_1_title') }}</h3>
+                    <h3 class="font-medium text-zinc-900">{{ __('messages.home_page.step_1_title') }}</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        {{ __('messages.home.step_1_desc') }}
+                        {{ __('messages.home_page.step_1_desc') }}
                     </p>
                 </div>
             </div>
@@ -23,9 +23,9 @@
                     <x-phosphor-number-two class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">{{ __('messages.home.step_2_title') }}</h3>
+                    <h3 class="font-medium text-zinc-900">{{ __('messages.home_page.step_2_title') }}</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        {{ __('messages.home.step_2_desc') }}
+                        {{ __('messages.home_page.step_2_desc') }}
                     </p>
                 </div>
             </div>
@@ -34,9 +34,9 @@
                     <x-phosphor-number-three class="w-6 h-6" />
                 </div>
                 <div class="mt-6">
-                    <h3 class="font-medium text-zinc-900">{{ __('messages.home.step_3_title') }}</h3>
+                    <h3 class="font-medium text-zinc-900">{{ __('messages.home_page.step_3_title') }}</h3>
                     <p class="mt-2 text-sm text-zinc-500">
-                        {{ __('messages.home.step_3_desc') }}
+                        {{ __('messages.home_page.step_3_desc') }}
                     </p>
                 </div>
             </div>

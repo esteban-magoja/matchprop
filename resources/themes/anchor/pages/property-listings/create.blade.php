@@ -57,7 +57,7 @@ new class extends Component {
     #[Rule('nullable|integer|min:0')]
     public ?int $lotsize = 0;
 
-    #[Rule('required|string|max:255')]
+    #[Rule('nullable|string|max:255')]
     public string $address = '';
 
     #[Rule('required|string|max:255')]
@@ -69,10 +69,10 @@ new class extends Component {
     #[Rule('required')]
     public $selectedState = null;
 
-    #[Rule('required|numeric')]
+    #[Rule('nullable|numeric')]
     public ?float $latitude = null;
 
-    #[Rule('required|numeric')]
+    #[Rule('nullable|numeric')]
     public ?float $longitude = null;
 
     public ?PropertyListing $propertyListing = null;

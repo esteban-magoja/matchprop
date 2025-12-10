@@ -241,7 +241,7 @@ return [
     'logout' => 'Logout',
 
     // Home Page
-    'home' => [
+    'home_page' => [
         // Hero Section
         'hero_title_1' => 'Find your',
         'hero_title_2' => 'Real Estate Match',

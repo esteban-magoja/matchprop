@@ -43,7 +43,7 @@ return [
     'select_state' => 'Select',
     'select_city' => 'Select',
     'search_location' => 'Search location',
-    'map_location' => 'Location on Map',
+    'map_location' => 'Location on Map (optional)',
     'select_country_for_map' => 'Please select a country to show the map.',
     
     // Status
@@ -110,7 +110,7 @@ return [
         'country' => 'Country',
         'state' => 'State/Province',
         'city' => 'City',
-        'address' => 'Address',
+        'address' => 'Address (optional)',
         'postal_code' => 'Postal Code',
         'latitude' => 'Latitude',
         'longitude' => 'Longitud',
